@@ -3,6 +3,6 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <h1>text</h1>
+    <h1>AKU INGIN MAKAN</h1>
   );
 }
