@@ -5,13 +5,13 @@
   --text:#222222;
   --subtext:#777777;
   --white:#ffffff;
-  --border:#222222;
+  --border:#2C2A26;
 }
 
 *{
   margin:0;
   padding:0;
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 body{

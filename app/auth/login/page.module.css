@@ -1,0 +1,109 @@
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  padding-bottom: 30px;
+}
+
+.form label{
+  font-size:16px;
+  font-weight:600;
+}
+
+.form input{
+  padding:18px;
+  border:3px solid var(--border);
+  font-size:16px;
+  outline:none;
+
+  box-shadow:4px 4px 0 var(--border);
+}
+
+.form a{
+  text-align:right;
+  text-decoration:none;
+  color:var(--primary);
+  font-size:14px;
+}
+
+.loginBtn{
+  margin-top:20px;
+  padding:20px;
+  border:3px solid var(--border);
+  background:var(--primary);
+  color:var(--white);
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:4px 4px 0 var(--border);
+  width: 100%;
+}
+
+.divider{
+  margin: 30px 0 5px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--subtext);
+}
+
+.divider span{
+  flex:1;
+  height:1px;
+  background:#ccc;
+}
+
+.googleBtn{
+  padding:18px;
+  border:3px solid var(--border);
+  background:var(--white);
+  cursor:pointer;
+  font-weight:600;
+
+  box-shadow:4px 4px 0 var(--border);
+}
+
+.bottomText{
+  margin-top:20px;
+  text-align:center;
+  color:var(--subtext);
+}
+
+.bottomText a{
+  text-decoration:none;
+}
+
+.bottomText b{
+  color:var(--primary);
+}
+
+.passwordBox{
+  position:relative;
+  width:100%;
+}
+
+.passwordBox input{
+  width:100%;
+  padding-right:60px;
+}
+
+.eyeBtn{
+  position:absolute;
+  top:50%;
+  right:18px;
+
+  transform:translateY(-50%);
+
+  border:none;
+  background:none;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  font-size:20px;
+  color:var(--text);
+}
