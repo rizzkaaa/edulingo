@@ -1,90 +1,210 @@
+"use client";
+
 import Link from "next/link";
+import styles from "./page.module.css";
+
+import { useState } from "react";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import { motion } from "framer-motion";
 
 export default function RegisterPage() {
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   return (
-    <div className="container">
 
-      <div className="left">
+    <motion.div
+      className={styles.container}
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        duration: 0.5,
+        ease: "easeOut"
+      }}
+    >
 
-        <div className="logo">
+      <div className={styles.left}>
+
+        <div className={styles.logo}>
           EduLingo
         </div>
 
-        <div className="circle"></div>
-        <div className="square"></div>
-        <div className="small-square"></div>
-        <div className="small-circle"></div>
+        <div className={styles.circle}></div>
+        <div className={styles.square}></div>
+        <div className={styles.smallSquare}></div>
+        <div className={styles.smallCircle}></div>
 
-        <div className="content">
+        <div className={styles.content}>
+
           <h1>
             Learn English.
             <br />
             No Excuses.
           </h1>
 
-          <div className="line"></div>
+          <div className={styles.line}></div>
 
           <p>
             Master the English language with interactive lessons,
             real conversations, and personalized learning paths.
           </p>
 
-          <div className="tags">
-            <button>📖 Structure</button>
-            <button>🎧 Listening</button>
-            <button>📝 Reading</button>
+          <div className={styles.tags}>
+
+            <button>
+              📖 Structure
+            </button>
+
+            <button>
+              🎧 Listening
+            </button>
+
+            <button>
+              📝 Reading
+            </button>
+
           </div>
+
         </div>
 
       </div>
 
-      <div className="right">
+      <div className={styles.right}>
 
-        <div className="auth-box">
+        <motion.div
+          className={styles.authBox}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.2
+          }}
+        >
 
-          <div className="tab">
+          <div className={styles.tab}>
 
-            <Link href="/login" className="tab-link">
+            <Link
+              href="/login"
+              className={styles.tabLink}
+            >
               MASUK
             </Link>
 
-            <Link href="/register" className="tab-link active-tab">
+            <Link
+              href="/register"
+              className={`${styles.tabLink} ${styles.activeTab}`}
+            >
               DAFTAR
             </Link>
 
           </div>
 
-          <div className="form">
+          <motion.div
+            className={styles.form}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.3
+            }}
+          >
 
             <label>Nama Lengkap</label>
-            <input type="text" placeholder="Masukkan nama lengkap" />
+
+            <input
+              type="text"
+              placeholder="Masukkan nama lengkap"
+            />
+
+            <label>Username</label>
+
+            <input
+              type="text"
+              placeholder="Masukkan username"
+            />
 
             <label>Email</label>
-            <input type="email" placeholder="nama@email.com" />
+
+            <input
+              type="email"
+              placeholder="nama@email.com"
+            />
 
             <label>Password</label>
-            <input type="password" placeholder="Buat password" />
+
+            <div className={styles.passwordBox}>
+
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Masukkan password"
+              />
+
+              <button
+                type="button"
+                className={styles.eyeBtn}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+
+            </div>
 
             <label>Konfirmasi Password</label>
-            <input type="password" placeholder="Ulangi password" />
 
-            <button className="login-btn">
-              DAFTAR SEKARANG
-            </button>
+            <div className={styles.passwordBox}>
 
-            <p className="bottom-text">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Ulangi password"
+              />
+
+              <button
+                type="button"
+                className={styles.eyeBtn}
+                onClick={() =>
+                  setShowConfirmPassword(!showConfirmPassword)
+                }
+              >
+                {showConfirmPassword
+                  ? <FaEyeSlash />
+                  : <FaEye />
+                }
+              </button>
+
+            </div>
+
+            <motion.button
+              className={styles.loginBtn}
+              whileHover={{
+                scale: 1.03
+              }}
+              whileTap={{
+                scale: 0.95
+              }}
+            >
+              DAFTAR
+            </motion.button>
+
+            <p className={styles.bottomText}>
+
               Sudah punya akun?
+
               <Link href="/login">
                 <b> Masuk sekarang</b>
               </Link>
+
             </p>
 
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
       </div>
 
-    </div>
+    </motion.div>
   );
 }
