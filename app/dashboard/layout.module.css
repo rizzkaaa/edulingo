@@ -1,75 +1,92 @@
-.dashboardLayout{
-  display:flex;
-  min-height:100vh;
-  background:#FEF8F2;
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+  background: #fef8f2;
+  overflow: hidden;
 }
 
-.sidebar{
-  width:80px;
-  height:100vh;
-  position:fixed;
-  left:0;
-  top:0;
-
-  background:#FEF8F2;
-  border-right:2px solid #1D1B18;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:30px 0;
-
-  box-shadow:4px 0 0 #1D1B18;
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  border-right: 2px solid #1d1b18;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10px;
+  box-shadow: 4px 0 0 #1d1b18;
 }
 
-.logo{
-  font-size:28px;
-  font-weight:700;
-  color:#A43814;
+.dark{
+  background: #2C2A26;
 }
 
-.navMenu{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+.wrapSidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #a43814;
+  margin-bottom: 30px;
 }
 
-.navMenu button{
-  width:50px;
-  height:50px;
-
-  border:2px solid #1D1B18;
-  background:#fff;
-
-  cursor:pointer;
-  font-size:20px;
-
-  box-shadow:4px 4px 0 #1D1B18;
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.activeBtn{
-  background:#FDBA49 !important;
-
-  transform:translateY(4px);
-
-  box-shadow:1px 1px 0 #1D1B18;
+.navMenu .borderMenu {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
 }
 
-.profile{
-  width:50px;
-  height:50px;
-
-  border-radius:50%;
-  border:2px solid #1D1B18;
-
-  background:#FDBA49;
-
+.borderMenu .menu {
+  font-size: 24px;
+  color: #58423b;
+  margin: auto;
+  font-weight: bold;
 }
 
-.mainContent{
-  flex:1;
-  margin-left:80px;
-  padding:30px;
+.activeMenu {
+  padding-top: 5px;
+  border: 2px solid #1d1b18;
+  background: #fdba49 !important;
+  box-shadow: 4px 0px #1d1b18;
+  border-radius: 10px;
+}
+.activeMenu .menu {
+  color: #1d1b18 !important;
+  font-size: 20px !important;
+}
+
+.dark .menu{
+  color: white;
+}
+.profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #1d1b18;
+  background: #fdba49;
+  display: flex;
+}
+.profile .a {
+  color: #704b00;
+  font-weight: bold;
+  font-size: 16px;
+  margin: auto;
+  text-decoration: none;
+}
+
+.mainContent {
+  overflow: auto;
+  flex: 1;
+  margin-left: 80px;
+  padding: 30px;
 }

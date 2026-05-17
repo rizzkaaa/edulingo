@@ -10,53 +10,6 @@ export default function DashboardPage() {
   return (
     <div className={styles.layout}>
       
-      {/* SIDEBAR FIXED (Navigasi Kiri) */}
-      <aside className={styles.sidebar}>
-        <div className={styles.brandLogo}>E</div>
-        
-        <ul className={styles.menuList}>
-          <li 
-            className={`${styles.menuItem} ${activeMenu === 'home' ? styles.menuItemActive : ''}`}
-            onClick={() => setActiveMenu('home')}
-            title="Beranda"
-          >
-            🏠
-          </li>
-          <li 
-            className={`${styles.menuItem} ${activeMenu === 'book' ? styles.menuItemActive : ''}`}
-            onClick={() => setActiveMenu('book')}
-            title="Materi"
-          >
-            📖
-          </li>
-          <li 
-            className={`${styles.menuItem} ${activeMenu === 'chart' ? styles.menuItemActive : ''}`}
-            onClick={() => setActiveMenu('chart')}
-            title="Statistik"
-          >
-            📊
-          </li>
-          <li 
-            className={`${styles.menuItem} ${activeMenu === 'edit' ? styles.menuItemActive : ''}`}
-            onClick={() => setActiveMenu('edit')}
-            title="Tugas"
-          >
-            📝
-          </li>
-          <li 
-            className={`${styles.menuItem} ${activeMenu === 'trophy' ? styles.menuItemActive : ''}`}
-            onClick={() => setActiveMenu('trophy')}
-            title="Peringkat"
-          >
-            🏆
-          </li>
-        </ul>
-
-        <div className={styles.avatarItem} title="Profil">
-          HV
-        </div>
-      </aside>
-
       {/* MAIN CONTENT AREA */}
       <main className={styles.mainContainer}>
         
