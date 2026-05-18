@@ -1,125 +1,242 @@
-'use client';
-
-import { useState } from 'react';
-import styles from './page.module.css';
+import styles from "./page.module.css";
+import * as FaIcons from "react-icons/fa";
 
 export default function DashboardPage() {
-  // State untuk melacak rute menu internal di Dashboard
-  const [activeMenu, setActiveMenu] = useState('home');
+
+  const today = new Date();
+
+  const hari = [
+    "MINGGU",
+    "SENIN",
+    "SELASA",
+    "RABU",
+    "KAMIS",
+    "JUMAT",
+    "SABTU"
+  ];
+
+  const bulan = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MEI",
+    "JUN",
+    "JUL",
+    "AGU",
+    "SEP",
+    "OKT",
+    "NOV",
+    "DES"
+  ];
+
+  const tanggalText =
+    `${hari[today.getDay()]}, ${today.getDate()} ${bulan[today.getMonth()]}`;
 
   return (
-    <div className={styles.layout}>
-      
-      {/* MAIN CONTENT AREA */}
-      <main className={styles.mainContainer}>
-        
-        {/* Jika menu sidebar yang aktif adalah 'home', render isi halaman utama */}
-        {activeMenu === 'home' ? (
-          <>
-            {/* Bagian Atas Dashboard */}
-            <header className={styles.header}>
-              <h1 className={styles.welcomeText}>Selamat Datang, Evan 👋</h1>
-              <div className={styles.dateBadge}>📅 SENIN, 12 OKT</div>
-            </header>
 
-            {/* Grid Informasi Kursus & Progres */}
-            <div className={styles.topGrid}>
-              <div className={styles.currentCourseCard}>
-                <p className={styles.tagline}>Kursus Berlangsung</p>
-                <h2 className={styles.courseTitle}>Structure Part 1 — Singular & Plural Nouns</h2>
-                
-                <div className={styles.progressContainer}>
-                  <div className={styles.progressLabel}>
-                    <span>Progres Belajar</span>
-                    <span>64%</span>
-                  </div>
-                  <div className={styles.progressBarTrack}>
-                    <div className={styles.progressBarFill}></div>
-                  </div>
-                </div>
+    <div className={styles.container}>
 
-                <button type="button" className={styles.btnContinue}>LANJUTKAN →</button>
-              </div>
+      <div className={styles.topbar}>
 
-              <div className={styles.illustrationCard}>
-                <div className={styles.percentBadge}>64%</div>
-                <span style={{ fontSize: '64px' }}>📚</span>
-              </div>
-            </div>
+        <h1>
+          SELAMAT DATANG, EVAN 👋
+        </h1>
 
-            {/* List Materi Pelajaran */}
-            <section>
-              <h3 className={styles.sectionTitle}>Materi Saya +</h3>
-              
-              <div className={styles.materiList}>
-                {/* Materi Selesai */}
-                <div className={`${styles.materiItem} ${styles.materiDone}`}>
-                  <div className={styles.materiInfo}>
-                    <span className={styles.materiNum}>01</span>
-                    <div>
-                      <p className={styles.materiName}>Structure Part 1</p>
-                      <p className={styles.materiStatusText}>Completed</p>
-                    </div>
-                  </div>
-                  <span>✔️</span>
-                </div>
+        <div className={styles.dateBox}>
+          📅 {tanggalText}
+        </div>
 
-                {/* Materi Aktif */}
-                <div className={`${styles.materiItem} ${styles.materiActive}`}>
-                  <div className={styles.materiInfo}>
-                    <span className={styles.materiNum}>02</span>
-                    <div>
-                      <p className={styles.materiName}>Structure Part 2</p>
-                      <p className={styles.materiStatusText}>In Progress</p>
-                    </div>
-                  </div>
-                  <span>▶️</span>
-                </div>
+      </div>
 
-                {/* Materi Terkunci */}
-                <div className={`${styles.materiItem} ${styles.materiLocked}`}>
-                  <div className={styles.materiInfo}>
-                    <span className={styles.materiNum}>03</span>
-                    <div>
-                      <p className={styles.materiName}>Reading Strategies</p>
-                    </div>
-                  </div>
-                  <span>🔒 LOCKED</span>
-                </div>
+      <div className={styles.heroSection}>
 
-                {/* Materi Terkunci */}
-                <div className={`${styles.materiItem} ${styles.materiLocked}`}>
-                  <div className={styles.materiInfo}>
-                    <span className={styles.materiNum}>04</span>
-                    <div>
-                      <p className={styles.materiName}>Reading for Details</p>
-                    </div>
-                  </div>
-                  <span>🔒 LOCKED</span>
-                </div>
-              </div>
-            </section>
+        <div className={styles.heroLeft}>
 
-            {/* Banner Simulasi */}
-            <div className={styles.simulationBanner}>
-              <div>
-                <h2 className={styles.bannerTitle}>SIAP UJIAN SIMULASI?</h2>
-                <p className={styles.bannerSubtitle}>Selesaikan 5 materi untuk membuka 100 soal</p>
-              </div>
-              <button type="button" className={styles.btnLocked}>
-                🔒 TERKUNCI
-              </button>
-            </div>
-          </>
-        ) : (
-          /* Tampilan ketika menu sidebar selain home diklik */
-          <div style={{ padding: '40px 0', textAlign: 'center' }}>
-            <h2 className={styles.welcomeText}>Halaman {activeMenu.toUpperCase()}</h2>
-            <p style={{ marginTop: '10px', color: 'var(--text-muted)' }}>Konten di area ini berubah otomatis berdasarkan menu yang kamu klik.</p>
+          <p className={styles.label}>
+            KURSUS BERLANGSUNG
+          </p>
+
+          <h2>
+            Structure Part 1 —
+            <br />
+            Singular & Plural Nouns
+          </h2>
+
+          <div className={styles.wave}></div>
+
+          <div className={styles.progressTop}>
+
+            <span>
+              Progres Belajar
+            </span>
+
+            <span>
+              64%
+            </span>
+
           </div>
-        )}
 
-      </main>
+          <div className={styles.progressBar}>
+
+            <div className={styles.progressFill}></div>
+
+          </div>
+
+          <button className={styles.continueBtn}>
+            LANJUTKAN →
+          </button>
+
+        </div>
+
+        <div className={styles.heroRight}>
+
+          <div className={styles.badge}>
+            64%
+          </div>
+
+          <img
+            src="/images/book.png"
+            alt="Book"
+          />
+
+        </div>
+
+      </div>
+
+      <div className={styles.sectionTitle}>
+        MATERI SAYA ✨
+      </div>
+
+      <div className={styles.lessonList}>
+
+        <div className={styles.lessonDone}>
+
+          <div>
+
+            <h3>
+              01 Structure Part 1
+            </h3>
+
+            <p>
+              Completed
+            </p>
+
+          </div>
+
+          <span className={styles.doneIcon}>
+            <FaIcons.FaCheck />
+          </span>
+
+        </div>
+
+        <div className={styles.lessonProgress}>
+
+          <div>
+
+            <h3>
+              02 Structure Part 2
+            </h3>
+
+            <p>
+              In Progress
+            </p>
+
+          </div>
+
+          <span className={styles.progressIcon}>
+            <FaIcons.FaPlayCircle />
+          </span>
+
+        </div>
+
+        <div className={styles.lessonLocked}>
+
+          <div>
+
+            <h3>
+              03 Reading Strategies
+            </h3>
+
+          </div>
+
+          <div className={styles.lockedBadge}>
+
+            <FaIcons.FaLock />
+
+            LOCKED
+
+          </div>
+
+        </div>
+
+        <div className={styles.lessonLocked}>
+
+          <div>
+
+            <h3>
+              04 Reading for Details
+            </h3>
+
+          </div>
+
+          <div className={styles.lockedBadge}>
+
+            <FaIcons.FaLock />
+
+            LOCKED
+
+          </div>
+
+        </div>
+
+        <div className={styles.lessonLocked}>
+
+          <div>
+
+            <h3>
+              05 Listening Comprehension
+            </h3>
+
+          </div>
+
+          <div className={styles.lockedBadge}>
+
+            <FaIcons.FaLock />
+
+            LOCKED
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div className={styles.bottomBanner}>
+
+        <div>
+
+          <h2>
+            SIAP UJIAN SIMULASI?
+          </h2>
+
+          <p>
+            Selesaikan 5 materi untuk membuka 100 soal
+          </p>
+
+        </div>
+
+        <div className={styles.lockButton}>
+
+          <FaIcons.FaLock />
+
+          TERKUNCI
+
+        </div>
+
+      </div>
+
     </div>
+
   );
 }

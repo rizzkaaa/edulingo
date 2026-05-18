@@ -1,201 +1,331 @@
-.dashboard{
+.container{
   display:flex;
   flex-direction:column;
-  gap:30px;
+  gap:24px;
+
+  padding:10px 0 40px;
 }
 
-.topBar{
+.topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:20px;
 }
 
-.topBar h1{
-  font-size:48px;
+.topbar h1{
+  font-size:30px;
   font-weight:700;
   color:#1D1B18;
 }
 
 .dateBox{
-  padding:14px 24px;
-  background:#EDE7E1;
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 18px;
+
   border:2px solid #1D1B18;
 
-  font-weight:700;
+  background:#EDE7E1;
 
-  box-shadow:5px 5px 0 #1D1B18;
+  font-weight:700;
+  font-size:14px;
+
+  box-shadow:4px 4px 0 #1D1B18;
 }
 
-.heroGrid{
+.heroSection{
   display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:24px;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
 }
 
 .heroLeft{
   background:#fff;
+
   border:2px solid #1D1B18;
-  padding:40px;
+
+  padding:30px;
 
   box-shadow:5px 5px 0 #1D1B18;
 }
 
-.smallTitle{
+.label{
   color:#A43814;
+
   font-weight:700;
-  margin-bottom:20px;
+  font-size:13px;
+
+  margin-bottom:16px;
 }
 
 .heroLeft h2{
-  font-size:52px;
+  font-size:42px;
   line-height:1.1;
-  margin-bottom:40px;
+
+  color:#1D1B18;
 }
 
-.progressInfo{
-  margin-bottom:30px;
+.wave{
+  width:300px;
+  height:20px;
+
+  margin:20px 0;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='20' viewBox='0 0 220 20'%3E%3Cpath d='M0 10 Q55 2 110 10 T220 10' stroke='%23E6A52D' fill='none' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+
+  background-repeat:repeat-x;
+  background-size:220px 20px;
+  background-position:center;
 }
 
-.progressText{
+.progressTop{
   display:flex;
   justify-content:space-between;
-  margin-bottom:10px;
 
+  margin-bottom:8px;
+
+  font-size:14px;
   font-weight:700;
 }
 
 .progressBar{
-  width:100%;
-  height:24px;
+  height:18px;
 
   border:2px solid #1D1B18;
 
-  background:#E7E2DB;
+  background:#EDE7E1;
+
+  overflow:hidden;
 }
 
 .progressFill{
   width:64%;
   height:100%;
+
   background:#16694E;
 }
 
 .continueBtn{
-  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-top:30px;
+
+  padding:16px 30px;
 
   border:2px solid #1D1B18;
+
   background:#A43814;
 
   color:#fff;
-  font-size:22px;
+
+  font-size:20px;
   font-weight:700;
 
   cursor:pointer;
 
   box-shadow:5px 5px 0 #1D1B18;
+
+  transition:.15s;
+}
+
+.continueBtn svg{
+  font-size:16px;
+}
+
+.continueBtn:active{
+  transform:translateY(4px);
+
+  box-shadow:1px 1px 0 #1D1B18;
 }
 
 .heroRight{
   position:relative;
 
   background:#FDBA49;
+
   border:2px solid #1D1B18;
 
   display:flex;
-  align-items:center;
   justify-content:center;
-
-  min-height:420px;
+  align-items:center;
 
   box-shadow:5px 5px 0 #1D1B18;
+
+  overflow:hidden;
 }
 
-.heroImage{
-  font-size:150px;
+.heroRight img{
+  width:75%;
+  object-fit:contain;
 }
 
-.scoreBox{
+.badge{
   position:absolute;
-  top:30px;
-  right:30px;
 
-  padding:10px 25px;
+  top:16px;
+  right:16px;
 
   background:#1D1B18;
+
   color:#fff;
 
-  border:2px solid #1D1B18;
+  padding:10px 18px;
 
-  font-size:40px;
+  font-size:28px;
   font-weight:700;
 
-  transform:rotate(12deg);
+  transform:rotate(10deg);
+
+  box-shadow:4px 4px 0 #00000020;
 }
 
 .sectionTitle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
   font-size:28px;
   font-weight:700;
+
+  color:#1D1B18;
 }
 
-.materialList{
+.lessonList{
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:14px;
 }
 
-.completedCard,
-.progressCard,
-.lockedCard{
+.lessonDone,
+.lessonProgress,
+.lessonLocked{
   display:flex;
   justify-content:space-between;
   align-items:center;
 
-  padding:24px;
+  padding:20px 24px;
 
   border:2px solid #1D1B18;
 
   box-shadow:5px 5px 0 #1D1B18;
+
+  transition:.15s;
 }
 
-.completedCard{
+.lessonDone:hover,
+.lessonProgress:hover,
+.lessonLocked:hover{
+  transform:translateY(-2px);
+}
+
+.lessonDone{
   background:#16694E;
   color:#fff;
 }
 
-.progressCard{
+.lessonProgress{
   background:#FDBA49;
+  color:#704B00;
 }
 
-.lockedCard{
+.lessonLocked{
   background:#EDE7E1;
+  color:#58423B;
+
   opacity:.7;
 }
 
+.lessonInfo{
+  display:flex;
+  flex-direction:column;
+}
+
+.lessonList h3{
+  font-size:26px;
+  margin-bottom:3px;
+}
+
+.lessonList p{
+  font-size:14px;
+}
+
+.lessonIcon{
+  font-size:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.lockedBadge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:8px 16px;
+
+  color:#6F625B;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.lockedBadge svg{
+  font-size:13px;
+}
+
 .bottomBanner{
+  margin-top:20px;
+
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:20px;
 
-  padding:40px;
-
-  background:#E8A838;
+  padding:36px;
 
   border:2px solid #1D1B18;
+
+  background:#E8A838;
 
   box-shadow:5px 5px 0 #1D1B18;
 }
 
 .bottomBanner h2{
-  font-size:36px;
-  margin-bottom:10px;
+  font-size:38px;
+
+  margin-bottom:8px;
 }
 
-.bottomBanner button{
-  padding:18px 40px;
+.bottomBanner p{
+  font-size:18px;
+}
+
+.lockButton{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  opacity: 50%;
+
+  padding:10px 18px;
 
   border:2px solid #1D1B18;
+
   background:#EDE7E1;
 
+  font-size:14px;
   font-weight:700;
 
-  box-shadow:5px 5px 0 #1D1B18;
+  box-shadow:4px 4px 0 #1D1B18;
+
+  cursor:not-allowed;
+}
+
+.bottomBanner button svg{
+  font-size:12px;
 }
