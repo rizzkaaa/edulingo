@@ -29,7 +29,11 @@ export default function RegisterPage() {
   // Fungsi Registrasi Akun
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError("");
+    
+    if (!email || !password || !fullName || !username) {
+      alert("Gagal Mendaftar: Semua form input wajib diisi!");
+      return; 
+    }
 
     // Validasi password.
     if (password !== confirmPassword) {
@@ -52,6 +56,7 @@ export default function RegisterPage() {
       });
 
       console.log("Registrasi Sukses!");
+      alert("Registrasi Berhasil! Silakan masuk menggunakan akun baru.");
       router.push("/auth/login");
     } catch (err){
       console.error("Register error:", err);

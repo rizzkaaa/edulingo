@@ -11,8 +11,6 @@ import { motion } from "framer-motion";
 import { auth } from "@/lib/firebase";
 import {
   signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from "firebase/auth"
 
 export default function LoginPage() {
@@ -27,7 +25,11 @@ export default function LoginPage() {
   // Fungsi Login email & Password
   const handleEmailLogin = async (e) => {
     e.preventDefault();
-    setError("");
+
+    if (!email || !password) {
+      alert("Gagal Masuk: Email dan Password wajib diisi!");
+      return;
+    }
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -35,16 +37,22 @@ export default function LoginPage() {
       router.push("/dashboard");
     } catch (err) {
       console.error("Login error:", err);
-      const errorCode = err?.code || "";
+      const errorCode = err?.code || err?.message || "";
 
       // Validasi pesan error
-      if (errorCode == "auth/invalid-credential" || errorCode === "auth/user-not-found" || errorCode === "auth/wrong-password") {
+      if (
+        errorCode === "auth/invalid-credential" || 
+        errorCode === "auth/user-not-found" || 
+        errorCode === "auth/wrong-password") {
+
         alert("Email atau Password salah!");
+
       } else if (errorCode === "auth/too-many-requests") {
         alert("Terlalu banyak percobaan gagal. Coba beberapa saat lagi.");
       } else {
-        alert (" Pastikan anda mengisi data lengkap dan sudah memiliki akun");
+        alert (" Pastikan anda sudah memiliki akun");
       }
+      return;
     }
   };
 
@@ -62,7 +70,9 @@ export default function LoginPage() {
       <label>Email</label>
       <input type="email" 
       placeholder="nama@email.com"
-      value={email} onChange={(e) => setEmail(e.target.value)}/>
+      value={email} onChange={(e) => setEmail(e.target.value)}
+      required
+      />
 
       <label>Password</label>
       <div className={styles.passwordBox}>
@@ -71,6 +81,7 @@ export default function LoginPage() {
           placeholder="Masukkan password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <button
@@ -97,6 +108,7 @@ export default function LoginPage() {
       )}
 
       <motion.button
+        type="submit"
         className={styles.loginBtn}
         whileHover={{
           scale: 1.03,
