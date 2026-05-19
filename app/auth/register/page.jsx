@@ -7,10 +7,68 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+// Backend Firebase
+import { auth, db } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"
+
+
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // State untuk input dan error
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  // Fungsi Registrasi Akun
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    // Validasi password.
+    if (password !== confirmPassword) {
+      setError("Password dan konfirmasi Password tidak cocok!");
+      return;
+    }
+
+    try {
+      // Daftar akun
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Simpan data ke firebase
+      await setDoc(doc(db, "users", user.uid), {
+        fullName: fullName,
+        username: username,
+        email: email,
+        createdAt: new Date(),
+
+      });
+
+      console.log("Registrasi Sukses!");
+      router.push("/auth/login");
+    } catch (err){
+      console.error("Register error:", err);
+      const errorCode = err?.code || "";
+
+      // Validasi pesan
+      if (errorCode === "auth/email-already-in-use") {
+        alert("Email sudah terdaftar. Gunakan email lain");
+      } else if (errorCode === "auth/weak-password"){
+        alert("Password minimal 6 karakter.");
+      } else {
+        alert ("Gagal mendaftar. Silahkan lengkapi data terlebih dahulu")
+      }
+    }
+  };
+
+
 
   return (
     <motion.form
@@ -21,25 +79,36 @@ export default function RegisterPage() {
         duration: 0.5,
         delay: 0.3,
       }}
-      onSubmit={(e) => {
-        e.preventDefault(); // Hapus ini kalau fungsi registernya uda jadi
-        router.push("/auth/login");
-      }}
+      onSubmit={handleRegister}
     >
       <label>Nama Lengkap</label>
-      <input type="text" placeholder="Masukkan nama lengkap" />
+      <input type="text"
+       placeholder="Masukkan nama lengkap"
+       value={fullName}
+       onChange={(e) => setFullName(e.target.value)}
+        />
 
       <label>Username</label>
-      <input type="text" placeholder="Masukkan username" />
+      <input type="text" 
+      placeholder="Masukkan username"
+      value={username}
+      onChange={(e) => setUsername(e.target.value)}
+       />
 
       <label>Email</label>
-      <input type="email" placeholder="nama@email.com" />
+      <input type="email"
+       placeholder="nama@email.com"
+        value={email}
+      onChange={(e) => setEmail(e.target.value)}
+        />
 
       <label>Password</label>
       <div className={styles.passwordBox}>
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Masukkan password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
@@ -56,6 +125,8 @@ export default function RegisterPage() {
         <input
           type={showConfirmPassword ? "text" : "password"}
           placeholder="Ulangi password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
         <button
@@ -66,6 +137,20 @@ export default function RegisterPage() {
           {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
       </div>
+
+      
+
+      {error && (
+        <p style={{ 
+          color: "#E65100", 
+          fontSize: "14px", 
+          fontWeight: "600",
+          marginBottom: "15px", 
+          textAlign: "center" 
+        }}>
+          {error}
+        </p>
+      )}
 
       <motion.button
         className={styles.loginBtn}
