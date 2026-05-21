@@ -2,17 +2,37 @@
 
 import { useRouter } from "next/navigation";
 
-export default function StructurePart1Page() {
+export default function ReadingStrategistPage() {
 
   const router = useRouter();
 
   const handleFinish = () => {
 
     const lessons =
-      JSON.parse(localStorage.getItem("lessonStatus"));
+      JSON.parse(
+        localStorage.getItem("lessonStatus")
+      );
+
+    if (!lessons) return;
+
+    if (lessons[2].status === "done") {
+
+      router.push("/dashboard");
+
+      return;
+
+    }
 
     lessons[2].status = "done";
-    lessons[3].status = "progress";
+
+    if (
+      lessons[3] &&
+      lessons[3].status === "locked"
+    ) {
+
+      lessons[3].status = "progress";
+
+    }
 
     localStorage.setItem(
       "lessonStatus",
@@ -27,9 +47,7 @@ export default function StructurePart1Page() {
 
     <div>
 
-      <h1>
-        Structure Part 1
-      </h1>
+      <h1>Reading Strategies</h1>
 
       <button onClick={handleFinish}>
         SELESAI

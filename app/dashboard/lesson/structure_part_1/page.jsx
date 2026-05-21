@@ -9,10 +9,32 @@ export default function StructurePart1Page() {
   const handleFinish = () => {
 
     const lessons =
-      JSON.parse(localStorage.getItem("lessonStatus"));
+      JSON.parse(
+        localStorage.getItem("lessonStatus")
+      );
+
+    if (!lessons) return;
+
+    // kalau sudah selesai, jangan ubah apa-apa lagi
+    if (lessons[0].status === "done") {
+
+      router.push("/dashboard");
+
+      return;
+
+    }
 
     lessons[0].status = "done";
-    lessons[1].status = "progress";
+
+    // buka materi berikutnya kalau masih locked
+    if (
+      lessons[1] &&
+      lessons[1].status === "locked"
+    ) {
+
+      lessons[1].status = "progress";
+
+    }
 
     localStorage.setItem(
       "lessonStatus",

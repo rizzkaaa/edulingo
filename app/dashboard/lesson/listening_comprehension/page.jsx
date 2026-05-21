@@ -2,14 +2,26 @@
 
 import { useRouter } from "next/navigation";
 
-export default function StructurePart1Page() {
+export default function ListeningComprehensionPage() {
 
   const router = useRouter();
 
   const handleFinish = () => {
 
     const lessons =
-      JSON.parse(localStorage.getItem("lessonStatus"));
+      JSON.parse(
+        localStorage.getItem("lessonStatus")
+      );
+
+    if (!lessons) return;
+
+    if (lessons[4].status === "done") {
+
+      router.push("/dashboard");
+
+      return;
+
+    }
 
     lessons[4].status = "done";
 
@@ -26,9 +38,7 @@ export default function StructurePart1Page() {
 
     <div>
 
-      <h1>
-        Structure Part 1
-      </h1>
+      <h1>Listening Comprehension</h1>
 
       <button onClick={handleFinish}>
         SELESAI

@@ -155,6 +155,15 @@ export default function DashboardPage() {
   const progressPercent =
     doneCount * 20;
 
+    const currentLesson =
+      lessonStatus.find(
+        (lesson) => lesson.status === "progress"
+      ) || lessonStatus[0];
+
+    const currentTitle =
+      currentLesson?.title ||
+      "TOEFL Preparation";
+
   return (
 
     <div className={styles.container}>
@@ -187,9 +196,7 @@ export default function DashboardPage() {
           </p>
 
           <h2>
-            TOEFL Preparation —
-            <br />
-            English Learning Path
+            {currentTitle}
           </h2>
 
           <div className={styles.wave}></div>
@@ -217,13 +224,15 @@ export default function DashboardPage() {
 
           </div>
 
-          <button className={styles.continueBtn}>
-
-            LANJUTKAN
-
-            <FaIcons.FaArrowRight />
-
-          </button>
+          <Link
+            href={currentLesson?.path || "#"}
+            className={styles.buttonLink}
+          >
+            <button className={styles.continueBtn}>
+              LANJUTKAN
+              <FaIcons.FaArrowRight />
+            </button>
+          </Link>
 
         </div>
 
@@ -389,6 +398,14 @@ export default function DashboardPage() {
         )}
 
       </div>
+              <button
+  onClick={() => {
+    localStorage.removeItem("lessonStatus");
+    window.location.reload();
+  }}
+>
+  Reset Progress
+</button>
 
     </div>
 
