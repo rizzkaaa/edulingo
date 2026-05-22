@@ -6,100 +6,120 @@ import * as FaIcons from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+// Backend ambil data dari firebase untuk porgress
 export default function DashboardPage() {
   const [lessonStatus, setLessonStatus] = useState([]);
   const [username, setUsername] = useState("User");
 
+  const defaultLessonsMetadata = [
+    {
+      id: 1,
+      title: "Written Expression Part 1",
+      path: "/dashboard/lesson/written_expression_part_1",
+    },
+    {
+      id: 2,
+      title: "Written Expression Part 2",
+      path: "/dashboard/lesson/written_expression_part_2",
+    },
+    {
+      id: 3,
+      title: "Structure Part 1",
+      path: "/dashboard/lesson/structure_part_1",
+    },
+    {
+      id: 4,
+      title: "Structure Part 2",
+      path: "/dashboard/lesson/structure_part_2",
+    },
+    {
+      id: 5,
+      title: "Reading Strategies",
+      path: "/dashboard/lesson/reading_strategist",
+    },
+    {
+      id: 6,
+      title: "Reading for Details",
+      path: "/dashboard/lesson/reading_for_details",
+    },
+    {
+      id: 7,
+      title: "Listening Comprehension",
+      path: "/dashboard/lesson/listening_comprehension",
+    },
+  ];
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
+        try {
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-          setUsername(docSnap.data().username);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setUsername(data.username || user.displayName || "User");
+            const firebaseLessons = data.lessonStatus || [];
+            const mergedLessons = defaultLessonsMetadata.map((lesson, index) => {
+              const fbLesson = firebaseLessons[index];
+              return {
+                id: lesson.id,
+                title: lesson.title,
+                path: lesson.path,
+                status: fbLesson ? fbLesson.status : index === 0 ? "progress" : "locked",
+              };
+            });
+
+            setLessonStatus(mergedLessons);
+          }
+        } catch (error) {
+          console.error("Gagal mengambil data dari Firebase:", error);
         }
+      } else {
+        setLessonStatus([]);
+        setUsername("User");
       }
     });
 
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const savedLessons = JSON.parse(localStorage.getItem("lessonStatus"));
-
-    if (savedLessons) {
-      setLessonStatus(savedLessons);
-    } else {
-      const defaultLessons = [
-        {
-          id: 1,
-          title: "Written Expression Part 1",
-          path: "/dashboard/lesson/written_expression_part_1",
-          status: "progress",
-        },
-        {
-          id: 2,
-          title: "Written Expression Part 2",
-          path: "/dashboard/lesson/written_expression_part_2",
-          status: "locked",
-        },
-        {
-          id: 3,
-          title: "Structure Part 1",
-          path: "/dashboard/lesson/structure_part_1",
-          status: "locked",
-        },
-        {
-          id: 4,
-          title: "Structure Part 2",
-          path: "/dashboard/lesson/structure_part_2",
-          status: "locked",
-        },
-        {
-          id: 5,
-          title: "Reading Strategies",
-          path: "/dashboard/lesson/reading_strategist",
-          status: "locked",
-        },
-        {
-          id: 6,
-          title: "Reading for Details",
-          path: "/dashboard/lesson/reading_for_details",
-          status: "locked",
-        },
-        {
-          id: 7,
-          title: "Listening Comprehension",
-          path: "/dashboard/lesson/listening_comprehension",
-          status: "locked",
-        }
-      ];
-
-      localStorage.setItem("lessonStatus", JSON.stringify(defaultLessons));
-      setLessonStatus(defaultLessons);
-    }
-  }, []);
-
   const today = new Date();
   const hari = ["MINGGU", "SENIN", "SELASA", "RABU", "KAMIS", "JUMAT", "SABTU"];
   const bulan = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGU", "SEP", "OKT", "NOV", "DES"];
-
   const tanggalText = `${hari[today.getDay()]}, ${today.getDate()} ${bulan[today.getMonth()]}`;
 
   const doneCount = lessonStatus.filter((lesson) => lesson.status === "done").length;
-  const progressPercent = Math.round((doneCount / 7) * 100);
+  // Mencegah NaN jika lessonStatus masih kosong saat loading
+  const progressPercent = lessonStatus.length > 0 ? Math.round((doneCount / 7) * 100) : 0;
   const currentLesson = lessonStatus.find((lesson) => lesson.status === "progress") || lessonStatus[0];
   const currentTitle = currentLesson?.title || "TOEFL Preparation";
-  const allLessonsCompleted = doneCount === 7;
+  const allLessonsCompleted = doneCount === 7 && lessonStatus.length > 0;
+
+  const handleResetProgress = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        const resetData = defaultLessonsMetadata.map((l, i) => ({
+          status: i === 0 ? "progress" : "locked",
+          path: l.path
+        }));
+        await updateDoc(doc(db, "users", user.uid), {
+          lessonStatus: resetData
+        });
+        window.location.reload();
+      } catch (error) {
+        console.error("Gagal mereset data:", error);
+      }
+    }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.topbar}>
         <h1>
-          SELAMAT DATANG,{" "}{username}{" 👋 ✨"}
+          SELAMAT DATANG, {username} 👋 ✨
         </h1>
         <div className={styles.dateBox}>
           <FaIcons.FaCalendarAlt />
@@ -179,7 +199,7 @@ export default function DashboardPage() {
                 <div className={lesson.status === "done" ? styles.lessonDone : styles.lessonProgress}>
                   <div className={styles.lessonInfo}>
                     <h3>
-                      {lesson.id < 10 ? `0${lesson.id}` : lesson.id}{" "}{lesson.title}
+                      {lesson.id < 10 ? `0${lesson.id}` : lesson.id} {lesson.title}
                     </h3>
                     <p>
                       {lesson.status === "done" ? "Completed" : "In Progress"}
@@ -194,7 +214,7 @@ export default function DashboardPage() {
               <div className={styles.lessonLocked}>
                 <div className={styles.lessonInfo}>
                   <h3>
-                    {lesson.id < 10 ? `0${lesson.id}` : lesson.id}{" "}{lesson.title}
+                    {lesson.id < 10 ? `0${lesson.id}` : lesson.id} {lesson.title}
                   </h3>
                   <p>
                     Selesaikan materi sebelumnya
@@ -236,12 +256,10 @@ export default function DashboardPage() {
       </div>
 
       <button
-        onClick={() => {
-          localStorage.removeItem("lessonStatus");
-          window.location.reload();
-        }}
+        onClick={handleResetProgress}
+        style={{ marginTop: '20px', padding: '10px', cursor: 'pointer', background: '#ffebee', border: '1px solid #ef9a9a', borderRadius: '4px' }}
       >
-        Reset Progress
+        Reset Progress (Firebase)
       </button>
     </div>
   );

@@ -18,11 +18,10 @@ import { TbChartBar } from "react-icons/tb";
 export default function DashboardLayout({ children }) {
   const pathname = usePathname();
   
-  // State untuk menyimpan inisial huruf pertama user (default "R" atau "S")
   const [initialName, setInitialName] = useState("R");
 
   useEffect(() => {
-    // Ambil data nama dari Firebase Auth & Firestore
+    // Backend Ambil data nama dari Firebase
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
@@ -35,8 +34,6 @@ export default function DashboardLayout({ children }) {
           } else if (user.displayName) {
             nameToUse = user.displayName;
           }
-
-          // Ambil huruf pertama dari nama, jadikan huruf besar (Kapital)
           if (nameToUse) {
             setInitialName(nameToUse.charAt(0).toUpperCase());
           }

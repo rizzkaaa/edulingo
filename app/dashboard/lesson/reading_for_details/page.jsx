@@ -1,62 +1,51 @@
 "use client";
-
+//backend membuat tombol selesai terhubung ke firebse
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { auth, db } from "@/lib/firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export default function ReadingForDetailsPage() {
-
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
+    setIsLoading(true);
+    try {
+      const user = auth.currentUser;
+      if (!user) return alert("Anda belum login!");
 
-    const lessons =
-      JSON.parse(
-        localStorage.getItem("lessonStatus")
-      );
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
 
-    if (!lessons) return;
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        let lessons = data.lessonStatus || [];
 
-    if (lessons[5].status === "done") {
+        if (lessons[5]?.status === "done") {
+          router.push("/dashboard");
+          return;
+        }
 
-      router.push("/dashboard");
+        if (lessons[5]) lessons[5].status = "done";
+        if (lessons[6] && lessons[6].status === "locked") lessons[6].status = "progress";
 
-      return;
-
+        await updateDoc(userRef, { lessonStatus: lessons });
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      console.error("Gagal memperbarui:", error);
+    } finally {
+      setIsLoading(false);
     }
-
-    lessons[5].status = "done";
-
-    if (
-      lessons[6] &&
-      lessons[6].status === "locked"
-    ) {
-
-      lessons[6].status = "progress";
-
-    }
-
-    localStorage.setItem(
-      "lessonStatus",
-      JSON.stringify(lessons)
-    );
-
-    router.push("/dashboard");
-
   };
 
   return (
-
     <div>
-
-      <h1>
-        Reading for Details
-      </h1>
-
-      <button onClick={handleFinish}>
-        SELESAI
+      <h1>Reading for Details</h1>
+      <button onClick={handleFinish} disabled={isLoading}>
+        {isLoading ? "Menyimpan..." : "SELESAI"}
       </button>
-
     </div>
-
   );
-
 }

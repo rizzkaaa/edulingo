@@ -14,12 +14,9 @@ export default function LessonPage() {
   
   const [searchQuery, setSearchQuery] = useState("");
 
+  //backend menyimpan hasil belajar materi ke firebase
   useEffect(() => {
-    const savedLessons = JSON.parse(localStorage.getItem("lessonStatus"));
-    if (savedLessons) {
-      setLessonStatus(savedLessons);
-    }
-
+    
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
@@ -27,18 +24,29 @@ export default function LessonPage() {
           const userDocSnap = await getDoc(userDocRef);
 
           if (userDocSnap.exists()) {
-            setUsername(userDocSnap.data().username || user.displayName || "Siswa");
+            const data = userDocSnap.data();
+            
+            setUsername(data.username || user.displayName || "Siswa");
+            
+            if (data.lessonStatus) {
+              setLessonStatus(data.lessonStatus);
+            }
+            
           } else if (user.displayName) {
             setUsername(user.displayName);
           }
         } catch (error) {
           console.error("Gagal mengambil data user:", error);
         }
+      } else {
+        setLessonStatus([]);
+        setUsername("Siswa");
       }
     });
 
     return () => unsubscribe();
   }, []);
+
 
   const lessonData = [
     {
