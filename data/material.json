@@ -1,0 +1,752 @@
+{
+    "materials": [
+        {
+            "part_id": 1,
+            "part_title": "Structure Part 1",
+            "sub_modules": [
+                {
+                    "sub_module_id": 1,
+                    "title": "Singular & Plural Nouns",
+                    "image": "1_1",
+                    "description": "Memahami perbedaan kata benda tunggal dan jamak dalam bahasa Inggris.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Singular Noun",
+                                    "label": "1",
+                                    "definition": "Kata benda tunggal yang menyatakan satu orang, benda, atau tempat. Diawali article 'a', 'an', atau 'the'.",
+                                    "examples": [
+                                        "a / an",
+                                        "the",
+                                        "is / was",
+                                        "Mother",
+                                        "Doctor",
+                                        "Chair",
+                                        "Student"
+                                    ]
+                                },
+                                {
+                                    "title": "Plural Noun",
+                                    "label": "2+",
+                                    "definition": "Kata benda jamak yang menyatakan lebih dari satu. Diawali article 'the' untuk benda yang sudah diketahui.",
+                                    "articles": [
+                                        "the",
+                                        "are / were",
+                                        "Mothers",
+                                        "Doctors",
+                                        "Chairs",
+                                        "Students"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Contoh Kalimat 📝",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        "The boy writes a novel.",
+                                        "The boys write some novels.",
+                                        "My key is in your bag."
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentence": [
+                                        "There is many student in the classroom.",
+                                        "The child are playing in the park."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Aturan Pembentukan Plural ✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "Aturan",
+                                        "SINGULAR",
+                                        "PLURAL"
+                                    ],
+                                    "data": [
+                                        [
+                                            "Tambah -s (umum)",
+                                            "door,cat,book",
+                                            "doors,cats, books"
+                                        ],
+                                        [
+                                            "Akhiran s, z, x, sh, ch -> +es",
+                                            "boss, buzz, box, wish, bunch",
+                                            "bosses, buzzes, boxes, wishes, bunches"
+                                        ],
+                                        [
+                                            "Akhiran konsonan + y -> -ies",
+                                            "berry, city, lady",
+                                            "berries, cities, ladies"
+                                        ],
+                                        [
+                                            "Irregular (hafalan khusus)",
+                                            "man, child, mouse, foot",
+                                            "men, children, mice, feet"
+                                        ],
+                                        [
+                                            "Akhiran f/fe -> ubah jadi v +es",
+                                            "shelf, knife",
+                                            "shelves, knives"
+                                        ],
+                                        [
+                                            "Sama di bentuk singular & plural",
+                                            "sheep, fish, deer",
+                                            "sheep, fish, deer"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL",
+                            "explain": [
+                                "Perhatikan subject-verb agreement — singular subject pakai is/was, plural subject pakai are/were.",
+                                "Dalam soal TOEFL, kata 'each', 'every', 'one of' selalu diikuti singular noun dan singular verb."
+                            ],
+                            "contoh": "Each student HAS (bukan HAVE) a book."
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 2,
+                    "title": "Countable & Uncountable Noun",
+                    "description": "Memahami kata benda yang bisa dihitung dan tidak bisa dihitung dalam bahasa Inggris.",
+                    "content": [
+                        {
+                            "type": "First Explain Ver2",
+                            "explain": [
+                                {
+                                    "title": "Countable Noun",
+                                    "label": "123",
+                                    "definition": "Kata benda yang dapat dihitung dengan angka tertentu. Memiliki bentuk singular dan plural.",
+                                    "articles": [
+                                        "a / an",
+                                        "many",
+                                        "few",
+                                        "number of"
+                                    ],
+                                    "examples": [
+                                        "book → books",
+                                        "apple → apples",
+                                        "chair → chairs"
+                                    ],
+                                    "note": "Bisa dihitung: one book, two books, three books..."
+                                },
+                                {
+                                    "title": "Uncountable Noun",
+                                    "label": "∞",
+                                    "definition": "Kata benda yang tidak dapat dihitung karena sifat atau bentuknya. Tidak memiliki bentuk plural.",
+                                    "examples": [
+                                        "happiness",
+                                        "milk",
+                                        "water",
+                                        "oil",
+                                        "shampoo",
+                                        "security",
+                                        "friendship",
+                                        "hope",
+                                        "fun"
+                                    ],
+                                    "note": "Tidak bisa: one water ✗ / two milks ✗ — Harus: a glass of water ✓"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Keyword",
+                            "title": "KATA KUNCI PENTING ✦",
+                            "explain": [
+                                {
+                                    "status": "UNTUK COUNTABLE",
+                                    "keywords": [
+                                        "Some",
+                                        "Any",
+                                        "Many",
+                                        "Number",
+                                        "Few",
+                                        "Fewer",
+                                        "A lot of",
+                                        "Plenty of",
+                                        "A great many",
+                                        "A large number of"
+                                    ]
+                                },
+                                {
+                                    "status": "UNTUK UNCOUNTABLE",
+                                    "keywords": [
+                                        "Some",
+                                        "Any",
+                                        "Much",
+                                        "Less",
+                                        "Little",
+                                        "Amount",
+                                        "A lot of",
+                                        "Plenty of",
+                                        "A great deal of",
+                                        "A large quantity of"
+                                    ]
+                                }
+                            ],
+                            "note": "'Some' dan 'Any' bisa digunakan untuk keduanya!"
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Contoh Kalimat 📝",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        "She bought three apples at the market.",
+                                        "There is much water in the bottle.",
+                                        "She gave me some advice."
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        "I need some informations about the course.",
+                                        "He has many money.",
+                                        "She gave me a useful advice."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Example",
+                            "title": "CARA MENGHITUNG UNCOUNTABLE NOUN ✦",
+                            "explain": [
+                                "a glass of water",
+                                "a cup of coffee",
+                                "a piece of cake",
+                                "a bottle of milk",
+                                "a loaf of bread",
+                                "a sheet of paper",
+                                "a bag of sugar",
+                                "a bowl of rice"
+                            ],
+                            "note": "Uncountable noun bisa 'dihitung' menggunakan satuan pengukuran di atas"
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL",
+                            "explain": [
+                                "Much vs Many — \"Much\" untuk uncountable, \"Many\" untuk countable. Contoh: much water ✓, many books ✓",
+                                "Uncountable noun TIDAK pernah pakai -s di akhir. informations ✕, advices ✕, furnitures ✕",
+                                "Kata \"a/an\" hanya untuk countable singular. a water ✕, an information ✕"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 3,
+                    "title": "Subject & Object Pronouns",
+                    "description": "Memahami kata ganti subjek dan objek dalam kalimat bahasa Inggris",
+                    "content": [
+                        {
+                            "type": "First Explain Ver3",
+                            "explain": [
+                                {
+                                    "title": "Subject Pronoun",
+                                    "label": "S",
+                                    "definition": "Kata ganti yang digunakan sebagai subjek dalam kalimat. Terletak sebelum verb dan menunjukkan siapa yang melakukan tindakan.",
+                                    "examples": [
+                                        "I",
+                                        "you",
+                                        "he",
+                                        "she",
+                                        "we",
+                                        "they"
+                                    ],
+                                    "example_sentences": [
+                                        "She studies English every night.",
+                                        "They are playing football.",
+                                        "He goes to school by bus."
+                                    ]
+                                },
+                                {
+                                    "title": "Object Pronoun",
+                                    "label": "O",
+                                    "definition": "Kata ganti yang digunakan sebagai objek dalam kalimat yang menerima tindakan dari verb atau diletakkan setelah preposition.",
+                                    "examples": [
+                                        "me",
+                                        "you",
+                                        "him",
+                                        "her",
+                                        "us",
+                                        "them"
+                                    ],
+                                    "examples_sentences": [
+                                        "The teacher called me yesterday.",
+                                        "I saw them at the library.",
+                                        "Sarah helped him with homework."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Contoh Kalimat 📝",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        "She studies English every night.",
+                                        "They are playing football.",
+                                        "The teacher called me yesterday.",
+                                        "I saw them at the library.",
+                                        "She gave Jim and me extra cookies.",
+                                        "She likes him."
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        "She gave Jim and I extra cookies."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Tabel Perbandingan ✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "SUBJECT",
+                                        "SUBJECT PRONOUN",
+                                        "OBJECT PRONOUN"
+                                    ],
+                                    "data": [
+                                        [
+                                            "I (saya)",
+                                            "I",
+                                            "Me"
+                                        ],
+                                        [
+                                            "You (kamu)",
+                                            "You",
+                                            "You"
+                                        ],
+                                        [
+                                            "He (dia laki)",
+                                            "He",
+                                            "Him"
+                                        ],
+                                        [
+                                            "She (dia perempuan)",
+                                            "She",
+                                            "Her"
+                                        ],
+                                        [
+                                            "It (benda)",
+                                            "It",
+                                            "It"
+                                        ],
+                                        [
+                                            "We (kami)",
+                                            "We",
+                                            "Us"
+                                        ],
+                                        [
+                                            "They (mereka)",
+                                            "They",
+                                            "Them"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "title": "Posisi Dalam Kalimat ✦",
+                            "explain": [
+                                {
+                                    "title": "SUBJECT PRONOUN",
+                                    "rule": "Selalu terletak SEBELUM verb",
+                                    "sentences": [
+                                        "She studies English every day.",
+                                        "They play football after school.",
+                                        "We are learning grammar now."
+                                    ]
+                                },
+                                {
+                                    "title": "OBJECT PRONOUN",
+                                    "rule": "Terletak SETELAH verb atau preposition",
+                                    "sentences": [
+                                        "The teacher helped him.",
+                                        "I talked to her yesterday.",
+                                        "Please sit beside us."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "title": "Posisi Dalam Kalimat ✦",
+                            "explain": [
+                                {
+                                    "sentence": "She likes him.",
+                                    "note": "She = subject pronoun (pelaku), him = object pronoun (penerima)"
+                                },
+                                {
+                                    "sentence": "They invited Us to the party.",
+                                    "note": "They = subject (melakukan aksi), us = object (menerima undangan)"
+                                },
+                                {
+                                    "sentence": "He helped me yesterday.",
+                                    "note": "He = subject (yang membantu), me = object (yang dibantu)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL",
+                            "explain": [
+                                "Cara cepat: Subject pronoun = pelaku (sebelum verb). Object pronoun = penerima (setelah verb/preposition).",
+                                "Kesalahan umum: \"Me and John went\" ✕ → seharusnya \"John and I went\" ✓ karena posisinya sebagai subjek.",
+                                "Preposition (to, for, with, beside, about) selalu diikuti object pronoun bukan subject pronoun."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 4,
+                    "title": "Possessive Pronoun",
+                    "description": " Kata ganti kepemilikan untuk menunjukkan hubungan seseorang terhadap suatu benda",
+                    "content": [
+                        {
+                            "type": "First Explain Ver4",
+                            "explain": [
+                                {
+                                    "title": "Dependent Possessive",
+                                    "label": "D",
+                                    "definition": "Harus selalu diikuti oleh kata benda (noun) setelahnya. Tidak bisa berdiri sendiri.",
+                                    "examples": [
+                                        "my",
+                                        "your",
+                                        "his",
+                                        "her",
+                                        "its",
+                                        "our",
+                                        "their"
+                                    ],
+                                    "example_sentences": [
+                                        "This is my <b>key</b>.",
+                                        "Welcome to <b>our</b> house.",
+                                        "The cat chased <b>its</b> prey."
+                                    ],
+                                    "note": "⚠️ Harus diikuti NOUN setelahnya!"
+                                },
+                                {
+                                    "title": "Independent Possessive",
+                                    "label": "I",
+                                    "definition": "Dikenal sebagai Possessive Absolute, kata ganti ini tidak diikuti noun secara langsung dan muncul di akhir kalimat/klausa.",
+                                    "examples": [
+                                        "mine",
+                                        "yours",
+                                        "his",
+                                        "hers",
+                                        "ours",
+                                        "theirs"
+                                    ],
+                                    "example_sentences": [
+                                        "The car parked outside is <b>mine</b>.",
+                                        "This cake is <b>hers</b>."
+                                    ],
+                                    "note": "*its sebagai independent sangat jarang digunakan"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Tabel Perbandingan ✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "SUBJECT",
+                                        "DEPENDENT (+NOUN)",
+                                        "INDEPENDENT (TANPA NOUN)"
+                                    ],
+                                    "data": [
+                                        [
+                                            "I",
+                                            "my",
+                                            "mine"
+                                        ],
+                                        [
+                                            "You (tunggal)",
+                                            "your",
+                                            "yours"
+                                        ],
+                                        [
+                                            "He",
+                                            "his",
+                                            "his"
+                                        ],
+                                        [
+                                            "She",
+                                            "her",
+                                            "her"
+                                        ],
+                                        [
+                                            "It",
+                                            "its",
+                                            "its*"
+                                        ],
+                                        [
+                                            "We",
+                                            "our",
+                                            "ours"
+                                        ],
+                                        [
+                                            "You (jamak)",
+                                            "your",
+                                            "yours"
+                                        ],
+                                        [
+                                            "They",
+                                            "their",
+                                            "theirs"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "title": "PERHATIAN KHUSUS: its vs it's",
+                            "explain": [
+                                {
+                                    "label": "ITS ✓",
+                                    "description": "Possessive pronoun — menunjukkan kepemilikan. TIDAK pakai apostrof.",
+                                    "example": "The boat had a red stripe on <b>its</b> side."
+                                },
+                                {
+                                    "label": "IT'S ✕ (bukan possessive)",
+                                    "description": "Singkatan dari 'it is' — BUKAN possessive pronoun.",
+                                    "example": "<b>It's</b> raining outside. = It is raining outside."
+                                }
+                            ],
+                            "note": "💡 Possessive pronoun TIDAK PERNAH menggunakan tanda apostrof (')"
+                        },
+                        {
+                            "type": "other",
+                            "title": "Analisis Kalimat 📝",
+                            "explain": [
+                                {
+                                    "sentence": "She cut hers hairs recently.",
+                                    "status": "SALAH ✗",
+                                    "explanation": "- hers tidak bisa diikuti noun \"hairs\". Gunakan \"her\""
+                                },
+                                {
+                                    "sentence": "My desk is located near hers.",
+                                    "status": "BENAR ✓",
+                                    "explanation": "- hers sebagai independent di akhir kalimat, benar"
+                                },
+                                {
+                                    "sentence": "Please lend me yours note.",
+                                    "status": "SALAH ✗",
+                                    "explanation": "- yours tidak bisa diikuti noun \"note\". Gunakan \"your\""
+                                },
+                                {
+                                    "sentence": "The tree fell on its side.",
+                                    "status": "BENAR ✓",
+                                    "explanation": "- its sebagai dependent sebelum noun \"side\", benar"
+                                },
+                                {
+                                    "sentence": "You don't have yours gloves.",
+                                    "status": "SALAH ✗",
+                                    "explanation": "- yours tidak bisa diikuti noun \"gloves\". Gunakan \"your\""
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "Tips TOEFL",
+                            "explain": [
+                                "Dependent possessive (my/your/his/her) HARUS diikuti noun. Jika tidak ada noun setelahnya → salah!",
+                                "Independent possessive (mine/yours/his/hers) TIDAK diikuti noun. Biasanya di akhir kalimat.",
+                                "its = kepemilikan ✓ | it's = it is ✓ | Jangan tertukar!"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 5,
+                    "title": "Adjective & Adverb",
+                    "description": "Memahami perbedaan kata sifat dan kata keterangan dalam bahasa Inggris",
+                    "content": [
+                        {
+                            "type": "First Explain Ver5",
+                            "explain": [
+                                {
+                                    "title": "Adjective",
+                                    "label": "S",
+                                    "definition": "Menerangkan kata benda (noun) atau kata ganti (pronoun). Menjawab pertanyaan: Seperti apa bendanya?",
+                                    "label2": "MENJELASKAN:",
+                                    "tags": [
+                                        "Noun / Pronoun"
+                                    ],
+                                    "label3": "CONTOH:",
+                                    "examples": [
+                                        "She is a beautiful girl.",
+                                        "He drives an expensive car.",
+                                        "The soup smells good."
+                                    ]
+                                },
+                                {
+                                    "title": "Adverb",
+                                    "label": "S",
+                                    "definition": "Kata Keterangan yang berfungsi menerangkan kata kerja (verb), kata sifat (adjective), atau kata keterangan lain (adverb).",
+                                    "label2": "MENJELASKAN:",
+                                    "tags": [
+                                        "Verb",
+                                        "Adjective",
+                                        "Adverb"
+                                    ],
+                                    "label3": "CONTOH:",
+                                    "examples": [
+                                        "She runs quickly.",
+                                        "He is very tall.",
+                                        "She sings beautifully."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Pembentukan Adverb Dari Adjective ✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "ADJECTIVE",
+                                        "ADVERB",
+                                        "TRANSLATE"
+                                    ],
+                                    "data": [
+                                        [
+                                            "quick",
+                                            "quickly",
+                                            "dengan cepat"
+                                        ],
+                                        [
+                                            "beautiful",
+                                            "beautifully",
+                                            "dengan indah"
+                                        ],
+                                        [
+                                            "complete",
+                                            "completely",
+                                            "secara lengkap"
+                                        ],
+                                        [
+                                            "special",
+                                            "specially",
+                                            "secara khusus"
+                                        ],
+                                        [
+                                            "recent",
+                                            "recently",
+                                            "baru baru ini"
+                                        ],
+                                        [
+                                            "true",
+                                            "truly",
+                                            "sungguh sungguh"
+                                        ],
+                                        [
+                                            "correct",
+                                            "correctly",
+                                            "dengan benar"
+                                        ],
+                                        [
+                                            "slow",
+                                            "slowly",
+                                            "dengan perlahan"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Perbedaan Adjective & Adverb✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "JENIS KATA",
+                                        "FUNGSI",
+                                        "MENJELASKAN"
+                                    ],
+                                    "data": [
+                                        [
+                                            "Adjective (Kata Sifat)",
+                                            "menerapkan kata benda atau kata ganti",
+                                            "Noun / Pronoun"
+                                        ],
+                                        [
+                                            "Adverb (Kata Keterangan)",
+                                            "menerangkan kata kerja, kata sifat, atau kata keterangan lain",
+                                            "Verb / Adjective / Adverb"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Kesalahan Umum ⚠️",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        {
+                                            "text": "He was driving an expensive sports car.",
+                                            "note": "Because, Sports car adalah noun, harus adjective"
+                                        },
+                                        {
+                                            "text": "The car was not completely ready.",
+                                            "note": "Because, Ready adalah adjective, harus adverb"
+                                        },
+                                        {
+                                            "text": "It was a true story.",
+                                            "note": "Story adalah noun, harus adjective"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        "He was driving an expensively sports car.",
+                                        "The car was not complete ready.",
+                                        "It was a truly story."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL",
+                            "explain": [
+                                "Cara cepat: lihat kata apa yang dijelaskan. Jika noun/pronoun → adjective. Jika verb/adjective/adverb → adverb.",
+                                "Sebagian besar adverb dibentuk dengan menambahkan -ly pada adjective. quick → quickly, beautiful → beautifully.",
+                                "Dalam soal TOEFL, adjective dan adverb sering ditukar posisinya. Teliti dalam membaca konteks kalimat!"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
