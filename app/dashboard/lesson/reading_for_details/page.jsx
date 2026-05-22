@@ -15,7 +15,7 @@ export default function ReadingForDetailsPage() {
 
     if (!lessons) return;
 
-    if (lessons[3].status === "done") {
+    if (lessons[5].status === "done") {
 
       router.push("/dashboard");
 
@@ -23,14 +23,14 @@ export default function ReadingForDetailsPage() {
 
     }
 
-    lessons[3].status = "done";
+    lessons[5].status = "done";
 
     if (
-      lessons[4] &&
-      lessons[4].status === "locked"
+      lessons[6] &&
+      lessons[6].status === "locked"
     ) {
 
-      lessons[4].status = "progress";
+      lessons[6].status = "progress";
 
     }
 
@@ -47,7 +47,9 @@ export default function ReadingForDetailsPage() {
 
     <div>
 
-      <h1>Reading for Details</h1>
+      <h1>
+        Reading for Details
+      </h1>
 
       <button onClick={handleFinish}>
         SELESAI

@@ -14,7 +14,7 @@
 }
 
 .topbar h1{
-  font-size:30px;
+  font-size:48px;
   font-weight:700;
 
   color:#1D1B18;
@@ -43,6 +43,80 @@
   gap:20px;
 }
 
+.heroCompletedSection{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+}
+
+.heroCompletedLeft{
+  background:#16694E;
+
+  border:2px solid #1D1B18;
+
+  padding:30px;
+
+  box-shadow:5px 5px 0 #1D1B18;
+}
+
+.heroCompletedLabel{
+  margin-bottom:8px;
+
+  color:#FDBA49;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.heroCompletedLeft h1{
+  margin-bottom:8px;
+
+  color:#fff;
+
+  font-size:48px;
+  font-weight:700;
+}
+
+.heroCompletedLeft p{
+  margin-bottom:28px;
+
+  max-width:800px;
+
+  color:#D8F3DC;
+
+  line-height:1.6;
+}
+
+.simulationHeroBtn{
+  margin-top:20px;
+
+  padding:16px 40px;
+
+  border:2px solid #1D1B18;
+
+  background:#E8A838;
+
+  color:#1D1B18;
+
+  font-size:20px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  box-shadow:8px 8px 0 #1D1B18;
+}
+
+.heroCompletedRight{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.heroCompletedRight img{
+  width:100%;
+  height:100%;
+}
+
 .heroLeft{
   background:#fff;
 
@@ -54,7 +128,7 @@
 }
 
 .label{
-  margin-bottom:16px;
+  margin-bottom:8px;
 
   color:#A43814;
 
@@ -70,7 +144,7 @@
 }
 
 .wave{
-  width:300px;
+  width:500px;
   height:20px;
 
   margin:20px 0;
@@ -313,6 +387,7 @@
 
 .bottomBanner p{
   font-size:18px;
+  font-weight:500;
 }
 
 .lockButton{
@@ -342,4 +417,45 @@
 
 .lockButton svg{
   font-size:12px;
+}
+
+.heroCompleted{
+  background:#16694E;
+}
+
+.heroCompleted h2{
+  color:#fff;
+}
+
+.heroCompleted .label{
+  color:#D8F3DC;
+}
+
+.heroCompleted .progressTop{
+  color:#fff;
+}
+
+.heroCompleted .progressBar{
+  background:#D8F3DC;
+}
+
+.heroCompleted .progressFill{
+  background:#fff;
+}
+
+.startButton{
+  padding:16px 40px;
+
+  border:2px solid #1D1B18;
+
+  background:#C5502A;
+
+  color:#ffffff;
+
+  font-size:16px;
+  font-weight:400;
+
+  cursor:pointer;
+
+  box-shadow:4px 4px 0 #1D1B18;
 }

@@ -15,7 +15,7 @@ export default function ListeningComprehensionPage() {
 
     if (!lessons) return;
 
-    if (lessons[4].status === "done") {
+    if (lessons[6].status === "done") {
 
       router.push("/dashboard");
 
@@ -23,7 +23,16 @@ export default function ListeningComprehensionPage() {
 
     }
 
-    lessons[4].status = "done";
+    lessons[6].status = "done";
+
+    if (
+      lessons[7] &&
+      lessons[7].status === "locked"
+    ) {
+
+      lessons[7].status = "progress";
+
+    }
 
     localStorage.setItem(
       "lessonStatus",
@@ -38,7 +47,9 @@ export default function ListeningComprehensionPage() {
 
     <div>
 
-      <h1>Listening Comprehension</h1>
+      <h1>
+        Listening Comprehension
+      </h1>
 
       <button onClick={handleFinish}>
         SELESAI

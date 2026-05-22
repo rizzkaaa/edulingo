@@ -15,7 +15,7 @@ export default function StructurePart2Page() {
 
     if (!lessons) return;
 
-    if (lessons[1].status === "done") {
+    if (lessons[3].status === "done") {
 
       router.push("/dashboard");
 
@@ -23,14 +23,14 @@ export default function StructurePart2Page() {
 
     }
 
-    lessons[1].status = "done";
+    lessons[3].status = "done";
 
     if (
-      lessons[2] &&
-      lessons[2].status === "locked"
+      lessons[4] &&
+      lessons[4].status === "locked"
     ) {
 
-      lessons[2].status = "progress";
+      lessons[4].status = "progress";
 
     }
 
@@ -47,7 +47,9 @@ export default function StructurePart2Page() {
 
     <div>
 
-      <h1>Structure Part 2</h1>
+      <h1>
+        Structure Part 2
+      </h1>
 
       <button onClick={handleFinish}>
         SELESAI

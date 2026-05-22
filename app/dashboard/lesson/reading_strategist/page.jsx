@@ -15,7 +15,7 @@ export default function ReadingStrategistPage() {
 
     if (!lessons) return;
 
-    if (lessons[2].status === "done") {
+    if (lessons[4].status === "done") {
 
       router.push("/dashboard");
 
@@ -23,14 +23,14 @@ export default function ReadingStrategistPage() {
 
     }
 
-    lessons[2].status = "done";
+    lessons[4].status = "done";
 
     if (
-      lessons[3] &&
-      lessons[3].status === "locked"
+      lessons[5] &&
+      lessons[5].status === "locked"
     ) {
 
-      lessons[3].status = "progress";
+      lessons[5].status = "progress";
 
     }
 
@@ -47,7 +47,9 @@ export default function ReadingStrategistPage() {
 
     <div>
 
-      <h1>Reading Strategies</h1>
+      <h1>
+        Reading Strategies
+      </h1>
 
       <button onClick={handleFinish}>
         SELESAI

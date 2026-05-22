@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-export default function StructurePart1Page() {
+export default function WrittenExpressionPart1Page() {
 
   const router = useRouter();
 
@@ -15,7 +15,7 @@ export default function StructurePart1Page() {
 
     if (!lessons) return;
 
-    if (lessons[2].status === "done") {
+    if (lessons[0].status === "done") {
 
       router.push("/dashboard");
 
@@ -23,14 +23,14 @@ export default function StructurePart1Page() {
 
     }
 
-    lessons[2].status = "done";
+    lessons[0].status = "done";
 
     if (
-      lessons[3] &&
-      lessons[3].status === "locked"
+      lessons[1] &&
+      lessons[1].status === "locked"
     ) {
 
-      lessons[3].status = "progress";
+      lessons[1].status = "progress";
 
     }
 
@@ -48,7 +48,7 @@ export default function StructurePart1Page() {
     <div>
 
       <h1>
-        Structure Part 1
+        Written Expression Part 1
       </h1>
 
       <button onClick={handleFinish}>
