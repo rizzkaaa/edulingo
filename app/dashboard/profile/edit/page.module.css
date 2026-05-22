@@ -1,0 +1,11 @@
+.container { padding: 40px; font-family: sans-serif; }
+.editLayout { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+.editForm { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.inputGroup { margin-bottom: 20px; display: flex; flex-direction: column; }
+.inputGroup label { font-size: 12px; font-weight: bold; margin-bottom: 8px; color: #666; }
+.inputGroup input, .inputGroup select { padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+.formActions { display: flex; gap: 10px; margin-top: 20px; }
+.saveBtn { background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; }
+.cancelBtn { background: #eee; color: #333; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; }
+.editSidebar { background: #f8f8f8; padding: 20px; border-radius: 12px; text-align: center; }
+.miniProfile img { width: 80px; border-radius: 50%; }
