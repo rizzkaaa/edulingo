@@ -1,5 +1,4 @@
 "use client";
-import styles from "./page.module.css";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer1 } from "@/app/components/FirstExplain";
@@ -20,7 +19,7 @@ export default function SingularPluralNouns() {
   const length = main_material.sub_modules.length;
 
   return (
-    <div className={styles.container}>
+    <div>
       <HeaderMaterial
         currentId={currentId}
         length={length}
@@ -29,9 +28,13 @@ export default function SingularPluralNouns() {
 
       <FirstExplainVer1 sub_material={sub_material} />
       <TrueFalse material={sub_material.content[1]} />
-      <TableMaterial material={sub_material.content[2]} styleHeader={{textAlign: 'start'}} styleData={[{fontWeight: '700'}]}/>
-      <ToeflTips material={sub_material.content[3]}/>
-<FooterMaterial title={sub_material.title} isEnd={currentId == length}/>
+      <TableMaterial
+        material={sub_material.content[2]}
+        styleHeader={[{ textAlign: "start" },{ textAlign: "start" },{ textAlign: "start" }]}
+        styleData={[{ fontWeight: "700" }]}
+      />
+      <ToeflTips material={sub_material.content[3]} />
+      <FooterMaterial title={sub_material.title} isEnd={currentId == length} />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function FooterMaterial({ title, isEnd }) {
   const text = isEnd
-    ? "Uji pemahaman kamu dengan 5 soal awal. Setelah Selesai Mengerjakannya, Kamu telah menyelesaikan semua sub-materi Structure Part 1!"
+    ? "Uji pemahaman kamu dengan 5 soal awal. \nSetelah Selesai Mengerjakannya, Kamu telah menyelesaikan semua sub-materi Structure Part 1!"
     : "Uji pemahaman kamu dengan 5 soal awal.";
 
   return (

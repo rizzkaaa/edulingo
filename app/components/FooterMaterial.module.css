@@ -30,6 +30,9 @@
 .container p{
     color: white;
     margin-block: 10px;
+    white-space:
+    pre-line;
+    text-align: center;
 }
 .link{
     text-decoration: none;

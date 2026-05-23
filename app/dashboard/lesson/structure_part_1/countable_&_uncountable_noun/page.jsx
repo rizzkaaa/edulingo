@@ -1,51 +1,38 @@
 "use client";
-//backend membuat tombol selesai terhubung ke firebse
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import styles from "./page.module.css";
+import material from "@/data/material.json";
+import HeaderMaterial from "@/app/components/HeaderMaterial";
+import { FirstExplainVer1 } from "@/app/components/FirstExplain";
+import TrueFalse from "@/app/components/TrueFalse";
+import TableMaterial from "@/app/components/TableMaterial";
+import ToeflTips from "@/app/components/ToeflTips";
+import FooterMaterial from "@/app/components/FooterMaterial";
 
-export default function StructurePart1Page() {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+export default function CountableUncountableNouns() {
+  const main_material = material.materials.find(
+    (material) => material.part_id == 1,
+  );
+  const sub_material = main_material.sub_modules.find(
+    (material) => material.sub_module_id == 2,
+  );
 
-  const handleFinish = async () => {
-    setIsLoading(true);
-    try {
-      const user = auth.currentUser;
-      if (!user) return alert("Anda belum login!");
-
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (userSnap.exists()) {
-        const data = userSnap.data();
-        let lessons = data.lessonStatus || [];
-
-        if (lessons[2]?.status === "done") {
-          router.push("/dashboard");
-          return;
-        }
-
-        if (lessons[2]) lessons[2].status = "done";
-        if (lessons[3] && lessons[3].status === "locked") lessons[3].status = "progress";
-
-        await updateDoc(userRef, { lessonStatus: lessons });
-        router.push("/dashboard");
-      }
-    } catch (error) {
-      console.error("Gagal memperbarui:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const currentId = sub_material.sub_module_id;
+  const length = main_material.sub_modules.length;
 
   return (
-    <div>
-      <h1>countable_&_uncountable_noun</h1>
-      <button onClick={handleFinish} disabled={isLoading}>
-        {isLoading ? "Menyimpan..." : "SELESAI"}
-      </button>
+    <div className={styles.container}>
+      <HeaderMaterial
+        currentId={currentId}
+        length={length}
+        sub_material={sub_material}
+      />
+ kata kunci
+      {/* <FirstExplainVer1 sub_material={sub_material} /> */}
+      <TrueFalse material={sub_material.content[2]} />
+      {/* <TableMaterial material={sub_material.content[2]} styleHeader={{textAlign: 'start'}} styleData={[{fontWeight: '700'}]}/> */}
+      cara hitung
+      <ToeflTips material={sub_material.content[4]}/>
+<FooterMaterial title={sub_material.title} isEnd={currentId == length}/>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function TableMaterial({ material, styleHeader, styleData }) {
         <thead>
           <tr>
             {material.explain.header.map((data, i) => (
-              <th key={i} style={{...styleHeader}}>{data}</th>
+              <th key={i} style={{...styleHeader[i]}}>{data}</th>
             ))}
           </tr>
         </thead>

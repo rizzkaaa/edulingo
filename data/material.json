@@ -120,6 +120,7 @@
                 {
                     "sub_module_id": 2,
                     "title": "Countable & Uncountable Noun",
+                    "image": "1_2",
                     "description": "Memahami kata benda yang bisa dihitung dan tidak bisa dihitung dalam bahasa Inggris.",
                     "content": [
                         {
@@ -249,6 +250,7 @@
                 {
                     "sub_module_id": 3,
                     "title": "Subject & Object Pronouns",
+                    "image": "1_3",
                     "description": "Memahami kata ganti subjek dan objek dalam kalimat bahasa Inggris",
                     "content": [
                         {
@@ -293,77 +295,52 @@
                             ]
                         },
                         {
-                            "type": "True & False",
-                            "title": "Contoh Kalimat 📝",
-                            "explain": [
-                                {
-                                    "status": "BENAR ✓",
-                                    "sentences": [
-                                        "She studies English every night.",
-                                        "They are playing football.",
-                                        "The teacher called me yesterday.",
-                                        "I saw them at the library.",
-                                        "She gave Jim and me extra cookies.",
-                                        "She likes him."
-                                    ]
-                                },
-                                {
-                                    "status": "SALAH ✗",
-                                    "sentences": [
-                                        "She gave Jim and I extra cookies."
-                                    ]
-                                }
-                            ]
-                        },
-                        {
                             "type": "Table",
                             "title": "Tabel Perbandingan ✦",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "SUBJECT",
-                                        "SUBJECT PRONOUN",
-                                        "OBJECT PRONOUN"
+                            "explain": {
+                                "header": [
+                                    "SUBJECT",
+                                    "SUBJECT PRONOUN",
+                                    "OBJECT PRONOUN"
+                                ],
+                                "data": [
+                                    [
+                                        "I (saya)",
+                                        "I",
+                                        "Me"
                                     ],
-                                    "data": [
-                                        [
-                                            "I (saya)",
-                                            "I",
-                                            "Me"
-                                        ],
-                                        [
-                                            "You (kamu)",
-                                            "You",
-                                            "You"
-                                        ],
-                                        [
-                                            "He (dia laki)",
-                                            "He",
-                                            "Him"
-                                        ],
-                                        [
-                                            "She (dia perempuan)",
-                                            "She",
-                                            "Her"
-                                        ],
-                                        [
-                                            "It (benda)",
-                                            "It",
-                                            "It"
-                                        ],
-                                        [
-                                            "We (kami)",
-                                            "We",
-                                            "Us"
-                                        ],
-                                        [
-                                            "They (mereka)",
-                                            "They",
-                                            "Them"
-                                        ]
+                                    [
+                                        "You (kamu)",
+                                        "You",
+                                        "You"
+                                    ],
+                                    [
+                                        "He (dia laki)",
+                                        "He",
+                                        "Him"
+                                    ],
+                                    [
+                                        "She (dia perempuan)",
+                                        "She",
+                                        "Her"
+                                    ],
+                                    [
+                                        "It (benda)",
+                                        "It",
+                                        "It"
+                                    ],
+                                    [
+                                        "We (kami)",
+                                        "We",
+                                        "Us"
+                                    ],
+                                    [
+                                        "They (mereka)",
+                                        "They",
+                                        "Them"
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
                             "type": "other",
@@ -421,6 +398,7 @@
                 {
                     "sub_module_id": 4,
                     "title": "Possessive Pronoun",
+                    "image": "1_4",
                     "description": " Kata ganti kepemilikan untuk menunjukkan hubungan seseorang terhadap suatu benda",
                     "content": [
                         {
@@ -469,7 +447,7 @@
                         {
                             "type": "Table",
                             "title": "Tabel Perbandingan ✦",
-                            "explain": [
+                            "explain": 
                                 {
                                     "header": [
                                         "SUBJECT",
@@ -519,7 +497,7 @@
                                         ]
                                     ]
                                 }
-                            ]
+                            
                         },
                         {
                             "type": "other",
@@ -583,6 +561,7 @@
                 {
                     "sub_module_id": 5,
                     "title": "Adjective & Adverb",
+                    "image": "1_5",
                     "description": "Memahami perbedaan kata sifat dan kata keterangan dalam bahasa Inggris",
                     "content": [
                         {
@@ -625,7 +604,7 @@
                         {
                             "type": "Table",
                             "title": "Pembentukan Adverb Dari Adjective ✦",
-                            "explain": [
+                            "explain": 
                                 {
                                     "header": [
                                         "ADJECTIVE",
@@ -675,12 +654,12 @@
                                         ]
                                     ]
                                 }
-                            ]
+                            
                         },
                         {
                             "type": "Table",
                             "title": "Perbedaan Adjective & Adverb✦",
-                            "explain": [
+                            "explain": 
                                 {
                                     "header": [
                                         "JENIS KATA",
@@ -700,7 +679,7 @@
                                         ]
                                     ]
                                 }
-                            ]
+                            
                         },
                         {
                             "type": "True & False",
