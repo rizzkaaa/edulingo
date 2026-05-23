@@ -89,7 +89,7 @@ export default function DashboardLayout({ children }) {
                 key={index}
                 className={`
                   ${styles.borderMenu}
-                  ${pathname === menu.path ? styles.activeMenu : ""}
+                  ${pathname === menu.path || (pathname.includes('lesson') && menu.path.includes('lesson')) ? styles.activeMenu : ""}
                 `}
               >
                 <Link
