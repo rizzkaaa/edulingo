@@ -1,0 +1,28 @@
+.container{
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #E8F4EF;
+    border: 2px solid #2D7A5E;
+    border-left: 8px solid #2D7A5E;
+    box-shadow: 3px 3px #2C2A26;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.list {
+    margin-block: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.item div{
+    width: 10px;
+    height: 10px;
+    background-color: #C5502A;
+}

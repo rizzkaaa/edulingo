@@ -2,11 +2,10 @@
   background-color: #f5f1ea;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
-.container button {
-  cursor: pointer;
-}
+
 
 .container aside {
   display: flex;
@@ -124,6 +123,15 @@ span.activeSign {
   margin-right: 5px;
 }
 
+.container main{
+  padding: 40px 30px 40px;
+  overflow: auto;
+  background-color: white;
+}
+.container h4{
+  margin-bottom: 20px;
+  color: #8c8880;
+}
 .shake {
   animation: lockDenied 0.8s;
 }

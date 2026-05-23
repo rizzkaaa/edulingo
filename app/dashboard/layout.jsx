@@ -18,7 +18,7 @@ import { TbChartBar } from "react-icons/tb";
 export default function DashboardLayout({ children }) {
   const pathname = usePathname();
   
-  const [initialName, setInitialName] = useState("R");
+  const [initialName, setInitialName] = useState("E");
 
   useEffect(() => {
     // Backend Ambil data nama dari Firebase
@@ -80,7 +80,7 @@ export default function DashboardLayout({ children }) {
         <div className={styles.wrapSidebar}>
           {/* Logo dinamis menggunakan state initialName */}
           <div className={styles.logo}>
-            {initialName}
+            E
           </div>
 
           <div className={styles.navMenu}>
@@ -108,7 +108,7 @@ export default function DashboardLayout({ children }) {
             href="/dashboard/profile"
             className={styles.profileLink}
           >
-            HV
+            {initialName}
           </Link>
         </div>
       </aside>

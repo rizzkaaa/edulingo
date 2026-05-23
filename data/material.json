@@ -18,26 +18,26 @@
                                     "label": "1",
                                     "definition": "Kata benda tunggal yang menyatakan satu orang, benda, atau tempat. Diawali article 'a', 'an', atau 'the'.",
                                     "examples": [
-                                        "a / an",
-                                        "the",
-                                        "is / was",
                                         "Mother",
                                         "Doctor",
                                         "Chair",
-                                        "Student"
+                                        "Student",
+                                        "a / an",
+                                        "the",
+                                        "is / was"
                                     ]
                                 },
                                 {
                                     "title": "Plural Noun",
                                     "label": "2+",
                                     "definition": "Kata benda jamak yang menyatakan lebih dari satu. Diawali article 'the' untuk benda yang sudah diketahui.",
-                                    "articles": [
-                                        "the",
-                                        "are / were",
+                                    "examples": [
                                         "Mothers",
                                         "Doctors",
                                         "Chairs",
-                                        "Students"
+                                        "Students",
+                                        "the",
+                                        "are / were"
                                     ]
                                 }
                             ]
@@ -56,7 +56,7 @@
                                 },
                                 {
                                     "status": "SALAH ✗",
-                                    "sentence": [
+                                    "sentences": [
                                         "There is many student in the classroom.",
                                         "The child are playing in the park."
                                     ]
@@ -66,47 +66,45 @@
                         {
                             "type": "Table",
                             "title": "Aturan Pembentukan Plural ✦",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "Aturan",
-                                        "SINGULAR",
-                                        "PLURAL"
+                            "explain": {
+                                "header": [
+                                    "ATURAN",
+                                    "SINGULAR",
+                                    "PLURAL"
+                                ],
+                                "data": [
+                                    [
+                                        "Tambah -s (umum)",
+                                        "door,cat,book",
+                                        "doors,cats, books"
                                     ],
-                                    "data": [
-                                        [
-                                            "Tambah -s (umum)",
-                                            "door,cat,book",
-                                            "doors,cats, books"
-                                        ],
-                                        [
-                                            "Akhiran s, z, x, sh, ch -> +es",
-                                            "boss, buzz, box, wish, bunch",
-                                            "bosses, buzzes, boxes, wishes, bunches"
-                                        ],
-                                        [
-                                            "Akhiran konsonan + y -> -ies",
-                                            "berry, city, lady",
-                                            "berries, cities, ladies"
-                                        ],
-                                        [
-                                            "Irregular (hafalan khusus)",
-                                            "man, child, mouse, foot",
-                                            "men, children, mice, feet"
-                                        ],
-                                        [
-                                            "Akhiran f/fe -> ubah jadi v +es",
-                                            "shelf, knife",
-                                            "shelves, knives"
-                                        ],
-                                        [
-                                            "Sama di bentuk singular & plural",
-                                            "sheep, fish, deer",
-                                            "sheep, fish, deer"
-                                        ]
+                                    [
+                                        "Akhiran s, z, x, sh, ch -> +es",
+                                        "boss, buzz, box, wish, bunch",
+                                        "bosses, buzzes, boxes, wishes, bunches"
+                                    ],
+                                    [
+                                        "Akhiran konsonan + y -> -ies",
+                                        "berry, city, lady",
+                                        "berries, cities, ladies"
+                                    ],
+                                    [
+                                        "Irregular (hafalan khusus)",
+                                        "man, child, mouse, foot",
+                                        "men, children, mice, feet"
+                                    ],
+                                    [
+                                        "Akhiran f/fe -> ubah jadi v +es",
+                                        "shelf, knife",
+                                        "shelves, knives"
+                                    ],
+                                    [
+                                        "Sama di bentuk singular & plural",
+                                        "sheep, fish, deer",
+                                        "sheep, fish, deer"
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
                             "type": "Toefl Tips",

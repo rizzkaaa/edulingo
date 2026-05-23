@@ -2,38 +2,23 @@
 
 import material from "@/data/material.json";
 import styles from "./layout.module.css";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import {
-  LuHouse,
-  LuClipboardList,
-  LuTrophy,
-  LuBookOpen,
-  LuCheckCheck,
-  LuBadgeCheck,
-  LuCircleCheck,
-  LuShieldCheck,
-  LuLockKeyhole,
-  LuLockOpen,
-  LuCheck,
-  LuLock,
-} from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";
 import LessonProgressBar from "@/app/components/LessonProgressBar";
 
 export default function LessonLayout({ children }) {
   const [sub_module_id, setSub_module_id] = useState(1);
+  const [currentModuleOpen, setCurrentModuleOpen] = useState(sub_module_id);
   const main_material = material.materials.find(
     (material) => material.part_id == 1,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == sub_module_id,
+    (material) => material.sub_module_id == currentModuleOpen,
   );
-  const [currentModuleOpen, setCurrentModuleOpen] = useState(sub_module_id);
-  const currentId = sub_material.sub_module_id;
+  
   const length = main_material.sub_modules.length;
-  const widthFill = (currentId / length) * 100;
-  console.log(widthFill);
+  const widthFill = (sub_module_id / length) * 100;
 
   return (
     <div className={styles.container}>
@@ -53,13 +38,23 @@ export default function LessonLayout({ children }) {
             );
           })}
         </ul>
-        <Footer currentId={currentId} length={length} widthFill={widthFill} />
+        <Footer
+          currentId={sub_module_id}
+          length={length}
+          widthFill={widthFill}
+        />
       </aside>
       <section>
-        <main>{children}</main>
+        <main>
+          <h4>
+            BERANDA › MATERI › STRUCTURE PART 1 ›{" "}
+            {sub_material.title.toUpperCase()}{" "}
+          </h4>
+          {children}
+        </main>
         <BottomBar
           title={main_material.part_title}
-          currentId={currentId}
+          currentId={sub_module_id}
           length={length}
           widthFill={widthFill}
           isLock={currentModuleOpen == sub_module_id}
@@ -127,11 +122,10 @@ function BottomBar({
   setCurrentModuleOpen,
   currentModuleOpen,
   main_material,
-  setSub_module_id
+  setSub_module_id,
 }) {
   const [shake, setShake] = useState(false);
   const router = useRouter();
-  console.log(currentModuleOpen == length);
 
   function prevModule() {
     if (currentModuleOpen == 1) return;
@@ -150,9 +144,13 @@ function BottomBar({
   function nextModule() {
     if (currentModuleOpen == length) return;
     if (currentId < currentModuleOpen + 1) {
+      console.log(currentId, currentModuleOpen + 1);
+
+      console.log(1);
       setShake(true);
       setTimeout(() => setShake(false), 900);
     } else {
+      console.log(2);
       const sub_material = main_material.sub_modules.find(
         (material) => material.sub_module_id == currentModuleOpen + 1,
       );
@@ -192,8 +190,15 @@ function BottomBar({
         <span></span>
       </div>
       <button
-      onClick={() => setSub_module_id(currentId+1)}
-      >TANDAI SELESAI ✓</button>
+        onClick={() => {
+          if (currentId == length || currentId + 1 != currentModuleOpen + 1)
+            return;
+          setSub_module_id(currentId + 1);
+        }}
+        disabled={currentId + 1 != currentModuleOpen + 1}
+      >
+        {currentId + 1 == currentModuleOpen + 1 ? "TANDAI" : ""} SELESAI ✓
+      </button>
     </div>
   );
 }

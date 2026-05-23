@@ -1,0 +1,36 @@
+.container {
+  background-color: #c5502a;
+  padding: 20px;
+  margin-top: 30px;
+  border: 2px solid #2c2a26;
+  box-shadow: 5px 5px #2c2a26;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.decoration{
+    position: absolute;
+    font-weight: 700;
+    color: #0A0A0A;
+}
+.decoration:first-child{
+    left: 10px;
+    top: 10px;
+}
+.decoration:last-child{
+    right: 15px;
+    bottom: 10px;
+}
+
+.container h1{
+    color: white;
+}
+.container p{
+    color: white;
+    margin-block: 10px;
+}
+.link{
+    text-decoration: none;
+}

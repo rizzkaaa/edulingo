@@ -18,3 +18,10 @@ body{
   background:var(--bg-color);
   color:var(--text);
 }
+
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: none;
+}
