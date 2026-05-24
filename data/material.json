@@ -286,7 +286,7 @@
                                         "us",
                                         "them"
                                     ],
-                                    "examples_sentences": [
+                                    "example_sentences": [
                                         "The teacher called me yesterday.",
                                         "I saw them at the library.",
                                         "Sarah helped him with homework."
@@ -348,7 +348,7 @@
                             "explain": [
                                 {
                                     "title": "SUBJECT PRONOUN",
-                                    "rule": "Selalu terletak SEBELUM verb",
+                                    "rule": "Selalu terletak <span>SEBELUM verb</span>",
                                     "sentences": [
                                         "She studies English every day.",
                                         "They play football after school.",
@@ -357,7 +357,7 @@
                                 },
                                 {
                                     "title": "OBJECT PRONOUN",
-                                    "rule": "Terletak SETELAH verb atau preposition",
+                                    "rule": "Terletak <span>SETELAH verb atau preposition</span>",
                                     "sentences": [
                                         "The teacher helped him.",
                                         "I talked to her yesterday.",
@@ -371,15 +371,15 @@
                             "title": "Posisi Dalam Kalimat ✦",
                             "explain": [
                                 {
-                                    "sentence": "She likes him.",
+                                    "sentence": "<span>She</span> likes <span>him</span>.",
                                     "note": "She = subject pronoun (pelaku), him = object pronoun (penerima)"
                                 },
                                 {
-                                    "sentence": "They invited Us to the party.",
+                                    "sentence": "<span>They</span> invited <span>Us</span> to the party.",
                                     "note": "They = subject (melakukan aksi), us = object (menerima undangan)"
                                 },
                                 {
-                                    "sentence": "He helped me yesterday.",
+                                    "sentence": "<span>He</span> helped <span>me</span> yesterday.",
                                     "note": "He = subject (yang membantu), me = object (yang dibantu)"
                                 }
                             ]
@@ -447,57 +447,55 @@
                         {
                             "type": "Table",
                             "title": "Tabel Perbandingan ✦",
-                            "explain": 
-                                {
-                                    "header": [
-                                        "SUBJECT",
-                                        "DEPENDENT (+NOUN)",
-                                        "INDEPENDENT (TANPA NOUN)"
+                            "explain": {
+                                "header": [
+                                    "SUBJECT",
+                                    "DEPENDENT (+NOUN)",
+                                    "INDEPENDENT (TANPA NOUN)"
+                                ],
+                                "data": [
+                                    [
+                                        "I",
+                                        "my",
+                                        "mine"
                                     ],
-                                    "data": [
-                                        [
-                                            "I",
-                                            "my",
-                                            "mine"
-                                        ],
-                                        [
-                                            "You (tunggal)",
-                                            "your",
-                                            "yours"
-                                        ],
-                                        [
-                                            "He",
-                                            "his",
-                                            "his"
-                                        ],
-                                        [
-                                            "She",
-                                            "her",
-                                            "her"
-                                        ],
-                                        [
-                                            "It",
-                                            "its",
-                                            "its*"
-                                        ],
-                                        [
-                                            "We",
-                                            "our",
-                                            "ours"
-                                        ],
-                                        [
-                                            "You (jamak)",
-                                            "your",
-                                            "yours"
-                                        ],
-                                        [
-                                            "They",
-                                            "their",
-                                            "theirs"
-                                        ]
+                                    [
+                                        "You (tunggal)",
+                                        "your",
+                                        "yours"
+                                    ],
+                                    [
+                                        "He",
+                                        "his",
+                                        "his"
+                                    ],
+                                    [
+                                        "She",
+                                        "her",
+                                        "her"
+                                    ],
+                                    [
+                                        "It",
+                                        "its",
+                                        "its*"
+                                    ],
+                                    [
+                                        "We",
+                                        "our",
+                                        "ours"
+                                    ],
+                                    [
+                                        "You (jamak)",
+                                        "your",
+                                        "yours"
+                                    ],
+                                    [
+                                        "They",
+                                        "their",
+                                        "theirs"
                                     ]
-                                }
-                            
+                                ]
+                            }
                         },
                         {
                             "type": "other",
@@ -604,82 +602,78 @@
                         {
                             "type": "Table",
                             "title": "Pembentukan Adverb Dari Adjective ✦",
-                            "explain": 
-                                {
-                                    "header": [
-                                        "ADJECTIVE",
-                                        "ADVERB",
-                                        "TRANSLATE"
+                            "explain": {
+                                "header": [
+                                    "ADJECTIVE",
+                                    "ADVERB",
+                                    "TRANSLATE"
+                                ],
+                                "data": [
+                                    [
+                                        "quick",
+                                        "quickly",
+                                        "dengan cepat"
                                     ],
-                                    "data": [
-                                        [
-                                            "quick",
-                                            "quickly",
-                                            "dengan cepat"
-                                        ],
-                                        [
-                                            "beautiful",
-                                            "beautifully",
-                                            "dengan indah"
-                                        ],
-                                        [
-                                            "complete",
-                                            "completely",
-                                            "secara lengkap"
-                                        ],
-                                        [
-                                            "special",
-                                            "specially",
-                                            "secara khusus"
-                                        ],
-                                        [
-                                            "recent",
-                                            "recently",
-                                            "baru baru ini"
-                                        ],
-                                        [
-                                            "true",
-                                            "truly",
-                                            "sungguh sungguh"
-                                        ],
-                                        [
-                                            "correct",
-                                            "correctly",
-                                            "dengan benar"
-                                        ],
-                                        [
-                                            "slow",
-                                            "slowly",
-                                            "dengan perlahan"
-                                        ]
+                                    [
+                                        "beautiful",
+                                        "beautifully",
+                                        "dengan indah"
+                                    ],
+                                    [
+                                        "complete",
+                                        "completely",
+                                        "secara lengkap"
+                                    ],
+                                    [
+                                        "special",
+                                        "specially",
+                                        "secara khusus"
+                                    ],
+                                    [
+                                        "recent",
+                                        "recently",
+                                        "baru baru ini"
+                                    ],
+                                    [
+                                        "true",
+                                        "truly",
+                                        "sungguh sungguh"
+                                    ],
+                                    [
+                                        "correct",
+                                        "correctly",
+                                        "dengan benar"
+                                    ],
+                                    [
+                                        "slow",
+                                        "slowly",
+                                        "dengan perlahan"
                                     ]
-                                }
-                            
+                                ]
+                            }
                         },
                         {
                             "type": "Table",
                             "title": "Perbedaan Adjective & Adverb✦",
-                            "explain": 
-                                {
-                                    "header": [
-                                        "JENIS KATA",
-                                        "FUNGSI",
-                                        "MENJELASKAN"
+                            "explain": {
+                                "header": [
+                                    "JENIS KATA",
+                                    "FUNGSI",
+                                    "MENJELASKAN"
+                                ],
+                                "data": [
+                                    [
+                                        "Adjective (Kata Sifat)",
+                                        "menerapkan kata benda atau kata ganti",
+                                        "Noun / Pronoun"
                                     ],
-                                    "data": [
-                                        [
-                                            "Adjective (Kata Sifat)",
-                                            "menerapkan kata benda atau kata ganti",
-                                            "Noun / Pronoun"
-                                        ],
-                                        [
-                                            "Adverb (Kata Keterangan)",
-                                            "menerangkan kata kerja, kata sifat, atau kata keterangan lain",
-                                            "Verb / Adjective / Adverb"
-                                        ]
+                                    [
+                                        "Adverb (Kata Keterangan)",
+                                        "menerangkan kata kerja, kata sifat, atau kata keterangan lain",
+                                        "Verb / Adjective / Adverb"
                                     ]
-                                }
-                            
+                                ]
+                            }
                         },
                         {
                             "type": "True & False",

@@ -1,10 +1,5 @@
 .container{
     margin-top: 30px;
-    padding: 20px;
-    background-color: #E8F4EF;
-    border: 2px solid #2D7A5E;
-    border-left: 8px solid #2D7A5E;
-    box-shadow: 3px 3px #2C2A26;
     display: flex;
     flex-direction: column;
     align-items: start;

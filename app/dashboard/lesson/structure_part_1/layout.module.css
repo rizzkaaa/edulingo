@@ -128,7 +128,7 @@ span.activeSign {
   overflow: auto;
   background-color: white;
 }
-.container h4{
+.container .indicator{
   margin-bottom: 20px;
   color: #8c8880;
 }

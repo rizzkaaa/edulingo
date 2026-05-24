@@ -2,10 +2,11 @@
 import styles from './HeaderMaterial.module.css'
 import SmallShadowBorder from "@/app/components/SmallShadowBorder";
 import Image from "next/image";
+import BorderLeftBox from './BorderLeftBox';
 
-export default function HeaderMaterial({currentId, length, sub_material}) {
+export default function HeaderMaterial({currentId, length, sub_material, borderColor='#e8a838'}) {
   return (
-    <div className={styles.container}>
+    <BorderLeftBox borderColor={borderColor} backgroundColor={'#FDFAF5'} className={styles.container}>
       <div className={styles.left}>
         <h5>
           SUB MATERI {currentId} DARI {length}
@@ -31,6 +32,6 @@ export default function HeaderMaterial({currentId, length, sub_material}) {
         width={403}
         height={259}
       />
-    </div>
+    </BorderLeftBox>
   );
 }

@@ -1,11 +1,6 @@
 .container {
-  border: 2px solid #e8a838;
-  border-left: 8px solid #e8a838;
-  box-shadow: 4px 4px #2c2a26;
-  padding: 30px;
   display: flex;
   justify-content: space-between;
-  background-color: #FDFAF5;
 }
 .left h5 {
   color: #e8a838;

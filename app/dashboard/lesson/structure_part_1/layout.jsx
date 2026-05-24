@@ -46,7 +46,7 @@ export default function LessonLayout({ children }) {
       </aside>
       <section>
         <main>
-          <h4>
+          <h4 className={styles.indicator}>
             BERANDA › MATERI › STRUCTURE PART 1 ›{" "}
             {sub_material.title.toUpperCase()}{" "}
           </h4>

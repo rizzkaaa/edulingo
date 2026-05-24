@@ -1,5 +1,6 @@
 import SmallShadowBorder from "./SmallShadowBorder";
-export default function BoxList({ items, backgroundColor, color }) {
+  
+export default function BoxList({ items, backgroundColor, color, textAlign = 'start'}) {
   return (
     <>
       {items.map((e) => (
@@ -7,6 +8,7 @@ export default function BoxList({ items, backgroundColor, color }) {
           key={e}
           backgroundColor={backgroundColor}
           color={color}
+          textAlign={textAlign}
         >
           {e}
         </SmallShadowBorder>

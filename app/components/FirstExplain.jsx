@@ -9,13 +9,12 @@ export function FirstExplainVer1({ sub_material }) {
         <ColorBorderShadow key={i} borderColor={i == 0 ? "#C5502A" : "#2D7A5E"}>
           <HeaderVer1 item={item} i={i} />
           <div className={styles.divider}></div>
-                <div className={styles.examples}>
-
-          <BoxList
-            items={item.examples}
-            backgroundColor={i == 1 ? "#2D7A5E" : "#E8A838"}
-            color={i == 1 ? "white" : "black"}
-          />
+          <div className={styles.examples}>
+            <BoxList
+              items={item.examples}
+              backgroundColor={i == 1 ? "#2D7A5E" : "#E8A838"}
+              color={i == 1 ? "white" : "black"}
+            />
           </div>
         </ColorBorderShadow>
       ))}
@@ -59,6 +58,34 @@ export function FirstExplainVer2({ sub_material }) {
             </div>
           </ColorBorderShadow>
         </div>
+      ))}
+    </div>
+  );
+}
+
+export function FirstExplainVer3({ sub_material }) {
+  return (
+    <div className={styles.container}>
+      {sub_material.content[0].explain.map((item, i) => (
+        <ColorBorderShadow key={i} borderColor={i == 0 ? "#C5502A" : "#2D7A5E"}>
+          <HeaderVer1 item={item} i={i} />
+          <div className={styles.divider}></div>
+          <div className={styles.examples}>
+            <BoxList
+              items={item.examples}
+              backgroundColor={i == 1 ? "#2D7A5E" : "#E8A838"}
+              color={i == 1 ? "white" : "black"}
+            />
+          </div>
+          <div
+            className={styles.note}
+            style={{ backgroundColor: i == 1 ? "#E8F4EF" : "#FAE8E3" }}
+          >
+            {item.example_sentences.map((sentence) => (
+              <p key={sentence}> • {sentence}</p>
+            ))}
+          </div>
+        </ColorBorderShadow>
       ))}
     </div>
   );
