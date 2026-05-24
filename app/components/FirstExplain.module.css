@@ -3,13 +3,6 @@
   display: flex;
   gap: 30px;
 }
-.container .box {
-  border: 2px solid;
-  border-top: 6px solid;
-  box-shadow: 4px 4px #2c2a26;
-  padding: 20px;
-  background-color: #FDFAF5;
-}
 
 .title {
   display: flex;
@@ -40,4 +33,14 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap-reverse;
+}
+ .wrap{
+  flex: 1;
+}
+.note{
+  font-weight: bold;
+  font-size: 12px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border: 2px solid #2c2a26;
 }

@@ -4,6 +4,7 @@ const styles = {
     boxShadow: "2px 2px #2c2a26",
     padding: "10px 15px",
     fontWeight: "700",
+    textAlign: 'center'
   },
 };
 

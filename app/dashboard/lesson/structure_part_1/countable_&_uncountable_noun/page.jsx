@@ -1,12 +1,11 @@
 "use client";
-import styles from "./page.module.css";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
-import { FirstExplainVer1 } from "@/app/components/FirstExplain";
+import { FirstExplainVer2 } from "@/app/components/FirstExplain";
 import TrueFalse from "@/app/components/TrueFalse";
-import TableMaterial from "@/app/components/TableMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
+import { TemplateVer1, TemplateVer2 } from "@/app/components/OtherMaterialTemplate";
 
 export default function CountableUncountableNouns() {
   const main_material = material.materials.find(
@@ -20,19 +19,18 @@ export default function CountableUncountableNouns() {
   const length = main_material.sub_modules.length;
 
   return (
-    <div className={styles.container}>
+    <div>
       <HeaderMaterial
         currentId={currentId}
         length={length}
         sub_material={sub_material}
       />
- kata kunci
-      {/* <FirstExplainVer1 sub_material={sub_material} /> */}
+      <FirstExplainVer2 sub_material={sub_material} />
+      <TemplateVer1 material={sub_material.content[1]} />
       <TrueFalse material={sub_material.content[2]} />
-      {/* <TableMaterial material={sub_material.content[2]} styleHeader={{textAlign: 'start'}} styleData={[{fontWeight: '700'}]}/> */}
-      cara hitung
-      <ToeflTips material={sub_material.content[4]}/>
-<FooterMaterial title={sub_material.title} isEnd={currentId == length}/>
+      <TemplateVer2 material={sub_material.content[3]} />
+      <ToeflTips material={sub_material.content[4]} />
+      <FooterMaterial title={sub_material.title} isEnd={currentId == length} />
     </div>
   );
 }

@@ -137,9 +137,9 @@
                                         "number of"
                                     ],
                                     "examples": [
-                                        "book → books",
-                                        "apple → apples",
-                                        "chair → chairs"
+                                        "book→books",
+                                        "apple→apples",
+                                        "chair→chairs"
                                     ],
                                     "note": "Bisa dihitung: one book, two books, three books..."
                                 },
@@ -152,11 +152,11 @@
                                         "milk",
                                         "water",
                                         "oil",
+                                        "fun",
                                         "shampoo",
                                         "security",
                                         "friendship",
-                                        "hope",
-                                        "fun"
+                                        "hope"
                                     ],
                                     "note": "Tidak bisa: one water ✗ / two milks ✗ — Harus: a glass of water ✓"
                                 }
@@ -197,7 +197,7 @@
                                     ]
                                 }
                             ],
-                            "note": "'Some' dan 'Any' bisa digunakan untuk keduanya!"
+                            "note": "💡 'Some' dan 'Any' bisa digunakan untuk keduanya!"
                         },
                         {
                             "type": "True & False",

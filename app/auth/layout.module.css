@@ -3,6 +3,8 @@
   height: 100vh;
   background: var(--bg-color);
   overflow: hidden;
+  background-image: radial-gradient(#bcbcbc 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 .left {
@@ -13,6 +15,7 @@
 }
 
 .right {
+  background: var(--bg-color);
   overflow: auto;
   padding: 50px 0;
   width: 50%;
