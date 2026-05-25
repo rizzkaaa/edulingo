@@ -2,7 +2,8 @@
 .container3,
 .container4,
 .container5,
-.container6 {
+.container6,
+.container8 {
   margin-top: 30px;
 }
 .splitTwo {
@@ -137,4 +138,21 @@
   border: 1px solid #2c2a26;
   padding: 5px 10px;
   height: fit-content;
+}
+
+.container8 h3{
+  color: #C5502A;
+}
+
+.container8 .wrap{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.container8 .wrap p{
+  font-weight: normal;
+}
+.container8 .wrap p:last-child{
+  color: #8C8880;
+  font-size: 12px;
 }

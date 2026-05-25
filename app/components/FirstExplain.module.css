@@ -53,12 +53,37 @@
   border: 2px solid #2c2a26;
 }
 
-.box:first-child .note b{
-  background-color: #E8A838;
+.box:first-child .note b {
+  background-color: #e8a838;
   padding: 0 5px;
 }
-.box:last-child .note b{
-  background-color: #2D7A5E;
+.box:last-child .note b {
+  background-color: #2d7a5e;
   padding: 0 5px;
+  color: white;
+}
+
+.divider + p {
+  text-align: justify;
+  margin-bottom: 20px;
+}
+.divider + p + p {
+  margin-bottom: 8px;
+}
+
+.wrap {
+  display: grid;
+  gap: 10px;
+}
+.wrap .sentence {
+  background-color: #e8f4ef;
+}
+.box:first-child b {
+  background-color: #e8a838;
+  padding: 0 5px;
+}
+.box:last-child b {
+  padding: 0 5px;
+  background-color: #2d7a5e;
   color: white;
 }

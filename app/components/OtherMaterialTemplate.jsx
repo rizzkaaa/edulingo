@@ -2,7 +2,7 @@ import styles from "./OtherMaterialTemplate.module.css";
 import SmallShadowBorder from "./SmallShadowBorder";
 import BoxList from "./BoxList";
 import React from "react";
-import { LuCircleCheck } from "react-icons/lu";
+import { LuCircleCheck, LuX } from "react-icons/lu";
 import BorderLeftBox from "./BorderLeftBox";
 import { color } from "framer-motion";
 
@@ -164,12 +164,59 @@ export function TemplateVer6({ material }) {
             <p>{item.explanation}</p>
           </div>
           <h4
-            style={{ backgroundColor: item.status == "BENAR ✓" ? "#2D7A5E" : "#C5502A" }}
+            style={{
+              backgroundColor: item.status == "BENAR ✓" ? "#2D7A5E" : "#C5502A",
+            }}
           >
             {item.status}
           </h4>
         </div>
       ))}
+    </BorderLeftBox>
+  );
+}
+
+export function TemplateVer8({ material }) {
+  return (
+    <BorderLeftBox
+      backgroundColor={"#FAE8E3"}
+      borderColor={"#C5502A"}
+      className={styles.container8}
+    >
+      <h3>{material.title}</h3>
+      <div className={styles.splitTwo}>
+        {material.explain.map((item, i) => (
+          <div className={styles.box} key={i}>
+            <SmallShadowBorder
+              color="white"
+              backgroundColor={i == 1 ? "#2D7A5E" : "#C5502A"}
+            >
+              {item.status}
+            </SmallShadowBorder>
+            <div className={styles.sentences}>
+              {item.sentences.map((sentence, j) => (
+                <SmallShadowBorder
+                  key={j}
+                  backgroundColor={i == 1 ? "#E8F4EF" : "#FAE8E3"}
+                  className={styles.wrap}
+                >
+                  {i == 1 ? (
+                    <LuCircleCheck style={{ color: "#2D7A5E" }} />
+                  ) : (
+                    <LuX style={{ color: "#C5502A" }} />
+                  )}{" "}
+                  <div>
+                    <p className={i == 0 ? "wrongSentence" : ""}>
+                      {sentence.text}
+                    </p>
+                    <p>{sentence.note}</p>
+                  </div>
+                </SmallShadowBorder>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </BorderLeftBox>
   );
 }

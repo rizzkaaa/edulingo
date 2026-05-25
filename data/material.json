@@ -569,6 +569,7 @@
                             "explain": [
                                 {
                                     "title": "Adjective",
+                                    "subtitle": "Kata Sifat",
                                     "label": "S",
                                     "definition": "Menerangkan kata benda (noun) atau kata ganti (pronoun). Menjawab pertanyaan: Seperti apa bendanya?",
                                     "label2": "MENJELASKAN:",
@@ -577,14 +578,15 @@
                                     ],
                                     "label3": "CONTOH:",
                                     "examples": [
-                                        "She is a beautiful girl.",
-                                        "He drives an expensive car.",
-                                        "The soup smells good."
+                                        "She is a <b>beautiful</b> girl.",
+                                        "He drives an <b>expensive</b> car.",
+                                        "The soup smells <b>good</b>."
                                     ]
                                 },
                                 {
                                     "title": "Adverb",
-                                    "label": "S",
+                                    "label": "K",
+                                    "subtitle": "Kata Keterangan",
                                     "definition": "Kata Keterangan yang berfungsi menerangkan kata kerja (verb), kata sifat (adjective), atau kata keterangan lain (adverb).",
                                     "label2": "MENJELASKAN:",
                                     "tags": [
@@ -594,9 +596,9 @@
                                     ],
                                     "label3": "CONTOH:",
                                     "examples": [
-                                        "She runs quickly.",
-                                        "He is very tall.",
-                                        "She sings beautifully."
+                                        "She runs <b>quickly</b>.",
+                                        "He is <b>very</b> tall.",
+                                        "She sings <b>beautifully</b>."
                                     ]
                                 }
                             ]
@@ -679,8 +681,22 @@
                         },
                         {
                             "type": "True & False",
-                            "title": "Kesalahan Umum ⚠️",
+                            "title": "⚠️ Kesalahan Umum ",
                             "explain": [
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        {
+                                            "text": "He was driving an expensively sports car."
+                                        },
+                                        {
+                                            "text": "The car was not complete ready."
+                                        },
+                                        {
+                                            "text": "It was a truly story."
+                                        }
+                                    ]
+                                },
                                 {
                                     "status": "BENAR ✓",
                                     "sentences": [
@@ -696,14 +712,6 @@
                                             "text": "It was a true story.",
                                             "note": "Story adalah noun, harus adjective"
                                         }
-                                    ]
-                                },
-                                {
-                                    "status": "SALAH ✗",
-                                    "sentences": [
-                                        "He was driving an expensively sports car.",
-                                        "The car was not complete ready.",
-                                        "It was a truly story."
                                     ]
                                 }
                             ]

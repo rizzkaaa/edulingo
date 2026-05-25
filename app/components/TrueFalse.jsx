@@ -21,7 +21,7 @@ export default function TrueFalse({ material }) {
                 <SmallShadowBorder key={sentence} backgroundColor={'#E8F4EF'}>
                   <p
                    
-                    className={i == 1 ? styles.wrongSentence : ""}
+                    className={i == 1 ? "wrongSentence" : ""}
                   >
                     {i == 0 ? (
                       <LuCircleCheck style={{ color: "#2D7A5E" }} />
