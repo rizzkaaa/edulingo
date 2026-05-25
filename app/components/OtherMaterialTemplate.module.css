@@ -1,6 +1,8 @@
 .container1,
 .container3,
-.container4 {
+.container4,
+.container5,
+.container6 {
   margin-top: 30px;
 }
 .splitTwo {
@@ -81,4 +83,58 @@
   color: white;
   background-color: #2D7A5E;
   padding-inline: 5px;
+}
+
+.container5 h3{
+  color: #C5502A;
+  margin-bottom: 20px;
+}
+.container5 p{
+  font-weight: normal;
+  font-size: 14px;
+  height: fit-content;
+}
+.container5 .sentences p:last-child{
+  border: 1px solid #2c2a26;
+  background-color: white;
+  padding: 10px 8px;
+}
+.container5 .sentences:first-child b{
+  color: white;
+  background-color: #2D7A5E;
+  padding: 0 3px;
+}
+.container5 .sentences:last-child b{
+  color: white;
+  background-color: #C5502A;
+  padding: 0 3px;
+}
+
+.container5 .note{
+  border: 1px solid #2c2a26;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  margin-top: 50px;
+  background-color: #E8A838;
+}
+
+.container6 .list{
+  border: 1px solid #2c2a26;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  align-items: center;
+}
+.container6 h4+p{
+  color: #8C8880;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.container6 h4:last-child{
+  color: white;
+  border: 1px solid #2c2a26;
+  padding: 5px 10px;
+  height: fit-content;
 }

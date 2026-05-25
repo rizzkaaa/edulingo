@@ -405,7 +405,8 @@
                             "type": "First Explain Ver4",
                             "explain": [
                                 {
-                                    "title": "Dependent Possessive",
+                                    "subtitle": "POSSESSIVE ADJECTIVE",
+                                    "title": "Dependent Possessive Pronoun",
                                     "label": "D",
                                     "definition": "Harus selalu diikuti oleh kata benda (noun) setelahnya. Tidak bisa berdiri sendiri.",
                                     "examples": [
@@ -418,14 +419,15 @@
                                         "their"
                                     ],
                                     "example_sentences": [
-                                        "This is my <b>key</b>.",
-                                        "Welcome to <b>our</b> house.",
-                                        "The cat chased <b>its</b> prey."
+                                        "• This is my <b>key</b>.",
+                                        "• Welcome to <b>our</b> house.",
+                                        "• The cat chased <b>its</b> prey."
                                     ],
                                     "note": "⚠️ Harus diikuti NOUN setelahnya!"
                                 },
                                 {
-                                    "title": "Independent Possessive",
+                                    "subtitle": "POSSESSIVE ABSOLUTE",
+                                    "title": "Independent Possessive Pronoun",
                                     "label": "I",
                                     "definition": "Dikenal sebagai Possessive Absolute, kata ganti ini tidak diikuti noun secara langsung dan muncul di akhir kalimat/klausa.",
                                     "examples": [
@@ -437,8 +439,8 @@
                                         "theirs"
                                     ],
                                     "example_sentences": [
-                                        "The car parked outside is <b>mine</b>.",
-                                        "This cake is <b>hers</b>."
+                                        "• The car parked outside is <b>mine</b>.",
+                                        "• This cake is <b>hers</b>."
                                     ],
                                     "note": "*its sebagai independent sangat jarang digunakan"
                                 }
@@ -499,7 +501,7 @@
                         },
                         {
                             "type": "other",
-                            "title": "PERHATIAN KHUSUS: its vs it's",
+                            "title": "⚠️ PERHATIAN KHUSUS: its vs it's",
                             "explain": [
                                 {
                                     "label": "ITS ✓",

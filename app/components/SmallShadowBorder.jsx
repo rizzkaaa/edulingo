@@ -11,11 +11,12 @@ export default function SmallShadowBorder({
   backgroundColor,
   color,
   children,
+  className,
   textAlign = 'start'
 }) {
   return (
     <div
-      style={{ ...styles.box, backgroundColor: backgroundColor, color: color, textAlign: textAlign }}
+      style={{ ...styles.box, backgroundColor: backgroundColor, color: color, textAlign: textAlign }} className={className}
     >
       {children}
     </div>

@@ -4,6 +4,7 @@ import BoxList from "./BoxList";
 import React from "react";
 import { LuCircleCheck } from "react-icons/lu";
 import BorderLeftBox from "./BorderLeftBox";
+import { color } from "framer-motion";
 
 export function TemplateVer1({ material }) {
   return (
@@ -115,6 +116,60 @@ export function TemplateVer4({ material }) {
           ))}
         </div>
       </div>
+    </BorderLeftBox>
+  );
+}
+
+export function TemplateVer5({ material }) {
+  return (
+    <BorderLeftBox
+      borderColor={"#C5502A"}
+      backgroundColor={"#FAE8E3"}
+      className={styles.container5}
+    >
+      <h3>{material.title}</h3>
+      <div className={styles.splitTwo}>
+        {material.explain.map((item, i) => (
+          <SmallShadowBorder
+            key={i}
+            backgroundColor={i == 0 ? "#E8F4EF" : "#FAE8E3"}
+            className={styles.sentences}
+          >
+            <h2 style={{ color: i == 0 ? "#2D7A5E" : "#C5502A" }}>
+              {item.label}
+            </h2>
+            <p>{item.description}</p>
+            <p dangerouslySetInnerHTML={{ __html: item.example }} />
+          </SmallShadowBorder>
+        ))}
+      </div>
+      <div className={styles.note}>{material.note}</div>
+    </BorderLeftBox>
+  );
+}
+
+export function TemplateVer6({ material }) {
+  return (
+    <BorderLeftBox
+      borderColor={"#E8A838"}
+      backgroundColor={"#FAEEDA"}
+      className={styles.container6}
+    >
+      <h3>{material.title}</h3>
+      <br />
+      {material.explain.map((item, i) => (
+        <div key={i} className={styles.list}>
+          <div>
+            <h4>{item.sentence}</h4>
+            <p>{item.explanation}</p>
+          </div>
+          <h4
+            style={{ backgroundColor: item.status == "BENAR ✓" ? "#2D7A5E" : "#C5502A" }}
+          >
+            {item.status}
+          </h4>
+        </div>
+      ))}
     </BorderLeftBox>
   );
 }
