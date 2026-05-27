@@ -728,6 +728,466 @@
                     ]
                 }
             ]
+        },
+        {
+            "part_id": 2,
+            "part_title": "Structure Part 2",
+            "sub_modules": [
+                {
+                    "sub_module_id": 6,
+                    "title": "Coordinate Connectors",
+                    "image": "2_1",
+                    "description": "Kata penghubung untuk menggabungkan dua klausa independen menjadi satu kalimat",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Apa itu Coordinate Connectors? ✦",
+                                    "definition": "Coordinate connectors adalah kata penghubung yang digunakan untuk menghubungkan dua klausa independen (independent clause) yang memiliki tingkat kesetaraan yang sama. Klausa independen adalah klausa yang dapat berdiri sendiri sebagai kalimat lengkap.",
+                                    "pattern": "POLA: Klausa 2: + <span>CONNECTOR</span> + Klausa 3",
+                                    "example": "Contoh: Mom is cooking, <b>and</b> Dad is washing the car,"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "explain": [
+                                {
+                                    "title": "AND",
+                                    "definition": "Menggabungkan dua ide sejalan",
+                                    "example": "\"I like coffee, <span>and</span> she likes tea.\""
+                                },
+                                {
+                                    "title": "BUT",
+                                    "definition": "Menunjukkan pertentangan",
+                                    "example": "\"It was raining, <span>but</span> we went out.\""
+                                },
+                                {
+                                    "title": "OR",
+                                    "definition": "Menyajikan pilihan/alternatif",
+                                    "example": "\"You can study now, <span>or</span> you can rest.\""
+                                },
+                                {
+                                    "title": "SO",
+                                    "definition": "Menunjukkan sebab-akibat",
+                                    "example": "\"She worked hard, <span>so</span> she passed the exam.\""
+                                },
+                                {
+                                    "title": "YET",
+                                    "definition": "Menunjukkan kontradiksi",
+                                    "example": "\"He is poor, <span>yet</span> he is happy.\"",
+                                    "note": "YET mirip BUT tapi lebih formal"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "title": "⚠️ ATURAN PENTING",
+                            "explain": [
+                                "Mom is cooking, and Dad is washing <b>the car</b>",
+                                "Mom is cooking and Dad is washing <b>a car</b>."
+                            ],
+                            "note": "Gunakan koma sebelum coordinate connector."
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL",
+                            "explain": [
+                                "Ingat bahwa koordinat connector hanya dapat menghubungkan dua klausa independen. Jika Anda ingin menghubungkan klausa dependen dengan independen, gunakan subordinate connector sebagai gantinya."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 7,
+                    "title": "Adverb Clause Connectors",
+                    "image": "2_2",
+                    "description": "Kata penghubung yang menggabungkan klausa utama dengan klausa keterangan waktu, sebab, syarat, dan pertentangan",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Apa itu Adverb Clause Connectors? ✦",
+                                    "definition": "Adverb Clause Connectors adalah kata penghubung yang digunakan untuk menggabungkan dua klausa, di mana salah satu klausanya berfungsi seperti keterangan (adverb), misalnya keterangan waktu, sebab, syarat, atau pertentangan.",
+                                    "explain": [
+                                        {
+                                            "label": "POLA 1 — TANPA KOMA",
+                                            "pattern": "Klausa Utama + CONNECTOR + Klausa Adverb",
+                                            "example": "She gets good scores because she studies hard."
+                                        },
+                                        {
+                                            "label": "POLA 2 — DENGAN KOMA",
+                                            "pattern": "CONNECTOR + Klausa Adverb, + Klausa Utama",
+                                            "example": "Because she studies hard, she gets good scores."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "explain": [
+                                {
+                                    "title": "WAKTU",
+                                    "definition": [
+                                        "after",
+                                        "before",
+                                        "when",
+                                        "while",
+                                        "until",
+                                        "since",
+                                        "as soon as"
+                                    ],
+                                    "example": "The waves were high <b>when</b> the storm hit the coast."
+                                },
+                                {
+                                    "title": "SEBAB",
+                                    "definition": [
+                                        "because",
+                                        "since"
+                                    ],
+                                    "example": "<b>Because</b> it was raining<b>,</b> we stayed at home."
+                                },
+                                {
+                                    "title": "SYARAT",
+                                    "definition": [
+                                        "if",
+                                        "unless",
+                                        "provided",
+                                        "whether"
+                                    ],
+                                    "example": "<b>If</b> you study regularly<b>,</b> you will pass the exam."
+                                },
+                                {
+                                    "title": "PERTENTANGAN",
+                                    "definition": [
+                                        "although",
+                                        "even though",
+                                        "while",
+                                        "whereas"
+                                    ],
+                                    "example": "<b>Although</b> it was hot<b>,</b> she wore a jacket."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "title": "⚠️ ATURAN PENTING",
+                            "explain": {
+                                "sentences": [
+                                    "Jika connector di AWAL kalimat (Pola 2) → WAJIB ada tanda koma setelah klausa adverb",
+                                    "Setiap klausa harus memiliki SUBJEK dan KATA KERJA sendiri"
+                                ],
+                                "example": [
+                                    "Although the area is a desert, many plants bloom there.",
+                                    "Although the area is a desert many plants bloom there."
+                                ]
+                            }
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Contoh Kalimat 📝",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        "After the plane circled the airport, it landed on the main runway.",
+                                        "If you study regularly, you will pass the exam.",
+                                        "She gets good scores because she studies hard."
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        "Although the area is a desert many plants bloom there.",
+                                        "We need to get a new car whether is on sale or not.",
+                                        "She gave me a useful advice."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL",
+                            "explain": [
+                                "Jika connector di awal kalimat -> cari tanda koma setelah klausa adverb. Tidak ada koma = salah!",
+                                "Setiap klausa harus punya subjek + verb sendiri. \"whether is on sale\" salah karena tidak ada subjek.",
+                                "Bedakan adverb clause connector (karena, meskipun) dengan coordinate connector (and, but, or)."
+                            ],
+                            "note": "The scientist kept revising UNTIL her supervisor was fully satisfied."
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 8,
+                    "title": "Noun Clause Connectors",
+                    "image": "2_3",
+                    "description": "Kata penghubung yang menggabungkan klausa yang berfungsi sebagai kata benda dalam kalimat",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Apa itu Noun Clause Connectors? ✦",
+                                    "definition": "Noun Clause Connectors adalah kata penghubung yang digunakan untuk menggabungkan dua klausa, di mana salah satu klausanya berfungsi sebagai kata benda (noun) dalam kalimat. Noun clause dapat berfungsi sebagai subjek, objek kata kerja, atau objek preposisi.",
+                                    "explain": [
+                                        {
+                                            "title": "SEBAGAI OBJEK KATA KERJA",
+                                            "pattern": "Klausa Utama + <b>CONNECTOR</b> + Noun Clause",
+                                            "example": "Mom knows <b>when</b> her daughter will come home."
+                                        },
+                                        {
+                                            "title": "SEBAGAI OBJEK PREPOSISI",
+                                            "pattern": "Klausa Utama + Preposisi + <b>CONNECTOR</b> + Noun Clause",
+                                            "example": "Mom is concerned <b>about</b> <b>when</b> her daughter will come home."
+                                        },
+                                        {
+                                            "title": "SEBAGAI SUBJEK",
+                                            "pattern": "<b>CONNECTOR</b> + Noun Clause + Verb",
+                                            "example": "<b>When</b> her daughter will come home is very important."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "explain": [
+                                {
+                                    "title": [
+                                        "INFORMASI",
+                                        "BENDA"
+                                    ],
+                                    "definition": [
+                                        "what",
+                                        "which",
+                                        "that",
+                                        "whatever"
+                                    ],
+                                    "example": "I know <b>what</b> you did last summer."
+                                },
+                                {
+                                    "title": [
+                                        "WAKTU",
+                                        "TEMPAT"
+                                    ],
+                                    "definition": [
+                                        "when",
+                                        "whenever",
+                                        "where"
+                                    ],
+                                    "example": "I can't remember <b>where</b> I put the glasses."
+                                },
+                                {
+                                    "title": [
+                                        "ORANG"
+                                    ],
+                                    "definition": [
+                                        "who",
+                                        "whom"
+                                    ],
+                                    "example": "The person <b>who</b> I want to meet is a designer."
+                                },
+                                {
+                                    "title": [
+                                        "ALASAN",
+                                        "CARA"
+                                    ],
+                                    "definition": [
+                                        "why",
+                                        "how"
+                                    ],
+                                    "example": "I don't understand <b>why</b> you left your books at home."
+                                },
+                                {
+                                    "title": [
+                                        "PILIHAN",
+                                        "KONDISI"
+                                    ],
+                                    "definition ": [
+                                        "whether",
+                                        "if"
+                                    ],
+                                    "example": "The schedule indicated <b>if</b> the teams would be playing in the final game.",
+                                    "note": "'Whether' dan 'If' digunakan untuk menunjukkan pilihan atau kondisi dalam noun clause."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Contoh Kalimat 📝",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        "When the meeting will start is still unknown.",
+                                        "I know where he lives.",
+                                        "What he said surprised everyone."
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        "She explained why was she late.",
+                                        "The teacher asked if were the students ready."
+                                    ]
+                                }
+                            ],
+                            "note": "Setelah noun clause connector, urutan kata harus NORMAL (Subject + Verb), bukan seperti pertanyaan (Verb + Subject)."
+                        },
+                        {
+                            "type": "other",
+                            "title": "⚠️ PERHATIAN: URUTAN KATA",
+                            "explain": {
+                                "sentences": [
+                                    "Setelah noun clause connector, urutan kata harus NORMAL (Subject + Verb), bukan seperti pertanyaan (Verb + Subject)."
+                                ],
+                                "example": [
+                                    "She explained why was she late.",
+                                    "She explained why she was late."
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL",
+                            "explain": [
+                                "Setelah noun clause connector, gunakan urutan NORMAL: Subject + Verb. BUKAN urutan pertanyaan!",
+                                "Noun clause bisa jadi subjek, objek verb, atau objek preposition dalam kalimat.",
+                                "'That' adalah connector paling umum dan sering bisa dihilangkan dalam percakapan informal."
+                            ],
+                            "note": "I know THAT you are busy. = I know you are busy. (that bisa dihilangkan)"
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 9,
+                    "title": "Adjective Clause Connectors",
+                    "image": "2_4",
+                    "description": "Kata penghubung yang menggabungkan dua klausa, salah satunya berfungsi sebagai adjective yang menjelaskan noun.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "APA ITU ADJECTIVE CLAUSE? ✦",
+                                    "definition": "Adjective Clause adalah klausa yang berfungsi seperti kata sifat, menjelaskan atau memodifikasi noun di depannya. Klausa ini dihubungkan ke noun menggunakan Adjective Clause Connector dan selalu diletakkan tepat setelah noun yang dijelaskan.",
+                                    "note": {
+                                        "title": "Sentence Anatomy",
+                                        "example": "This is the book which I bought yesterday.",
+                                        "explain": "NOUN ↑ pointing to \"book\" \n ADJ. CLAUSE ↑ pointing to connector phrase"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "explain": [
+                                {
+                                    "title": "POLA 1",
+                                    "pattern": "NOUN + CONNECTOR + ADJECTIVE CLAUSE",
+                                    "example": "This is the book which I bought yesterday.",
+                                    "explain": "Connector setelah noun, diikuti adjective clause."
+                                },
+                                {
+                                    "title": "POLA 2",
+                                    "pattern": "NOUN + CONNECTOR + ADJ. CLAUSE + VERB UTAMA",
+                                    "example": "The man who is standing over there helped me.",
+                                    "explain": "Adjective clause di tengah kalimat."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "explain": [
+                                {
+                                    "title": [
+                                        "BENDA"
+                                    ],
+                                    "definition": "Digunakan untuk menjelaskan benda.",
+                                    "example": [
+                                        "which"
+                                    ],
+                                    "example_sentence": "I like the book which you recommended."
+                                },
+                                {
+                                    "title": [
+                                        "TEMPAT"
+                                    ],
+                                    "definition": "Digunakan untuk menjelaskan tempat.",
+                                    "example": [
+                                        "where"
+                                    ],
+                                    "example_sentence": "I went to the restaurant where you went last month."
+                                },
+                                {
+                                    "title": [
+                                        "ORANG"
+                                    ],
+                                    "definition": "Digunakan untuk menjelaskan orang.",
+                                    "example": [
+                                        "who, whom, whose"
+                                    ],
+                                    "example_sentence": "The teacher whom the students like the most is their history teacher."
+                                },
+                                {
+                                    "title": [
+                                        "ORANG",
+                                        "BENDA"
+                                    ],
+                                    "definition": "'that' bisa untuk orang maupun benda.",
+                                    "example": [
+                                        "that"
+                                    ],
+                                    "example_sentence": "The people that were vaccinated did not get sick."
+                                },
+                                {
+                                    "title": [
+                                        "KEPEMILIKAN"
+                                    ],
+                                    "definition": "Menunjukkan hubungan kepemilikan.",
+                                    "example": [
+                                        "whose"
+                                    ],
+                                    "example_sentence": "The student whose bag is missing is crying."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "Contoh Kalimat 📝",
+                            "explain": [
+                                {
+                                    "status": "BENAR ✓",
+                                    "sentences": [
+                                        "The girl who sits near me is very smart.",
+                                        "The book which you lent me was interesting.",
+                                        "I visited the city where my father was born.",
+                                        "The student whose phone rang apologized to the class."
+                                    ]
+                                },
+                                {
+                                    "status": "SALAH ✗",
+                                    "sentences": [
+                                        "The man whom helped us was kind."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL",
+                            "explain": [
+                                "Adjective clause selalu diletakkan TEPAT setelah noun yang dijelaskan, jangan sampai terpisah.",
+                                "Gunakan 'who' untuk subject orang, 'whom' untuk object orang. Cek dengan mengganti pronoun: he/she = who, him/her = whom.",
+                                "Connector 'that' bisa menggantikan 'who' atau 'which', tapi tidak bisa digunakan setelah koma."
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
