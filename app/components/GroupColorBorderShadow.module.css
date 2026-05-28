@@ -1,0 +1,34 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 30px;
+  gap: 30px;
+}
+
+.box:last-child {
+  grid-column: span 2;
+}
+
+.container h3{
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.container p:nth-child(2){
+    color: #8C8880;
+    font-size: 14px;
+    margin-block: 10px;
+}
+
+.container p span{
+    color: var(--span-color);
+}
+
+.note{
+    border: 2px solid #2C2A26;
+    background-color: #E8A838;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 10px;
+    margin-top: 20px;
+}

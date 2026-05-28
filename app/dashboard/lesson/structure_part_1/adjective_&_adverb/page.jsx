@@ -6,7 +6,7 @@ import TrueFalse from "@/app/components/TrueFalse";
 import TableMaterial from "@/app/components/TableMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
-import { TemplateVer8 } from "@/app/components/OtherMaterialTemplate";
+import { TemplateVer7 } from "@/app/components/OtherMaterialTemplate";
 
 export default function AdjectiveAdverb() {
   const main_material = material.materials.find(
@@ -47,7 +47,7 @@ export default function AdjectiveAdverb() {
           { textAlign: "center"},
         ]}
       />
-      <TemplateVer8 material={sub_material.content[3]} />
+      <TemplateVer7 material={sub_material.content[3]} />
       <ToeflTips material={sub_material.content[4]} />
       <FooterMaterial title={sub_material.title} isEnd={currentId == length} />
     </div>

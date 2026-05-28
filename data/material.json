@@ -734,21 +734,17 @@
             "part_title": "Structure Part 2",
             "sub_modules": [
                 {
-                    "sub_module_id": 6,
+                    "sub_module_id": 1,
                     "title": "Coordinate Connectors",
                     "image": "2_1",
                     "description": "Kata penghubung untuk menggabungkan dua klausa independen menjadi satu kalimat",
                     "content": [
                         {
                             "type": "First Explain",
-                            "explain": [
-                                {
-                                    "title": "Apa itu Coordinate Connectors? ✦",
-                                    "definition": "Coordinate connectors adalah kata penghubung yang digunakan untuk menghubungkan dua klausa independen (independent clause) yang memiliki tingkat kesetaraan yang sama. Klausa independen adalah klausa yang dapat berdiri sendiri sebagai kalimat lengkap.",
-                                    "pattern": "POLA: Klausa 2: + <span>CONNECTOR</span> + Klausa 3",
-                                    "example": "Contoh: Mom is cooking, <b>and</b> Dad is washing the car,"
-                                }
-                            ]
+                            "title": "Apa itu Coordinate Connectors? ✦",
+                            "definition": "Coordinate connectors adalah kata penghubung yang digunakan untuk menghubungkan dua klausa independen (independent clause) yang memiliki tingkat kesetaraan yang sama. Klausa independen adalah klausa yang dapat berdiri sendiri sebagai kalimat lengkap.",
+                            "pattern": "POLA: Klausa 1, + <span>CONNECTOR</span> + Klausa 2",
+                            "example": "Contoh: Mom is cooking, <b>and</b> Dad is washing the car,"
                         },
                         {
                             "type": "Card",
@@ -784,23 +780,25 @@
                         {
                             "type": "other",
                             "title": "⚠️ ATURAN PENTING",
-                            "explain": [
-                                "Mom is cooking, and Dad is washing <b>the car</b>",
-                                "Mom is cooking and Dad is washing <b>a car</b>."
-                            ],
-                            "note": "Gunakan koma sebelum coordinate connector."
+                            "explain": {
+                                "sentences": [
+                                    "Gunakan koma sebelum coordinate connector."
+                                ],
+                                "example": [
+                                    "Mom is cooking, and Dad is washing <b>the car</b>",
+                                    "Mom is cooking and Dad is washing <b>a car</b>."
+                                ]
+                            }
                         },
                         {
                             "type": "Toefl Tips",
                             "title": "💡 TIPS TOEFL",
-                            "explain": [
-                                "Ingat bahwa koordinat connector hanya dapat menghubungkan dua klausa independen. Jika Anda ingin menghubungkan klausa dependen dengan independen, gunakan subordinate connector sebagai gantinya."
-                            ]
+                            "explain": "Ingat bahwa koordinat connector hanya dapat menghubungkan dua klausa independen. Jika Anda ingin menghubungkan klausa dependen dengan independen, gunakan subordinate connector sebagai gantinya."
                         }
                     ]
                 },
                 {
-                    "sub_module_id": 7,
+                    "sub_module_id": 2,
                     "title": "Adverb Clause Connectors",
                     "image": "2_2",
                     "description": "Kata penghubung yang menggabungkan klausa utama dengan klausa keterangan waktu, sebab, syarat, dan pertentangan",
@@ -921,7 +919,7 @@
                     ]
                 },
                 {
-                    "sub_module_id": 8,
+                    "sub_module_id": 3,
                     "title": "Noun Clause Connectors",
                     "image": "2_3",
                     "description": "Kata penghubung yang menggabungkan klausa yang berfungsi sebagai kata benda dalam kalimat",
@@ -1063,7 +1061,7 @@
                     ]
                 },
                 {
-                    "sub_module_id": 9,
+                    "sub_module_id": 4,
                     "title": "Adjective Clause Connectors",
                     "image": "2_4",
                     "description": "Kata penghubung yang menggabungkan dua klausa, salah satunya berfungsi sebagai adjective yang menjelaskan noun.",

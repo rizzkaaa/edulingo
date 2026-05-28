@@ -1,0 +1,36 @@
+.container {
+  margin-top: 30px;
+}
+
+.container h3 {
+  color: #c5502a;
+}
+.box {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+
+.box .list {
+  flex: 1;
+}
+.box .list div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.box .list p {
+  font-weight: normal;
+}
+.box .list:first-child b {
+  color: white;
+  background-color: #2d7a5e;
+  padding: 0 5px;
+}
+.box .list:last-child b {
+  color: white;
+  background-color: #c5502a;
+  padding: 0 5px;
+}
+

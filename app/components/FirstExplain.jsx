@@ -2,7 +2,7 @@ import styles from "./FirstExplain.module.css";
 import ColorBorderShadow from "./ColorBorderShadow";
 import BoxList from "./BoxList";
 import SmallShadowBorder from "./SmallShadowBorder";
-import { color } from "framer-motion";
+import BorderLeftBox from "./BorderLeftBox";
 
 export function FirstExplainVer1({ sub_material }) {
   return (
@@ -214,5 +214,23 @@ function HeaderVer1({ item, i }) {
       </div>
       <p className={styles.definition}>{item.definition}</p>
     </>
+  );
+}
+
+export function FirstExplainVer6({ material }) {
+  return (
+    <BorderLeftBox
+      backgroundColor={"#FDFAF5"}
+      borderColor={"#E8A838"}
+      className={styles.container2}
+    >
+      <h3>{material.title}</h3>
+      <p>{material.definition}</p>
+      <SmallShadowBorder backgroundColor={"#E8A838"}>
+        <p dangerouslySetInnerHTML={{ __html: material.pattern }} />
+      </SmallShadowBorder>
+      <br />
+      <p dangerouslySetInnerHTML={{ __html: material.example }} />
+    </BorderLeftBox>
   );
 }

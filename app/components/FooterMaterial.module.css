@@ -13,7 +13,6 @@
 .decoration{
     position: absolute;
     font-weight: 700;
-    color: #0A0A0A;
 }
 .decoration:first-child{
     left: 10px;

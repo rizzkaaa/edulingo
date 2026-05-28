@@ -176,7 +176,7 @@ export function TemplateVer6({ material }) {
   );
 }
 
-export function TemplateVer8({ material }) {
+export function TemplateVer7({ material }) {
   return (
     <BorderLeftBox
       backgroundColor={"#FAE8E3"}
@@ -220,3 +220,5 @@ export function TemplateVer8({ material }) {
     </BorderLeftBox>
   );
 }
+
+export function TemplateVer8({}){}
