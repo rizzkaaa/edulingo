@@ -29,3 +29,13 @@ button:disabled {
 .wrongSentence {
   text-decoration: line-through;
 }
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #2c2a26;
+  margin-block: 20px;
+}
+.splitTwo {
+  display: flex;
+  gap: 40px;
+}

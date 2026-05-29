@@ -6,10 +6,7 @@
 .container8 {
   margin-top: 30px;
 }
-.splitTwo {
-  display: flex;
-  gap: 40px;
-}
+
 .box {
   flex: 1;
   margin-top: 20px;

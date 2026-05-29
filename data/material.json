@@ -805,22 +805,18 @@
                     "content": [
                         {
                             "type": "First Explain",
+                            "title": "Apa itu Adverb Clause Connectors? ✦",
+                            "definition": "Adverb Clause Connectors adalah kata penghubung yang digunakan untuk menggabungkan dua klausa, di mana salah satu klausanya berfungsi seperti keterangan (adverb), misalnya keterangan waktu, sebab, syarat, atau pertentangan.",
                             "explain": [
                                 {
-                                    "title": "Apa itu Adverb Clause Connectors? ✦",
-                                    "definition": "Adverb Clause Connectors adalah kata penghubung yang digunakan untuk menggabungkan dua klausa, di mana salah satu klausanya berfungsi seperti keterangan (adverb), misalnya keterangan waktu, sebab, syarat, atau pertentangan.",
-                                    "explain": [
-                                        {
-                                            "label": "POLA 1 — TANPA KOMA",
-                                            "pattern": "Klausa Utama + CONNECTOR + Klausa Adverb",
-                                            "example": "She gets good scores because she studies hard."
-                                        },
-                                        {
-                                            "label": "POLA 2 — DENGAN KOMA",
-                                            "pattern": "CONNECTOR + Klausa Adverb, + Klausa Utama",
-                                            "example": "Because she studies hard, she gets good scores."
-                                        }
-                                    ]
+                                    "label": "POLA 1 — TANPA KOMA",
+                                    "pattern": "Klausa Utama + <b>CONNECTOR</b> + Klausa Adverb",
+                                    "example": "She gets good scores <b>because</b> she studies hard."
+                                },
+                                {
+                                    "label": "POLA 2 — DENGAN KOMA",
+                                    "pattern": "<b>CONNECTOR</b> + Klausa Adverb, + Klausa Utama",
+                                    "example": "<b>Because</b> she studies hard, she gets good scores."
                                 }
                             ]
                         },
@@ -829,7 +825,7 @@
                             "explain": [
                                 {
                                     "title": "WAKTU",
-                                    "definition": [
+                                    "example": [
                                         "after",
                                         "before",
                                         "when",
@@ -838,35 +834,35 @@
                                         "since",
                                         "as soon as"
                                     ],
-                                    "example": "The waves were high <b>when</b> the storm hit the coast."
+                                    "example_sentences": "The waves were high <b>when</b> the storm hit the coast."
                                 },
                                 {
                                     "title": "SEBAB",
-                                    "definition": [
+                                    "example": [
                                         "because",
                                         "since"
                                     ],
-                                    "example": "<b>Because</b> it was raining<b>,</b> we stayed at home."
+                                    "example_sentences": "<b>Because</b> it was raining<b>,</b> we stayed at home."
                                 },
                                 {
                                     "title": "SYARAT",
-                                    "definition": [
+                                    "example": [
                                         "if",
                                         "unless",
                                         "provided",
                                         "whether"
                                     ],
-                                    "example": "<b>If</b> you study regularly<b>,</b> you will pass the exam."
+                                    "example_sentences": "<b>If</b> you study regularly<b>,</b> you will pass the exam."
                                 },
                                 {
                                     "title": "PERTENTANGAN",
-                                    "definition": [
+                                    "example": [
                                         "although",
                                         "even though",
                                         "while",
                                         "whereas"
                                     ],
-                                    "example": "<b>Although</b> it was hot<b>,</b> she wore a jacket."
+                                    "example_sentences": "<b>Although</b> it was hot<b>,</b> she wore a jacket."
                                 }
                             ]
                         },
@@ -914,7 +910,7 @@
                                 "Setiap klausa harus punya subjek + verb sendiri. \"whether is on sale\" salah karena tidak ada subjek.",
                                 "Bedakan adverb clause connector (karena, meskipun) dengan coordinate connector (and, but, or)."
                             ],
-                            "note": "The scientist kept revising UNTIL her supervisor was fully satisfied."
+                            "contoh": "The scientist kept revising UNTIL her supervisor was fully satisfied."
                         }
                     ]
                 },

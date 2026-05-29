@@ -1,18 +1,20 @@
 "use client";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
-import { FirstExplainVer6 } from "@/app/components/FirstExplain";
+import { FirstExplainVer7 } from "@/app/components/FirstExplain";
+import TrueFalse from "@/app/components/TrueFalse";
+import TableMaterial from "@/app/components/TableMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ImportantRule from "@/app/components/ImportantRule";
 
-export default function CoordinateConnectors() {
+export default function AdverbClauseConnectors() {
   const main_material = material.materials.find(
     (material) => material.part_id == 2,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == 1,
+    (material) => material.sub_module_id == 2,
   );
 
   const currentId = sub_material.sub_module_id;
@@ -23,12 +25,17 @@ export default function CoordinateConnectors() {
       <HeaderMaterial
         currentId={currentId}
         length={length}
+        borderColor="#C5502A"
         sub_material={sub_material}
       />
-      <FirstExplainVer6 material={sub_material.content[0]} />
-      <GroupColorBorderShadow version={1} materials={sub_material.content[1].explain} />
+      <FirstExplainVer7 material={sub_material.content[0]} />
+      <GroupColorBorderShadow
+        version={2}
+        materials={sub_material.content[1].explain}
+      />
       <ImportantRule material={sub_material.content[2]} />
-      <ToeflTips material={sub_material.content[3]} />
+      <TrueFalse material={sub_material.content[3]} />
+      <ToeflTips material={sub_material.content[4]} />
       <FooterMaterial
         title={sub_material.title}
         isEnd={currentId == length}

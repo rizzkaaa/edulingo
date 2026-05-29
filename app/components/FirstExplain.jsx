@@ -14,7 +14,7 @@ export function FirstExplainVer1({ sub_material }) {
           className={styles.box}
         >
           <HeaderVer1 item={item} i={i} />
-          <div className={styles.divider}></div>
+          <div className="divider"></div>
           <div className={styles.examples}>
             <BoxList
               items={item.examples}
@@ -37,7 +37,7 @@ export function FirstExplainVer2({ sub_material }) {
             className={styles.box}
           >
             <HeaderVer1 item={item} i={i} />
-            <div className={styles.divider}></div>
+            <div className="divider"></div>
             {item.articles ? (
               <>
                 <div className={styles.examples}>
@@ -82,7 +82,7 @@ export function FirstExplainVer3({ sub_material }) {
           className={styles.box}
         >
           <HeaderVer1 item={item} i={i} />
-          <div className={styles.divider}></div>
+          <div className="divider"></div>
           <div className={styles.examples}>
             <BoxList
               items={item.examples}
@@ -113,7 +113,7 @@ export function FirstExplainVer4({ sub_material }) {
           className={styles.box}
         >
           <HeaderVer1 item={item} i={i} />
-          <div className={styles.divider}></div>
+          <div className="divider"></div>
           <div className={styles.examples}>
             <BoxList
               items={item.examples}
@@ -148,6 +148,7 @@ export function FirstExplainVer4({ sub_material }) {
     </div>
   );
 }
+
 export function FirstExplainVer5({ sub_material }) {
   return (
     <div className={styles.container}>
@@ -167,9 +168,9 @@ export function FirstExplainVer5({ sub_material }) {
           </div>
 
           <h4>{item.subtitle}</h4>
-          <div className={styles.divider}></div>
+          <div className="divider"></div>
           <p className={styles.definition}>{item.definition}</p>
-
+          <br />
           <p style={{ color: i == 1 ? "#2D7A5E" : "#E8A838" }}>{item.label2}</p>
           <div className={styles.examples}>
             <BoxList
@@ -231,6 +232,36 @@ export function FirstExplainVer6({ material }) {
       </SmallShadowBorder>
       <br />
       <p dangerouslySetInnerHTML={{ __html: material.example }} />
+    </BorderLeftBox>
+  );
+}
+export function FirstExplainVer7({ material }) {
+  return (
+    <BorderLeftBox
+      backgroundColor={"#FDFAF5"}
+      borderColor={"#C5502A"}
+      className={styles.container3}
+    >
+      <h3>{material.title}</h3>
+      <p>{material.definition}</p>
+      <div className="splitTwo">
+        {material.explain.map((item, i) => (
+          <div
+            className={styles.box}
+            style={{ backgroundColor: i == 0 ? "#E8A838" : "#2D7A5E" }}
+            key={i}
+          >
+            <h5>{item.label}</h5>
+            <p dangerouslySetInnerHTML={{ __html: item.pattern }} />
+            <SmallShadowBorder backgroundColor={"#FDFAF5"}>
+              <p dangerouslySetInnerHTML={{ __html: item.example }} />
+            </SmallShadowBorder>
+          </div>
+        ))}
+      </div>
+      {/* 
+      <br />
+      <p dangerouslySetInnerHTML={{ __html: material.example }} /> */}
     </BorderLeftBox>
   );
 }

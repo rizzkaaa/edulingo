@@ -4,7 +4,6 @@ import BoxList from "./BoxList";
 import React from "react";
 import { LuCircleCheck, LuX } from "react-icons/lu";
 import BorderLeftBox from "./BorderLeftBox";
-import { color } from "framer-motion";
 
 export function TemplateVer1({ material }) {
   return (
@@ -14,7 +13,7 @@ export function TemplateVer1({ material }) {
       className={styles.container1}
     >
       <h3>{material.title}</h3>
-      <div className={styles.splitTwo}>
+      <div className="splitTwo">
         {material.explain.map((item, i) => (
           <div className={styles.box} key={i}>
             <SmallShadowBorder
@@ -64,7 +63,7 @@ export function TemplateVer3({ material }) {
       className={styles.container3}
     >
       <h3>{material.title}</h3>
-      <div className={styles.splitTwo}>
+      <div className="splitTwo">
         {material.explain.map((item, i) => (
           <div className={styles.box} key={i}>
             <SmallShadowBorder
@@ -128,7 +127,7 @@ export function TemplateVer5({ material }) {
       className={styles.container5}
     >
       <h3>{material.title}</h3>
-      <div className={styles.splitTwo}>
+      <div className="splitTwo">
         {material.explain.map((item, i) => (
           <SmallShadowBorder
             key={i}
@@ -184,7 +183,7 @@ export function TemplateVer7({ material }) {
       className={styles.container8}
     >
       <h3>{material.title}</h3>
-      <div className={styles.splitTwo}>
+      <div className="splitTwo">
         {material.explain.map((item, i) => (
           <div className={styles.box} key={i}>
             <SmallShadowBorder

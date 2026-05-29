@@ -7,10 +7,10 @@ const styles = {
     backgroundColor: "#FDFAF5",
   },
 };
-export default function ColorBorderShadow({ children, borderColor, className}) {
+export default function ColorBorderShadow({ children, borderColor, className, style}) {
   return (
     <div
-      style={{...styles.box, borderColor: borderColor }}
+      style={{...styles.box, borderColor: borderColor, ...style }}
       className={className}
     >
       {children}
