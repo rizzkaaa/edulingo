@@ -49,10 +49,12 @@
   border: 2px solid #2c2a26;
 }
 
+.box:first-child b,
 .box:first-child .note b {
   background-color: #e8a838;
   padding: 0 5px;
 }
+.box:last-child b,
 .box:last-child .note b {
   background-color: #2d7a5e;
   padding: 0 5px;
@@ -70,18 +72,11 @@
 .wrap .sentence {
   background-color: #e8f4ef;
 }
-.box:first-child b {
-  background-color: #e8a838;
-  padding: 0 5px;
-}
-.box:last-child b {
-  padding: 0 5px;
-  background-color: #2d7a5e;
-  color: white;
-}
+
 
 .container2,
-.container3{
+.container3,
+.container4{
   margin-top: 30px;
 }
 .container2 h3+p,
@@ -102,24 +97,12 @@
   background-color: #e8a838;
 }
 
-.container3 .box{
-  box-shadow: 4px 4px #2C2A26;
-  padding: 20px;
-}
-
-.container3 .wrap p,
-.container3 .box p{
+.container3 .wrap p{
   font-weight: normal;
   font-size: 14px;
 }
-.container3 h5+p{
-  margin-block: 10px
-}
 
-.container3 .wrap b,
-.container3 .box:last-child h5,
-.container3 .box:last-child h5+p,
-.container3 h5+p b{
+.container3 .wrap b{
   color: white;
 }
 
@@ -130,4 +113,17 @@
 .container3 .explain:nth-child(2) .example b:first-child{
   background-color: #2d7a5e;
   padding: 3px 5px;
+}
+
+.container4 .note{
+  width: 80%;
+  font-weight: normal;
+  border: 2px solid #C5502A;
+  box-shadow: 2px 2px #2C2A26;
+}
+.container4 .note p:nth-child(2){
+  margin-block: 10px;
+}
+.container4 .note p:last-child{
+  color: #8C8880;
 }

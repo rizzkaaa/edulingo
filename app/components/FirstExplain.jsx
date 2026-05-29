@@ -3,6 +3,7 @@ import ColorBorderShadow from "./ColorBorderShadow";
 import BoxList from "./BoxList";
 import SmallShadowBorder from "./SmallShadowBorder";
 import BorderLeftBox from "./BorderLeftBox";
+import { ColorShadow } from "./ColorShadow";
 
 export function FirstExplainVer1({ sub_material }) {
   return (
@@ -245,24 +246,11 @@ export function FirstExplainVer7({ material }) {
     >
       <h3>{material.title}</h3>
       <p>{material.definition}</p>
-      <div className="splitTwo">
-        {material.explain.map((item, i) => (
-          <div
-            className={styles.box}
-            style={{ backgroundColor: i == 0 ? "#E8A838" : "#2D7A5E" }}
-            key={i}
-          >
-            <h5>{item.label}</h5>
-            <p dangerouslySetInnerHTML={{ __html: item.pattern }} />
-            <SmallShadowBorder backgroundColor={"#FDFAF5"}>
-              <p dangerouslySetInnerHTML={{ __html: item.example }} />
-            </SmallShadowBorder>
-          </div>
-        ))}
-      </div>
+      <ColorShadow materials={material.explain} />
     </BorderLeftBox>
   );
 }
+
 export function FirstExplainVer8({ material }) {
   return (
     <BorderLeftBox
@@ -274,14 +262,42 @@ export function FirstExplainVer8({ material }) {
       <p>{material.definition}</p>
       <div className={styles.wrap}>
         {material.explain.map((item, i) => (
-          <SmallShadowBorder key={i} className={styles.explain} backgroundColor={"#E8A838"}>
+          <SmallShadowBorder
+            key={i}
+            className={styles.explain}
+            backgroundColor={"#E8A838"}
+          >
             <h5>{item.title}</h5>
             <p dangerouslySetInnerHTML={{ __html: item.pattern }} />
-            <SmallShadowBorder backgroundColor={"#FDFAF5"} className={styles.example}>
+            <SmallShadowBorder
+              backgroundColor={"#FDFAF5"}
+              className={styles.example}
+            >
               <p dangerouslySetInnerHTML={{ __html: item.example }} />
             </SmallShadowBorder>
           </SmallShadowBorder>
         ))}
+      </div>
+    </BorderLeftBox>
+  );
+}
+
+export function FirstExplainVer9({ material }) {
+  return (
+    <BorderLeftBox
+      backgroundColor={"#FDFAF5"}
+      borderColor={"#E8A838"}
+      className={styles.container4}
+    >
+      <h3>{material.title}</h3>
+      <br />
+      <div className="splitTwo" style={{alignItems: 'center'}}>
+        <p className={styles.definition}>{material.definition}</p>
+        <div className={styles.note}>
+          <h4>{material.note.title}</h4>
+          <p dangerouslySetInnerHTML={{ __html: material.note.example }} />
+          <p dangerouslySetInnerHTML={{ __html: material.note.explain }} />
+        </div>
       </div>
     </BorderLeftBox>
   );

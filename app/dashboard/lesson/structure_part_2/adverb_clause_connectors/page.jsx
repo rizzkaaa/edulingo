@@ -39,6 +39,7 @@ export default function AdverbClauseConnectors() {
         title={sub_material.title}
         isEnd={currentId == length}
         color="#E8A838"
+        main_part_title={main_material.part_title}
       />
     </div>
   );

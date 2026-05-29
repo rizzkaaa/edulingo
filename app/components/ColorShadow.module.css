@@ -1,0 +1,32 @@
+.box {
+  box-shadow: 4px 4px #2c2a26;
+  padding: 20px;
+  flex: 1;
+}
+.box p {
+  font-weight: normal;
+  font-size: 14px;
+}
+.box h5 + p {
+  margin-block: 10px;
+}
+
+.box:last-child h5,
+.box:last-child h5 + p,
+.box h5 + p b {
+  color: white;
+}
+.box:first-child b {
+  background-color: #e8a838;
+  padding: 0 5px;
+}
+.box:last-child b {
+  padding: 0 5px;
+  background-color: #2d7a5e;
+  color: white;
+}
+.note{
+  color: #8C8880;
+  font-size: 12px;
+  margin-top: 7px;
+}

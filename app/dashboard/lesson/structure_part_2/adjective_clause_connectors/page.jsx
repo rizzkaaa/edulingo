@@ -1,12 +1,12 @@
 "use client";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
-import { FirstExplainVer7 } from "@/app/components/FirstExplain";
+import { FirstExplainVer9 } from "@/app/components/FirstExplain";
 import TrueFalse from "@/app/components/TrueFalse";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
-import ImportantRule from "@/app/components/ImportantRule";
+import { TemplateVer8 } from "@/app/components/OtherMaterialTemplate";
 
 export default function AdjectiveClauseConnectors() {
   const main_material = material.materials.find(
@@ -27,7 +27,8 @@ export default function AdjectiveClauseConnectors() {
         borderColor="#E8A838"
         sub_material={sub_material}
       />
-      {/* <FirstExplainVer7 material={sub_material.content[0]} /> */}
+      <FirstExplainVer9 material={sub_material.content[0]} />
+      <TemplateVer8 material={sub_material.content[1].explain} />
       <GroupColorBorderShadow
         version={2}
         materials={sub_material.content[2].explain}
@@ -38,6 +39,7 @@ export default function AdjectiveClauseConnectors() {
         title={sub_material.title}
         isEnd={currentId == length}
         color="#E8A838"
+        main_part_title={main_material.part_title}
       />
     </div>
   );

@@ -1060,31 +1060,27 @@
                     "content": [
                         {
                             "type": "First Explain",
-                            "explain": [
-                                {
-                                    "title": "APA ITU ADJECTIVE CLAUSE? ✦",
-                                    "definition": "Adjective Clause adalah klausa yang berfungsi seperti kata sifat, menjelaskan atau memodifikasi noun di depannya. Klausa ini dihubungkan ke noun menggunakan Adjective Clause Connector dan selalu diletakkan tepat setelah noun yang dijelaskan.",
-                                    "note": {
-                                        "title": "Sentence Anatomy",
-                                        "example": "This is the book which I bought yesterday.",
-                                        "explain": "NOUN ↑ pointing to \"book\" \n ADJ. CLAUSE ↑ pointing to connector phrase"
-                                    }
-                                }
-                            ]
+                            "title": "APA ITU ADJECTIVE CLAUSE? ✦",
+                            "definition": "Adjective Clause adalah klausa yang berfungsi seperti kata sifat, menjelaskan atau memodifikasi noun di depannya. Klausa ini dihubungkan ke noun menggunakan Adjective Clause Connector dan selalu diletakkan tepat setelah noun yang dijelaskan.",
+                            "note": {
+                                "title": "Sentence Anatomy",
+                                "example": "This is the book <b>which</b> I bought yesterday.",
+                                "explain": "NOUN ↑ pointing to \"book\" \n ADJ. CLAUSE ↑ pointing to connector phrase"
+                            }
                         },
                         {
                             "type": "other",
                             "explain": [
                                 {
-                                    "title": "POLA 1",
+                                    "label": "POLA 1",
                                     "pattern": "NOUN + CONNECTOR + ADJECTIVE CLAUSE",
-                                    "example": "This is the book which I bought yesterday.",
+                                    "example": "This is the book <b>which I bought</b> yesterday.",
                                     "explain": "Connector setelah noun, diikuti adjective clause."
                                 },
                                 {
-                                    "title": "POLA 2",
+                                    "label": "POLA 2",
                                     "pattern": "NOUN + CONNECTOR + ADJ. CLAUSE + VERB UTAMA",
-                                    "example": "The man who is standing over there helped me.",
+                                    "example": "The man <b>who is standing</b> over there helped me.",
                                     "explain": "Adjective clause di tengah kalimat."
                                 }
                             ]

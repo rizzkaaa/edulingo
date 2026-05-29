@@ -34,7 +34,7 @@ export default function SingularPluralNouns() {
         styleData={[{ fontWeight: "700" }]}
       />
       <ToeflTips material={sub_material.content[3]} />
-      <FooterMaterial title={sub_material.title} isEnd={currentId == length} />
+      <FooterMaterial title={sub_material.title} isEnd={currentId == length} main_part_title={main_material.part_title} />
     </div>
   );
 }

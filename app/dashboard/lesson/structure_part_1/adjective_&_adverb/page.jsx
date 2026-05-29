@@ -49,7 +49,7 @@ export default function AdjectiveAdverb() {
       />
       <TemplateVer7 material={sub_material.content[3]} />
       <ToeflTips material={sub_material.content[4]} />
-      <FooterMaterial title={sub_material.title} isEnd={currentId == length} />
+      <FooterMaterial title={sub_material.title} isEnd={currentId == length} main_part_title={main_material.part_title} />
     </div>
   );
 }

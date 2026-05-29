@@ -4,6 +4,7 @@ import BoxList from "./BoxList";
 import React from "react";
 import { LuCircleCheck, LuX } from "react-icons/lu";
 import BorderLeftBox from "./BorderLeftBox";
+import { ColorShadow } from "./ColorShadow";
 
 export function TemplateVer1({ material }) {
   return (
@@ -180,7 +181,7 @@ export function TemplateVer7({ material }) {
     <BorderLeftBox
       backgroundColor={"#FAE8E3"}
       borderColor={"#C5502A"}
-      className={styles.container8}
+      className={styles.container7}
     >
       <h3>{material.title}</h3>
       <div className="splitTwo">
@@ -220,4 +221,10 @@ export function TemplateVer7({ material }) {
   );
 }
 
-export function TemplateVer8({}){}
+export function TemplateVer8({material}) {
+  return (
+    <div className={styles.container8}>
+      <ColorShadow materials={material} divider={true}/>
+    </div>
+  );
+}
