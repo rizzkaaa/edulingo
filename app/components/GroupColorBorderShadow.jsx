@@ -61,16 +61,23 @@ function Ver2({ material, color }) {
       color: "#2C2A26",
     },
   };
+
   return (
     <>
       <h5 style={{ backgroundColor: color }}>
         {Array.isArray(material.title) ? (
-          <>ha</>
+          <>{material.title.join(" / ")}</>
         ) : (
           <>KETERANGAN {material.title}</>
         )}
       </h5>
-      <h1 style={{ color: color }}>{material.title}</h1>
+      <h1 style={{ color: color }}>
+        {Array.isArray(material.title)
+          ? material.title.join(" & ")
+          : material.title}
+      </h1>
+      
+      {material.definition ? <p>{material.definition}</p>: null}
       <div className="divider"></div>
       <div className={styles.wrap}>
         <BoxList
@@ -87,6 +94,7 @@ function Ver2({ material, color }) {
         }}
         dangerouslySetInnerHTML={{ __html: material.example_sentences }}
       />
+      {material.note ? <p className={styles.note}>{material.note}</p> : null}
     </>
   );
 }

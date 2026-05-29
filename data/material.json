@@ -922,27 +922,23 @@
                     "content": [
                         {
                             "type": "First Explain",
+                            "title": "Apa itu Noun Clause Connectors? ✦",
+                            "definition": "Noun Clause Connectors adalah kata penghubung yang digunakan untuk menggabungkan dua klausa, di mana salah satu klausanya berfungsi sebagai kata benda (noun) dalam kalimat. Noun clause dapat berfungsi sebagai subjek, objek kata kerja, atau objek preposisi.",
                             "explain": [
                                 {
-                                    "title": "Apa itu Noun Clause Connectors? ✦",
-                                    "definition": "Noun Clause Connectors adalah kata penghubung yang digunakan untuk menggabungkan dua klausa, di mana salah satu klausanya berfungsi sebagai kata benda (noun) dalam kalimat. Noun clause dapat berfungsi sebagai subjek, objek kata kerja, atau objek preposisi.",
-                                    "explain": [
-                                        {
-                                            "title": "SEBAGAI OBJEK KATA KERJA",
-                                            "pattern": "Klausa Utama + <b>CONNECTOR</b> + Noun Clause",
-                                            "example": "Mom knows <b>when</b> her daughter will come home."
-                                        },
-                                        {
-                                            "title": "SEBAGAI OBJEK PREPOSISI",
-                                            "pattern": "Klausa Utama + Preposisi + <b>CONNECTOR</b> + Noun Clause",
-                                            "example": "Mom is concerned <b>about</b> <b>when</b> her daughter will come home."
-                                        },
-                                        {
-                                            "title": "SEBAGAI SUBJEK",
-                                            "pattern": "<b>CONNECTOR</b> + Noun Clause + Verb",
-                                            "example": "<b>When</b> her daughter will come home is very important."
-                                        }
-                                    ]
+                                    "title": "SEBAGAI OBJEK KATA KERJA",
+                                    "pattern": "Klausa Utama + <b>CONNECTOR</b> + Noun Clause",
+                                    "example": "Mom knows <b>when</b> her daughter will come home."
+                                },
+                                {
+                                    "title": "SEBAGAI OBJEK PREPOSISI",
+                                    "pattern": "Klausa Utama + Preposisi + <b>CONNECTOR</b> + Noun Clause",
+                                    "example": "Mom is concerned <b>about</b> <b>when</b> her daughter will come home."
+                                },
+                                {
+                                    "title": "SEBAGAI SUBJEK",
+                                    "pattern": "<b>CONNECTOR</b> + Noun Clause + Verb",
+                                    "example": "<b>When</b> her daughter will come home is very important."
                                 }
                             ]
                         },
@@ -954,58 +950,58 @@
                                         "INFORMASI",
                                         "BENDA"
                                     ],
-                                    "definition": [
+                                    "example": [
                                         "what",
                                         "which",
                                         "that",
                                         "whatever"
                                     ],
-                                    "example": "I know <b>what</b> you did last summer."
+                                    "example_sentences": "I know <b>what</b> you did last summer."
                                 },
                                 {
                                     "title": [
                                         "WAKTU",
                                         "TEMPAT"
                                     ],
-                                    "definition": [
+                                    "example": [
                                         "when",
                                         "whenever",
                                         "where"
                                     ],
-                                    "example": "I can't remember <b>where</b> I put the glasses."
+                                    "example_sentences": "I can't remember <b>where</b> I put the glasses."
                                 },
                                 {
                                     "title": [
                                         "ORANG"
                                     ],
-                                    "definition": [
+                                    "example": [
                                         "who",
                                         "whom"
                                     ],
-                                    "example": "The person <b>who</b> I want to meet is a designer."
+                                    "example_sentences": "The person <b>who</b> I want to meet is a designer."
                                 },
                                 {
                                     "title": [
                                         "ALASAN",
                                         "CARA"
                                     ],
-                                    "definition": [
+                                    "example": [
                                         "why",
                                         "how"
                                     ],
-                                    "example": "I don't understand <b>why</b> you left your books at home."
+                                    "example_sentences": "I don't understand <b>why</b> you left your books at home."
                                 },
                                 {
                                     "title": [
                                         "PILIHAN",
                                         "KONDISI"
                                     ],
-                                    "definition ": [
+                                    "example": [
                                         "whether",
                                         "if"
                                     ],
-                                    "example": "The schedule indicated <b>if</b> the teams would be playing in the final game.",
-                                    "note": "'Whether' dan 'If' digunakan untuk menunjukkan pilihan atau kondisi dalam noun clause."
+                                    "example_sentences": "The schedule indicated <b>if</b> the teams would be playing in the final game.",
+                                    "note": "💡 'Whether' dan 'If' digunakan untuk menunjukkan pilihan atau kondisi dalam noun clause."
                                 }
                             ]
                         },
@@ -1039,8 +1035,8 @@
                                     "Setelah noun clause connector, urutan kata harus NORMAL (Subject + Verb), bukan seperti pertanyaan (Verb + Subject)."
                                 ],
                                 "example": [
-                                    "She explained why was she late.",
-                                    "She explained why she was late."
+                                    "She explained <b>why was she</b> late.",
+                                    "She explained <b>why she was</b> late."
                                 ]
                             }
                         },
@@ -1052,7 +1048,7 @@
                                 "Noun clause bisa jadi subjek, objek verb, atau objek preposition dalam kalimat.",
                                 "'That' adalah connector paling umum dan sering bisa dihilangkan dalam percakapan informal."
                             ],
-                            "note": "I know THAT you are busy. = I know you are busy. (that bisa dihilangkan)"
+                            "contoh": "I know THAT you are busy. = I know you are busy. (that bisa dihilangkan)"
                         }
                     ]
                 },
@@ -1104,7 +1100,7 @@
                                     "example": [
                                         "which"
                                     ],
-                                    "example_sentence": "I like the book which you recommended."
+                                    "example_sentences": "I like the book <b>which</b> you recommended."
                                 },
                                 {
                                     "title": [
@@ -1114,7 +1110,7 @@
                                     "example": [
                                         "where"
                                     ],
-                                    "example_sentence": "I went to the restaurant where you went last month."
+                                    "example_sentences": "I went to the restaurant <b>where</b> you went last month."
                                 },
                                 {
                                     "title": [
@@ -1122,9 +1118,11 @@
                                     ],
                                     "definition": "Digunakan untuk menjelaskan orang.",
                                     "example": [
-                                        "who, whom, whose"
+                                        "who",
+                                        "whom",
+                                        "whose"
                                     ],
-                                    "example_sentence": "The teacher whom the students like the most is their history teacher."
+                                    "example_sentences": "The teacher <b>whom</b> the students like the most is their history teacher."
                                 },
                                 {
                                     "title": [
@@ -1135,7 +1133,7 @@
                                     "example": [
                                         "that"
                                     ],
-                                    "example_sentence": "The people that were vaccinated did not get sick."
+                                    "example_sentences": "The people <b>that</b> were vaccinated did not get sick."
                                 },
                                 {
                                     "title": [
@@ -1145,7 +1143,7 @@
                                     "example": [
                                         "whose"
                                     ],
-                                    "example_sentence": "The student whose bag is missing is crying."
+                                    "example_sentences": "The student <b>whose</b> bag is missing is crying."
                                 }
                             ]
                         },

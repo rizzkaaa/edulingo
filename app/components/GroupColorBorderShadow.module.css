@@ -13,7 +13,7 @@
   font-size: 36px;
 }
 
-.container p:nth-child(2) {
+.container h1+p {
   color: #8c8880;
   font-size: 14px;
   margin-block: 10px;

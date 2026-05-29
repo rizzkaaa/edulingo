@@ -106,6 +106,8 @@
   box-shadow: 4px 4px #2C2A26;
   padding: 20px;
 }
+
+.container3 .wrap p,
 .container3 .box p{
   font-weight: normal;
   font-size: 14px;
@@ -113,9 +115,19 @@
 .container3 h5+p{
   margin-block: 10px
 }
+
+.container3 .wrap b,
 .container3 .box:last-child h5,
 .container3 .box:last-child h5+p,
 .container3 h5+p b{
   color: white;
 }
 
+.container3 .wrap .example b{
+  background-color: #C5502A;
+  padding: 3px 5px;
+}
+.container3 .explain:nth-child(2) .example b:first-child{
+  background-color: #2d7a5e;
+  padding: 3px 5px;
+}
