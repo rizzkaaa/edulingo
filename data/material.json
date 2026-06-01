@@ -1176,6 +1176,472 @@
                     ]
                 }
             ]
+        },
+        {
+            "part_id": 3,
+            "part_title": "Written Expression Part 1: ",
+            "sub_modules": [
+                {
+                    "sub_module_id": 1,
+                    "title": "Subject - Verb Agreement",
+                    "image": "3_1",
+                    "description": "Pelajari aturan kesesuaian Subject dan Verb: singular vs plural dalam kalimat bahasa inggris.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "S + V-s/es",
+                                    "subtitle": "SUBJECT SINGULAR → VERB SINGULAR",
+                                    "definition": "Jika subject dalam kalimat bersifat singular (tunggal), maka verb yang digunakan juga harus dalam bentuk singular.",
+                                    "example": "“The girl goes to school by bike.”",
+                                    "explain": [
+                                        "Is → Singular",
+                                        "Was → Singular",
+                                        "Verb-s/-es → Singular",
+                                        "Has Verb-3 → Singular",
+                                        "Does not verb-1 → Singular"
+                                    ]
+                                },
+                                {
+                                    "title": "S + V1",
+                                    "subtitle": "SUBJECT PLURAL → VERB PLURAL",
+                                    "definition": "Jika subject dalam kalimat bersifat jamak (plural), maka verb yang digunakan adalah bentuk dasar tanpa tambahan s /es.",
+                                    "example": "“The girls go to school by bike.”",
+                                    "explain": [
+                                        "Are → Plural",
+                                        "Were → Plural",
+                                        "Verb-1 → Plural",
+                                        "Have Verb-3 → Plural",
+                                        "Do not verb-1 → Plural"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "title": "JENIS-JENIS SUBJECT ✦",
+                            "explain": [
+                                [
+                                    {
+                                        "title": "NOUN",
+                                        "example": "girls",
+                                        "definition": "Satu kata benda tunggal atau jamak."
+                                    },
+                                    {
+                                        "title": "NOUN PHASE",
+                                        "example": "The very good girl",
+                                        "definition": "Kumpulan kata yang berfungsi sebagai satu subject."
+                                    },
+                                    {
+                                        "title": "NOUN CLAUSE",
+                                        "example": "What the girl said",
+                                        "definition": "Klausa dengan S+V sendiri tapi berfungsi sebagai kata benda."
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "other",
+                            "title": "JENIS-JENIS SUBJECT ✦",
+                            "explain": {
+                                "description": "Pelajari aturan kesesuaian Subject dan Verb: singular vs plural dalam kalimat bahasa inggris.",
+                                "example": [
+                                    "Someone",
+                                    "Anyone",
+                                    "Everyone",
+                                    "No one",
+                                    "Somebody",
+                                    "Anybody",
+                                    "Everybody",
+                                    "Nobody",
+                                    "Something",
+                                    "Anything",
+                                    "Everything",
+                                    "Nothing"
+                                ],
+                                "example_sentence": "Everybody <b>makes</b> mistake.",
+                                "status": "✓ SINGULAR VERB"
+                            }
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Perbedaan Singular & Plural Verb ✦",
+                            "explain": {
+                                "header": [
+                                    "VERB TYPE",
+                                    "SINGULAR",
+                                    "PLURAL"
+                                ],
+                                "data": [
+                                    [
+                                        "To Be",
+                                        "is / was",
+                                        "are / were"
+                                    ],
+                                    [
+                                        "Perfect",
+                                        "has + V3",
+                                        "have + V3"
+                                    ],
+                                    [
+                                        "Negative",
+                                        "does not + V1",
+                                        "do not + V1"
+                                    ],
+                                    [
+                                        "Main Verb",
+                                        "V-s / V-es",
+                                        "V1 (base form)"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL Subject - Verb Agreement",
+                            "explain": [
+                                "Identifikasi subject utama kalimat dengan cermat sebelum menentukan bentuk verb.",
+                                "Indefinite pronoun (everyone, somebody, nothing, dll) SELALU menggunakan verb singular."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 2,
+                    "title": "Agreement After Prepositional Phrases",
+                    "image": "3_2",
+                    "description": "Verb harus mengikuti main subject, bukan kata benda di dalam prepositional phrase.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "APA ITU PREPOSITIONAL PHRASE? ✦",
+                            "definition": "Sebuah Prepositional Phrase diawali dengan preposition (at, in, on, by, with, dll) dan diakhiri dengan noun atau pronoun yang bukan merupakan subject utama kalimat.",
+                            "example": {
+                                "title": "COMMON PREPOSITIONS:",
+                                "list": [
+                                    "at",
+                                    "in",
+                                    "on",
+                                    "by",
+                                    "with",
+                                    "of",
+                                    "from",
+                                    "under",
+                                    "beside",
+                                    "across",
+                                    "between",
+                                    "through"
+                                ]
+                            },
+                            "example_sentence": {
+                                "sentence": "Yopa worked in his office.",
+                                "analysis": [
+                                    {
+                                        "label": "s",
+                                        "value": "Yopa"
+                                    },
+                                    {
+                                        "label": "v",
+                                        "value": "worked"
+                                    },
+                                    {
+                                        "label": "PREP. PHRASE",
+                                        "value": "in his office"
+                                    }
+                                ],
+                                "note": "S -> V only"
+                            }
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "ATURAN UTAMA ✦",
+                            "explain": [
+                                {
+                                    "status": "INCORRECT ✗",
+                                    "sentences": "The key on the tables are broken.",
+                                    "note": "tables = object of preposition 'on' -> BUKAN subject!"
+                                },
+                                {
+                                    "status": "CORRECT ✓",
+                                    "sentences": "The key on the tables is broken.",
+                                    "note": "key = main subject (singular) -> verb: is/"
+                                }
+                            ],
+                            "note": "Verb mengikuti MAIN SUBJECT, bukan noun dalam Prepositional Phrase. Abaikan semua noun di dalam Prepositional Phrase saat menentukan bentuk verb!"
+                        },
+                        {
+                            "title": "STRUKTUR KALIMAT ✦",
+                            "structure": [
+                                "MAIN SUBJECT",
+                                "→",
+                                "VERB",
+                                "→",
+                                "PREP. PHRASE"
+                            ],
+                            "note": "Abaikan semua noun di dalam Prepositional Phrase saat menentukan bentuk verb!"
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL Agreement After Prepositional Phrases",
+                            "explain": [
+                                "Temukan main subject terlebih dahulu, lalu skip semua prepositional phrase di antara subject dan verb.",
+                                "Kata benda yang muncul setelah preposisi (of, in, on, with, dll) BUKAN subject, jangan tertipu jumlahnya."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 3,
+                    "title": "Agreement After Expression Of Quality",
+                    "image": "3_3",
+                    "description": "Verb ditentukan oleh noun setelah 'of', bukan kata kuantitasnya (all, most, half, some).",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "POLA KALIMAT ✦",
+                            "pattern": "[all / most / half / some] + of + NOUN + VERB",
+                            "definition": "Verb ditentukan oleh NOUN setelah 'of' — bukan kata kuantitasnya.",
+                            "example": [
+                                "all",
+                                "most",
+                                "half",
+                                "some"
+                            ]
+                        },
+                        {
+                            "type": "Condition Block",
+                            "explain": [
+                                {
+                                    "label": "KONDISI 1",
+                                    "title": "Singular Noun",
+                                    "verb_type": "→ SINGULAR VERB",
+                                    "examples": [
+                                        {
+                                            "sentence": "All of the girl ' s family is very nice.",
+                                            "note": "family = singular"
+                                        },
+                                        {
+                                            "sentence": "Most of the cake disappears within minutes.",
+                                            "note": "cake = singular"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "KONDISI 2",
+                                    "title": "Plural Noun",
+                                    "verb_type": "→ PLURAL VERB",
+                                    "examples": [
+                                        {
+                                            "sentence": "All of the girls are very nice.",
+                                            "note": "girls = plural"
+                                        },
+                                        {
+                                            "sentence": "Some of the students study in the library.",
+                                            "note": "students = plural"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "KONDISI 3",
+                                    "title": "Uncountable Noun",
+                                    "verb_type": "→ SINGULAR VERB",
+                                    "examples": [
+                                        {
+                                            "sentence": "All of the information was updated.",
+                                            "note": "information = uncountable"
+                                        },
+                                        {
+                                            "sentence": "Most of the money has been spent.",
+                                            "note": "money = uncountable"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "CONTOH PENERAPAN 📖",
+                            "explain": [
+                                {
+                                    "question": "Most of the fire in the hills ___ extinguished.",
+                                    "clue": "🔍 Cari noun setelah \"of\": \"fire\" → uncountable noun → verb singular.",
+                                    "answer": "Jawaban: was ✓"
+                                },
+                                {
+                                    "question": "Some of the animals from the zoo ___ released.",
+                                    "clue": "🔍 Noun setelah \"of\": \"animals\" → plural noun → verb plural.",
+                                    "answer": "Jawaban: were ✓"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL Agreement After Expression Of Quality",
+                            "explain": [
+                                "Langsung fokus ke noun setelah kata 'of', abaikan kata kuantitas (all, most, half, some).",
+                                "Uncountable nouns (water, money, information, fire, equipment, dll) selalu menggunakan verb singular."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 4,
+                    "title": "Agreement After Certain Words",
+                    "image": "3_4",
+                    "description": "Beberapa kata tertentu dalam bahasa Inggris memiliki aturan khusus dalam menentukan apakah verb harus singular atau plural, terlepas dari makna sebenarnya.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "Apa itu Agreement after Certain Words? ✦",
+                            "definition": "Agreement after certain words adalah aturan grammar yang mengatur kesesuaian antara subject dan verb setelah kata-kata tertentu. Beberapa kata tertentu dapat membuat verb tetap singular walaupun terlihat plural, atau sebaliknya. Materi ini sangat penting dalam TOEFL Structure and Written Expression karena sering muncul dalam soal grammar.",
+                            "example": [
+                                "SINGULAR WORDS",
+                                "CERTAIN WORDS + OF",
+                                "ALWAYS PLURAL",
+                                "DEPENDS ON NOUN"
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "title": "1. Singular Certain Words",
+                            "label": "SINGULAR WORD + SINGULAR VERB",
+                            "definition": "Kata-kata berikut selalu dianggap singular sehingga verb harus singular, walaupun secara makna mengacu pada banyak orang atau benda.",
+                            "example": [
+                                "everybody",
+                                "everyone",
+                                "everything",
+                                "somebody",
+                                "someone",
+                                "something",
+                                "anybody",
+                                "anyone",
+                                "anything",
+                                "nobody",
+                                "no one",
+                                "nothing",
+                                "each",
+                                "every"
+                            ],
+                            "example_sentences": [
+                                "Everybody <b>is</b> ready for the exam.",
+                                "Someone <b>has</b> stolen my bag.",
+                                "Each student <b>receives</b> a certificate.",
+                                "Nobody <b>knows</b> the answer."
+                            ],
+                            "note": [
+                                "❌ Everybody are happy.",
+                                "✓ Everybody is happy."
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "title": "2. Certain Words + of",
+                            "label": "KATA UTAMA MENENTUKAN VERB",
+                            "definition": "Walaupun noun setelah 'of' berbentuk plural, verb tetap mengikuti kata utama sebelum 'of'.",
+                            "example": [
+                                "each of",
+                                "one of",
+                                "neither of",
+                                "either of"
+                            ],
+                            "structure": "[each / one / neither / either] + of + PLURAL NOUN + SINGULAR VERB",
+                            "example_sentences": [
+                                {
+                                    "sentence": "Each of the students <b>is</b> present.",
+                                    "note": "Verb ikut 'each', bukan 'students'."
+                                },
+                                {
+                                    "sentence": "One of the books <b>has</b> disappeared.",
+                                    "note": "Verb ikut 'one'."
+                                },
+                                {
+                                    "sentence": "Neither of the answers <b>is</b> correct.",
+                                    "note": "Verb singular."
+                                },
+                                {
+                                    "sentence": "Either of the cars <b>costs</b> too much.",
+                                    "note": "Verb singular."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "title": "3. Certain Words yang Selalu Plural",
+                            "label": "PLURAL WORD + PLURAL VERB",
+                            "definition": "Kata-kata berikut menunjukkan jumlah lebih dari satu, sehingga selalu menggunakan plural verb.",
+                            "example": [
+                                "many",
+                                "several",
+                                "few",
+                                "both"
+                            ],
+                            "example_sentences": [
+                                "Many students <b>are</b> absent today.",
+                                "Several books <b>were</b> damaged.",
+                                "Few people <b>understand</b> the problem.",
+                                "Both teachers <b>have</b> arrived."
+                            ],
+                            "note": [
+                                "❌ Many student is absent.",
+                                "✓ Many students are absent."
+                            ]
+                        },
+                        {
+                            "type": "Card",
+                            "title": "4. Certain Words yang Tergantung Noun",
+                            "label": "TERGANTUNG NOUN SETELAH 'of'",
+                            "definition": "Beberapa kata dapat singular atau plural tergantung pada noun setelah kata 'of'.",
+                            "example": [
+                                "some",
+                                "all",
+                                "most",
+                                "half",
+                                "plenty"
+                            ],
+                            "sub_sections": [
+                                {
+                                    "type": "UNCOUNTABLE NOUN → SINGULAR VERB",
+                                    "example_sentences": [
+                                        "Some of the water <b>is</b> dirty.",
+                                        "All of the money <b>has</b> been spent.",
+                                        "Most of the information <b>is</b> correct."
+                                    ]
+                                },
+                                {
+                                    "type": "COUNTABLE PLURAL NOUN → PLURAL VERB",
+                                    "example_sentences": [
+                                        "Some of the students <b>are</b> absent.",
+                                        "All of the books <b>are</b> new.",
+                                        "Most of the employees <b>have</b> resigned."
+                                    ]
+                                }
+                            ],
+                            "note": [
+                                "Water = uncountable → singular",
+                                "Students = plural countable → plural"
+                            ]
+                        },
+                        {
+                            "type": "True & False",
+                            "title": "⚠️ Perhatian Utama",
+                            "sentences": [
+                                "Kata seperti 'everybody', 'everyone', 'nobody' terasa mengacu pada banyak orang tetapi SELALU dianggap singular dalam grammar.",
+                                "Untuk 'each of / one of / neither of / either of' verb mengikuti kata sebelum 'of', bukan noun setelahnya.",
+                                "Untuk 'some / all / most / half / plenty' perhatikan noun setelah 'of': uncountable = singular, countable plural = plural."
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL Agreement After Certain Words",
+                            "explain": [
+                                "Soal Written Expression sering meletakkan 'everybody' atau 'someone' sebagai subject langsung pilih singular verb.",
+                                "Untuk 'some/all/most + of + noun', fokus ke noun setelah 'of' untuk menentukan verb yang tepat."
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
