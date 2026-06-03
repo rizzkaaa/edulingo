@@ -1,0 +1,33 @@
+.container7 {
+  margin-top: 30px;
+}
+
+.box {
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+
+.sentences {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wrap p {
+  font-weight: normal;
+}
+
+.wrap p:last-child {
+  color: #8c8880;
+  font-size: 12px;
+}

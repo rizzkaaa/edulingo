@@ -1,0 +1,46 @@
+.container5 {
+  margin-top: 30px;
+}
+
+.container5 h3 {
+  color: #c5502a;
+  margin-bottom: 20px;
+}
+
+.sentences {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+}
+
+.sentences p {
+  font-weight: normal;
+  font-size: 14px;
+  height: fit-content;
+}
+
+.sentences p:last-child {
+  border: 1px solid #2c2a26;
+  background-color: white;
+  padding: 10px 8px;
+}
+
+.sentences:first-child b {
+  color: white;
+  background-color: #2d7a5e;
+  padding: 0 3px;
+}
+.sentences:last-child b {
+  color: white;
+  background-color: #c5502a;
+  padding: 0 3px;
+}
+
+.note {
+  border: 1px solid #2c2a26;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  margin-top: 50px;
+  background-color: #e8a838;
+}

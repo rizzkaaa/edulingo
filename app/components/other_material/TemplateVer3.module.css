@@ -1,0 +1,33 @@
+.container3 {
+  margin-top: 30px;
+}
+
+.box {
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+
+.sentences {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+}
+
+.sentences p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #2c2a26;
+}
+
+.box:first-child span {
+  color: #c5502a;
+}
+.box:last-child span {
+  color: #2d7a5e;
+}

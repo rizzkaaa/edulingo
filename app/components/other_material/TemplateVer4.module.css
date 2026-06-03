@@ -1,0 +1,35 @@
+.container4 {
+  margin-top: 30px;
+}
+
+.box {
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+
+.sentences {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+}
+
+.note {
+  color: #8c8880;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.sentences span:first-child {
+  color: white;
+  background-color: #c5502a;
+  padding-inline: 5px;
+}
+.sentences span:last-child {
+  color: white;
+  background-color: #2d7a5e;
+  padding-inline: 5px;
+}

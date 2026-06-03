@@ -1,0 +1,31 @@
+.container {
+  margin-top: 30px;
+}
+.wrap {
+  margin-top: 20px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+}
+
+.container h3{
+    margin-bottom: 10px;
+    color: #2D7A5E;
+}
+.container h3+ p{
+    font-size: 14px;
+    color: #8C8880;
+}
+
+.note{
+  background-color: #E8F4EF;
+  border: 2px solid #2C2A26;
+  margin-top: 20px;
+  padding: 20px;
+}
+.note b{
+  background-color: #2D7A5E;
+  color: white;
+  padding: 5px 10px;
+}

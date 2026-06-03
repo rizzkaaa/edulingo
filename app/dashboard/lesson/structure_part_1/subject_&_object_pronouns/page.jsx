@@ -1,7 +1,7 @@
 "use client";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
-import { FirstExplainVer3 } from "@/app/components/FirstExplain";
+import { FirstExplainVer1 } from "@/app/components/FirstExplain";
 import TableMaterial from "@/app/components/TableMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
@@ -27,7 +27,7 @@ export default function SingularPluralPronouns() {
         borderColor="#C5502A"
       />
 
-      <FirstExplainVer3 sub_material={sub_material} />
+      <FirstExplainVer1 sub_material={sub_material} />
       <TableMaterial
         material={sub_material.content[1]}
         styleHeader={[{ textAlign: "start" }]}

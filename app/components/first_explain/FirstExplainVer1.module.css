@@ -1,0 +1,32 @@
+.container {
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+}
+.box {
+  flex: 1;
+}
+
+.examples {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap-reverse;
+}
+
+.example_sentences, .note {
+  font-weight: bold;
+  font-size: 12px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border: 2px solid #2c2a26;
+}
+
+.box:first-child .example_sentences b {
+  background-color: #e8a838;
+  padding: 0 5px;
+}
+.box:last-child .example_sentences b {
+  background-color: #2d7a5e;
+  padding: 0 5px;
+  color: white;
+}

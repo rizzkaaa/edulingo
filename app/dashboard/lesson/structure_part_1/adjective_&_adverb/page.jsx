@@ -1,7 +1,7 @@
 "use client";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
-import { FirstExplainVer1, FirstExplainVer5 } from "@/app/components/FirstExplain";
+import { FirstExplainVer2 } from "@/app/components/FirstExplain";
 import TrueFalse from "@/app/components/TrueFalse";
 import TableMaterial from "@/app/components/TableMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
@@ -28,7 +28,7 @@ export default function AdjectiveAdverb() {
         borderColor="#C5502A"
       />
 
-      <FirstExplainVer5 sub_material={sub_material} />
+      <FirstExplainVer2 sub_material={sub_material} />
       <TableMaterial
         material={sub_material.content[1]}
         styleHeader={[]}

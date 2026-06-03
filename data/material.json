@@ -141,7 +141,7 @@
                                         "apple→apples",
                                         "chair→chairs"
                                     ],
-                                    "note": "Bisa dihitung: one book, two books, three books..."
+                                    "example_sentences": "Bisa dihitung: one book, two books, three books..."
                                 },
                                 {
                                     "title": "Uncountable Noun",
@@ -158,7 +158,7 @@
                                         "friendship",
                                         "hope"
                                     ],
-                                    "note": "Tidak bisa: one water ✗ / two milks ✗ — Harus: a glass of water ✓"
+                                    "example_sentences": "Tidak bisa: one water ✗ / two milks ✗ — Harus: a glass of water ✓"
                                 }
                             ]
                         },
@@ -269,9 +269,9 @@
                                         "they"
                                     ],
                                     "example_sentences": [
-                                        "She studies English every night.",
-                                        "They are playing football.",
-                                        "He goes to school by bus."
+                                        "• She studies English every night.",
+                                        "• They are playing football.",
+                                        "• He goes to school by bus."
                                     ]
                                 },
                                 {
@@ -287,9 +287,9 @@
                                         "them"
                                     ],
                                     "example_sentences": [
-                                        "The teacher called me yesterday.",
-                                        "I saw them at the library.",
-                                        "Sarah helped him with homework."
+                                        "• The teacher called me yesterday.",
+                                        "• I saw them at the library.",
+                                        "• Sarah helped him with homework."
                                     ]
                                 }
                             ]
@@ -1222,47 +1222,43 @@
                             "type": "Card",
                             "title": "JENIS-JENIS SUBJECT ✦",
                             "explain": [
-                                [
-                                    {
-                                        "title": "NOUN",
-                                        "example": "girls",
-                                        "definition": "Satu kata benda tunggal atau jamak."
-                                    },
-                                    {
-                                        "title": "NOUN PHASE",
-                                        "example": "The very good girl",
-                                        "definition": "Kumpulan kata yang berfungsi sebagai satu subject."
-                                    },
-                                    {
-                                        "title": "NOUN CLAUSE",
-                                        "example": "What the girl said",
-                                        "definition": "Klausa dengan S+V sendiri tapi berfungsi sebagai kata benda."
-                                    }
-                                ]
+                                {
+                                    "title": "NOUN",
+                                    "example": "Girls",
+                                    "definition": "Satu kata benda tunggal atau jamak."
+                                },
+                                {
+                                    "title": "NOUN PHASE",
+                                    "example": "The very good girl",
+                                    "definition": "Kumpulan kata yang berfungsi sebagai satu subject."
+                                },
+                                {
+                                    "title": "NOUN CLAUSE",
+                                    "example": "What the girl said",
+                                    "definition": "Klausa dengan S+V sendiri tapi berfungsi sebagai kata benda."
+                                }
                             ]
                         },
                         {
                             "type": "other",
                             "title": "JENIS-JENIS SUBJECT ✦",
-                            "explain": {
-                                "description": "Pelajari aturan kesesuaian Subject dan Verb: singular vs plural dalam kalimat bahasa inggris.",
-                                "example": [
-                                    "Someone",
-                                    "Anyone",
-                                    "Everyone",
-                                    "No one",
-                                    "Somebody",
-                                    "Anybody",
-                                    "Everybody",
-                                    "Nobody",
-                                    "Something",
-                                    "Anything",
-                                    "Everything",
-                                    "Nothing"
-                                ],
-                                "example_sentence": "Everybody <b>makes</b> mistake.",
-                                "status": "✓ SINGULAR VERB"
-                            }
+                            "description": "Pelajari aturan kesesuaian Subject dan Verb: singular vs plural dalam kalimat bahasa inggris.",
+                            "example": [
+                                "Someone",
+                                "Anyone",
+                                "Everyone",
+                                "No one",
+                                "Somebody",
+                                "Anybody",
+                                "Everybody",
+                                "Nobody",
+                                "Something",
+                                "Anything",
+                                "Everything",
+                                "Nothing"
+                            ],
+                            "example_sentence": "Everybody <b>makes</b> mistake.",
+                            "status": "✓ SINGULAR VERB"
                         },
                         {
                             "type": "Table",

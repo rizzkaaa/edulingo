@@ -1,0 +1,26 @@
+.container6 {
+  margin-top: 30px;
+}
+
+.list {
+  border: 1px solid #2c2a26;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  align-items: center;
+  gap: 10px;
+}
+
+.list h4 + p {
+  color: #8c8880;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.list h4:last-child {
+  color: white;
+  border: 1px solid #2c2a26;
+  padding: 5px 10px;
+  height: fit-content;
+}

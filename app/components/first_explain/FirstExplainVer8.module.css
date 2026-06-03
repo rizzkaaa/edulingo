@@ -1,0 +1,31 @@
+.container3 {
+  margin-top: 30px;
+}
+.container3 h3 + p {
+  font-size: 14px;
+  text-align: justify;
+  margin-block: 15px;
+}
+
+.wrap {
+  display: grid;
+  gap: 10px;
+}
+
+.container3 .wrap p {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.container3 .wrap b {
+  color: white;
+}
+
+.container3 .wrap .example b {
+  background-color: #c5502a;
+  padding: 3px 5px;
+}
+.container3 .explain:nth-child(2) .example b:first-child {
+  background-color: #2d7a5e;
+  padding: 3px 5px;
+}

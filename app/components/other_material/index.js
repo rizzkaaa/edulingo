@@ -1,0 +1,10 @@
+export { default as TemplateVer1 } from "./TemplateVer1";
+export { default as TemplateVer2 } from "./TemplateVer2";
+export { default as TemplateVer3 } from "./TemplateVer3";
+export { default as TemplateVer4 } from "./TemplateVer4";
+export { default as TemplateVer5 } from "./TemplateVer5";
+export { default as TemplateVer6 } from "./TemplateVer6";
+export { default as TemplateVer7 } from "./TemplateVer7";
+export { default as TemplateVer8 } from "./TemplateVer8";
+export { default as TemplateVer9 } from "./TemplateVer9";
+export { default as TemplateVer10 } from "./TemplateVer10";

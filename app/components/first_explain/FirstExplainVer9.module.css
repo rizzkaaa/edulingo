@@ -1,0 +1,31 @@
+.container4 {
+  margin-top: 30px;
+}
+
+.definition {
+  font-size: 14px;
+  color: #2c2a26;
+  text-align: justify;
+  width: 95%;
+}
+
+.note {
+  font-weight: bold;
+  font-size: 12px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border: 2px solid #2c2a26;
+}
+
+.container4 .note {
+  width: 80%;
+  font-weight: normal;
+  border: 2px solid #c5502a;
+  box-shadow: 2px 2px #2c2a26;
+}
+.container4 .note p:nth-child(2) {
+  margin-block: 10px;
+}
+.container4 .note p:last-child {
+  color: #8c8880;
+}

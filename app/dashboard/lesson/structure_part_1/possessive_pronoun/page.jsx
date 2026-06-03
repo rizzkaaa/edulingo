@@ -1,8 +1,7 @@
 "use client";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
-import { FirstExplainVer4 } from "@/app/components/FirstExplain";
-import TrueFalse from "@/app/components/TrueFalse";
+import { FirstExplainVer1 } from "@/app/components/FirstExplain";
 import TableMaterial from "@/app/components/TableMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
@@ -27,7 +26,7 @@ export default function PossessivePronouns() {
         sub_material={sub_material}
       />
 
-      <FirstExplainVer4 sub_material={sub_material} />
+      <FirstExplainVer1 sub_material={sub_material} fontWeight="normal"/>
       <TableMaterial
         material={sub_material.content[1]}
         styleHeader={[{ textAlign: "start" }]}

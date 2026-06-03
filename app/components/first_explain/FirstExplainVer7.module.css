@@ -1,0 +1,8 @@
+.container3 {
+  margin-top: 30px;
+}
+.container3 h3 + p {
+  font-size: 14px;
+  text-align: justify;
+  margin-block: 15px;
+}

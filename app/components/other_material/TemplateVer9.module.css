@@ -1,0 +1,22 @@
+.container {
+  margin-top: 30px;
+}
+.wrap {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+}
+.box {
+  flex: 1;
+}
+
+.box h3{
+    margin-block: 10px;
+}
+.box p{
+    font-size: 13px;
+    color: #8C8880;
+}
+.box p:first-child{
+    font-weight: bold;
+}
