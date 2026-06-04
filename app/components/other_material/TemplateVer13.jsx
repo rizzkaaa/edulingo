@@ -1,35 +1,50 @@
-import BorderLeftBox from "../BorderLeftBox";
-import BoxList from "../BoxList";
 import ColorBorderShadow from "../ColorBorderShadow";
 import SmallShadowBorder from "../SmallShadowBorder";
-import styles from "./TemplateVer12.module.css";
+import styles from "./TemplateVer13.module.css";
 
-export default function TemplateVer12({ sub_material }) {
+export default function TemplateVer13({ sub_material }) {
+  const borderColor = ["#C5502A", "#E8A838", "#2D7A5E"];
   return (
-    <BorderLeftBox borderColor={"#2D7A5E"} className={styles.container}>
+    <div className={styles.container}>
       <h3>{sub_material.title}</h3>
-      <SmallShadowBorder
-        backgroundColor={"#2D7A5E"}
-        textAlign="center"
-        color={"white"}
-      >
-        <p>{sub_material.note}</p>
-      </SmallShadowBorder>
-      <br />
-      <div className="splitTwo">
+      <div className={styles.wrap}>
         {sub_material.explain.map((item, i) => {
-          const color = i % 2 == 0 ? "#C5502A" : "#2D7A5E";
-          const bgColor = i % 2 == 0 ? "#FFF0ED" : "#EFF5F2";
-          
+          const color = borderColor[i];
           return (
-            <div className={styles.box} style={{borderColor: color, backgroundColor: bgColor}}>
-              <b>{item.status}</b>
-              <h4 dangerouslySetInnerHTML={{ __html: item.sentences }} />
-              <p dangerouslySetInnerHTML={{ __html: item.note }} />
-            </div>
+            <ColorBorderShadow
+              borderColor={color}
+              className={styles.box}
+              key={i}
+            >
+              <p className={styles.label}>{item.label}</p>
+              <h3>{item.title}</h3>
+              <br />
+              <SmallShadowBorder
+                textAlign="center"
+                backgroundColor={color}
+                color={i != 1 ? "white" : "#2C2A26"}
+              >
+                {item.verb_type}
+              </SmallShadowBorder>
+              <div className={styles.example}>
+                {item.examples.map((e, j) => {
+                  return (
+                    <div key={j}>
+                      <h4
+                        style={{
+                          "--span-color": color,
+                        }}
+                        dangerouslySetInnerHTML={{ __html: e.sentence }}
+                      />
+                      <p>{e.note}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </ColorBorderShadow>
           );
         })}
       </div>
-    </BorderLeftBox>
+    </div>
   );
 }

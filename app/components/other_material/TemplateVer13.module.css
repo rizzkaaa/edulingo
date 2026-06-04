@@ -1,38 +1,40 @@
+
 .container {
   margin-top: 30px;
 }
-.container h3 {
-  margin-bottom: 15px;
-  color: #2d7a5e;
+.wrap {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
 }
-
 .box {
-  box-shadow: 3px 3px #2c2a26;
   flex: 1;
-  padding: 20px;
-  border: 2px solid;
 }
-
-.box h4 {
+.label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.example {
+  display: grid;
+  gap: 15px;
+  margin-top: 15px;
+}
+.example div {
+  background-color: #f5f1ea;
   border: 2px solid #2c2a26;
-  background-color: white;
-  padding: 8px 10px;
-  margin-block: 15px;
+  padding: 12px;
+}
+.example span {
+  background-color: var(--span-color);
+  padding: 0 5px;
+}
+.example p {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #8c8880;
 }
 
-.box:first-child b {
-  color: #c5502a;
-}
-.box:last-child b {
-  color: #2D7A5E;
-}
-.box:first-child span{
-  background-color: #c5502a;
-  padding: 0 5px;
-  color: white;
-}
-.box:last-child span{
-  background-color: #2D7A5E;
-  padding: 0 5px;
-  color: white;
+.box:not(:nth-child(2)) span{
+    color: white;
 }

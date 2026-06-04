@@ -1,0 +1,14 @@
+.container {
+  margin-top: 30px;
+}
+.wrap {
+  margin-top: 30px;
+  display: grid;
+  gap: 15px;
+}
+.clue {
+  font-weight: normal !important;
+}
+.container h3 {
+  color: #2d7a5e;
+}

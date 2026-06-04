@@ -1414,11 +1414,11 @@
                                     "verb_type": "→ SINGULAR VERB",
                                     "examples": [
                                         {
-                                            "sentence": "All of the girl ' s family is very nice.",
+                                            "sentence": "All of the girl ' s family <span>is</span> very nice.",
                                             "note": "family = singular"
                                         },
                                         {
-                                            "sentence": "Most of the cake disappears within minutes.",
+                                            "sentence": "Most of the cake <span>disappears</span> within minutes.",
                                             "note": "cake = singular"
                                         }
                                     ]
@@ -1429,11 +1429,11 @@
                                     "verb_type": "→ PLURAL VERB",
                                     "examples": [
                                         {
-                                            "sentence": "All of the girls are very nice.",
+                                            "sentence": "All of the girls <span>are</span> very nice.",
                                             "note": "girls = plural"
                                         },
                                         {
-                                            "sentence": "Some of the students study in the library.",
+                                            "sentence": "Some of the students <span>study</span> in the library.",
                                             "note": "students = plural"
                                         }
                                     ]
@@ -1444,11 +1444,11 @@
                                     "verb_type": "→ SINGULAR VERB",
                                     "examples": [
                                         {
-                                            "sentence": "All of the information was updated.",
+                                            "sentence": "All of the information <span>was</span> updated.",
                                             "note": "information = uncountable"
                                         },
                                         {
-                                            "sentence": "Most of the money has been spent.",
+                                            "sentence": "Most of the money <span>has been</span> spent.",
                                             "note": "money = uncountable"
                                         }
                                     ]
