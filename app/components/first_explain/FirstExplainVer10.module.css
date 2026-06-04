@@ -1,0 +1,45 @@
+.container {
+  margin-top: 30px;
+}
+.box {
+  flex: 1;
+}
+
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.definition {
+  font-size: 14px;
+  color: #2c2a26;
+  text-align: justify;
+}
+
+.note {
+  font-weight: bold;
+  font-size: 12px;
+  margin-block: 15px;
+  color: #8c8880;
+}
+
+.box:last-child {
+  font-weight: bold;
+  padding: 20px;
+  border: 2px solid #2c2a26;
+  box-shadow: 2px 2px #2c2a26;
+  background-color: #f5f1ea;
+}
+
+.box:last-child div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.box:last-child div p:first-child {
+  border: 2px solid #2c2a26;
+  padding: 8px 15px;
+  margin-block: 8px;
+}

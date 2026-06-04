@@ -1354,17 +1354,17 @@
                             "title": "ATURAN UTAMA ✦",
                             "explain": [
                                 {
-                                    "status": "INCORRECT ✗",
-                                    "sentences": "The key on the tables are broken.",
-                                    "note": "tables = object of preposition 'on' -> BUKAN subject!"
+                                    "status": "✗ INCORRECT ",
+                                    "sentences": "The key on the tables <span>are</span> broken.",
+                                    "note": "<b>tables</b> = object of preposition 'on' -> BUKAN subject!"
                                 },
                                 {
-                                    "status": "CORRECT ✓",
-                                    "sentences": "The key on the tables is broken.",
-                                    "note": "key = main subject (singular) -> verb: is/"
+                                    "status": "✓ CORRECT",
+                                    "sentences": "The key on the tables <span>is</span> broken.",
+                                    "note": "<b>key</b> = main subject (singular) -> verb: <b>is</b>✓"
                                 }
                             ],
-                            "note": "Verb mengikuti MAIN SUBJECT, bukan noun dalam Prepositional Phrase. Abaikan semua noun di dalam Prepositional Phrase saat menentukan bentuk verb!"
+                            "note": "Verb mengikuti MAIN SUBJECT, bukan noun dalam Prepositional Phrase."
                         },
                         {
                             "title": "STRUKTUR KALIMAT ✦",

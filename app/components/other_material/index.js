@@ -8,3 +8,5 @@ export { default as TemplateVer7 } from "./TemplateVer7";
 export { default as TemplateVer8 } from "./TemplateVer8";
 export { default as TemplateVer9 } from "./TemplateVer9";
 export { default as TemplateVer10 } from "./TemplateVer10";
+export { default as TemplateVer11 } from "./TemplateVer11";
+export { default as TemplateVer12 } from "./TemplateVer12";

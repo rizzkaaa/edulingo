@@ -1,0 +1,38 @@
+.container {
+  margin-top: 30px;
+}
+.container h3 {
+  margin-bottom: 15px;
+  color: #2d7a5e;
+}
+
+.box {
+  box-shadow: 3px 3px #2c2a26;
+  flex: 1;
+  padding: 20px;
+  border: 2px solid;
+}
+
+.box h4 {
+  border: 2px solid #2c2a26;
+  background-color: white;
+  padding: 8px 10px;
+  margin-block: 15px;
+}
+
+.box:first-child b {
+  color: #c5502a;
+}
+.box:last-child b {
+  color: #2D7A5E;
+}
+.box:first-child span{
+  background-color: #c5502a;
+  padding: 0 5px;
+  color: white;
+}
+.box:last-child span{
+  background-color: #2D7A5E;
+  padding: 0 5px;
+  color: white;
+}

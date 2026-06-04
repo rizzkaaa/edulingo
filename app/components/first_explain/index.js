@@ -5,3 +5,4 @@ export { default as FirstExplainVer6 } from "./FirstExplainVer6";
 export { default as FirstExplainVer7 } from "./FirstExplainVer7";
 export { default as FirstExplainVer8 } from "./FirstExplainVer8";
 export { default as FirstExplainVer9 } from "./FirstExplainVer9";
+export { default as FirstExplainVer10 } from "./FirstExplainVer10";
