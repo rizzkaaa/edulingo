@@ -1638,6 +1638,176 @@
                     ]
                 }
             ]
+        },
+        {
+            "part_id": 5,
+            "part_title": "Reading Strategies",
+            "sub_modules": [
+                {
+                    "sub_module_id": 1,
+                    "title": "Skimming & Scanning",
+                    "image": "5_1",
+                    "description": "Dua teknik membaca cepat untuk menemukan informasi dalam teks TOEFL.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Skim",
+                                    "definition": "Membaca Cepat untuk Ide Utama. Membaca dengan cepat untuk mendapatkan gambaran umum atau inti dari sebuah teks tanpa harus memahami setiap kata.",
+                                    "lists": [
+                                        "Baca judul dan sub-judul",
+                                        "Baca kalimat pertama dari paragraf",
+                                        "Baca kalimat akhir paragraf",
+                                        "Abaikan detail kecil"
+                                    ],
+                                    "note": "Tujuan: Gambaran Umum"
+                                },
+                                {
+                                    "title": "Scan",
+                                    "definition": "Mencari Informasi Spesifik. Mencari informasi spesifik (kata, data tertentu) dalam teks secara cepat tanpa membaca keseluruhan.",
+                                    "lists": [
+                                        "Tentukan kata kunci dulu",
+                                        "Gerakkan mata cepat",
+                                        "Berhenti saat menemukan info",
+                                        "Baca bagian itu dengan teliti"
+                                    ],
+                                    "note": "Tujuan: Info Spesifik"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "Perbedaan Skimming & Scanning ✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "ASPEK",
+                                        "SKIMMING",
+                                        "SCANNING"
+                                    ],
+                                    "data": [
+                                        [
+                                            "Tujuan",
+                                            "Gambaran umum teks",
+                                            "Informasi spesifik"
+                                        ],
+                                        [
+                                            "Metode",
+                                            "Membaca cepat keseluruhan",
+                                            "Selektif dan lompat"
+                                        ],
+                                        [
+                                            "Kapan Berhenti",
+                                            "Bila inti tahu",
+                                            "Saat info ditemukan"
+                                        ],
+                                        [
+                                            "Pemahaman Awal",
+                                            "Belum familier dengan teks",
+                                            "Sudah tahu apa yang dicari"
+                                        ],
+                                        [
+                                            "Digunakan untuk",
+                                            "Soal Main Idea",
+                                            "Soal Detail & Vocabulary"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Langkah Menggunakan",
+                            "title": "Langkah Menggunakan Skimming & Scanning ✦",
+                            "steps": [
+                                {
+                                    "number": 1,
+                                    "text": "Baca judul dan subjudul bacaan"
+                                },
+                                "→",
+                                {
+                                    "number": 2,
+                                    "text": "Skim dari awal hingga akhir untuk ide utama"
+                                },
+                                "→",
+                                {
+                                    "number": 3,
+                                    "text": "Baca pertanyaan dan siapkan kata kunci"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 📖",
+                            "definition": "Coral reefs are among the most diverse ecosystems on Earth. Often called the 'rainforests of the sea,' they cover less than 1% of the ocean floor but support 25% of all marine species.",
+                            "question": "What are coral reefs often called?",
+                            "clue": "🔍 Gunakan SCANNING: Cari kata kunci 'called' dalam teks, lalu baca kalimat tersebut secara teliti.",
+                            "answer": "Jawaban: B. The rainforests of the sea ✓"
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL Reading",
+                            "explain": [
+                                "Untuk soal Main idea -> gunakan SKIMMING. Baca kalimat pertama dan terakhir tiap paragraf.",
+                                "Untuk soal Detail & Vocabulary -> gunakan SCANNING. Cari kata kunci dari pertanyaan di dalam teks."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 2,
+                    "title": "Vocabulary Question",
+                    "image": "5_2",
+                    "description": "Latih kemampuan memahami arti kata dan frasa dalam konteks bacaan TOEFL untuk meningkatkan pemahaman membaca secara keseluruhan.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Context Clues",
+                                    "subtitle": "Memahami Kata Melalui Sekitarnya.",
+                                    "definition": " Menggunakan petunjuk yang diberikan penulis di sekitar kata sulit untuk menebak maknanya secara logis.",
+                                    "list": [
+                                        "Cari definisi atau sinonim di kalimat",
+                                        "Perhatikan kata hubung kontras (e.g., however)",
+                                        "Lihat contoh yang diberikan setelah kata",
+                                        "Perhatikan tanda baca seperti koma atau tanda kurung"
+                                    ],
+                                    "note": "TUJUAN: MENEBAK MAKNA KONTEKS"
+                                },
+                                {
+                                    "title": "Word Parts",
+                                    "subtitle": "Analisis Morfologi (Akar Kata).",
+                                    "definition": " kata menjadi bagian-bagian kecil (awalan, akar, akhiran) untuk memahami inti maknanya.",
+                                    "lists": [
+                                        "Identifikasi Prefix (e.g., Un-, Re-, Pre-)",
+                                        "Kenali Root Word (e.g., Spect, Cred, Voc)",
+                                        "Identifikasi Suffix (e.g., -Less, -Able, -Ion)",
+                                        "Gabungkan makna dari tiap bagian kata"
+                                    ],
+                                    "note": "TUJUAN: ANALISIS STRUKTUR KATA"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 📖",
+                            "definition": "Solar energy is an inexhaustible resource that can be harnessed to power our homes without depleting the Earth's natural reserves or contributing to global warming.",
+                            "question": "The word 'inexhaustible' in the passage is closest in meaning to...",
+                            "clue": "Gunakan STRATEGY: Lihat konteks 'without depleting' (tanpa menghabiskan). Ini menunjukkan sumber daya yang tidak ada habisnya.",
+                            "answer": "Jawaban: Unlimited ✓"
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 Tips TOEFL Reading",
+                            "explain": [
+                                "Don't just look for literal meaning. A simple word can have a complex meaning in a specific academic context.",
+                                "Check the part of speech. Ensure your choice matches the noun, verb, or adjective function of the target word."
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

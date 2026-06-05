@@ -36,7 +36,7 @@ export default function DashboardPage() {
     {
       id: 5,
       title: "Reading Strategies",
-      path: "/dashboard/lesson/reading_strategist",
+      path: "/dashboard/lesson/reading_strategies",
     },
     {
       id: 6,
