@@ -14,6 +14,7 @@ import {
   LuBookOpen
 } from "react-icons/lu";
 import { TbChartBar } from "react-icons/tb";
+import { FaLaptopCode } from "react-icons/fa";
 
 export default function DashboardLayout({ children }) {
   const pathname = usePathname();
@@ -64,8 +65,8 @@ export default function DashboardLayout({ children }) {
       path: "/dashboard/history",
     },
     {
-      icon: <LuTrophy />,
-      path: "/dashboard/trophy",
+      icon: <FaLaptopCode />,
+      path: "/dashboard/developer",
     },
   ];
 

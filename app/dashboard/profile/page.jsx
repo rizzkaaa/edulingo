@@ -10,8 +10,11 @@ import { doc, getDoc } from "firebase/firestore";
 import * as FaIcons from "react-icons/fa";
 
 export default function ProfilePage() {
+
   const router = useRouter();
+
   const [loading, setLoading] = useState(true);
+
   const [userData, setUserData] = useState({
     fullName: "",
     username: "",
@@ -21,143 +24,368 @@ export default function ProfilePage() {
   });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        try {
-          const docRef = doc(db, "users", user.uid);
-          const docSnap = await getDoc(docRef);
 
-          if (docSnap.exists()) {
-            const data = docSnap.data();
+    const unsubscribe =
+      onAuthStateChanged(auth, async (user) => {
 
-            // Format tanggal bergabung
-            let formattedDate = "Baru saja bergabung";
-            if (data.createdAt && data.createdAt.toDate) {
-              formattedDate = data.createdAt.toDate().toLocaleDateString("id-ID", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
+        if (user) {
+
+          try {
+
+            const docRef =
+              doc(db, "users", user.uid);
+
+            const docSnap =
+              await getDoc(docRef);
+
+            if (docSnap.exists()) {
+
+              const data =
+                docSnap.data();
+
+              let formattedDate =
+                "Baru saja bergabung";
+
+              if (
+                data.createdAt &&
+                data.createdAt.toDate
+              ) {
+
+                formattedDate =
+                  data.createdAt
+                    .toDate()
+                    .toLocaleDateString(
+                      "id-ID",
+                      {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      }
+                    );
+
+              }
+
+              setUserData({
+                fullName:
+                  data.fullName ||
+                  user.displayName ||
+                  "User",
+
+                username:
+                  data.username ||
+                  "user_edulingo",
+
+                email:
+                  data.email ||
+                  user.email ||
+                  "",
+
+                createdAt:
+                  formattedDate,
+
+                lessonStatus:
+                  data.lessonStatus || [],
               });
+
             }
 
-            setUserData({
-              fullName: data.fullName || user.displayName || "User",
-              username: data.username || "user_edulingo",
-              email: data.email || user.email || "",
-              createdAt: formattedDate,
-              lessonStatus: data.lessonStatus || [],
-            });
+          } catch (error) {
+
+            console.error(
+              "Gagal mengambil data profil:",
+              error
+            );
+
+          } finally {
+
+            setLoading(false);
+
           }
-        } catch (error) {
-          console.error("Gagal mengambil data profil:", error);
-        } finally {
-          setLoading(false);
+
+        } else {
+
+          router.push("/login");
+
         }
-      } else {
-        router.push("/login");
-      }
-    });
+
+      });
 
     return () => unsubscribe();
+
   }, [router]);
 
-  // Kalkulasi Statistik
-  const completedLessons = userData.lessonStatus.filter((l) => l.status === "done").length;
-  const unlockedLessons = userData.lessonStatus.filter((l) => l.status === "done" || l.status === "progress").length;
-  const progressPercent = userData.lessonStatus.length > 0 ? Math.round((completedLessons / 7) * 100) : 0;
-  
-  // Syarat akses simulasi
-  const allLessonsCompleted = completedLessons === 7;
+  const completedLessons =
+    userData.lessonStatus.filter(
+      (l) => l.status === "done"
+    ).length;
+
+  const unlockedLessons =
+    userData.lessonStatus.filter(
+      (l) =>
+        l.status === "done" ||
+        l.status === "progress"
+    ).length;
+
+  const progressPercent =
+    userData.lessonStatus.length > 0
+      ? Math.round(
+          (completedLessons / 7) * 100
+        )
+      : 0;
+
+  const allLessonsCompleted =
+    completedLessons === 7;
 
   const handleLogout = async () => {
-    if (confirm("Apakah Anda yakin ingin keluar?")) {
+
+    if (
+      confirm(
+        "Apakah Anda yakin ingin keluar?"
+      )
+    ) {
+
       try {
+
         await signOut(auth);
-        router.push("/login");
+
+        router.push("/auth/login");
+
       } catch (error) {
-        console.error("Gagal log out:", error);
+
+        console.error(
+          "Gagal log out:",
+          error
+        );
+
       }
+
     }
+
   };
 
-  if (loading) return <div style={{ padding: "40px", textAlign: "center" }}>Memuat profil...</div>;
+  if (loading) {
+
+    return (
+      <div className={styles.loading}>
+        Memuat profil...
+      </div>
+    );
+
+  }
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Profile</h1>
 
-      {/* Card Info User */}
+    <div className={styles.container}>
+
+      <h1 className={styles.pageTitle}>
+        Profile
+      </h1>
+
+      <div className={styles.fullLine}></div>
+
       <div className={styles.profileCard}>
+
         <div className={styles.profileHeader}>
-          <div className={styles.avatarBox}>
-            <img src="/images/avatar.png" alt="Avatar" className={styles.avatar} />
+
+          <div className={styles.avatarWrapper}>
+
+            <img
+              src="/images/default_profile.png"
+              alt="Profile"
+              className={styles.avatar}
+            />
+
           </div>
+
           <div className={styles.userInfo}>
-            <h2>
-              {userData.fullName.toUpperCase()}
-              <span className={styles.premiumBadge}>PREMIUM STUDENT</span>
-            </h2>
-            <p><FaIcons.FaEnvelope /> {userData.email}</p>
-            <p><FaIcons.FaCalendarAlt /> Joined {userData.createdAt}</p>
+
+            <div className={styles.nameRow}>
+
+              <h2>
+                {userData.fullName.toUpperCase()}
+              </h2>
+
+              <div className={styles.premiumBadge}>
+                PREMIUM STUDENT
+              </div>
+
+            </div>
+
+            <p>
+              <FaIcons.FaEnvelope />
+              {userData.email}
+            </p>
+
+            <p>
+              <FaIcons.FaCalendarAlt />
+              JOINED {userData.createdAt}
+            </p>
+
           </div>
+
           <div className={styles.actionButtons}>
+
             <Link href="/dashboard/profile/edit">
-              <button className={styles.editBtn}>EDIT PROFILE</button>
+
+              <button className={styles.editBtn}>
+                EDIT PROFILE
+              </button>
+
             </Link>
-            <button className={styles.logoutBtn} onClick={handleLogout}>
+
+            <button
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+            >
               LOG OUT
             </button>
+
           </div>
+
         </div>
+
       </div>
 
-      {/* Card Progress Belajar */}
-      <div className={styles.statsLayout}>
-        <div className={styles.progressSection}>
+      <div className={styles.bottomSection}>
+
+        <div className={styles.progressCard}>
+
           <div className={styles.progressHeader}>
-            <h3>LEARNING PROGRESS</h3>
-            <h2>{progressPercent}%</h2>
+
+            <h3>
+              LEARNING PROGRESS
+            </h3>
+
+            <h1>
+              {progressPercent}%
+            </h1>
+
           </div>
+
+          <div className={styles.progressLine}></div>
+
           <div className={styles.progressBar}>
-            <div className={styles.progressFill} style={{ width: `${progressPercent}%` }}></div>
+
+            <div
+              className={styles.progressFill}
+              style={{
+                width: `${progressPercent}%`
+              }}
+            ></div>
+
           </div>
 
-          <div className={styles.statsBoxes}>
+          <div className={styles.statsGrid}>
+
             <div className={styles.statBox}>
-              <h2>{completedLessons}</h2>
-              <p>MATERIALS COMPLETED</p>
+
+              <h2>
+                {completedLessons}
+              </h2>
+
+              <p>
+                MATERIALS COMPLETED
+              </p>
+
             </div>
+
             <div className={styles.statBox}>
-              <h2>{unlockedLessons}</h2>
-              <p>UNLOCKED</p>
+
+              <h2>
+                {unlockedLessons}
+              </h2>
+
+              <p>
+                UNLOCKED
+              </p>
+
             </div>
+
             <div className={styles.statBox}>
-              <h2>0</h2>
-              <p>SIMULATIONS TAKEN</p>
+
+              <h2>
+                00
+              </h2>
+
+              <p>
+                SIMULATIONS TAKEN
+              </p>
+
             </div>
+
           </div>
+
         </div>
 
-        {/* Tombol Aksi */}
         <div className={styles.sideButtons}>
-          <button className={styles.continueBtn} onClick={() => router.push('/dashboard')}>
+
+          <button
+            className={styles.continueBtn}
+            onClick={() =>
+              router.push("/dashboard")
+            }
+          >
+
             <FaIcons.FaPlayCircle />
-            CONTINUE LEARNING
+
+            <span>
+              CONTINUE LEARNING
+            </span>
+
           </button>
-          
+
           {allLessonsCompleted ? (
-            <button className={styles.simBtn} onClick={() => router.push('/dashboard/simulasi')}>
+
+            <button
+              className={styles.simBtn}
+              onClick={() =>
+                router.push(
+                  "/dashboard/simulasi"
+                )
+              }
+            >
+
               <FaIcons.FaClipboardList />
-              OPEN SIMULATION
+
+              <span>
+                OPEN SIMULATION
+              </span>
+
             </button>
+
           ) : (
-            <button className={styles.lockedSimBtn} disabled>
+
+            <button
+              className={styles.lockedSimBtn}
+              disabled
+            >
+
               <FaIcons.FaLock />
-              LOCKED (COMPLETE ALL)
+
+              <span>
+                LOCKED
+              </span>
+
             </button>
+
           )}
+
         </div>
+
       </div>
+
+      <div className={styles.bottomDecoration}>
+
+        <div className={styles.line}></div>
+
+        <FaIcons.FaBookOpen />
+
+        <div className={styles.line}></div>
+
+      </div>
+
     </div>
+
   );
+
 }
