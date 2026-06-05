@@ -1527,7 +1527,7 @@
                             ],
                             "note": [
                                 "❌ Everybody are happy.",
-                                "✓ Everybody is happy."
+                                "<span>✓</span> Everybody is happy."
                             ]
                         },
                         {
@@ -1544,19 +1544,19 @@
                             "structure": "[each / one / neither / either] + of + PLURAL NOUN + SINGULAR VERB",
                             "example_sentences": [
                                 {
-                                    "sentence": "Each of the students <b>is</b> present.",
+                                    "sentence": "<b>Each</b> of the students <b>is</b> present.",
                                     "note": "Verb ikut 'each', bukan 'students'."
                                 },
                                 {
-                                    "sentence": "One of the books <b>has</b> disappeared.",
+                                    "sentence": "<b>One</b> of the books <b>has</b> disappeared.",
                                     "note": "Verb ikut 'one'."
                                 },
                                 {
-                                    "sentence": "Neither of the answers <b>is</b> correct.",
+                                    "sentence": "<b>Neither</b> of the answers <b>is</b> correct.",
                                     "note": "Verb singular."
                                 },
                                 {
-                                    "sentence": "Either of the cars <b>costs</b> too much.",
+                                    "sentence": "<b>Either</b> of the cars <b>costs</b> too much.",
                                     "note": "Verb singular."
                                 }
                             ]
@@ -1580,7 +1580,7 @@
                             ],
                             "note": [
                                 "❌ Many student is absent.",
-                                "✓ Many students are absent."
+                                "<span>✓</span> Many students are absent."
                             ]
                         },
                         {

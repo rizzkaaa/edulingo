@@ -12,3 +12,5 @@ export { default as TemplateVer11 } from "./TemplateVer11";
 export { default as TemplateVer12 } from "./TemplateVer12";
 export { default as TemplateVer13 } from "./TemplateVer13";
 export { default as TemplateVer14 } from "./TemplateVer14";
+export { Ver1, Ver2, Ver3, Ver4 } from "./TemplateVer15";
+export { default as TemplateVer16 } from "./TemplateVer16";

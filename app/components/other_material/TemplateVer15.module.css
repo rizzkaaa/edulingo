@@ -1,0 +1,89 @@
+.container {
+  margin-top: 30px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.header + p {
+  font-size: 13px;
+  color: #8c8880;
+}
+
+.main1 .wrap {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.box {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+}
+.main4 .note p,
+.main4 .example p,
+.box p {
+  font-weight: normal;
+}
+.note {
+  display: flex;
+}
+.section,
+.note b {
+  flex: 1;
+}
+
+.main4 .example b,
+.main1 .box b,
+.main3 .box b {
+  color: var(--b-color);
+  background-color: var(--b-bgColor);
+  padding: 0 5px;
+}
+.note span {
+  font-size: 20px;
+  color: #2d7a5e;
+}
+
+.main3 .wrap,
+.main2 .wrap {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.main2 .box p:last-child {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #8c8880;
+}
+.main2 .box b:last-child {
+  background-color: #e8a838;
+  padding: 0 5px;
+}
+
+.main4 .wrap {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.main4 .example {
+  display: grid;
+  gap: 15px;
+  margin-block: 15px;
+}
+.main4 .note {
+  gap: 50px;
+}
+.main4 .note .section div {
+  width: 10px;
+  height: 10px;
+}
+
+.main4 .note .section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

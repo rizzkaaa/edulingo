@@ -10,7 +10,7 @@ export default function TemplateVer11({ sub_material }) {
         <div className={styles.wrap}>
           {sub_material.structure.map((item, i) => {
             return (
-              <p className={i % 2 == 0 ? styles.sentence : styles.arrow}>
+              <p key={i} className={i % 2 == 0 ? styles.sentence : styles.arrow}>
                 {i == 4 ? <LuLock /> : null} {item}
               </p>
             );

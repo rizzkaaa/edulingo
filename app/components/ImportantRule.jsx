@@ -3,7 +3,7 @@ import BorderLeftBox from "./BorderLeftBox";
 import ListSentence from "./ListSentences";
 import SmallShadowBorder from "./SmallShadowBorder";
 import { LuCircleCheck, LuX } from "react-icons/lu";
-
+ 
 export default function ImportantRule({ material }) {
   return (
     <div className={styles.container}>

@@ -1,11 +1,11 @@
 import styles from "./ToeflTips.module.css";
 
-export default function ListSentence({ material }) {
+export default function ListSentence({ material, bgColor = '#C5502A' }) {
   return (
     <div className={styles.list}>
       {material.map((item, i) => (
         <div className={styles.item} key={i}>
-          <div></div>
+          <div style={{backgroundColor: bgColor}}></div>
           {item}
         </div>
       ))}

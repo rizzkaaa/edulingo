@@ -1,5 +1,4 @@
 import BorderLeftBox from "../BorderLeftBox";
-import ColorBorderShadow from "../ColorBorderShadow";
 import SmallShadowBorder from "../SmallShadowBorder";
 import styles from "./TemplateVer14.module.css";
 

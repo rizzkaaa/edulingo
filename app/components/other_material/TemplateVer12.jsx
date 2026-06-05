@@ -22,7 +22,7 @@ export default function TemplateVer12({ sub_material }) {
           const bgColor = i % 2 == 0 ? "#FFF0ED" : "#EFF5F2";
           
           return (
-            <div className={styles.box} style={{borderColor: color, backgroundColor: bgColor}}>
+            <div key={i} className={styles.box} style={{borderColor: color, backgroundColor: bgColor}}>
               <b>{item.status}</b>
               <h4 dangerouslySetInnerHTML={{ __html: item.sentences }} />
               <p dangerouslySetInnerHTML={{ __html: item.note }} />
