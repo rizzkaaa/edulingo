@@ -12,3 +12,12 @@
 .container h3 {
   color: #2d7a5e;
 }
+.question b {
+  background-color: #e8a838;
+  padding: 0 5px;
+}
+.answer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

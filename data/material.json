@@ -1462,12 +1462,12 @@
                                 {
                                     "question": "Most of the fire in the hills ___ extinguished.",
                                     "clue": "🔍 Cari noun setelah \"of\": \"fire\" → uncountable noun → verb singular.",
-                                    "answer": "Jawaban: was ✓"
+                                    "answer": "Jawaban: was"
                                 },
                                 {
                                     "question": "Some of the animals from the zoo ___ released.",
                                     "clue": "🔍 Noun setelah \"of\": \"animals\" → plural noun → verb plural.",
-                                    "answer": "Jawaban: were ✓"
+                                    "answer": "Jawaban: were"
                                 }
                             ]
                         },
@@ -1654,67 +1654,67 @@
                             "explain": [
                                 {
                                     "title": "Skim",
-                                    "definition": "Membaca Cepat untuk Ide Utama. Membaca dengan cepat untuk mendapatkan gambaran umum atau inti dari sebuah teks tanpa harus memahami setiap kata.",
-                                    "lists": [
+                                    "subtitle": "Membaca Cepat untuk Ide Utama.",
+                                    "definition": "Membaca dengan cepat untuk mendapatkan gambaran umum atau inti dari sebuah teks tanpa harus memahami setiap kata.",
+                                    "explain": [
                                         "Baca judul dan sub-judul",
                                         "Baca kalimat pertama dari paragraf",
                                         "Baca kalimat akhir paragraf",
                                         "Abaikan detail kecil"
                                     ],
-                                    "note": "Tujuan: Gambaran Umum"
+                                    "example": "Tujuan: Gambaran Umum"
                                 },
                                 {
                                     "title": "Scan",
-                                    "definition": "Mencari Informasi Spesifik. Mencari informasi spesifik (kata, data tertentu) dalam teks secara cepat tanpa membaca keseluruhan.",
-                                    "lists": [
+                                    "subtitle": "Mencari Informasi Spesifik.",
+                                    "definition": "Mencari informasi spesifik (kata, data tertentu) dalam teks secara cepat tanpa membaca keseluruhan.",
+                                    "explain": [
                                         "Tentukan kata kunci dulu",
                                         "Gerakkan mata cepat",
                                         "Berhenti saat menemukan info",
                                         "Baca bagian itu dengan teliti"
                                     ],
-                                    "note": "Tujuan: Info Spesifik"
+                                    "example": "Tujuan: Info Spesifik"
                                 }
                             ]
                         },
                         {
                             "type": "Table",
                             "title": "Perbedaan Skimming & Scanning ✦",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "ASPEK",
-                                        "SKIMMING",
-                                        "SCANNING"
+                            "explain": {
+                                "header": [
+                                    "ASPEK",
+                                    "SKIMMING",
+                                    "SCANNING"
+                                ],
+                                "data": [
+                                    [
+                                        "Tujuan",
+                                        "Gambaran umum teks",
+                                        "Informasi spesifik"
                                     ],
-                                    "data": [
-                                        [
-                                            "Tujuan",
-                                            "Gambaran umum teks",
-                                            "Informasi spesifik"
-                                        ],
-                                        [
-                                            "Metode",
-                                            "Membaca cepat keseluruhan",
-                                            "Selektif dan lompat"
-                                        ],
-                                        [
-                                            "Kapan Berhenti",
-                                            "Bila inti tahu",
-                                            "Saat info ditemukan"
-                                        ],
-                                        [
-                                            "Pemahaman Awal",
-                                            "Belum familier dengan teks",
-                                            "Sudah tahu apa yang dicari"
-                                        ],
-                                        [
-                                            "Digunakan untuk",
-                                            "Soal Main Idea",
-                                            "Soal Detail & Vocabulary"
-                                        ]
+                                    [
+                                        "Metode",
+                                        "Membaca cepat keseluruhan",
+                                        "Selektif dan lompat"
+                                    ],
+                                    [
+                                        "Kapan Berhenti",
+                                        "Bila inti tahu",
+                                        "Saat info ditemukan"
+                                    ],
+                                    [
+                                        "Pemahaman Awal",
+                                        "Belum familier dengan teks",
+                                        "Sudah tahu apa yang dicari"
+                                    ],
+                                    [
+                                        "Digunakan untuk",
+                                        "Soal Main Idea",
+                                        "Soal Detail & Vocabulary"
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
                             "type": "Langkah Menggunakan",
@@ -1739,10 +1739,14 @@
                         {
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 📖",
-                            "definition": "Coral reefs are among the most diverse ecosystems on Earth. Often called the 'rainforests of the sea,' they cover less than 1% of the ocean floor but support 25% of all marine species.",
-                            "question": "What are coral reefs often called?",
-                            "clue": "🔍 Gunakan SCANNING: Cari kata kunci 'called' dalam teks, lalu baca kalimat tersebut secara teliti.",
-                            "answer": "Jawaban: B. The rainforests of the sea ✓"
+                            "explain": [
+                                {
+                                    "question": "Coral reefs are among the most diverse ecosystems on Earth. Often called the <b>'rainforests of the sea,'</b> they cover less than 1% of the ocean floor but support 25% of all marine species.",
+                                    "realQuestion": "What are coral reefs often called?",
+                                    "clue": "🔍 Gunakan SCANNING: Cari kata kunci 'called' dalam teks, lalu baca kalimat tersebut secara teliti.",
+                                    "answer": "Jawaban: The rainforests of the sea"
+                                }
+                            ]
                         },
                         {
                             "type": "Toefl Tips",
@@ -1767,35 +1771,39 @@
                                     "title": "Context Clues",
                                     "subtitle": "Memahami Kata Melalui Sekitarnya.",
                                     "definition": " Menggunakan petunjuk yang diberikan penulis di sekitar kata sulit untuk menebak maknanya secara logis.",
-                                    "list": [
+                                    "explain": [
                                         "Cari definisi atau sinonim di kalimat",
                                         "Perhatikan kata hubung kontras (e.g., however)",
                                         "Lihat contoh yang diberikan setelah kata",
                                         "Perhatikan tanda baca seperti koma atau tanda kurung"
                                     ],
-                                    "note": "TUJUAN: MENEBAK MAKNA KONTEKS"
+                                    "example": "TUJUAN: MENEBAK MAKNA KONTEKS"
                                 },
                                 {
                                     "title": "Word Parts",
                                     "subtitle": "Analisis Morfologi (Akar Kata).",
                                     "definition": " kata menjadi bagian-bagian kecil (awalan, akar, akhiran) untuk memahami inti maknanya.",
-                                    "lists": [
+                                    "explain": [
                                         "Identifikasi Prefix (e.g., Un-, Re-, Pre-)",
                                         "Kenali Root Word (e.g., Spect, Cred, Voc)",
                                         "Identifikasi Suffix (e.g., -Less, -Able, -Ion)",
                                         "Gabungkan makna dari tiap bagian kata"
                                     ],
-                                    "note": "TUJUAN: ANALISIS STRUKTUR KATA"
+                                    "example": "TUJUAN: ANALISIS STRUKTUR KATA"
                                 }
                             ]
                         },
                         {
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 📖",
-                            "definition": "Solar energy is an inexhaustible resource that can be harnessed to power our homes without depleting the Earth's natural reserves or contributing to global warming.",
-                            "question": "The word 'inexhaustible' in the passage is closest in meaning to...",
-                            "clue": "Gunakan STRATEGY: Lihat konteks 'without depleting' (tanpa menghabiskan). Ini menunjukkan sumber daya yang tidak ada habisnya.",
-                            "answer": "Jawaban: Unlimited ✓"
+                            "explain": [
+                                {
+                                    "question": "Solar energy is an inexhaustible resource that can be harnessed to power our homes without depleting the Earth's natural reserves or contributing to global warming.",
+                                    "realQuestion": "The word 'inexhaustible' in the passage is closest in meaning to...",
+                                    "clue": "Gunakan STRATEGY: Lihat konteks 'without depleting' (tanpa menghabiskan). Ini menunjukkan sumber daya yang tidak ada habisnya.",
+                                    "answer": "Jawaban: Unlimited"
+                                }
+                            ]
                         },
                         {
                             "type": "Toefl Tips",

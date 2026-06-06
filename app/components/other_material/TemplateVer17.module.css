@@ -1,0 +1,18 @@
+.container {
+  margin-top: 30px;
+}
+.wrap{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 30px;
+}
+.box {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+}
+.arrow{
+  color: #C5502A;
+  font-size: 20px;
+}

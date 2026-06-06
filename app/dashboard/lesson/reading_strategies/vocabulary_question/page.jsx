@@ -7,12 +7,12 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import TableMaterial from "@/app/components/TableMaterial";
 import { TemplateVer14, TemplateVer17 } from "@/app/components/other_material";
 
-export default function SkimingScanning() {
+export default function VocabularyQuestion() {
   const main_material = material.materials.find(
     (material) => material.part_id == 5,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == 1,
+    (material) => material.sub_module_id == 2,
   );
 
   const currentId = sub_material.sub_module_id;
@@ -28,18 +28,12 @@ export default function SkimingScanning() {
       />
 
       <FirstExplainVer3 sub_material={sub_material.content[0]} reverse={true} />
-      <TableMaterial
-        material={sub_material.content[1]}
-        styleHeader={[
-          { textAlign: "start" },
-          { textAlign: "start" },
-          { textAlign: "start" },
-        ]}
-        styleData={[{ fontWeight: "700" }]}
+
+      <TemplateVer14
+        sub_material={sub_material.content[1]}
+        fontWeight="normal"
       />
-      <TemplateVer17 material={sub_material.content[2]} />
-      <TemplateVer14 sub_material={sub_material.content[3]} fontWeight="normal"/>
-      <ToeflTips material={sub_material.content[4]} />
+      <ToeflTips material={sub_material.content[2]} />
       <FooterMaterial
         title={sub_material.title}
         isEnd={currentId == length}

@@ -88,7 +88,7 @@ function ButtonMenu({
       setTimeout(() => setShake(false), 900);
     } else {
       setCurrentModuleOpen(sub_material_id);
-      router.push(`/dashboard/lesson/reading_strategi/${nextPath}`);
+      router.push(`/dashboard/lesson/reading_strategies/${nextPath}`);
     }
   }
 
@@ -138,7 +138,7 @@ function BottomBar({
     console.log(nextPath);
 
     setCurrentModuleOpen(currentModuleOpen - 1);
-    router.push(`/dashboard/lesson/reading_strategi/${nextPath}`);
+    router.push(`/dashboard/lesson/reading_strategies/${nextPath}`);
   }
 
   function nextModule() {
@@ -158,7 +158,7 @@ function BottomBar({
       console.log(nextPath);
 
       setCurrentModuleOpen(currentModuleOpen + 1);
-      router.push(`/dashboard/lesson/reading_strategi/${nextPath}`);
+      router.push(`/dashboard/lesson/reading_strategies/${nextPath}`);
     }
   }
   return (
