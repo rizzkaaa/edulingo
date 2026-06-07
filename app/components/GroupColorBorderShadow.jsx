@@ -1,28 +1,41 @@
+import { LuCircleCheck, LuX } from "react-icons/lu";
 import BoxList from "./BoxList";
 import ColorBorderShadow from "./ColorBorderShadow";
 import styles from "./GroupColorBorderShadow.module.css";
+import SmallShadowBorder from "./SmallShadowBorder";
 
 export function GroupColorBorderShadow({ materials, version }) {
   const colors = ["#2D7A5E", "#C5502A", "#D9A126"];
+
   return (
     <div className={styles.container}>
       {materials.map((material, i) => {
-        const isLast = i == materials.length - 1;
-        const isOdd = materials.length % 2 != 0;
-        console.log(isLast, isOdd, materials.length);
-
+        const isLast = i === materials.length - 1;
+        const isOdd = materials.length % 2 !== 0;
         const color = colors[i % 3];
+
+        let content;
+        switch (version) {
+          case 1:
+            content = <Ver1 material={material} color={color} />;
+            break;
+          case 2:
+            content = <Ver2 material={material} color={color} />;
+            break;
+          case 3:
+            content = <Ver3 material={material} color={color} />;
+            break;
+          default:
+            content = null;
+        }
+
         return (
           <ColorBorderShadow
             borderColor={color}
             key={i}
             className={`${styles.box} ${isOdd && isLast ? styles.full : ""}`}
           >
-            {version == 1 ? (
-              <Ver1 material={material} color={color} />
-            ) : (
-              <Ver2 material={material} color={color} />
-            )}
+            {content}
           </ColorBorderShadow>
         );
       })}
@@ -76,8 +89,8 @@ function Ver2({ material, color }) {
           ? material.title.join(" & ")
           : material.title}
       </h1>
-      
-      {material.definition ? <p>{material.definition}</p>: null}
+
+      {material.definition ? <p>{material.definition}</p> : null}
       <div className="divider"></div>
       <div className={styles.wrap}>
         <BoxList
@@ -95,6 +108,32 @@ function Ver2({ material, color }) {
         dangerouslySetInnerHTML={{ __html: material.example_sentences }}
       />
       {material.note ? <p className={styles.note}>{material.note}</p> : null}
+    </>
+  );
+}
+
+function Ver3({ material, color }) {
+  return (
+    <>
+      <h1 style={{ color: color }}>{material.title}</h1>
+      <br />
+      <div className={styles.examples}>
+        {material.examples.map((example, i) => (
+          <SmallShadowBorder
+            key={i}
+            backgroundColor={i == 0 ? "#FEF2F2" : "#E8F4EF"}
+          >
+            <p className={i == 0 ? "wrongSentence" : ""}>
+              {i == 1 ? (
+                <LuCircleCheck style={{ color: "#2D7A5E" }} />
+              ) : (
+                <LuX style={{ color: "#C5502A" }} />
+              )}{" "}
+              {example}
+            </p>
+          </SmallShadowBorder>
+        ))}
+      </div>
     </>
   );
 }

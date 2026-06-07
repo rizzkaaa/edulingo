@@ -75,5 +75,6 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  redirect("/dashboard/lesson/written_expression_part_1/subject_-_verb_agreement");
+  // redirect("/dashboard/lesson/written_expression_part_1/subject_-_verb_agreement");
+  redirect("/dashboard/lesson/written_expression_part_1/parallel_structure");
 }

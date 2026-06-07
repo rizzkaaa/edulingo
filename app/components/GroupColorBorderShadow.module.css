@@ -54,3 +54,19 @@
   background-color: var(--b-backgroundColor);
   padding: 3px 5px
 }
+
+
+.examples{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+.examples p{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #2C2A26;
+}

@@ -1,6 +1,5 @@
 import BorderLeftBox from "../BorderLeftBox";
 import BoxList from "../BoxList";
-import ColorBorderShadow from "../ColorBorderShadow";
 import styles from "./TemplateVer10.module.css";
 
 export default function TemplateVer10({ sub_material }) {
@@ -18,7 +17,6 @@ export default function TemplateVer10({ sub_material }) {
       </div>
       <div className={styles.note}>
         <p
-          // style={{ fontWeight: fontWeight, marginBottom: "5px" }}
           dangerouslySetInnerHTML={{ __html: sub_material.example_sentence }}
         />
         <br />

@@ -19,6 +19,7 @@
 .item div{
     width: 10px;
     height: 10px;
+    flex-shrink: 0;
 }
 .container h3+ p{
     margin-top: 10px;

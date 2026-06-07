@@ -1179,7 +1179,7 @@
         },
         {
             "part_id": 3,
-            "part_title": "Written Expression Part 1: ",
+            "part_title": "Written Expression Part 1",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -1636,8 +1636,298 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "sub_module_id": 5,
+                    "title": "Parallel Structure",
+                    "image": "3_5",
+                    "description": "Gunakan bentuk tata bahasa yang sama untuk kata-kata atau frasa yang memiliki tingkat kepentingan yang sama dalam sebuah kalimat.",
+                    "content": [
+                        {
+                            "title": "APA ITU PARALLEL STRUCTURE? ✦",
+                            "definition": "Parallel structure (juga dikenal sebagai paralelisme) adalah penggunaan bentuk kata yang sama untuk menunjukkan bahwa dua atau lebih ide memiliki tingkat kepentingan yang sama. Ini sering digunakan dalam daftar, deret, atau setelah kata sambung (conjunction)."
+                        },
+                        {
+                            "title": "FUNGSI PARALLEL STRUCTURE ✦",
+                            "explain": [
+                                {
+                                    "number": "01",
+                                    "text": "Meningkatkan kejelasan (clarity) kalimat."
+                                },
+                                {
+                                    "number": "02",
+                                    "text": "Menciptakan ritme yang enak didengar dalam kalimat."
+                                },
+                                {
+                                    "number": "03",
+                                    "text": "Membuat kalimat lebih efisien dan ringkas."
+                                },
+                                {
+                                    "number": "04",
+                                    "text": "Menghubungkan ide-ide yang setara secara logis."
+                                }
+                            ]
+                        },
+                        {
+                            "explain": [
+                                {
+                                    "title": "Parallel Noun",
+                                    "examples": [
+                                        "I like cake, candy, and to eat fruit.",
+                                        "I like cake, candy, and fruit. (Semua adalah Noun)"
+                                    ]
+                                },
+                                {
+                                    "title": "Parallel Verb",
+                                    "examples": [
+                                        "He ate dinner, watched TV, and goes to sleep.",
+                                        "He ate dinner, watched TV, and went to sleep. (Semua Past Tense)"
+                                    ]
+                                },
+                                {
+                                    "title": "Parallel Adjective",
+                                    "examples": [
+                                        "The movie was long, boring, and it was dark.",
+                                        "The movie was long, boring, and dark. (Semua kata sifat)"
+                                    ]
+                                },
+                                {
+                                    "title": "Parallel Gerund (-ing)",
+                                    "examples": [
+                                        "She enjoys swimming, hiking, and to run.",
+                                        "She enjoys swimming, hiking, and running."
+                                    ]
+                                },
+                                {
+                                    "title": "Parallel Infinitive (to + verb)",
+                                    "examples": [
+                                        "To succeed is to work hard and having patience.",
+                                        "To succeed is to work hard and to have patience."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "MENGENALI PARALLEL STRUCTURE",
+                            "lists": [
+                                "Cari kata sambung seperti <b>and</b>, <b>but</b>, <b>or</b>, <b>yet</b>",
+                                "Periksa daftar yang dipisahkan koma.",
+                                "Perhatikan pasangan kata sambung (correlative) seperti <b>both...and</b>, <b>either...or</b>, <b>neither...nor</b>, <b>not only...but also</b>"
+                            ],
+                            "note": {
+                                "title": "HINDARI CAMPURAN!",
+                                "text": "Jangan mencampur Noun dengan Gerund, atau Past Tense yang berbeda dalam satu urutan paralel. Konsistensi adalah kunci utama dalam Parallel Structure."
+                            }
+                        },
+                        {
+                            "title": "Tips TOEFL: Parallel Structure",
+                            "explain": [
+                                "Perhatikan kesejajaran grammar: Jika bagian pertama menggunakan noun, verb, adjective, gerund (-ing), atau infinitive (to + verb), maka bagian berikutnya harus menggunakan bentuk yang sama.",
+                                "Periksa conjunction: Parallel structure sering muncul setelah conjunction seperti and, but, or, nor serta paired conjunction seperti both...and, either...or, neither...nor, dan not only...but also.",
+                                "Fokus pada pola kalimat: Identifikasi semua elemen grammar sebelum conjunction, lalu pastikan setelah conjunction memiliki struktur yang sama."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 6,
+                    "title": "Parallel Structure With Coordinate Conjunctions",
+                    "image": "image_0d1082.jpg",
+                    "description": "Coordinate conjunctions (and, but, or, nor, yet, so, for) menghubungkan elemen tata bahasa yang setara dalam satu kalimat.",
+                    "content": [
+                        {
+                            "title": "FUNGSI PARALLEL STRUCTURE ✦",
+                            "explain": [
+                                {
+                                    "label": "EQUAL IDEAS",
+                                    "title": "Gagasan Setara",
+                                    "definition": "Menunjukkan bahwa dua atau lebih ide memiliki tingkat kepentingan yang sama."
+                                },
+                                {
+                                    "label": "EFFECTIVE SENTENCES",
+                                    "title": "Kalimat Efektif",
+                                    "definition": "Membuat kalimat lebih mudah dibaca, dipahami, dan terdengar lebih profesional."
+                                },
+                                {
+                                    "label": "GRAMMAR BALANCE",
+                                    "title": "Keseimbangan Grammar",
+                                    "definition": "Memastikan struktur kata benda, kata kerja, atau klausa tetap konsisten."
+                                }
+                            ]
+                        },
+                        {
+                            "explain": [
+                                {
+                                    "title": "AND",
+                                    "subtitle": "Penggunaan Gerund Konsisten",
+                                    "pattern": [
+                                        "Noun + and + Noun",
+                                        "Verb-ing + and + Verb-ing",
+                                        "Clause + and + Clause"
+                                    ],
+                                    "examples": [
+                                        "\"I like reading and writing.\"",
+                                        "\"I like reading and to write.\""
+                                    ]
+                                },
+                                {
+                                    "title": "BUT & OR",
+                                    "subtitle": "Pilihan Dan Kontras Yang Setara",
+                                    "pattern": [
+                                        "Pastikan bentuk Infinitive (to + verb) atau Imperative tetap konsisten di kedua sisi conjunction."
+                                    ],
+                                    "examples": [
+                                        "\"To travel but to save.\"",
+                                        "\"To travel but saving.\""
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "NOR & YET",
+                            "description": "Contoh penggunaan yang benar untuk coordinate conjunction lainnya dalam struktur paralel.",
+                            "explain": [
+                                {
+                                    "label": "Contoh NOR",
+                                    "sentence": "\"He does not like tea, nor does he like coffee.\"",
+                                    "tag": "✓ PARALLEL CLAUSES"
+                                },
+                                {
+                                    "label": "Contoh YET",
+                                    "sentence": "\"The task is difficult yet rewarding.\"",
+                                    "tag": "✓ PARALLEL ADJECTIVES"
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Kesalahan Umum ✦",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "JENIS KESALAHAN",
+                                        "CONTOH SALAH",
+                                        "PERBAIKAN (BENAR)"
+                                    ],
+                                    "data": [
+                                        [
+                                            "Gerund + Infinitive",
+                                            "Swimming or to run",
+                                            "Swimming or running"
+                                        ],
+                                        [
+                                            "Noun + Adjective",
+                                            "Beauty and intelligent",
+                                            "Beauty and intelligence"
+                                        ],
+                                        [
+                                            "Tense Mismatch",
+                                            "He cooked and is eating",
+                                            "He cooked and ate"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "Tips TOEFL: Parallel Structure With Coordinate Conjunctions",
+                            "explain": [
+                                "Selalu periksa kata sambung (conjunction) dalam kalimat untuk mendeteksi potensi struktur paralel.",
+                                "Pastikan tenses dan bentuk kata (nouns, verbs, adjectives) sama di kedua sisi coordinate conjunction.",
+                                "Jika ada list (A, B, and C), semua item dalam list harus memiliki struktur gramatikal yang identik."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 7,
+                    "title": "Parallel Structure With Paired Conjunctions",
+                    "image": "image_0d1061.png",
+                    "description": "Kunci utama adalah menjaga keseimbangan gramatikal di antara keduanya. Pelajari cara menghubungkan elemen kalimat secara sejajar.",
+                    "content": [
+                        {
+                            "type": "Table",
+                            "title": "COMPARISON: DIRECT STATEMENT VS RESTATEMENT",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "Pair",
+                                        "Rumus"
+                                    ],
+                                    "data": [
+                                        [
+                                            "\"Either ..... or.\"",
+                                            "Either [A] or [B]"
+                                        ],
+                                        [
+                                            "\"Both .... and.\"",
+                                            "Both [Noun/Adj/Verb] and [Noun/Adj/Verb]"
+                                        ],
+                                        [
+                                            "\"Neither .... nor\"",
+                                            "Neither [A] nor [B]"
+                                        ],
+                                        [
+                                            "\"Not only .... but also",
+                                            "Not only [A] but also [B]"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Pairing Badges",
+                            "title": "Pairing",
+                            "explain": [
+                                {
+                                    "label": "PAIR 1",
+                                    "text": "BOTH ... AND"
+                                },
+                                {
+                                    "label": "PAIR 2",
+                                    "text": "EITHER ... OR"
+                                },
+                                {
+                                    "label": "PAIR 3",
+                                    "text": "NEITHER ... NOR"
+                                },
+                                {
+                                    "label": "PAIR 4",
+                                    "text": "NOT ONLY ... BUT ALSO"
+                                }
+                            ]
+                        },
+                        {
+                            "title": "SUBJECT VERB AGREEMENT PADA PAIRED CONJUNCTION",
+                            "explain": [
+                                {
+                                    "label": "RULE 1: BOTH ... AND",
+                                    "content": "\"Both the teacher and the students are in the room.\"",
+                                    "note": "Gunakan Plural Verb karena subjek dianggap jamak."
+                                },
+                                {
+                                    "label": "RULE 2: EITHER/NEITHER & NOT ONLY",
+                                    "content": "\"Neither the teacher nor the students are happy.\"\n\"Neither the students nor the teacher is happy.\"",
+                                    "note": "key = main subject (singular) -> verb: is ✓"
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Tips TOEFL: Parallel Structure With Paired Conjunction",
+                            "explain": [
+                                "Cari paired conjunction: Pastikan pasangannya tepat (Both+and, Either+or, Neither+nor, Not only+but also).",
+                                "Periksa grammar: Jika setelah elemen pertama adalah kata kerja, maka setelah elemen kedua harus kata kerja.",
+                                "Hindari campuran: Jangan campur gerund (-ing) dengan infinitive (to-) dalam satu pasang."
+                            ]
+                        }
+                    ]
                 }
             ]
+        },
+        {
+            "part_id": 4,
+            "part_title": "Written Expression Part 2",
+            "sub_modules": []
         },
         {
             "part_id": 5,
@@ -1811,6 +2101,263 @@
                             "explain": [
                                 "Don't just look for literal meaning. A simple word can have a complex meaning in a specific academic context.",
                                 "Check the part of speech. Ensure your choice matches the noun, verb, or adjective function of the target word."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "part_id": 6,
+            "part_title": "Reading For Details",
+            "sub_modules": []
+        },
+        {
+            "part_id": 7,
+            "part_title": "Listening Comprehension",
+            "sub_modules": [
+                {
+                    "sub_module_id": 1,
+                    "title": "Listening to Short Conversation",
+                    "image": "7_1",
+                    "description": "Strategi fundamental untuk menjawab pertanyaan Short Conversation adalah memahami fokus pembicara kedua dan mencari sinonim dari kata kunci.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Focus on Speaker 2",
+                                    "definition": "Dalam percakapan pendek, jawaban seringkali didasarkan pada apa yang dikatakan oleh pembicara kedua.",
+                                    "explain": [
+                                        "Dengarkan baik-baik percakapan pembicara kedua.",
+                                        "Ide utama biasanya diletakkan di bagian akhir untuk ditekankan."
+                                    ],
+                                    "example": "TUJUAN: PAHAMI KONTEKS"
+                                },
+                                {
+                                    "title": "Word Synonyms",
+                                    "definition": "Jawaban yang benar seringkali merupakan pernyataan ulang (restatement) dari pembicara kedua.",
+                                    "explain": [
+                                        "Identifikasi kata kunci dari ucapan pembicara kedua.",
+                                        "Cari pilihan jawaban yang memiliki makna sama namun kata berbeda."
+                                    ],
+                                    "example": "TUJUAN: ANALISIS SINONIM"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "COMPARISON: DIRECT STATEMENT VS RESTATEMENT",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "Audio (Second Speaker)",
+                                        "Restatement (Correct Answer)"
+                                    ],
+                                    "data": [
+                                        [
+                                            "\"The class was too difficult.\"",
+                                            "\"The course was not easy.\""
+                                        ],
+                                        [
+                                            "\"I'm really exhausted.\"",
+                                            "\"She's extremely tired.\""
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Steps Block",
+                            "title": "Langkah Penyelesaian Listening",
+                            "steps": [
+                                {
+                                    "number": 1,
+                                    "text": "Dengarkan Audio"
+                                },
+                                "→",
+                                {
+                                    "number": 2,
+                                    "text": "Fokus Pembicara 2"
+                                },
+                                "→",
+                                {
+                                    "number": 3,
+                                    "text": "Cari Sinonim"
+                                },
+                                "→",
+                                {
+                                    "number": 4,
+                                    "text": "Pilih Jawaban"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 🎧",
+                            "audio": "",
+                            "options_title": "PILIHAN JAWABAN",
+                            "options": [
+                                "She liked the music very much.",
+                                "<b>The performance wasn't very good.</b>",
+                                "She missed the concert."
+                            ],
+                            "clue": "Gunakan STRATEGI: Perhatikan kata kunci \"rather disappointing\" didalam Latihan Murni. \"Wasn't very good\". Fokuslah pada perasaan negatif yang disampaikan pembicara kedua."
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Don't just look for literal meaning. A simple word can have complex meaning in a specific academic context.",
+                                "Check the part of speech. Ensure your choice matches the noun, verb, or adjective function of the target word."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 2,
+                    "title": "Listening to Longer Conversation",
+                    "image": "7_2",
+                    "description": "Strategi fundamental untuk memprediksi topik dan alur pembicaraan dalam konversasi panjang. Fokus pada baris pertama dan pilihan jawaban.",
+                    "content": [
+                        {
+                            "explain": [
+                                {
+                                    "title": "Strategy 1 - Look Ahead",
+                                    "definition": "Lihat pilihan jawaban dulu, perkiraan apa yang bakal didiskusikan sebelum audio dimulai.",
+                                    "tujuan": "TUJUAN: PREDIKSI TOPIK PEMBICARAAN"
+                                },
+                                {
+                                    "title": "Strategy 2 - Listen to The First Line",
+                                    "definition": "Baris pertama biasanya berisi ide utama, subjek, atau topik utama dalam percakapan.",
+                                    "tujuan": "TUJUAN: TANGKAP KONTEKS UTAMA"
+                                },
+                                {
+                                    "title": "Strategy 3 - Draw Conclusions",
+                                    "definition": "Siapa yang berbicara, di mana, dan kapan percakapan kemungkinan besar terjadi.",
+                                    "tujuan": "TUJUAN: KESIMPULAN STRUKTUR 5W1H"
+                                },
+                                {
+                                    "title": "Strategy 4 - Follow the Answer",
+                                    "definition": "Pilihan jawaban biasanya berurutan sesuai kronologi informasi yang disampaikan.",
+                                    "tujuan": "TUJUAN: JAWAB SECARA KRONOLOGIS/BERURUTAN"
+                                },
+                                {
+                                    "title": "Strategy 5 - Best Guess",
+                                    "definition": "Jangan biarkan jawaban kosong, tebak secara cerdas dari sisa petunjuk.",
+                                    "tujuan": "TUJUAN: ANTISIPASI NILAI KOSONG"
+                                },
+                                {
+                                    "title": "Strategy 6 - Guess the Topic",
+                                    "explain": {
+                                        "title1": "Before the conversation begins:",
+                                        "lists1": [
+                                            "Quickly scan the answers choices",
+                                            "Look for repeated word or key expressions",
+                                            "Use them to predict the topic"
+                                        ],
+                                        "title2": "EXAMPLE:",
+                                        "lists2": [
+                                            "Words found > textbooks, bookstore, sell them",
+                                            "Predicted topic > “Selling used books to the bookstore"
+                                        ]
+                                    },
+                                    "tujuan": "TUJUAN: SINTESIS TOPIK SECARA KILAT"
+                                },
+                                {
+                                    "type": "Focus List",
+                                    "title": "Strategy 7 Stay Calm and Stay Focused",
+                                    "explain": [
+                                        "Stay Calm, don't panic if you miss a word",
+                                        "Never leave any answer blank",
+                                        "Use every 12-second gap wisely",
+                                        "Regular practice improves listening speed naturally",
+                                        "The more you practice, the less stressful the test becomes"
+                                    ],
+                                    "tujuan": "TUJUAN: JAGA KONSENTRASI SELAMA TES"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 🎧",
+                            "audio": "",
+                            "explain": [
+                                {
+                                    "options": [
+                                        "Find a lost textbook to return to the library.",
+                                        "<b>Get a new library card from the bookstore.</b>",
+                                        "Find a job at the university bookstore."
+                                    ],
+                                    "clue": "STRATEGI: Pahami tema utama dari keseluruhan percakapan. Pembicara berbicara mengenai pencarian buku untuk dibeli karena edisi lama.",
+                                    "answer": "Jawaban: A (Find a lost textbook to return to the library.)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Jangan panik jika ketinggalan satu kata, terus ikuti alur percakapan.",
+                                "Perhatikan aspek 5W1H (Who, What, Where, When, Why) di awal percakapan."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 3,
+                    "title": "Listening to Talks And Note Taking",
+                    "image": "image_0e87c8.jpg",
+                    "description": "Fokus pada pemahaman isi pembicaraan dan pencatatan poin-poin penting untuk menjawab pertanyaan dengan lebih akurat.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "STRATEGI NOTE-TAKING ✦",
+                            "explain": [
+                                {
+                                    "title": "Strategy for Note Taking",
+                                    "points": [
+                                        "Review the answer choices before listening",
+                                        "Pay close attention to the first sentence",
+                                        "Predict the context or situation of the talk",
+                                        "Follow the answer choices while listening",
+                                        "If you are unsure, make an educated guess",
+                                        "Use any remaining time to preview the next questions"
+                                    ],
+                                    "tujuan": "TUJUAN: MEMAHAMI STRATEGI NOTE TAKING"
+                                },
+                                {
+                                    "title": "Note-Taking Patterns",
+                                    "definition": "Fokuskan catatan anda pada elemen kunci: Who, What, Where, When, dan Why.",
+                                    "points": [
+                                        "💡 Key Mapping:\nWHO : PROFESSOR\nWHERE : HALL B\nWHAT : EXAM PREP\nWHEN : FRIDAY"
+                                    ],
+                                    "tujuan": "TUJUAN: CATAT DETAIL PENTING"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 🎧",
+                            "audio": "",
+                            "explain": [
+                                {
+                                    "options": [
+                                        "Giving a lecture on ancient history.",
+                                        "Conducting a library orientation tour.",
+                                        "Searching for a lost book in the stacks."
+                                    ],
+                                    "clue": "STRATEGI: Perhatikan kata kunci \"library\" dan \"orientation tour\" di awal pembicaraan untuk menentukan topik utama.",
+                                    "answer": "Jawaban: B (Conducting a library orientation tour)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Gunakan simbol atau singkatan saat mencatat agar lebih cepat.",
+                                "Fokus pada kata benda dan kata kerja sebagai inti informasi."
                             ]
                         }
                     ]
