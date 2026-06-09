@@ -19,7 +19,7 @@
   margin-block: 10px;
 }
 
-.container p span {
+.container .example_sentences span {
   color: var(--span-color);
 }
 
@@ -44,12 +44,13 @@
   gap: 12px;
 }
 
-.wrap + p {
+.example_sentences {
   margin-top: 20px;
   border: 2px solid #2c2a26;
   padding: 15px 10px;
 }
-.wrap + p b {
+
+.example_sentences b {
   color: var(--b-color);
   background-color: var(--b-backgroundColor);
   padding: 3px 5px
@@ -69,4 +70,7 @@
     font-weight: normal;
     font-size: 14px;
     color: #2C2A26;
+}
+.pattern{
+  white-space: pre-line;
 }

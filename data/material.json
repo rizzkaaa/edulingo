@@ -834,7 +834,9 @@
                                         "since",
                                         "as soon as"
                                     ],
-                                    "example_sentences": "The waves were high <b>when</b> the storm hit the coast."
+                                    "example_sentences": [
+                                        "The waves were high <b>when</b> the storm hit the coast."
+                                    ]
                                 },
                                 {
                                     "title": "SEBAB",
@@ -842,7 +844,9 @@
                                         "because",
                                         "since"
                                     ],
-                                    "example_sentences": "<b>Because</b> it was raining<b>,</b> we stayed at home."
+                                    "example_sentences": [
+                                        "<b>Because</b> it was raining<b>,</b> we stayed at home."
+                                    ]
                                 },
                                 {
                                     "title": "SYARAT",
@@ -852,7 +856,9 @@
                                         "provided",
                                         "whether"
                                     ],
-                                    "example_sentences": "<b>If</b> you study regularly<b>,</b> you will pass the exam."
+                                    "example_sentences": [
+                                        "<b>If</b> you study regularly<b>,</b> you will pass the exam."
+                                    ]
                                 },
                                 {
                                     "title": "PERTENTANGAN",
@@ -862,7 +868,9 @@
                                         "while",
                                         "whereas"
                                     ],
-                                    "example_sentences": "<b>Although</b> it was hot<b>,</b> she wore a jacket."
+                                    "example_sentences": [
+                                        "<b>Although</b> it was hot<b>,</b> she wore a jacket."
+                                    ]
                                 }
                             ]
                         },
@@ -956,7 +964,9 @@
                                         "that",
                                         "whatever"
                                     ],
-                                    "example_sentences": "I know <b>what</b> you did last summer."
+                                    "example_sentences": [
+                                        "I know <b>what</b> you did last summer."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -968,7 +978,9 @@
                                         "whenever",
                                         "where"
                                     ],
-                                    "example_sentences": "I can't remember <b>where</b> I put the glasses."
+                                    "example_sentences": [
+                                        "I can't remember <b>where</b> I put the glasses."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -978,7 +990,9 @@
                                         "who",
                                         "whom"
                                     ],
-                                    "example_sentences": "The person <b>who</b> I want to meet is a designer."
+                                    "example_sentences": [
+                                        "The person <b>who</b> I want to meet is a designer."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -989,7 +1003,9 @@
                                         "why",
                                         "how"
                                     ],
-                                    "example_sentences": "I don't understand <b>why</b> you left your books at home."
+                                    "example_sentences": [
+                                        "I don't understand <b>why</b> you left your books at home."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -1000,7 +1016,9 @@
                                         "whether",
                                         "if"
                                     ],
-                                    "example_sentences": "The schedule indicated <b>if</b> the teams would be playing in the final game.",
+                                    "example_sentences": [
+                                        "The schedule indicated <b>if</b> the teams would be playing in the final game."
+                                    ],
                                     "note": "💡 'Whether' dan 'If' digunakan untuk menunjukkan pilihan atau kondisi dalam noun clause."
                                 }
                             ]
@@ -1096,7 +1114,9 @@
                                     "example": [
                                         "which"
                                     ],
-                                    "example_sentences": "I like the book <b>which</b> you recommended."
+                                    "example_sentences": [
+                                        "I like the book <b>which</b> you recommended."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -1106,7 +1126,9 @@
                                     "example": [
                                         "where"
                                     ],
-                                    "example_sentences": "I went to the restaurant <b>where</b> you went last month."
+                                    "example_sentences": [
+                                        "I went to the restaurant <b>where</b> you went last month."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -1118,7 +1140,9 @@
                                         "whom",
                                         "whose"
                                     ],
-                                    "example_sentences": "The teacher <b>whom</b> the students like the most is their history teacher."
+                                    "example_sentences": [
+                                        "The teacher <b>whom</b> the students like the most is their history teacher."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -1129,7 +1153,9 @@
                                     "example": [
                                         "that"
                                     ],
-                                    "example_sentences": "The people <b>that</b> were vaccinated did not get sick."
+                                    "example_sentences": [
+                                        "The people <b>that</b> were vaccinated did not get sick."
+                                    ]
                                 },
                                 {
                                     "title": [
@@ -1139,7 +1165,9 @@
                                     "example": [
                                         "whose"
                                     ],
-                                    "example_sentences": "The student <b>whose</b> bag is missing is crying."
+                                    "example_sentences": [
+                                        "The student <b>whose</b> bag is missing is crying."
+                                    ]
                                 }
                             ]
                         },
@@ -1732,25 +1760,29 @@
                 {
                     "sub_module_id": 6,
                     "title": "Parallel Structure With Coordinate Conjunctions",
-                    "image": "image_0d1082.jpg",
+                    "image": "3_6",
                     "description": "Coordinate conjunctions (and, but, or, nor, yet, so, for) menghubungkan elemen tata bahasa yang setara dalam satu kalimat.",
                     "content": [
+                        {
+                            "title": "Apa itu Parallel Structure With Coordinate Conjunctions ? ✦",
+                            "definition": "Parallel Structure with Coordinate Conjunctions adalah penggunaan bentuk grammar yang sama pada elemen-elemen yang dihubungkan oleh coordinate conjunctions seperti <b>and</b>, <b>but</b>, <b>or</b>, <b>nor</b>, <b>yet</b>, dan <b>for</b>. Dalam struktur ini, kata, frasa, atau klausa yang dihubungkan harus memiliki bentuk yang sejajar agar kalimat menjadi jelas, seimbang, dan sesuai dengan aturan grammar bahasa Inggris. Coordinate conjunction digunakan untuk menghubungkan dua ide yang memiliki kedudukan yang sama dalam sebuah kalimat. Oleh karena itu, kedua elemen yang dihubungkan harus menggunakan pola grammar yang sama."
+                        },
                         {
                             "title": "FUNGSI PARALLEL STRUCTURE ✦",
                             "explain": [
                                 {
-                                    "label": "EQUAL IDEAS",
-                                    "title": "Gagasan Setara",
+                                    "title": "EQUAL IDEAS",
+                                    "example": "Gagasan Setara",
                                     "definition": "Menunjukkan bahwa dua atau lebih ide memiliki tingkat kepentingan yang sama."
                                 },
                                 {
-                                    "label": "EFFECTIVE SENTENCES",
-                                    "title": "Kalimat Efektif",
+                                    "title": "EFFECTIVE SENTENCES",
+                                    "example": "Kalimat Efektif",
                                     "definition": "Membuat kalimat lebih mudah dibaca, dipahami, dan terdengar lebih profesional."
                                 },
                                 {
-                                    "label": "GRAMMAR BALANCE",
-                                    "title": "Keseimbangan Grammar",
+                                    "title": "GRAMMAR BALANCE",
+                                    "example": "Keseimbangan Grammar",
                                     "definition": "Memastikan struktur kata benda, kata kerja, atau klausa tetap konsisten."
                                 }
                             ]
@@ -1759,26 +1791,26 @@
                             "explain": [
                                 {
                                     "title": "AND",
-                                    "subtitle": "Penggunaan Gerund Konsisten",
-                                    "pattern": [
-                                        "Noun + and + Noun",
-                                        "Verb-ing + and + Verb-ing",
-                                        "Clause + and + Clause"
+                                    "definition": "Penggunaan Gerund Konsisten",
+                                    "example": [
+                                        "Aturan"
                                     ],
-                                    "examples": [
-                                        "\"I like reading and writing.\"",
-                                        "\"I like reading and to write.\""
+                                    "pattern": "Noun + and + Noun\nVerb-ing + and + Verb-ing\nClause + and + Clause",
+                                    "example_sentences": [
+                                        "<span>✓</span> \"I like reading and writing.\"",
+                                        "<span>✗</span>  \"I like reading and to write.\""
                                     ]
                                 },
                                 {
                                     "title": "BUT & OR",
-                                    "subtitle": "Pilihan Dan Kontras Yang Setara",
-                                    "pattern": [
-                                        "Pastikan bentuk Infinitive (to + verb) atau Imperative tetap konsisten di kedua sisi conjunction."
+                                    "definition": "Pilihan Dan Kontras Yang Setara",
+                                    "example": [
+                                        "Aturan"
                                     ],
-                                    "examples": [
-                                        "\"To travel but to save.\"",
-                                        "\"To travel but saving.\""
+                                    "pattern": "Pastikan bentuk Infinitive (to + verb) atau Imperative tetap konsisten di kedua sisi conjunction.",
+                                    "example_sentences": [
+                                        "<span>✓</span> \"To travel but to save.\"",
+                                        "<span>✗</span>  \"To travel but saving.\""
                                     ]
                                 }
                             ]
@@ -1801,32 +1833,30 @@
                         },
                         {
                             "title": "Kesalahan Umum ✦",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "JENIS KESALAHAN",
-                                        "CONTOH SALAH",
-                                        "PERBAIKAN (BENAR)"
+                            "explain": {
+                                "header": [
+                                    "JENIS KESALAHAN",
+                                    "CONTOH SALAH",
+                                    "PERBAIKAN (BENAR)"
+                                ],
+                                "data": [
+                                    [
+                                        "Gerund + Infinitive",
+                                        "Swimming or to run",
+                                        "Swimming or running"
                                     ],
-                                    "data": [
-                                        [
-                                            "Gerund + Infinitive",
-                                            "Swimming or to run",
-                                            "Swimming or running"
-                                        ],
-                                        [
-                                            "Noun + Adjective",
-                                            "Beauty and intelligent",
-                                            "Beauty and intelligence"
-                                        ],
-                                        [
-                                            "Tense Mismatch",
-                                            "He cooked and is eating",
-                                            "He cooked and ate"
-                                        ]
+                                    [
+                                        "Noun + Adjective",
+                                        "Beauty and intelligent",
+                                        "Beauty and intelligence"
+                                    ],
+                                    [
+                                        "Tense Mismatch",
+                                        "He cooked and is eating",
+                                        "He cooked and ate"
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
                             "type": "Toefl Tips",

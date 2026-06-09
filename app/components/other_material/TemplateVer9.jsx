@@ -2,7 +2,7 @@ import BorderLeftBox from "../BorderLeftBox";
 import ColorBorderShadow from "../ColorBorderShadow";
 import styles from "./TemplateVer9.module.css";
 
-export default function TemplateVer9({ sub_material }) {
+export default function TemplateVer9({ sub_material, grey = true }) {
   return (
     <BorderLeftBox borderColor={"#E8A838"} className={styles.container}>
       <h3>{sub_material.title}</h3>
@@ -15,7 +15,7 @@ export default function TemplateVer9({ sub_material }) {
               className={styles.box}
               key={i}
             >
-              <p>{item.title}</p>
+              <p style={{color: grey ? "#8C8880" : borderColor[i]}}>{item.title}</p>
               <h3>{item.example}</h3>
               <p>{item.definition}</p>
             </ColorBorderShadow>

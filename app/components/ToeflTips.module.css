@@ -21,6 +21,9 @@
     height: 10px;
     flex-shrink: 0;
 }
+.container h3{
+    color: #2A6F64;
+}
 .container h3+ p{
     margin-top: 10px;
     text-align: justify;

@@ -10,29 +10,29 @@
   align-items: center;
 }
 
-.decoration{
-    position: absolute;
-    font-weight: 700;
+.decoration {
+  position: absolute;
+  font-weight: 700;
 }
-.decoration:first-child{
-    left: 10px;
-    top: 10px;
+.decoration:first-child {
+  left: 10px;
+  top: 10px;
 }
-.decoration:last-child{
-    right: 15px;
-    bottom: 10px;
+.decoration:last-child {
+  right: 15px;
+  bottom: 10px;
 }
 
-.container h1{
-    color: white;
+.container h1 {
+  text-align: center;
+  color: white;
 }
-.container p{
-    color: white;
-    margin-block: 10px;
-    white-space:
-    pre-line;
-    text-align: center;
+.container p {
+  color: white;
+  margin-block: 10px;
+  white-space: pre-line;
+  text-align: center;
 }
-.link{
-    text-decoration: none;
+.link {
+  text-decoration: none;
 }

@@ -3,5 +3,9 @@
 }
 .container h3 + p {
   text-align: justify;
-  margin-block: 15px;
+  margin-top: 15px;
+}
+.container h3 + p b{
+  background-color: #E8A838;
+  padding: 0 5px;
 }

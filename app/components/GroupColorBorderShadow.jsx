@@ -99,14 +99,30 @@ function Ver2({ material, color }) {
           items={material.example}
         />
       </div>
-      <p
-        style={{
-          "--b-color": colors[color].color,
-          "--b-backgroundColor": color,
-          backgroundColor: colors[color].backgroundColor,
-        }}
-        dangerouslySetInnerHTML={{ __html: material.example_sentences }}
-      />
+
+      {material.pattern ? (
+        <>
+          <br />
+          <p className={styles.pattern}>{material.pattern}</p>
+        </>
+      ) : null}
+
+      {material.example_sentences
+        ? material.example_sentences.map((item, i) => (
+            <p
+              key={i}
+              className={styles.example_sentences}
+              style={{
+                "--b-color": colors[color].color,
+                "--b-backgroundColor": color,
+                "--span-color": i == 0 ? "#2D7A5E" : "#991B1B",
+                backgroundColor: colors[color].backgroundColor,
+              }}
+              dangerouslySetInnerHTML={{ __html: item }}
+            />
+          ))
+        : null}
+
       {material.note ? <p className={styles.note}>{material.note}</p> : null}
     </>
   );
