@@ -1790,7 +1790,9 @@
                         {
                             "explain": [
                                 {
-                                    "title": "AND",
+                                    "title": [
+                                        "AND"
+                                    ],
                                     "definition": "Penggunaan Gerund Konsisten",
                                     "example": [
                                         "Aturan"
@@ -1802,7 +1804,9 @@
                                     ]
                                 },
                                 {
-                                    "title": "BUT & OR",
+                                    "title": [
+                                        "BUT & OR"
+                                    ],
                                     "definition": "Pilihan Dan Kontras Yang Setara",
                                     "example": [
                                         "Aturan"
@@ -1872,73 +1876,93 @@
                 {
                     "sub_module_id": 7,
                     "title": "Parallel Structure With Paired Conjunctions",
-                    "image": "image_0d1061.png",
+                    "image": "3_7",
                     "description": "Kunci utama adalah menjaga keseimbangan gramatikal di antara keduanya. Pelajari cara menghubungkan elemen kalimat secara sejajar.",
                     "content": [
                         {
-                            "type": "Table",
-                            "title": "COMPARISON: DIRECT STATEMENT VS RESTATEMENT",
+                            "title": "Apa itu Parallel Structure With Paired Conjunctions ? ✦",
+                            "definition": "Parallel Structure with Paired Conjunctions adalah penggunaan bentuk grammar yang sejajar pada elemen-elemen yang dihubungkan oleh paired conjunctions atau conjunction berpasangan. Paired conjunction menghubungkan dua bagian kalimat yang memiliki fungsi yang sama sehingga kedua bagian tersebut harus menggunakan bentuk grammar yang setara atau parallel."
+                        },
+                        {
                             "explain": [
                                 {
-                                    "header": [
-                                        "Pair",
-                                        "Rumus"
+                                    "title": [
+                                        "BOTH ... AND"
                                     ],
-                                    "data": [
-                                        [
-                                            "\"Either ..... or.\"",
-                                            "Either [A] or [B]"
-                                        ],
-                                        [
-                                            "\"Both .... and.\"",
-                                            "Both [Noun/Adj/Verb] and [Noun/Adj/Verb]"
-                                        ],
-                                        [
-                                            "\"Neither .... nor\"",
-                                            "Neither [A] nor [B]"
-                                        ],
-                                        [
-                                            "\"Not only .... but also",
-                                            "Not only [A] but also [B]"
-                                        ]
+                                    "definition": "Digunakan untuk menunjukkan bahwa dua hal sama-sama benar, dimiliki, atau dilakukan.",
+                                    "example": [
+                                        "both + X + and + Y"
+                                    ],
+                                    "example_sentences": [
+                                        "Both Rina and Siska are students.",
+                                        "He likes both reading and writing.",
+                                        "The room is both clean and comfortable."
+                                    ],
+                                    "note": "⚠️ Bentuk X dan Y harus parallel."
+                                },
+                                {
+                                    "title": [
+                                        "EITHER ... OR"
+                                    ],
+                                    "definition": "Digunakan untuk menyatakan pilihan antara dua kemungkinan.",
+                                    "example": [
+                                        "either + X + or + Y"
+                                    ],
+                                    "example_sentences": [
+                                        "You can either stay here or leave now.",
+                                        "She wants either coffee or tea.",
+                                        "Either the teacher or the students are coming."
+                                    ]
+                                },
+                                {
+                                    "title": [
+                                        "NEITHER ... NOR"
+                                    ],
+                                    "definition": "Digunakan untuk menyatakan dua hal negatif sekaligus.",
+                                    "example": [
+                                        "neither + X + nor + Y"
+                                    ],
+                                    "example_sentences": [
+                                        "Neither John nor Michael was present.",
+                                        "She likes neither coffee nor tea.",
+                                        "The students neither studied nor reviewed the lesson."
+                                    ]
+                                },
+                                {
+                                    "title": [
+                                        "NOT ONLY ... BUT ALSO"
+                                    ],
+                                    "definition": "Digunakan untuk menambahkan informasi yang sejajar dan memperkuat makna kalimat.",
+                                    "example": [
+                                        "not only + X + but also + Y"
+                                    ],
+                                    "example_sentences": [
+                                        "She is not only smart but also hardworking.",
+                                        "He likes not only singing but also dancing.",
+                                        "The teacher not only explained the lesson but also gave examples."
                                     ]
                                 }
                             ]
                         },
                         {
-                            "type": "Pairing Badges",
-                            "title": "Pairing",
+                            "note": "SUBJECT VERB AGREEMENT PADA PAIRED CONJUNCTION",
                             "explain": [
                                 {
-                                    "label": "PAIR 1",
-                                    "text": "BOTH ... AND"
-                                },
-                                {
-                                    "label": "PAIR 2",
-                                    "text": "EITHER ... OR"
-                                },
-                                {
-                                    "label": "PAIR 3",
-                                    "text": "NEITHER ... NOR"
-                                },
-                                {
-                                    "label": "PAIR 4",
-                                    "text": "NOT ONLY ... BUT ALSO"
-                                }
-                            ]
-                        },
-                        {
-                            "title": "SUBJECT VERB AGREEMENT PADA PAIRED CONJUNCTION",
-                            "explain": [
-                                {
-                                    "label": "RULE 1: BOTH ... AND",
-                                    "content": "\"Both the teacher and the students are in the room.\"",
+                                    "status": "RULE 1: BOTH ... AND",
+                                    "sentences": [
+                                        "Both the teacher and the students are in the room.",
+                                        "Both Rina and Sinta are present."
+                                    ],
                                     "note": "Gunakan Plural Verb karena subjek dianggap jamak."
                                 },
                                 {
-                                    "label": "RULE 2: EITHER/NEITHER & NOT ONLY",
-                                    "content": "\"Neither the teacher nor the students are happy.\"\n\"Neither the students nor the teacher is happy.\"",
-                                    "note": "key = main subject (singular) -> verb: is ✓"
+                                    "status": "RULE 2: EITHER/NEITHER & NOT ONLY",
+                                    "sentences": [
+                                        "Either the teacher or the students are ready.",
+                                        "Either the students or the teacher is ready.",
+                                        "Neither the employees nor the manager was working."
+                                    ],
+                                    "note": "Verb mengikuti subject yang paling dekat."
                                 }
                             ]
                         },

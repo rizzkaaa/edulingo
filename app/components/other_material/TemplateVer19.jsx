@@ -1,7 +1,5 @@
 import styles from "./TemplateVer19.module.css";
 import BorderLeftBox from "../BorderLeftBox";
-import BoxList from "../BoxList";
-import ListSentence from "../ListSentences";
 
 export default function TemplateVer19({ material }) {
   return (

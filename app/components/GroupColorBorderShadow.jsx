@@ -77,7 +77,7 @@ function Ver2({ material, color }) {
 
   return (
     <>
-      <h5 style={{ backgroundColor: color }}>
+      <h5 style={{ backgroundColor: color, color: colors[color].color }}>
         {Array.isArray(material.title) ? (
           <>{material.title.join(" / ")}</>
         ) : (
@@ -94,7 +94,7 @@ function Ver2({ material, color }) {
       <div className="divider"></div>
       <div className={styles.wrap}>
         <BoxList
-          color={"white"}
+          color={colors[color].color}
           backgroundColor={color}
           items={material.example}
         />

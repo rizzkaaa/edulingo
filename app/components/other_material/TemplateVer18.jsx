@@ -2,7 +2,7 @@ import styles from "./TemplateVer18.module.css";
 import BorderLeftBox from "../BorderLeftBox";
 
 export default function TemplateVer18({ material }) {
-  const colors = ["#2D7A5E", "#C5502A", "#D9A126", "#8C8880"];
+  const colors = ["#2D7A5E", "#C5502A", "#D9A126", "#2D7A5E"];
  
   return (
     <BorderLeftBox

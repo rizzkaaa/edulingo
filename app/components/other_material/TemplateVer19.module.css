@@ -24,7 +24,6 @@
 }
 .item {
   display: flex;
-  /* align-items: center; */
   gap: 10px;
 }
 .item div {
@@ -35,8 +34,8 @@
 }
 
 .item b {
-  background-color: #c5502a;
-  color: white;
+  background-color: #E8A838;
+  color: #2c2a26;
   padding: 0 5px;
 }
 
