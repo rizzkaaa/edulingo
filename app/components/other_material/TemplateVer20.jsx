@@ -1,4 +1,3 @@
-import BoxList from "..//BoxList";
 import ColorBorderShadow from "../ColorBorderShadow";
 import styles from "../GroupColorBorderShadow.module.css";
 import SmallShadowBorder from "../SmallShadowBorder";

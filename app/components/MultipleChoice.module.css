@@ -1,0 +1,144 @@
+.container {
+  margin-top: 30px;
+  padding: 30px;
+  border: 2px solid #2c2a26;
+  background-color: #f4f1ea;
+}
+
+.container h3 {
+  color: #2d5a4c;
+}
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a4a4a;
+  margin-block: 20px;
+}
+.label + div {
+  display: grid;
+  gap: 10px;
+}
+
+.label + div h5 {
+  color: #2c2a26;
+  font-size: 12px;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.incorrect,
+.correct {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #2c2a26;
+}
+
+.correct {
+  background-color: #2d5a4c;
+  color: white;
+  font-weight: bold;
+  box-shadow: 3px 3px #2c2a26;
+}
+.incorrect {
+  background-color: white;
+}
+
+.incorrect h5 {
+  border: 1px solid black;
+}
+
+.clue {
+  padding: 15px;
+  margin-top: 25px;
+  border: 2px solid #2c2a26;
+  background-color: #f3e7c9;
+}
+.clue span {
+  font-weight: bold;
+}
+.clue b {
+  color: white;
+  background-color: #2d5a4c;
+  padding: 0 5px;
+}
+
+.audio {
+  border: 2px solid #2c2a26;
+  box-shadow: 4px 4px #2c2a26;
+}
+.header {
+  color: white;
+  padding: 15px;
+  background-color: #d3542b;
+  border-bottom: 2px solid #2c2a26;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header p {
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.header + div {
+  padding: 15px 20px;
+  background-color: white;
+}
+.audioPlay {
+  display: flex;
+  margin: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+  gap: 20px;
+}
+
+.audioPlay button + div {
+  flex: 1;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.time span {
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.rel {
+  background-color: #e5e7eb;
+  height: 8px;
+  border: 2px solid #2c2a26;
+  display: flex;
+  align-items: center;
+}
+.train {
+  background-color: #d3542b;
+  height: 100%;
+}
+.head {
+  width: 20px;
+  height: 16px;
+  background: white;
+  border-radius: 20px;
+  border: 2px solid #2c2a26;
+}
+
+.audio .replayBtn{
+    padding: 5px 10px;
+    border: 2px solid #2c2a26;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    background-color: #F9FAFB;
+}

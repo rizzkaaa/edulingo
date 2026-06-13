@@ -1981,7 +1981,309 @@
         {
             "part_id": 4,
             "part_title": "Written Expression Part 2",
-            "sub_modules": []
+            "sub_modules": [
+                {
+                    "sub_module_id": 1,
+                    "title": "Present & Past Participle",
+                    "image": "4_1",
+                    "description": "Present participles (-ing forms) usually express active meaning or describe something causing a feeling. Past participles (Verb 3 forms) usually express passive meaning or describe how someone feels.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "PARTICIPLES ✦",
+                            "explain": [
+                                {
+                                    "title": "Present Participle",
+                                    "definition": [
+                                        "Used for active meaning. Usually ends with -ing.",
+                                        "Examples: interesting, exciting, surprising."
+                                    ],
+                                    "tujuan": "TUJUAN: MEMAHAMI PRESENT PARTICIPLE"
+                                },
+                                {
+                                    "title": "Past Participle",
+                                    "definition": "Used for passive meaning. Usually Verb 3.",
+                                    "points": [
+                                        "Cause -> Present Participle | Receiver -> Past Participle",
+                                        "EXAMPLES: INTERESTED, EXCITED, SURPRISED"
+                                    ],
+                                    "tujuan": "TUJUAN: MEMAHAMI PAST PARTICIPLE"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "COMPARISON: ACTIVE CAUSE VS PASSIVE FEELING",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "PRESENT PARTICIPLE (-ING)",
+                                        "PAST PARTICIPLE (-ED/V3)"
+                                    ],
+                                    "data": [
+                                        [
+                                            "\"The movie was boring.\"",
+                                            "\"I am bored.\""
+                                        ],
+                                        [
+                                            "\"The news was exciting.\"",
+                                            "\"She was excited.\""
+                                        ],
+                                        [
+                                            "\"The result was surprising.\"",
+                                            "\"They were surprised.\""
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 💡",
+                            "explain": [
+                                {
+                                    "text_block": "The Movie was very ________.",
+                                    "options": [
+                                        "A. Interested",
+                                        "B. Interesting",
+                                        "C. Interest"
+                                    ],
+                                    "clue": "Gunakan STRATEGY : \"Ask yourself\" : Who causes the feeling? If the subject causes the feeling, use Present Participle."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Identify the subject",
+                                "Decide whether it causes or receives the action"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 2,
+                    "title": "Past Participle After Have",
+                    "image": "4_2",
+                    "description": "Pelajari aturan penggunaan Past Participle (Verb 3) setelah auxiliary verbs 'have', 'has', atau 'had' untuk membentuk perfect tenses.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "VERB 3 ✦",
+                            "explain": [
+                                {
+                                    "title": "Main Rule",
+                                    "definition": [
+                                        "After have, has, or had, we always use the Past Participle (Verb 3).",
+                                        "Formula: Subject + Have/Has/Had + Past Participle"
+                                    ],
+                                    "tujuan": "TUJUAN : MEMAHAMI RUMUS VERB 3"
+                                },
+                                {
+                                    "title": "Examples",
+                                    "definition": [
+                                        "I have finished my homework.",
+                                        "She has written a letter.",
+                                        "They had arrived before noon."
+                                    ],
+                                    "tujuan": "TUJUAN : MENGUASAI PERFECT TENSE"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 💡",
+                            "explain": [
+                                {
+                                    "text_block": "She has ________ The Report.",
+                                    "options": [
+                                        "A. Write",
+                                        "B. Wrote",
+                                        "C. Written"
+                                    ],
+                                    "clue": "Kalimat menggunakan Present Perfect, sehingga setelah 'has' wajib menggunakan Verb 3."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Find HAVE, HAS, or HAD.",
+                                "Check whether the next verb is Verb 3."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 3,
+                    "title": "Present Participle or Past Participle After Be",
+                    "image": "4_3",
+                    "description": "Explain how adjectives after BE can use either Present Participle or Past Participle depending on meaning.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "explain": [
+                                {
+                                    "title": "Present Participle",
+                                    "definition": "Be + Verb-ing\nPresent participles are used in active sentences.",
+                                    "examples": [
+                                        "She is listing.",
+                                        "They are studying.",
+                                        "Father is washing the car."
+                                    ],
+                                    "tujuan": "TUJUAN: MEMAHAMI FORMULA PRESENT"
+                                },
+                                {
+                                    "title": "Past Participle",
+                                    "definition": "Be + Verb-ed\n Present participles are used in passive sentences.",
+                                    "examples": [
+                                        "The car was washed.",
+                                        "The apples were eaten.",
+                                        "The room is cleaned."
+                                    ],
+                                    "tujuan": "TUJUAN: MEMAHAMI FORMULA PAST"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Table",
+                            "title": "TO BE",
+                            "explain": [
+                                {
+                                    "header": [
+                                        "PRESENT PARTICIPLE",
+                                        "PAST PARTICIPLE"
+                                    ],
+                                    "data": [
+                                        [
+                                            "Am",
+                                            "Am"
+                                        ],
+                                        [
+                                            "Is",
+                                            "Is"
+                                        ],
+                                        [
+                                            "Arc",
+                                            "Arc"
+                                        ],
+                                        [
+                                            "Was",
+                                            "Was"
+                                        ],
+                                        [
+                                            "Were",
+                                            "Were"
+                                        ],
+                                        [
+                                            "Be",
+                                            "Be"
+                                        ],
+                                        [
+                                            "Been",
+                                            "Been"
+                                        ],
+                                        [
+                                            "Being",
+                                            "Being"
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 💡",
+                            "explain": [
+                                {
+                                    "text_block": "Listen! The Instructor is _____ the Gym rules to the new members.",
+                                    "options": [
+                                        "A. Explain",
+                                        "B. Explaining",
+                                        "C. Explained"
+                                    ],
+                                    "clue": "Kalimat bermakna aktif, menunjukkan tindakan yang sedang berlangsung setelah subjek instruktur."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Identify who experiences the feeling",
+                                "Are they causer or receiver?"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 4,
+                    "title": "Base Form Verb After Modals",
+                    "image": "4_4",
+                    "description": "Model verbs are essential in English communication. One of the most important rules to remember is that modal verbs are always followed by the base form of a verb.",
+                    "content": [
+                        {
+                            "type": "First Explain",
+                            "title": "MODALS ✦",
+                            "explain": [
+                                {
+                                    "title": "Modals",
+                                    "definition": "Modals are auxiliary verbs used to express ability, possibility, necessity, permission, or obligation. After modal verbs, the main verb must be in the base form (verb 1), without \"to\".",
+                                    "tujuan": "TUJUAN: MEMAHAMI PENGERTIAN MODALS"
+                                },
+                                {
+                                    "title": "Formula",
+                                    "definition": "Subject + Modals + Base Form",
+                                    "examples": [
+                                        "She can swim well",
+                                        "They must study tonight",
+                                        "I should go now"
+                                    ],
+                                    "tujuan": "TUJUAN: MEMAHAMI FORMULA"
+                                }
+                            ]
+                        },
+                        {
+                            "title": "MODALS",
+                            "explain": [
+                                "Can",
+                                "May",
+                                "Shall",
+                                "Will",
+                                "Must",
+                                "Could",
+                                "Might",
+                                "Should",
+                                "Would"
+                            ]
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 💡",
+                            "explain": [
+                                {
+                                    "text_block": "She can speak English fluently in front of many people.",
+                                    "options": [
+                                        "A. True",
+                                        "B. False"
+                                    ],
+                                    "clue": "Meskipun subjeknya adalah She (orang ketiga tunggal), kata kerjanya tidak boleh ditulis menjadi speaks karena berada langsung setelah modal can."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "💡 TIPS TOEFL LISTENING",
+                            "explain": [
+                                "Identify the helping verb expressing possibility or obligation.",
+                                "Verify the next word is in its base form (no -s or -ed)."
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "part_id": 5,
@@ -2186,7 +2488,7 @@
                                         "Dengarkan baik-baik percakapan pembicara kedua.",
                                         "Ide utama biasanya diletakkan di bagian akhir untuk ditekankan."
                                     ],
-                                    "example": "TUJUAN: PAHAMI KONTEKS"
+                                    "note": "TUJUAN: PAHAMI KONTEKS"
                                 },
                                 {
                                     "title": "Word Synonyms",
@@ -2195,34 +2497,30 @@
                                         "Identifikasi kata kunci dari ucapan pembicara kedua.",
                                         "Cari pilihan jawaban yang memiliki makna sama namun kata berbeda."
                                     ],
-                                    "example": "TUJUAN: ANALISIS SINONIM"
+                                    "note": "TUJUAN: ANALISIS SINONIM"
                                 }
                             ]
                         },
                         {
-                            "type": "Table",
                             "title": "COMPARISON: DIRECT STATEMENT VS RESTATEMENT",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "Audio (Second Speaker)",
-                                        "Restatement (Correct Answer)"
+                            "explain": {
+                                "header": [
+                                    "Audio (Second Speaker)",
+                                    "Restatement (Correct Answer)"
+                                ],
+                                "data": [
+                                    [
+                                        "\"The class was <b>too difficult</b>.\"",
+                                        "\"The course was <b>not easy</b>.\""
                                     ],
-                                    "data": [
-                                        [
-                                            "\"The class was too difficult.\"",
-                                            "\"The course was not easy.\""
-                                        ],
-                                        [
-                                            "\"I'm really exhausted.\"",
-                                            "\"She's extremely tired.\""
-                                        ]
+                                    [
+                                        "\"I'm <b>really exhausted</b>.\"",
+                                        "\"She's <b>extremely tired</b>.\""
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
-                            "type": "Steps Block",
                             "title": "Langkah Penyelesaian Listening",
                             "steps": [
                                 {
@@ -2249,14 +2547,35 @@
                         {
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 🎧",
-                            "audio": "",
-                            "options_title": "PILIHAN JAWABAN",
-                            "options": [
-                                "She liked the music very much.",
-                                "<b>The performance wasn't very good.</b>",
-                                "She missed the concert."
+                            "audio": "listening-to-short-conversation1.mp3",
+                            "questions": [
+                                {
+                                    "options": [
+                                        "Her concerns were expressed",
+                                        "She wonders if the concert was good",
+                                        "The music was fantastic",
+                                        "She wandered about during the night"
+                                    ],
+                                    "correct_index": 2
+                                }
                             ],
-                            "clue": "Gunakan STRATEGI: Perhatikan kata kunci \"rather disappointing\" didalam Latihan Murni. \"Wasn't very good\". Fokuslah pada perasaan negatif yang disampaikan pembicara kedua."
+                            "clue": "<span>Gunakan STRATEGI:</span> Perhatikan kata kunci <b>\"wonderful\"</b> merupakan sinonim atau memiliki makna yang setara dengan kata <b>\"fantastic\"</b>. Fokuslah pada perasaan positif yang disampaikan pembicara kedua."
+                        },
+                        {
+                            "type": "Application Examples",
+                            "title": "Contoh Penerapan 🎧",
+                            "audio": "listening-to-short-conversation2.mp3",
+                            "questions": [
+                                {
+                                    "options": [
+                                        "Go out for dinner",
+                                        "Stay Home and watch a movie",
+                                        "Invite friends over",
+                                        "Go to the cinema"
+                                    ],
+                                    "correct_index": 1
+                                }
+                            ]
                         },
                         {
                             "type": "Toefl Tips",
@@ -2278,27 +2597,27 @@
                             "explain": [
                                 {
                                     "title": "Strategy 1 - Look Ahead",
-                                    "definition": "Lihat pilihan jawaban dulu, perkiraan apa yang bakal didiskusikan sebelum audio dimulai.",
+                                    "definition": "If you have time, look ahead at the answers choices so you are prepared for what is coming.",
                                     "tujuan": "TUJUAN: PREDIKSI TOPIK PEMBICARAAN"
                                 },
                                 {
                                     "title": "Strategy 2 - Listen to The First Line",
-                                    "definition": "Baris pertama biasanya berisi ide utama, subjek, atau topik utama dalam percakapan.",
+                                    "definition": "Listen carefully to the first line of the conversation. It often contains the main idea, and we will often be asked about it.",
                                     "tujuan": "TUJUAN: TANGKAP KONTEKS UTAMA"
                                 },
                                 {
                                     "title": "Strategy 3 - Draw Conclusions",
-                                    "definition": "Siapa yang berbicara, di mana, dan kapan percakapan kemungkinan besar terjadi.",
+                                    "definition": "Who is speaking and what is happening.",
                                     "tujuan": "TUJUAN: KESIMPULAN STRUKTUR 5W1H"
                                 },
                                 {
                                     "title": "Strategy 4 - Follow the Answer",
-                                    "definition": "Pilihan jawaban biasanya berurutan sesuai kronologi informasi yang disampaikan.",
+                                    "definition": "Follow the answers in the test book while listening, try to find the correct one.",
                                     "tujuan": "TUJUAN: JAWAB SECARA KRONOLOGIS/BERURUTAN"
                                 },
                                 {
                                     "title": "Strategy 5 - Best Guess",
-                                    "definition": "Jangan biarkan jawaban kosong, tebak secara cerdas dari sisa petunjuk.",
+                                    "definition": "If unsure, make your best guess, never leave any answer blank",
                                     "tujuan": "TUJUAN: ANTISIPASI NILAI KOSONG"
                                 },
                                 {
@@ -2336,17 +2655,18 @@
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 🎧",
                             "audio": "",
-                            "explain": [
+                            "questions": [
                                 {
                                     "options": [
-                                        "Find a lost textbook to return to the library.",
-                                        "<b>Get a new library card from the bookstore.</b>",
-                                        "Find a job at the university bookstore."
+                                        "Her concerns were expressed",
+                                        "She wonders if the concert was good",
+                                        "The music was fantastic",
+                                        "She wandered about during the night"
                                     ],
-                                    "clue": "STRATEGI: Pahami tema utama dari keseluruhan percakapan. Pembicara berbicara mengenai pencarian buku untuk dibeli karena edisi lama.",
-                                    "answer": "Jawaban: A (Find a lost textbook to return to the library.)"
+                                    "correct_index": 2
                                 }
-                            ]
+                            ],
+                            "clue": "STRATEGI: Pahami tema utama dari keseluruhan percakapan. Pembicara berbicara mengenai rencana"
                         },
                         {
                             "type": "Toefl Tips",

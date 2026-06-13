@@ -3,6 +3,7 @@ import BoxList from "./BoxList";
 import ColorBorderShadow from "./ColorBorderShadow";
 import styles from "./GroupColorBorderShadow.module.css";
 import SmallShadowBorder from "./SmallShadowBorder";
+import ListSentence from "./ListSentences";
 
 export function GroupColorBorderShadow({ materials, version }) {
   const colors = ["#2D7A5E", "#C5502A", "#D9A126"];
@@ -24,6 +25,9 @@ export function GroupColorBorderShadow({ materials, version }) {
             break;
           case 3:
             content = <Ver3 material={material} color={color} />;
+            break;
+          case 4:
+            content = <Ver4 material={material} color={color} />;
             break;
           default:
             content = null;
@@ -150,6 +154,37 @@ function Ver3({ material, color }) {
           </SmallShadowBorder>
         ))}
       </div>
+    </>
+  );
+}
+
+function Ver4({ material, color }) {
+  const colors = {
+    "#2D7A5E": {
+      backgroundColor: "#E8F4EF",
+      color: "white",
+    },
+    "#C5502A": {
+      backgroundColor: "#FAE8E3",
+      color: "white",
+    },
+    "#D9A126": {
+      backgroundColor: "#FDFFCB",
+      color: "#2C2A26",
+    },
+  };
+
+  return (
+    <>
+      <h1 style={{ color: color }}>{material.title}</h1>
+      <br />
+      <p>{material.definition}</p>
+      <br />
+      <ListSentence material={material.explain} bgColor={color} />
+      <br />
+      <SmallShadowBorder textAlign="center" backgroundColor={color} color={colors[color].color}>
+        {material.note}
+      </SmallShadowBorder>
     </>
   );
 }

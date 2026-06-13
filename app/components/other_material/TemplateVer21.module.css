@@ -1,0 +1,28 @@
+.container {
+  margin-top: 30px;
+}
+.wrap {
+  border-block: 2px dotted #131313;
+  padding-block: 15px;
+}
+
+.container h3 + br + div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.box h5{
+  margin-left: 15px;
+}
+
+
+.container p{
+  font-size: 30px;
+}
