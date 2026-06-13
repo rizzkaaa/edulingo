@@ -3,7 +3,7 @@ import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
-import {TemplateVer21 } from "@/app/components/other_material";
+import { TemplateVer14, TemplateVer21 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ComparisonTable from "@/app/components/ComparisonTable";
 import { WithAudio } from "@/app/components/MultipleChoice";

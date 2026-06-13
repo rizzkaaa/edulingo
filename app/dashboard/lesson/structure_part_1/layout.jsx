@@ -8,7 +8,7 @@ import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";
 import LessonProgressBar from "@/app/components/LessonProgressBar";
 
 export default function LessonLayout({ children }) {
-  const [sub_module_id, setSub_module_id] = useState(1);
+  const [sub_module_id, setSub_module_id] = useState(5);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(sub_module_id);
   const main_material = material.materials.find(
     (material) => material.part_id == 1,

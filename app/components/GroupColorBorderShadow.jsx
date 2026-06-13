@@ -176,13 +176,33 @@ function Ver4({ material, color }) {
 
   return (
     <>
-      <h1 style={{ color: color }}>{material.title}</h1>
-      <br />
-      <p>{material.definition}</p>
-      <br />
-      <ListSentence material={material.explain} bgColor={color} />
-      <br />
-      <SmallShadowBorder textAlign="center" backgroundColor={color} color={colors[color].color}>
+      <div>
+        <h1 style={{ color: color }}>{material.title}</h1>
+        <span></span>
+        <p>{material.definition}</p>
+      </div>
+      {material.explain ? (
+        Array.isArray(material.explain) ? (
+          <div style={{ marginBlock: "15px" }}>
+            <ListSentence material={material.explain} bgColor={color} />
+          </div>
+        ) : (
+          <>
+            {material.explain.content.map((item, i) => (
+              <div style={{ marginBottom: "10px" }} key={i}>
+                <p>{item.title}</p>
+                <ListSentence material={item.lists} bgColor={color} />
+              </div>
+            ))}
+          </>
+        )
+      ) : null}
+      <SmallShadowBorder
+        className={styles.tujuan}
+        textAlign="center"
+        backgroundColor={color}
+        color={colors[color].color}
+      >
         {material.note}
       </SmallShadowBorder>
     </>
