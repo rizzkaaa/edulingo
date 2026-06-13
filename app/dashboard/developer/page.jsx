@@ -14,7 +14,12 @@ const developers = [
     quote:"Making grammar as intuitive as swipe left on a bad match."
   },
   {
-    name:"DANISWARA AHMAD FADILAH",
+    name:"ALIEF RYANDANU",
+    role:"UI/UI DESIGNER",
+    quote:"Designing interfaces that are as clear as my English explanations."
+  },
+  {
+    name:"DANISWARA AHMAD FADHILAH",
     role:"BACKEND DEV",
     quote:"I speak Fluent English and Fluent React. Both are equally complex."
   },
@@ -34,12 +39,12 @@ const developers = [
     quote:"Words are blocks, I just build the most efficient castles with them."
   },
   {
-    name:"M. RASYID AL GIFFAHRI",
+    name:"M. RASYID AL GIFFAHRY",
     role:"BACKEND DEV",
     quote:"I organize data better than I organize my actual life."
   },
   {
-    name:"RIZKA LAYLA RAHMADANI",
+    name:"RIZKA LAYLA RAMADHANI",
     role:"FRONTEND DEV",
     quote:"If it can be broken, I will find it. And then I will fix it."
   },
