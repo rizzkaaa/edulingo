@@ -1,6 +1,7 @@
 import styles from "./FirstExplainVer10.module.css";
 import BorderLeftBox from "../BorderLeftBox";
 import BoxList from "../BoxList";
+import LabelValueMaterial from "../LabelValueMaterial";
 
 export default function FirstExplainVer10({ material }) {
   return (
@@ -22,15 +23,7 @@ export default function FirstExplainVer10({ material }) {
         <div className={styles.box}>
           <h4>{material.example_sentence.sentence}</h4>
           <br />
-          {material.example_sentence.analysis.map((item, i) => {
-            const color = ["#E8A838", "#2D7A5E", "#C5502A"];
-            return (
-              <div key={i} >
-                <p style={{color: i != 0 ? 'white' : '#2C2A26', backgroundColor: color[i]}} >{item.label}</p>
-                <p>{item.value}</p>
-              </div>
-            );
-          })}
+          <LabelValueMaterial materials={material.example_sentence.analysis} />
           <div className="divider"></div>
           <p className={styles.note}>{material.example_sentence.note}</p>
         </div>

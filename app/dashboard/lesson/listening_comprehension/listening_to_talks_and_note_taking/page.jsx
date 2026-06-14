@@ -3,9 +3,8 @@ import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
-import { TemplateVer14, TemplateVer21 } from "@/app/components/other_material";
+import { TemplateVer23, TemplateVer22 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
-import ComparisonTable from "@/app/components/ComparisonTable";
 import { WithAudio } from "@/app/components/MultipleChoice";
 
 export default function ListeningToShortConversation() {
@@ -13,7 +12,7 @@ export default function ListeningToShortConversation() {
     (material) => material.part_id == 7,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == 1,
+    (material) => material.sub_module_id == 3,
   );
 
   const currentId = sub_material.sub_module_id;
@@ -32,11 +31,10 @@ export default function ListeningToShortConversation() {
         materials={sub_material.content[0].explain}
         version={4}
       />
-      <ComparisonTable material={sub_material.content[1]} />
-      <TemplateVer21 material={sub_material.content[2]} />
+      <TemplateVer22 material={sub_material.content[1]} />
+      <TemplateVer23 material={sub_material.content[2]} />
       <WithAudio material={sub_material.content[3]} />
-      <WithAudio material={sub_material.content[4]} />
-      <ToeflTips material={sub_material.content[5]} />
+      <ToeflTips material={sub_material.content[4]} />
       <FooterMaterial
         color="#E8A838"
         title={sub_material.title}

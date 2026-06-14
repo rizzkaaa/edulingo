@@ -1,0 +1,51 @@
+.container {
+  margin-top: 30px;
+  padding: 30px !important;
+}
+
+.definition {
+  color: #374151;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  width: 60%;
+}
+.options {
+  display: flex;
+  gap: 20px;
+}
+.option {
+  flex: 1;
+  margin-bottom: 20px;
+}
+.option p {
+  color: #8c8880;
+  margin-bottom: 10px;
+}
+.option p+div{
+  display: grid;
+  gap: 10px;
+}
+.option p+div div {
+  padding: 8px;   
+  border: 1px solid #2c2a26;
+  font-size: 14px;
+}
+
+.options h5{
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.options .container:first-child div{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.options .container:last-child p{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.options .container{
+  flex: 1;
+}

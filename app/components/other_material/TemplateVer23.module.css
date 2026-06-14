@@ -1,0 +1,51 @@
+.container {
+  margin-top: 30px;
+  padding: 30px !important;
+}
+
+.definition {
+  color: #374151;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  width: 60%;
+}
+.box {
+  flex: 1;
+}
+.example {
+  border: 2px solid #2c2a26;
+  background-color: #f0ede4;
+  padding: 20px;
+}
+.example h5 {
+  font-size: 14px;
+}
+.example h5 + div {
+  margin-block: 20px;
+}
+.example h5 + div p {
+  color: #494b50;
+  font-size: 14px;
+}
+.predicted h5 {
+  color: #2d5a4c;
+}
+.note {
+  margin-top: 30px;
+  padding: 20px !important;
+}
+.note h5 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.note h5 + div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.note h5 + p {
+  font-weight: normal;
+}

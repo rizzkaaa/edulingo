@@ -2713,7 +2713,7 @@
                 {
                     "sub_module_id": 3,
                     "title": "Listening to Talks And Note Taking",
-                    "image": "image_0e87c8.jpg",
+                    "image": "7_3",
                     "description": "Fokus pada pemahaman isi pembicaraan dan pencatatan poin-poin penting untuk menjawab pertanyaan dengan lebih akurat.",
                     "content": [
                         {
@@ -2722,7 +2722,7 @@
                             "explain": [
                                 {
                                     "title": "Strategy for Note Taking",
-                                    "points": [
+                                    "explain": [
                                         "Review the answer choices before listening",
                                         "Pay close attention to the first sentence",
                                         "Predict the context or situation of the talk",
@@ -2730,31 +2730,155 @@
                                         "If you are unsure, make an educated guess",
                                         "Use any remaining time to preview the next questions"
                                     ],
-                                    "tujuan": "TUJUAN: MEMAHAMI STRATEGI NOTE TAKING"
+                                    "note": "TUJUAN: MEMAHAMI STRATEGI NOTE TAKING"
                                 },
                                 {
                                     "title": "Note-Taking Patterns",
                                     "definition": "Fokuskan catatan anda pada elemen kunci: Who, What, Where, When, dan Why.",
-                                    "points": [
-                                        "💡 Key Mapping:\nWHO : PROFESSOR\nWHERE : HALL B\nWHAT : EXAM PREP\nWHEN : FRIDAY"
+                                    "example": [
+                                        {
+                                            "label": "WHO",
+                                            "value": "→ PROFESSOR"
+                                        },
+                                        {
+                                            "label": "WHERE",
+                                            "value": "→ HALL B"
+                                        },
+                                        {
+                                            "label": "WHAT",
+                                            "value": "→ EXAM PREP"
+                                        },
+                                        {
+                                            "label": "WHEN",
+                                            "value": "→ FRIDAY"
+                                        }
                                     ],
-                                    "tujuan": "TUJUAN: CATAT DETAIL PENTING"
+                                    "note": "TUJUAN: CATAT DETAIL PENTING"
                                 }
                             ]
                         },
                         {
+                            "title": "Guess the Topic",
+                            "definition": "Learn how to identify the main topic of a listening passage by finding repeated ideas across multiple answer choices.",
+                            "options": [
+                                [
+                                    "Becoming a university student.",
+                                    "Managing time.",
+                                    "Majoring in management.",
+                                    "Spending a week in a management training program"
+                                ],
+                                [
+                                    "Relaxation techniques.",
+                                    "Homework assignments.",
+                                    "A personal time-management study.",
+                                    "Keeping an appointment calendar."
+                                ],
+                                [
+                                    "Make an appointment.",
+                                    "Begin the time study.",
+                                    "Write down how they spend their time.",
+                                    "Attend another seminar."
+                                ]
+                            ],
+                            "keywords": [
+                                "\"Managing time\"",
+                                "\"Time study\"",
+                                "\"Time-management\""
+                            ],
+                            "conclusion": [
+                                "Repeated Idea: Time Management",
+                                "Most Likely Topic: How to Manage Time"
+                            ],
+                            "summary": {
+                                "repeated_concept": "Time Management",
+                                "predicted_topic": "How to Manage Time"
+                            }
+                        },
+                        {
+                            "title": "Guess the Question",
+                            "definition": "Learn how to predict the question by analyzing the pattern of answer choices.",
+                            "examples": [
+                                {
+                                    "category": "TOPICS",
+                                    "options": [
+                                        "Becoming a university student.",
+                                        "Managing time.",
+                                        "Majoring in management.",
+                                        "Spending a week in a management training program"
+                                    ],
+                                    "predicted_question": "What is the main topic of the talk?"
+                                },
+                                {
+                                    "category": "DURATIONS",
+                                    "options": [
+                                        "Ninety-six days.",
+                                        "Twenty-four days.",
+                                        "Seven days.",
+                                        "Fifteen minutes."
+                                    ],
+                                    "predicted_question": "How long...?"
+                                }
+                            ],
+                            "patterns": [
+                                {
+                                    "label": "Places",
+                                    "value": "→ Where...?"
+                                },
+                                {
+                                    "label": "Time",
+                                    "value": "→ When...?"
+                                },
+                                {
+                                    "label": "People",
+                                    "value": "→ Who...?"
+                                },
+                                {
+                                    "label": "Reasons",
+                                    "value": "→ Why...?"
+                                }
+                            ],
+                            "tip": "Group answers by category (e.g., all are locations) to predict the question type before the audio starts."
+                        },
+                        {
                             "type": "Application Examples",
-                            "title": "Contoh Penerapan 🎧",
-                            "audio": "",
-                            "explain": [
+                            "title": "Contoh Penerapan 💭",
+                            "audio": "listening-to-talks-note-taking.mp4",
+                            "questions": [
                                 {
                                     "options": [
-                                        "Giving a lecture on ancient history.",
-                                        "Conducting a library orientation tour.",
-                                        "Searching for a lost book in the stacks."
+                                        "Artificial plants",
+                                        "Plants in plastic containers",
+                                        "Plants that resemble plastic",
+                                        "Plants that produce a usable substance"
                                     ],
-                                    "clue": "STRATEGI: Perhatikan kata kunci \"library\" dan \"orientation tour\" di awal pembicaraan untuk menentukan topik utama.",
-                                    "answer": "Jawaban: B (Conducting a library orientation tour)"
+                                    "correct_index": 3
+                                },
+                                {
+                                    "options": [
+                                        "It lasts longer",
+                                        "It is more artificial",
+                                        "It is easy to make in a laboratory",
+                                        "It is good for the environment"
+                                    ],
+                                    "correct_index": 3
+                                },
+                                {
+                                    "options": [
+                                        "It biodegrades slowly",
+                                        "It kill plants",
+                                        "People never throw it away",
+                                        "It is not very strong"
+                                    ],
+                                    "correct_index": 0
+                                },
+                                {
+                                    "options": [
+                                        "Engineering",
+                                        "Art",
+                                        "Botany",
+                                        "Geolog"
+                                    ],
+                                    "correct_index": 2
                                 }
                             ]
                         },

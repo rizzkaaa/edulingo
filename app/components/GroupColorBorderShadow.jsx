@@ -4,6 +4,7 @@ import ColorBorderShadow from "./ColorBorderShadow";
 import styles from "./GroupColorBorderShadow.module.css";
 import SmallShadowBorder from "./SmallShadowBorder";
 import ListSentence from "./ListSentences";
+import LabelValueMaterial from "./LabelValueMaterial";
 
 export function GroupColorBorderShadow({ materials, version }) {
   const colors = ["#2D7A5E", "#C5502A", "#D9A126"];
@@ -196,6 +197,12 @@ function Ver4({ material, color }) {
             ))}
           </>
         )
+      ) : null}
+
+      {material.example ? (
+        <div className={styles.labelValueGroup}>
+          <LabelValueMaterial materials={material.example} />
+        </div>
       ) : null}
       <SmallShadowBorder
         className={styles.tujuan}

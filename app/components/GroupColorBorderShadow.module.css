@@ -37,7 +37,6 @@
 }
 
 .container h5 {
-  /* color: white; */
   width: fit-content;
   padding: 3px 7px;
   margin-bottom: 5px;
@@ -82,4 +81,10 @@
 .tujuan,
 .container span+p{
   margin-top: 20px;
+}
+
+.labelValueGroup{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-weight: bold;
 }

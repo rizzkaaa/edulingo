@@ -32,14 +32,5 @@
   background-color: #f5f1ea;
 }
 
-.box:last-child div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
-.box:last-child div p:first-child {
-  border: 2px solid #2c2a26;
-  padding: 8px 15px;
-  margin-block: 8px;
-}
+
