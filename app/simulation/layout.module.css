@@ -1,0 +1,87 @@
+.wrapper{
+  width:100%;
+  min-height:100vh;
+  background:#ECE8E2;
+}
+
+.topHeader{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:58px;
+
+  background:#C7542C;
+
+  border-bottom:3px solid #1D1B18;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 30px;
+
+  z-index:999;
+}
+
+.logoSection{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.logoSection h1{
+  font-size:22px;
+  font-weight:900;
+  color:#fff;
+}
+
+.prepBadge{
+  padding:4px 8px;
+  background:#F5F1EB;
+  border:3px solid #1D1B18;
+  box-shadow:2px 2px 0 #1D1B18;
+  font-size:10px;
+  font-weight:800;
+}
+
+.breadcrumb{
+  font-size:11px;
+  font-weight:700;
+  color:#FFF2EB;
+}
+
+.rightSection{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.profileCircle{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#FCC25B;
+  border:3px solid #1D1B18;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  font-size:13px;
+  font-weight:900;
+}
+
+.exitBtn{
+  height:35px;
+  width:75px;
+  background:#F5F1EB;
+  border:3px solid #1D1B18;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.mainContent{
+  padding-top: 58px;
+}

@@ -1,0 +1,415 @@
+.heroSection{
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+
+  background:#E6AA38;
+  border-bottom:3px solid #1D1B18;
+
+  padding:15px 30px;
+
+  display:flex;
+  justify-content:space-between;
+}
+
+.topBadges{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:15px;
+}
+
+.orangeBadge,
+.whiteBadge{
+  height:32px;
+  padding:0 14px;
+  border:3px solid #1D1B18;
+  display:flex;
+  align-items:center;
+  font-size:11px;
+  font-weight:800;
+  box-shadow:4px 4px 0 #1D1B18;
+}
+
+.orangeBadge{
+  background:#C7542C;
+  color:#fff;
+}
+
+.whiteBadge{
+  background:#F5F1EB;
+}
+
+.heroLeft h1{
+  font-size:52px;
+  font-weight:1200;
+}
+
+.wave{
+  width:160px;
+  height:16px;
+  margin:5px 0;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='8' viewBox='0 0 80 8'%3E%3Cpath d='M0 4 C10 0 20 8 30 4 C40 0 50 8 60 4 C70 0 80 8 80 4' stroke='%23C5502A' fill='none' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+
+  background-repeat:repeat-x;
+  background-size:160px 15px;
+  background-position:center;
+}
+
+.heroLeft p{
+  max-width:573px;
+  font-size:15px;
+  line-height:1.5;
+  color:#2D241D;
+  margin-bottom:15px;
+}
+
+.infoRow{
+  display:flex;
+  gap:16px;
+  margin-bottom:15px;
+}
+
+.infoBox{
+  height:43px;
+  padding:0 12px;
+  background:#F5F1EB;
+  border:3px solid #1D1B18;
+  display:flex;
+  align-items:center;
+  font-size:11px;
+  font-weight:900;
+  box-shadow:4px 4px 0 #1D1B18;
+}
+
+.formatBtn{
+  height:43px;
+  padding:0 12px;
+  background:#F5F1EB;
+  border:3px solid #1D1B18;
+  font-size:11px;
+  font-weight:900;
+  box-shadow:4px 4px 0 #1D1B18;
+  cursor:pointer;
+}
+
+.heroRight{
+  position: relative;
+  right: 250px;
+  width: 300px;
+  height: 400px;
+}
+
+.smallCard,
+.middleCard,
+.bigCard{
+  position: absolute;
+  background: #F5F1EB;
+  border: 4px solid #1D1B18;
+  box-shadow: 6px 6px 0 #1D1B18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  flex-direction: column;
+}
+
+.smallCard{
+  width: 95px;
+  height: 140px;
+  top: 0;
+  left: 10px;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+.middleCard{
+  width: 130px;
+  height: 140px;
+  background: #C7542C;
+  color: #fff;
+  top: 60px;
+  left: 90px;
+  transform: rotate(5deg);
+  z-index: 2;
+}
+
+.bigCard{
+  width: 148px;
+  height: 140px;
+  top: 180px;
+  left: 30px;
+  transform: rotate(-3deg);
+  z-index: 3;
+}
+
+.smallCard h1, .middleCard h1, .bigCard h1{
+  font-size: 52px;
+}
+
+.smallCard p, .bigCard p{
+  font-size: 11px;
+  color: #7A726A;
+}
+
+.middleCard p{
+  font-size: 11px;
+  color: #fff;
+}
+
+.sparkle1{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  color: #C7542C;
+  top: 20px;
+  right: 65px;
+}
+
+.sparkle2{
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  color: #C7542C;
+  top: 100px;
+  right: 200px;
+}
+
+.sparkle3{
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  color: #C7542C;
+  top: 250px;
+  right: 120px;
+}
+
+.sparkle1 svg, .sparkle2 svg, .sparkle3 svg{
+  width: 100%;
+  height: 100%;
+}
+
+
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 32px;
+  padding: 40px;
+}
+
+.rulesCard {
+  background: #F5F1EB;
+  border: 4px solid #C7542C;
+  box-shadow:4px 4px 0 #1D1B18;
+  padding: 24px;
+}
+
+.rulesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.wajibBadge {
+  background: #C7542C;
+  border: 4px solid #1D1B18;
+  box-shadow:4px 4px 0 #1D1B18;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.ruleItem {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.ruleNumber {
+  background: #C7542C;
+  border: 4px solid #1D1B18;
+  color: #fff;
+  font-weight: 900;
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ruleItem h3 {
+  margin: 0 0 4px;
+}
+
+.ruleItem p {
+  margin: 0;
+  color: #555;
+}
+
+.divider {
+  height: 2px;
+  background: #1D1B18;
+}
+
+.beforeStartCard {
+  background: #F5F1EB;
+  border: 4px solid #E8A33D;
+  box-shadow:4px 4px 0 #1D1B18;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.checkLine {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+.checkLine input {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  accent-color: #C7542C;
+}
+
+.confirmBox {
+  background: #E8A33D;
+  border: 3px solid #1D1B18;
+  box-shadow:4px 4px 0 #1D1B18;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.startBtn {
+  width: 100%;
+  background: #B8B2A8;
+  border: 3px solid #1D1B18;
+  color: #fff;
+  font-weight: 900;
+  padding: 16px;
+  margin-top: 16px;
+  cursor: not-allowed;
+  transition: background 0.25s ease;
+}
+
+.startBtn:disabled {
+  cursor: not-allowed;
+}
+
+.startBtnActive {
+  background: #7A1F1F;
+  border: 3px solid #1D1B18;
+  cursor: pointer;
+}
+
+.startBtnActive:hover {
+  background: #5e1717;
+  border: 3px solid #1D1B18;
+}
+
+.hint {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  margin-top: 8px;
+}
+
+.materiHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.summaryBadge {
+  background: #fff;
+  border: 3px solid #1D1B18;
+  color: #1D1B18;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
+.materiCard {
+  border: 4px solid #1D1B18;
+  box-shadow:4px 4px 0 #1D1B18;
+  margin-bottom: 24px;
+}
+
+.materiCardHeader {
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid #1D1B18;
+  justify-content: space-between;
+  padding: 16px 20px;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.materiCardHeader.orange { background: #E8A33D; }
+.materiCardHeader.red    { background: #C7542C; color: #fff; }
+.materiCardHeader.green  { background: #2E8B6E; color: #fff; }
+
+.badges {
+  display: flex;
+  gap: 10px;
+}
+
+.badge {
+  background: #fff;
+  border: 4px solid #1D1B18;
+  color: #1D1B18;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+.materiBody {
+  background: #F5F1EB;
+  padding: 8px 20px;
+}
+
+.materiItem {
+  padding: 14px 0;
+  border-bottom: 2px solid #1D1B18;
+  font-weight: 700;
+}
+
+.materiItem:last-child {
+  border-bottom: none;
+}
+
+.totalBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 4px solid #1D1B18;
+  box-shadow:4px 4px 0 #1D1B18;
+  flex-wrap: wrap;
+  padding: 20px;
+  color: #fff;
+}
+
+.totalBar.orange { background: #C7542C; }
+.totalBar.red    { background: #C7542C; }
+.totalBar.green  { background: #2E8B6E; }
+
+.totalBadge {
+  background: #fff;
+  border: 4px solid #1D1B18;
+  box-shadow: 4px 4px 0 #1D1B18;
+  color: #1D1B18;
+  font-weight: 900;
+  padding: 10px 16px;
+}
+
+.totalText {
+  font-weight: 900;
+  margin-left: auto;
+}

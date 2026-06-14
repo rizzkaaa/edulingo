@@ -354,7 +354,7 @@ export default function LessonPage() {
         </div>
 
         {allLessonsCompleted ? (
-          <Link href="/dashboard/simulasi" className={styles.buttonLink} style={{ textDecoration: "none", color: "inherit" }}>
+          <Link href="/simulation" className={styles.buttonLink} style={{ textDecoration: "none", color: "inherit" }}>
             <div className={styles.startButton}>
               MULAI SIMULASI SEKARANG →
             </div>
