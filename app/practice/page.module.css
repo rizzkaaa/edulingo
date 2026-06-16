@@ -1,8 +1,12 @@
 .container {
   width: 100%;
   max-width: 900px;
+  min-height: 100vh;
+
   margin: 0 auto;
-  padding: 24px 48px;
+
+  padding: 140px 48px 24px;
+
   position: relative;
   overflow: hidden;
 }
@@ -30,10 +34,24 @@
 
 /* ===== HEADER ===== */
 .headerSection {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 24px;
+
+  padding: 12px 48px;
+
+  background: #F6F1EB;
+
+  z-index: 999;
+
+  border-bottom: 5px solid #1D1B18;
 }
 
 .headerSection h1 {
@@ -60,37 +78,21 @@
   gap: 18px;
 }
 
-.timerBox {
-  height: 50px;
-  padding: 0 12px;
-  border: 4px solid #1D1B18;
-  background: #F3C356;
-  box-shadow: 6px 6px 0 #1D1B18;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 24px;
-  font-weight: 900;
-  color: #6F5200;
-}
-
 .exitBtn {
   height: 50px;
   padding: 0 12px;
+
   border: 4px solid #1D1B18;
+
   background: #D91F1F;
+
   box-shadow: 6px 6px 0 #1D1B18;
+
   font-size: 16px;
   font-weight: 500;
   color: #fff;
-  cursor: pointer;
-}
 
-.lineDivider {
-  width: 100%;
-  height: 5px;
-  background: #1D1B18;
-  margin-bottom: 24px;
+  cursor: pointer;
 }
 
 /* ===== PROGRESS BAR ===== */

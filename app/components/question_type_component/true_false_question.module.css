@@ -1,0 +1,8 @@
+.questionSection {
+  border:4px solid #1D1B18;
+  box-shadow:6px 6px 0 #1D1B18;
+  background: #fff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}

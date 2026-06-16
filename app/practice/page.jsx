@@ -102,7 +102,7 @@ export default function PracticePage() {
     showAlert(
       "Yakin mau selesaikan practice? Pastikan semua soal sudah dijawab.",
       false,
-      () => router.push("/dashboard")
+      () => router.push("/dashboard/history")
     );
   }
 
