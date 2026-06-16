@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import SmallShadowBorder from "./SmallShadowBorder";
 import { MdGraphicEq } from "react-icons/md";
 import { LuPlay, LuPause, LuRotateCcw } from "react-icons/lu";
-import Image from "next/image";
 import Alert from "./Alert";
 
 function MultipleChoice({ children, material }) {
@@ -188,6 +187,15 @@ export function WithAudio({ material }) {
       <br />
       <AudioPlayer src={material.audio} />
       <br />
+    </MultipleChoice>
+  );
+}
+
+export function WithText({ material }) {
+  return (
+    <MultipleChoice material={material}>
+      <br />
+      <h1 className={styles.text_block}>{material.text_block}</h1>
     </MultipleChoice>
   );
 }

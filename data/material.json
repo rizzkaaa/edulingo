@@ -1989,72 +1989,78 @@
                     "description": "Present participles (-ing forms) usually express active meaning or describe something causing a feeling. Past participles (Verb 3 forms) usually express passive meaning or describe how someone feels.",
                     "content": [
                         {
-                            "type": "First Explain",
-                            "title": "PARTICIPLES ✦",
                             "explain": [
                                 {
                                     "title": "Present Participle",
-                                    "definition": [
+                                    "explain": [
                                         "Used for active meaning. Usually ends with -ing.",
                                         "Examples: interesting, exciting, surprising."
                                     ],
-                                    "tujuan": "TUJUAN: MEMAHAMI PRESENT PARTICIPLE"
+                                    "note": "TUJUAN: MEMAHAMI PRESENT PARTICIPLE"
                                 },
                                 {
                                     "title": "Past Participle",
                                     "definition": "Used for passive meaning. Usually Verb 3.",
-                                    "points": [
-                                        "Cause -> Present Participle | Receiver -> Past Participle",
-                                        "EXAMPLES: INTERESTED, EXCITED, SURPRISED"
+                                    "example": [
+                                        {
+                                            "label": "CAUSE",
+                                            "value": "→ Present Participle"
+                                        },
+                                        {
+                                            "label": "RECEIVER",
+                                            "value": "→ Past Participle"
+                                        },
+                                        {
+                                            "label": "EXAMPLES",
+                                            "value": "→ INTERESTED, EXCITED, SURPRISED"
+                                        }
                                     ],
-                                    "tujuan": "TUJUAN: MEMAHAMI PAST PARTICIPLE"
+                                    "note": "TUJUAN: MEMAHAMI PAST PARTICIPLE"
                                 }
                             ]
                         },
                         {
-                            "type": "Table",
                             "title": "COMPARISON: ACTIVE CAUSE VS PASSIVE FEELING",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "PRESENT PARTICIPLE (-ING)",
-                                        "PAST PARTICIPLE (-ED/V3)"
+                            "explain": {
+                                "header": [
+                                    "PRESENT PARTICIPLE (-ING)",
+                                    "PAST PARTICIPLE (-ED/V3)"
+                                ],
+                                "data": [
+                                    [
+                                        "\"The movie was <b>boring</b>.\"",
+                                        "\"I am <b>bored</b>.\""
                                     ],
-                                    "data": [
-                                        [
-                                            "\"The movie was boring.\"",
-                                            "\"I am bored.\""
-                                        ],
-                                        [
-                                            "\"The news was exciting.\"",
-                                            "\"She was excited.\""
-                                        ],
-                                        [
-                                            "\"The result was surprising.\"",
-                                            "\"They were surprised.\""
-                                        ]
+                                    [
+                                        "\"The news was <b>exciting</b>.\"",
+                                        "\"She was <b>excited</b>.\""
+                                    ],
+                                    [
+                                        "\"The result was <b>surprising</b>.\"",
+                                        "\"They were <b>surprised</b>.\""
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
-                            "type": "Application Examples",
                             "title": "Contoh Penerapan 💡",
-                            "explain": [
+                            "text_block": "The Movie was very ________.",
+                            "questions": [
                                 {
-                                    "text_block": "The Movie was very ________.",
                                     "options": [
-                                        "A. Interested",
-                                        "B. Interesting",
-                                        "C. Interest"
+                                        "Interested",
+                                        "Interesting",
+                                        "Interest",
+                                        "To Interest"
                                     ],
-                                    "clue": "Gunakan STRATEGY : \"Ask yourself\" : Who causes the feeling? If the subject causes the feeling, use Present Participle."
+                                    "correct_index": 1
                                 }
-                            ]
+                            ],
+                            "clue": "<span>Gunakan STRATEGY:</span>  <b>\"Ask yourself\":</b> Who causes the feeling? If the subject causes the feeling, use <b>Present Participle.</b>"
                         },
                         {
                             "type": "Toefl Tips",
-                            "title": "💡 TIPS TOEFL LISTENING",
+                            "title": "💡 TIPS TOEFL",
                             "explain": [
                                 "Identify the subject",
                                 "Decide whether it causes or receives the action"
@@ -2069,8 +2075,6 @@
                     "description": "Pelajari aturan penggunaan Past Participle (Verb 3) setelah auxiliary verbs 'have', 'has', atau 'had' untuk membentuk perfect tenses.",
                     "content": [
                         {
-                            "type": "First Explain",
-                            "title": "VERB 3 ✦",
                             "explain": [
                                 {
                                     "title": "Main Rule",
@@ -2094,21 +2098,23 @@
                         {
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 💡",
-                            "explain": [
+                            "text_block": "She has ________ The Report.",
+                            "questions": [
                                 {
-                                    "text_block": "She has ________ The Report.",
                                     "options": [
-                                        "A. Write",
-                                        "B. Wrote",
-                                        "C. Written"
+                                        "Write",
+                                        "Wrote",
+                                        "Written",
+                                        "To Write"
                                     ],
-                                    "clue": "Kalimat menggunakan Present Perfect, sehingga setelah 'has' wajib menggunakan Verb 3."
+                                    "correct_index": 2
                                 }
-                            ]
+                            ],
+                            "clue": "Kalimat menggunakan Present Perfect, sehingga setelah 'has' wajib menggunakan Verb 3."
                         },
                         {
                             "type": "Toefl Tips",
-                            "title": "💡 TIPS TOEFL LISTENING",
+                            "title": "💡 TIPS TOEFL",
                             "explain": [
                                 "Find HAVE, HAS, or HAD.",
                                 "Check whether the next verb is Verb 3."
@@ -2123,7 +2129,6 @@
                     "description": "Explain how adjectives after BE can use either Present Participle or Past Participle depending on meaning.",
                     "content": [
                         {
-                            "type": "First Explain",
                             "explain": [
                                 {
                                     "title": "Present Participle",
@@ -2148,7 +2153,6 @@
                             ]
                         },
                         {
-                            "type": "Table",
                             "title": "TO BE",
                             "explain": [
                                 {
@@ -2196,21 +2200,23 @@
                         {
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 💡",
-                            "explain": [
+                            "text_block": "Listen! The Instructor is _____ the Gym rules to the new members.",
+                            "questions": [
                                 {
-                                    "text_block": "Listen! The Instructor is _____ the Gym rules to the new members.",
                                     "options": [
-                                        "A. Explain",
-                                        "B. Explaining",
-                                        "C. Explained"
+                                        "Explain",
+                                        "Explaining",
+                                        "Explained",
+                                        "To Explain"
                                     ],
-                                    "clue": "Kalimat bermakna aktif, menunjukkan tindakan yang sedang berlangsung setelah subjek instruktur."
+                                    "correct_index": 2
                                 }
-                            ]
+                            ],
+                            "clue": "Kalimat bermakna aktif, menunjukkan tindakan yang sedang berlangsung setelah subjek instruktur."
                         },
                         {
                             "type": "Toefl Tips",
-                            "title": "💡 TIPS TOEFL LISTENING",
+                            "title": "💡 TIPS TOEFL",
                             "explain": [
                                 "Identify who experiences the feeling",
                                 "Are they causer or receiver?"
@@ -2225,8 +2231,6 @@
                     "description": "Model verbs are essential in English communication. One of the most important rules to remember is that modal verbs are always followed by the base form of a verb.",
                     "content": [
                         {
-                            "type": "First Explain",
-                            "title": "MODALS ✦",
                             "explain": [
                                 {
                                     "title": "Modals",
@@ -2235,7 +2239,7 @@
                                 },
                                 {
                                     "title": "Formula",
-                                    "definition": "Subject + Modals + Base Form",
+                                    "definition": "Formula:\nSubject + Modals + Base Form",
                                     "examples": [
                                         "She can swim well",
                                         "They must study tonight",
@@ -2262,20 +2266,21 @@
                         {
                             "type": "Application Examples",
                             "title": "Contoh Penerapan 💡",
-                            "explain": [
+                            "text_block": "She can speak English fluently in front of many people.",
+                            "questions": [
                                 {
-                                    "text_block": "She can speak English fluently in front of many people.",
                                     "options": [
-                                        "A. True",
-                                        "B. False"
+                                        "True",
+                                        "False"
                                     ],
-                                    "clue": "Meskipun subjeknya adalah She (orang ketiga tunggal), kata kerjanya tidak boleh ditulis menjadi speaks karena berada langsung setelah modal can."
+                                    "correct_index": 0
                                 }
-                            ]
+                            ],
+                            "clue": "Meskipun subjeknya adalah She (orang ketiga tunggal), kata kerjanya tidak boleh ditulis menjadi speaks karena berada langsung setelah modal can."
                         },
                         {
                             "type": "Toefl Tips",
-                            "title": "💡 TIPS TOEFL LISTENING",
+                            "title": "💡 TIPS TOEFL",
                             "explain": [
                                 "Identify the helping verb expressing possibility or obligation.",
                                 "Verify the next word is in its base form (no -s or -ed)."

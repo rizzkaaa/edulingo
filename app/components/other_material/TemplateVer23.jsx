@@ -1,13 +1,10 @@
 import styles from "./TemplateVer23.module.css";
-import BorderLeftBox from "../BorderLeftBox";
 import {
   LuMessageCircleQuestion,
   LuNotebookText,
   LuLightbulb,
 } from "react-icons/lu";
 import SmallShadowBorder from "../SmallShadowBorder";
-import BoxList from "../BoxList";
-import ColorBorderShadow from "../ColorBorderShadow";
 import LabelValueMaterial from "../LabelValueMaterial";
 
 export default function TemplateVer23({ material }) {

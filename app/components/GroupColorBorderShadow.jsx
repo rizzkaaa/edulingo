@@ -6,7 +6,11 @@ import SmallShadowBorder from "./SmallShadowBorder";
 import ListSentence from "./ListSentences";
 import LabelValueMaterial from "./LabelValueMaterial";
 
-export function GroupColorBorderShadow({ materials, version }) {
+export function GroupColorBorderShadow({
+  materials,
+  version,
+  style = { display: "grid", gridTemplateColumns: "1fr 1fr" },
+}) {
   const colors = ["#2D7A5E", "#C5502A", "#D9A126"];
 
   return (
@@ -28,7 +32,7 @@ export function GroupColorBorderShadow({ materials, version }) {
             content = <Ver3 material={material} color={color} />;
             break;
           case 4:
-            content = <Ver4 material={material} color={color} />;
+            content = <Ver4 material={material} color={color} style={style} />;
             break;
           default:
             content = null;
@@ -159,7 +163,7 @@ function Ver3({ material, color }) {
   );
 }
 
-function Ver4({ material, color }) {
+function Ver4({ material, color, style }) {
   const colors = {
     "#2D7A5E": {
       backgroundColor: "#E8F4EF",
@@ -181,26 +185,26 @@ function Ver4({ material, color }) {
         <h1 style={{ color: color }}>{material.title}</h1>
         <span></span>
         <p>{material.definition}</p>
+        {material.explain ? (
+          Array.isArray(material.explain) ? (
+            <div style={{ marginBlock: "15px" }}>
+              <ListSentence material={material.explain} bgColor={color} />
+            </div>
+          ) : (
+            <>
+              {material.explain.content.map((item, i) => (
+                <div style={{ marginBottom: "10px" }} key={i}>
+                  <p>{item.title}</p>
+                  <ListSentence material={item.lists} bgColor={color} />
+                </div>
+              ))}
+            </>
+          )
+        ) : null}
       </div>
-      {material.explain ? (
-        Array.isArray(material.explain) ? (
-          <div style={{ marginBlock: "15px" }}>
-            <ListSentence material={material.explain} bgColor={color} />
-          </div>
-        ) : (
-          <>
-            {material.explain.content.map((item, i) => (
-              <div style={{ marginBottom: "10px" }} key={i}>
-                <p>{item.title}</p>
-                <ListSentence material={item.lists} bgColor={color} />
-              </div>
-            ))}
-          </>
-        )
-      ) : null}
 
       {material.example ? (
-        <div className={styles.labelValueGroup}>
+        <div className={styles.labelValueGroup} style={style}>
           <LabelValueMaterial materials={material.example} />
         </div>
       ) : null}
