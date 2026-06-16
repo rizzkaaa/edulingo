@@ -2,7 +2,6 @@
 import styles from "./MultipleChoice.module.css";
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import SmallShadowBorder from "./SmallShadowBorder";
 import { MdGraphicEq } from "react-icons/md";
 import { LuPlay, LuPause, LuRotateCcw } from "react-icons/lu";
 import Alert from "./Alert";
@@ -84,7 +83,6 @@ function AudioPlayer({ src }) {
     if (!isNaN(audio.duration)) {
       setDuration(audio.duration);
     }
-    console.log(duration);
 
     audio.addEventListener("timeupdate", updateTime);
     audio.addEventListener("loadedmetadata", loaded);
@@ -192,7 +190,6 @@ export function WithAudio({ material }) {
 }
 
 export function WithText({ material }) {
-  console.log(material);
   
   return (
     <MultipleChoice material={material}>
