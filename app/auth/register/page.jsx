@@ -25,6 +25,8 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [isLoading, setIsLoading]= useState(false);
+
   // State alert
   const [alertConfig, setAlertConfig] = useState({
     show: false,
@@ -49,10 +51,19 @@ export default function RegisterPage() {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
+    if (!emailRegex.test(email)) {
+      showAlert("Format email tidak valid! Pastikan menyertakan domain lengkap (misal: xxxx@email.com)");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Password dan konfirmasi Password tidak cocok!");
       return;
     }
+
+    // edit load
+    setIsLoading(true);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -65,7 +76,7 @@ export default function RegisterPage() {
         createdAt: new Date(),
       });
 
-      // Tampilkan alert sukses, klik Oke → pindah ke login
+      // Tampilkan alert sukses, klik Oke pindah ke login
       showAlert(
         "Akun berhasil dibuat! Silahkan login menggunakan akun baru.",
         true,
@@ -83,6 +94,7 @@ export default function RegisterPage() {
       } else {
         showAlert("Gagal mendaftar. Silahkan lengkapi data terlebih dahulu.");
       }
+      setIsLoading(false);
     }
   };
 
@@ -114,6 +126,8 @@ export default function RegisterPage() {
           placeholder="Masukkan nama lengkap"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
+          // Edit load
+          disabled={isLoading}
         />
 
         <label>Username</label>
@@ -122,6 +136,8 @@ export default function RegisterPage() {
           placeholder="Masukkan username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          // Edit load
+          disabled={isLoading}
         />
 
         <label>Email</label>
@@ -130,6 +146,8 @@ export default function RegisterPage() {
           placeholder="nama@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          // Edit load
+          disabled={isLoading}
         />
 
         <label>Password</label>
@@ -139,11 +157,15 @@ export default function RegisterPage() {
             placeholder="Masukkan password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          // Edit load
+          disabled={isLoading}
           />
           <button
             type="button"
             className={styles.eyeBtn}
             onClick={() => setShowPassword(!showPassword)}
+          // Edit load
+          disabled={isLoading}
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
@@ -156,11 +178,15 @@ export default function RegisterPage() {
             placeholder="Ulangi password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+          // Edit load
+          disabled={isLoading}
           />
           <button
             type="button"
             className={styles.eyeBtn}
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            // Edit load
+            disabled={isLoading}
           >
             {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
@@ -179,11 +205,16 @@ export default function RegisterPage() {
         )}
 
         <motion.button
+          type="submit"
           className={styles.loginBtn}
+          // Edit load
+          disabled={isLoading}
+          style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.95 }}
         >
-          DAFTAR
+          {/* Edit load */}
+          {isLoading ? "MENDAFTAR..." : "DAFTAR"}
         </motion.button>
 
         <p className={styles.bottomText}>

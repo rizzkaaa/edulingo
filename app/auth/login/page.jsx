@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Alert from "../../components/Alert";
 
 // Backend Firebase
 import { auth } from "@/lib/firebase";
@@ -21,15 +22,43 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+ 
+  // Fungsi untuk Load login
+  const [isLoading, setIsLoading] = useState(false);
+
+  // === STATE ALERT ===
+  const [alertConfig, setAlertConfig] = useState({
+    show: false,
+    text: "",
+    isAlert: true,
+    onOke: () => {},
+  });
+
+  function showAlert(text, isAlert = true, onOke = () => {}) {
+    setAlertConfig({ show: true, text, isAlert, onOke });
+  }
+
+  function closeAlert() {
+    setAlertConfig(prev => ({ ...prev, show: false }));
+  }
 
   // Fungsi Login email & Password
   const handleEmailLogin = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Gagal Masuk: Email dan Password wajib diisi!");
+const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
+    if (!emailRegex.test(email)) {
+      showAlert("Format email tidak valid! Pastikan menyertakan domain lengkap dengan akhiran .com");
       return;
     }
+
+    if (!email || !password) {
+      showAlert("Gagal Masuk: Email dan Password wajib diisi!");
+      return;
+    }
+
+    // Load
+    setIsLoading(true);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -45,18 +74,36 @@ export default function LoginPage() {
         errorCode === "auth/user-not-found" || 
         errorCode === "auth/wrong-password") {
 
-        alert("Email atau Password salah!");
+        showAlert("Email atau Password salah!");
 
       } else if (errorCode === "auth/too-many-requests") {
-        alert("Terlalu banyak percobaan gagal. Coba beberapa saat lagi.");
+        showAlert("Terlalu banyak percobaan gagal. Coba beberapa saat lagi.");
       } else {
-        alert (" Pastikan anda sudah memiliki akun");
+        showAlert(" Pastikan anda sudah memiliki akun");
       }
+
+      // edit load
+      setIsLoading(false);
       return;
     }
   };
 
+
   return (
+    <>
+      {/* === PERBAIKAN: Komponen Alert sekarang aman di dalam return === */}
+      {alertConfig.show && (
+        <Alert
+          isAlert={alertConfig.isAlert}
+          text={alertConfig.text}
+          handleClick={() => {
+            closeAlert();
+            alertConfig.onOke();
+          }}
+          handleCancel={closeAlert}
+        />
+      )}
+      {/* ============================================================ */}
     <motion.form
       className={styles.form}
       initial={{ opacity: 0, x: 50 }}
@@ -72,6 +119,8 @@ export default function LoginPage() {
       placeholder="nama@email.com"
       value={email} onChange={(e) => setEmail(e.target.value)}
       required
+      // edit load
+      disabled={isLoading}
       />
 
       <label>Password</label>
@@ -82,12 +131,16 @@ export default function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+         // edit load
+         disabled={isLoading}
         />
 
         <button
           type="button"
           className={styles.eyeBtn}
           onClick={() => setShowPassword(!showPassword)}
+          // edit load
+          disabled={isLoading}
         >
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
@@ -110,6 +163,9 @@ export default function LoginPage() {
       <motion.button
         type="submit"
         className={styles.loginBtn}
+        // edit load
+        disabled={isLoading}
+        style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}
         whileHover={{
           scale: 1.03,
         }}
@@ -117,7 +173,9 @@ export default function LoginPage() {
           scale: 0.95,
         }}
       >
-        MASUK
+      {/* edit Load*/}
+        {isLoading ? "MEMUAT..." : "MASUK"}
+        {/* ===*/}
       </motion.button>
 
       <div className={styles.divider}>
@@ -128,6 +186,9 @@ export default function LoginPage() {
 
       <motion.button
         className={styles.googleBtn}
+        // Edit Load
+        disabled={isLoading}
+        style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? "not-allowed" : "pointer" }}
         whileHover={{
           scale: 1.03,
         }}
@@ -145,5 +206,6 @@ export default function LoginPage() {
         </Link>
       </p>
     </motion.form>
+    </>
   );
 }

@@ -3,22 +3,84 @@
 import material from "@/data/material.json";
 import styles from "../layout.module.css";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";
 import LessonProgressBar from "@/app/components/LessonProgressBar";
 
+import { auth, db } from "@/lib/firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+
 export default function LessonLayout({ children }) {
-  const [sub_module_id, setSub_module_id] = useState(7);
-  const [currentModuleOpen, setCurrentModuleOpen] = useState(sub_module_id);
+  const [sub_module_id, setSub_module_id] = useState(1);
+  const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
+  
+
+  const [hasHydrated, setHasHydrated] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+
   const main_material = material.materials.find(
     (material) => material.part_id == 3,
   );
-  const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == currentModuleOpen,
-  );
   
   const length = main_material.sub_modules.length;
+useEffect(() => {
+    const initializeProgress = async () => {
+      // 1. Cek dulu status modul ini di Firestore via Firebase Auth
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        try {
+          const userDocRef = doc(db, "users", currentUser.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            // Asumsi: Modul Written Expression Part 1 berada di indeks 0
+            const currentStatus = userData.lessonStatus?.[0]?.status;
+
+            // 🟢 Jika di database sudah SELESAI, buka semua materi (set ke max length)
+            if (currentStatus === "done") {
+              setSub_module_id(length);
+              setCurrentModuleOpen(1); // Tetap buka halaman pertama sebagai default view
+              setHasHydrated(true);
+              return; // Keluar dari fungsi, tidak perlu baca localStorage lagi
+            }
+          }
+        } catch (error) {
+          console.error("Gagal mengambil data progress dari Firestore:", error);
+        }
+      }
+
+      // 2. Fallback ke localStorage jika modul belum selesai di database
+      const savedProgress = localStorage.getItem("written_part_1_sub_progress");
+      if (savedProgress) {
+        const parsedId = parseInt(savedProgress, 10);
+        setSub_module_id(parsedId);
+        setCurrentModuleOpen(parsedId);
+      } else {
+        setSub_module_id(1);
+        setCurrentModuleOpen(1);
+      }
+      setHasHydrated(true);
+    };
+
+    initializeProgress();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.currentUser]); // Pemicu berjalan setelah auth berhasil dimuat
+
+  const sub_material = main_material.sub_modules.find(
+    (material) => material.sub_module_id == currentModuleOpen,
+  ) || main_material.sub_modules[0];
+  
   const widthFill = (sub_module_id / length) * 100;
+
+
+  if (!hasHydrated) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", fontFamily: "sans-serif", color: "#A0A0A0", backgroundColor: "#FAFAFA" }}>
+        Memuat progress materi...
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -57,11 +119,14 @@ export default function LessonLayout({ children }) {
           currentId={sub_module_id}
           length={length}
           widthFill={widthFill}
-          isLock={currentModuleOpen == sub_module_id}
+          // 🟢 PERBAIKAN DI SINI: Mengunci gembok tombol jika materi selanjutnya belum berhak dibuka
+          isLock={sub_module_id < currentModuleOpen + 1}
           setCurrentModuleOpen={setCurrentModuleOpen}
           currentModuleOpen={currentModuleOpen}
           main_material={main_material}
           setSub_module_id={setSub_module_id}
+          isUpdating={isUpdating}
+          setIsUpdating={setIsUpdating}
         />
       </section>
     </div>
@@ -123,12 +188,14 @@ function BottomBar({
   currentModuleOpen,
   main_material,
   setSub_module_id,
+  isUpdating,
+  setIsUpdating,
 }) {
   const [shake, setShake] = useState(false);
   const router = useRouter();
 
   function prevModule() {
-    if (currentModuleOpen == 1) return;
+    if (currentModuleOpen == 1 || isUpdating) return;
     console.log(currentModuleOpen);
 
     const sub_material = main_material.sub_modules.find(
@@ -142,7 +209,7 @@ function BottomBar({
   }
 
   function nextModule() {
-    if (currentModuleOpen == length) return;
+    if (currentModuleOpen == length || isUpdating) return;
     if (currentId < currentModuleOpen + 1) {
       console.log(currentId, currentModuleOpen + 1);
 
@@ -161,6 +228,54 @@ function BottomBar({
       router.push(`/dashboard/lesson/written_expression_part_1/${nextPath}`);
     }
   }
+  async function handleCompleteClick() {
+    if (currentId + 1 != currentModuleOpen + 1 || isUpdating) return;
+
+    if (currentId < length) {
+      const nextProgress = currentId + 1;
+      setSub_module_id(nextProgress);
+      localStorage.setItem("written_part_1_sub_progress", nextProgress.toString());
+      return;
+    }
+
+
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+      alert("Sesi belajar telah berakhir, silakan login kembali.");
+      return;
+    }
+
+    try {
+      setIsUpdating(true);
+      const userDocRef = doc(db, "users", currentUser.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        let currentStatusList = userData.lessonStatus ? [...userData.lessonStatus] : [];
+
+        if (currentStatusList.length > 0) {
+
+          currentStatusList[0] = { ...currentStatusList[0], status: "done" };
+
+
+          if (currentStatusList[1] && currentStatusList[1].status === "locked") {
+            currentStatusList[1] = { ...currentStatusList[1], status: "progress" };
+          }
+
+          await updateDoc(userDocRef, { lessonStatus: currentStatusList });
+          localStorage.removeItem("written_part_1_sub_progress");
+          router.push("/dashboard/lesson");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi gangguan koneksi internet, kemajuan belajar gagal disimpan.");
+    } finally {
+      setIsUpdating(false);
+    }
+  }
+
   return (
     <div className={styles.bottomBar}>
       <div>
@@ -170,12 +285,12 @@ function BottomBar({
         <LessonProgressBar widthFill={widthFill} />
       </div>
       <div className={styles.navButton}>
-        <button onClick={() => prevModule()} disabled={currentModuleOpen == 1}>
+        <button onClick={() => prevModule()} disabled={currentModuleOpen == 1 || isUpdating}>
           ← SEBELUMNYA
         </button>
         <button
           onClick={() => nextModule()}
-          disabled={currentModuleOpen == length}
+          disabled={currentModuleOpen == length || isUpdating}
         >
           BERIKUTNYA{" "}
           {isLock ? (
@@ -190,14 +305,19 @@ function BottomBar({
         <span></span>
       </div>
       <button
-        onClick={() => {
-          if (currentId == length || currentId + 1 != currentModuleOpen + 1)
-            return;
-          setSub_module_id(currentId + 1);
+        onClick={handleCompleteClick}
+        disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating}
+        style={{
+          backgroundColor: isUpdating ? "#A0A0A0" : "",
+          cursor: isUpdating ? "not-allowed" : "pointer"
         }}
-        disabled={currentId + 1 != currentModuleOpen + 1}
       >
-        {currentId + 1 == currentModuleOpen + 1 ? "TANDAI" : ""} SELESAI ✓
+        {isUpdating 
+          ? "MENYIMPAN..." 
+          : currentId + 1 == currentModuleOpen + 1 
+            ? "TANDAI" 
+            : ""}{" "}
+        SELESAI ✓
       </button>
     </div>
   );
