@@ -1,0 +1,177 @@
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.topDecoration {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 94px;
+  height: 94px;
+  background: rgba(139, 107, 0, 0.1);
+  z-index: -1;
+}
+
+.bottomDecoration {
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(255, 210, 200, 0.5);
+  transform: rotate(10deg);
+  z-index: -1;
+}
+
+/* ===== HEADER ===== */
+.headerSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.headerSection h1 {
+  font-size: 42px;
+  font-weight: 900;
+  color: #1D1B18;
+}
+
+.line {
+  width: 463px;
+  height: 5px;
+  background: #A2391A;
+  margin-bottom: 8px;
+}
+
+.headerSection p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #57423C;
+}
+
+.headerRight {
+  display: flex;
+  gap: 18px;
+}
+
+.timerBox {
+  height: 50px;
+  padding: 0 12px;
+  border: 4px solid #1D1B18;
+  background: #F3C356;
+  box-shadow: 6px 6px 0 #1D1B18;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #6F5200;
+}
+
+.exitBtn {
+  height: 50px;
+  padding: 0 12px;
+  border: 4px solid #1D1B18;
+  background: #D91F1F;
+  box-shadow: 6px 6px 0 #1D1B18;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lineDivider {
+  width: 100%;
+  height: 5px;
+  background: #1D1B18;
+  margin-bottom: 24px;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progressSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 28px;
+  background: #fff;
+  border: 3px solid #1D1B18;
+}
+
+.progressFill {
+  height: 100%;
+  background: #B0411B;
+  transition: width 0.3s ease;
+}
+
+.progressLabel {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #57423C;
+  white-space: nowrap;
+}
+
+/* ===== QUESTION CONTAINER ===== */
+.questionContainer {
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+/* ===== NAVIGASI ===== */
+.bottomActions{
+  display:flex;
+  gap:20px;
+  margin-top:28px;
+  margin-bottom:40px;
+}
+
+.prevBtn,
+.nextBtn,
+.finishBtn{
+  flex:1;
+
+  height:65px;
+
+  border:4px solid #1D1B18;
+
+  box-shadow:6px 6px 0 #1D1B18;
+
+  font-size:14px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.prevBtn{
+  background:#ECE7E1;
+  color:#5A554E;
+}
+
+.prevBtn:disabled{
+  opacity:0.4;
+  cursor:not-allowed;
+}
+
+.nextBtn{
+  background:#B0411B;
+  color:#fff;
+}
+
+.finishBtn{
+  background:#2F8A64;
+  color:#fff;
+  letter-spacing:1px;
+}

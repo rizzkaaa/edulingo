@@ -1,0 +1,110 @@
+/* Dipakai oleh semua komponen soal */
+
+.wrapper {
+  width: 100%;
+  background: #F5F1EB;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== MEDIA SECTION (audio/gambar/teks) ===== */
+.mediaSection {
+  border:4px solid #1D1B18;
+  box-shadow:6px 6px 0 #1D1B18;
+  background: #F5F1EB;
+  padding: 28px 32px;
+  margin-bottom: 0;
+}
+
+/* ===== QUESTION SECTION ===== */
+.questionSection {
+  margin-top: 24px;
+  border:4px solid #1D1B18;
+  box-shadow:6px 6px 0 #1D1B18;
+  background: #fff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.questionLabel {
+  display: inline-block;
+  background: #B0411B;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.questionText {
+  font-size: 28px;
+  font-weight: 900;
+  color: #1D1B18;
+  line-height: 1.35;
+  margin-bottom: 32px;
+}
+
+/* ===== OPTIONS ===== */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 2px solid #1D1B18;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background 0.15s;
+}
+
+.option:hover {
+  background: #faf7f4;
+}
+
+.optionSelected {
+  background: #FADADD;
+  border: 2px solid #B0411B;
+}
+
+.radio {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #1D1B18;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radioSelected {
+  border-color: #B0411B;
+}
+
+.radioFill {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #B0411B;
+}
+
+.optionText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1D1B18;
+}
+
+.optionTextSelected {
+  font-weight: 800;
+  color: #1D1B18;
+}

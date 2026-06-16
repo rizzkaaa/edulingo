@@ -141,7 +141,7 @@ export default function DashboardPage() {
               Kamu telah menyelesaikan seluruh 7 materi TOEFL Preparation.
               Sekarang kamu siap menghadapi Simulasi 100 Soal.
             </p>
-            <Link href="/simulation" className={styles.buttonLink}>
+            <Link href="/simulation_rule" className={styles.buttonLink}>
               <button className={styles.simulationHeroBtn}>
                 MULAI SIMULASI 100 SOAL →
               </button>
@@ -242,7 +242,7 @@ export default function DashboardPage() {
           </p>
         </div>
         {allLessonsCompleted ? (
-          <Link href="/simulation" className={styles.buttonLink}>
+          <Link href="/simulation_rule" className={styles.buttonLink}>
             <div className={styles.startButton}>
               MULAI SIMULASI SEKARANG →
             </div>

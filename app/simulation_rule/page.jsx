@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function SimulationPage() {
-  redirect("/simulation/listening");
+  redirect("/simulation_rule/listening");
 }

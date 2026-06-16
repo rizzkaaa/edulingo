@@ -1,0 +1,30 @@
+.passageHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.passageIcon {
+  font-size: 18px;
+  color: #B0411B;
+}
+
+.passageLabel {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #B0411B;
+}
+
+.passageBorder {
+  border-left: 4px solid #8B6B00;
+  padding-left: 20px;
+}
+
+.passageText {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.9;
+  color: #2D241D;
+}

@@ -102,19 +102,6 @@
   color:#1D1B18;
 }
 
-.premiumBadge{
-  padding:8px 16px;
-
-  border:2px solid #1D1B18;
-
-  background:#E1AD01;
-
-  font-size:18px;
-  font-weight:600;
-
-  color:#594300;
-}
-
 .userInfo p{
   display:flex;
   align-items:center;

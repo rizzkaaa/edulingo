@@ -1,215 +1,228 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
+import Alert from "../../components/Alert";
+
+import { FaClock, FaFlag } from "react-icons/fa";
+
+import AudioQuestion from "../../components/question_type_component/audio_question";
+import BasicQuestion from "../../components/question_type_component/basic_question";
+import ImageQuestion from "../../components/question_type_component/image_question";
+import LongTextQuestion from "../../components/question_type_component/long_text_question";
+import TrueFalseQuestion from "../../components/question_type_component/true_false_question";
+
+const questionComponents = {
+  audio: AudioQuestion,
+  basic: BasicQuestion,
+  image: ImageQuestion,
+  long_text: LongTextQuestion,
+  true_false: TrueFalseQuestion,
+};
+
+const questions = [
+  {
+    type: "long_text",
+    passage: "Coral reefs are among the most diverse and biologically complex ecosystems on Earth. Often called the \"rainforests of the sea,\" they cover less than 1% of the ocean floor but support an estimated 25% of all marine species. Reefs are built by colonies of tiny animals called polyps, which secrete a hard calcium carbonate skeleton. Unfortunately, these vital ecosystems are currently facing severe threats from climate change, ocean acidification, and destructive fishing practices. Rising sea temperatures cause a phenomenon known as coral bleaching, where corals expel the symbiotic algae living in their tissues, turning them completely white and often leading to death.",
+    question: "According to the passage, what is the primary factor reshaping our understanding of language acquisition in the digital age?",
+    options: [
+      "A. The increased global distribution of physical textbooks",
+      "B. The integration of traditional methods with computational models",
+      "C. The complete elimination of curricula based on classical theories",
+      "D. A general decline in language learning interest among teenagers",
+    ],
+  },
+  {
+    type: "image",
+    imageUrl: "/question_assets/photo/sample_image.png",
+    question: "Based on the image, what can be inferred about the subject being presented?",
+    options: [
+      "A. It depicts an ancient manuscript from the medieval period",
+      "B. It shows a modern academic reference book",
+      "C. It illustrates a scientific journal from the 19th century",
+      "D. It represents a government policy document",
+    ],
+  },
+  {
+    type: "basic",
+    question: "According to the passage, which of the following best describes the author's tone?",
+    options: [
+      "A. Optimistic and encouraging",
+      "B. Critical and analytical",
+      "C. Neutral and informative",
+      "D. Pessimistic and discouraging",
+    ],
+  },
+  {
+    type: "true_false",
+    question: "The author implies that digital tools have completely replaced traditional learning methods.",
+  },
+  {
+    type: "basic",
+    question: "What does the word 'acquisition' most likely mean in the context of the passage?",
+    options: [
+      "A. The process of buying something",
+      "B. The act of gaining a skill or knowledge",
+      "C. A formal agreement between two parties",
+      "D. The removal of an existing system",
+    ],
+  },
+];
 
 export default function ReadingPage() {
-  const [agreed, setAgreed] = useState(false);
+  const router = useRouter();
+
+  const [current, setCurrent]         = useState(0);
+  const [answers, setAnswers]         = useState({});
+  const [flagged, setFlagged]         = useState({});
+  const [submitError, setSubmitError] = useState(false);
+  const [alertConfig, setAlertConfig] = useState({
+    show: false, text: "", isAlert: true, onOke: () => {},
+  });
+
+  const totalQuestions = questions.length;
+  const allAnswered = questions.every((_, i) => answers[i] !== undefined);
+
+  function showAlert(text, isAlert = true, onOke = () => {}) {
+    setAlertConfig({ show: true, text, isAlert, onOke });
+  }
+
+  function closeAlert() {
+    setAlertConfig(prev => ({ ...prev, show: false }));
+  }
+
+  function handleExit() {
+    showAlert(
+      "Yakin ingin keluar? Kamu harus memulai lagi dari awal.",
+      false,
+      () => router.back()
+    );
+  }
+
+  function handleSubmit() {
+    if (!allAnswered) {
+      setSubmitError(true);
+      const firstUnanswered = questions.findIndex((_, i) => answers[i] === undefined);
+      if (firstUnanswered !== -1) setCurrent(firstUnanswered);
+      return;
+    }
+    showAlert(
+      "Sudah yakin mau submit? Jawaban tidak bisa diubah setelah submit.",
+      false,
+      () => router.push("/simulation/result")
+    );
+  }
+
+  function handleFlag() {
+    setFlagged(prev => ({ ...prev, [current]: !prev[current] }));
+  }
+
+  function getQuestionClass(index) {
+    if (index === current)            return styles.activeQuestion;
+    if (flagged[index])               return styles.reviewQuestion;
+    if (answers[index] !== undefined) return styles.answeredQuestion;
+    return styles.unansweredQuestion;
+  }
+
+  const q = questions[current];
+  const QuestionComponent = questionComponents[q.type];
 
   return (
-    <>
-      {/* ===== HERO KUNING (ikut scroll) ===== */}
-      <section className={styles.heroSection}>
+    <div className={styles.container}>
 
-        <div className={styles.heroLeft}>
-          <div className={styles.topBadges}>
-            <div className={styles.orangeBadge}>SIMULASI TOEFL</div>
-            <div className={styles.whiteBadge}>100 SOAL</div>
-            <div className={styles.whiteBadge}>80 MENIT</div>
-          </div>
+      {alertConfig.show && (
+        <Alert
+          isAlert={alertConfig.isAlert}
+          text={alertConfig.text}
+          handleClick={() => { closeAlert(); alertConfig.onOke(); }}
+          handleCancel={closeAlert}
+        />
+      )}
 
-          <h1>Simulasi Penuh TOEFL</h1>
+      <div className={styles.topDecoration}></div>
+      <div className={styles.bottomDecoration}></div>
 
-          <div className={styles.wave}></div>
-
-          <p>
-            Uji seluruh kemampuan bahasa Inggrismu dalam satu sesi simulasi lengkap
-            mencakup Structure, Written Expression, Reading Strategies, Reading for
-            Details, dan Listening Comprehension sesuai format TOEFL.
-          </p>
-
-          <div className={styles.infoRow}>
-            <div className={styles.infoBox}>📝 100 Soal</div>
-            <div className={styles.infoBox}>⏱ 80 Menit</div>
-            <div className={styles.infoBox}>📚 3 Topik</div>
-            <div className={styles.infoBox}>📝 28 Sub-Materi</div>
-          </div>
-
-          <button className={styles.formatBtn}>✦ TOEFL Format</button>
+      <div className={styles.headerSection}>
+        <div>
+          <h1>TOEFL Exam Simulation</h1>
+          <div className={styles.line}></div>
+          <p>Session: Reading</p>
         </div>
-
-        <div className={styles.heroRight}>
-          <div className={styles.smallCard}>
-            <h1>3</h1>
-            <p>SESI</p>
-          </div>
-          <div className={styles.middleCard}>
-            <h1>28</h1>
-            <p>SUB-MATERI</p>
-          </div>
-          <div className={styles.bigCard}>
-            <h1>100</h1>
-            <p>SOAL TOTAL</p>
-          </div>
+        <div className={styles.headerRight}>
+          <div className={styles.timerBox}><FaClock />40:00</div>
+          <button className={styles.exitBtn} onClick={handleExit}>EXIT SESSION</button>
         </div>
-
-        <div className={styles.sparkle1}>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="currentColor"/>
-          </svg>
-        </div>
-        <div className={styles.sparkle2}>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="currentColor"/>
-          </svg>
-        </div>
-        <div className={styles.sparkle3}>
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="currentColor"/>
-          </svg>
-        </div>
-      </section>
-
-      {/* ===== KONTEN BAWAH (Aturan + Materi) ===== */}
-      <div className={styles.contentWrapper}>
-
-        <div className={styles.leftColumn}>
-          <div className={styles.rulesCard}>
-            <div className={styles.rulesHeader}>
-              <h2>⚠ Aturan Simulasi</h2>
-              <span className={styles.wajibBadge}>WAJIB DIBACA</span>
-            </div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleNumber}>01</span>
-              <div>
-                <h3>Waktu 80 Menit</h3>
-                <p>Timer berjalan otomatis saat Mulai ditekan.</p>
-              </div>
-            </div>
-            <div className={styles.divider}></div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleNumber}>02</span>
-              <div>
-                <h3>Tidak Bisa Kembali</h3>
-                <p>Jawaban tidak dapat diubah setelah lanjut ke soal berikutnya.</p>
-              </div>
-            </div>
-            <div className={styles.divider}></div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleNumber}>03</span>
-              <div>
-                <h3>Urutan Topik Tetap</h3>
-                <p>7 topik dikerjakan berurutan dan tidak bisa dilewati.</p>
-              </div>
-            </div>
-            <div className={styles.divider}></div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleNumber}>04</span>
-              <div>
-                <h3>Semua Soal Wajib Dijawab</h3>
-                <p>Soal yang dilewati dianggap salah dan mengurangi skor.</p>
-              </div>
-            </div>
-            <div className={styles.divider}></div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleNumber}>05</span>
-              <div>
-                <h3>Tanpa Referensi Eksternal</h3>
-                <p>Dilarang menggunakan kamus atau catatan apapun selama simulasi.</p>
-              </div>
-            </div>
-            <div className={styles.divider}></div>
-
-            <div className={styles.ruleItem}>
-              <span className={styles.ruleNumber}>06</span>
-              <div>
-                <h3>Hasil Otomatis</h3>
-                <p>Skor dan pembahasan lengkap tersedia setelah simulasi selesai.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.beforeStartCard}>
-            <h3>Sebelum Mulai:</h3>
-
-            {/* Checkbox 1 - dikunci, selalu tercentang */}
-            <label className={styles.checkLine}>
-              <input type="checkbox" checked readOnly />
-              <span>Punya waktu 40 menit penuh tanpa gangguan.</span>
-            </label>
-            <div className={styles.divider}></div>
-
-            {/* Checkbox 2 - dikunci, selalu tercentang */}
-            <label className={styles.checkLine}>
-              <input type="checkbox" checked readOnly />
-              <span>Koneksi internet stabil dan perangkat siap digunakan.</span>
-            </label>
-
-            <div className={styles.confirmBox}>
-              {/* Checkbox 3 - ngontrol tombol */}
-              <label className={styles.checkLine}>
-                <input
-                  type="checkbox"
-                  checked={agreed}
-                  onChange={(e) => setAgreed(e.target.checked)}
-                />
-                <span>
-                  Saya sudah membaca dan memahami seluruh aturan simulasi di atas.
-                </span>
-              </label>
-
-              <button
-                className={`${styles.startBtn} ${agreed ? styles.startBtnActive : ""}`}
-                disabled={!agreed}
-              >
-                MULAI SIMULASI →
-              </button>
-
-              <p className={styles.hint}>
-                {agreed
-                  ? "Tombol aktif, klik untuk memulai simulasi"
-                  : "Centang pernyataan di atas untuk melanjutkan"}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.rightColumn}>
-          <div className={styles.materiHeader}>
-            <h2>📚 Materi yang Diujikan</h2>
-            <span className={styles.summaryBadge}>3 Sesi · 28 Sub-Materi · 100 Soal</span>
-          </div>
-
-          <div className={styles.materiCard}>
-            <div className={`${styles.materiCardHeader} ${styles.red}`}>
-              <span>READING</span>
-              <div className={styles.badges}>
-                <span className={styles.badge}>40 Menit</span>
-                <span className={styles.badge}>~40 Soal</span>
-              </div>
-            </div>
-
-            <div className={styles.materiBody}>
-              <div className={styles.materiItem}>🔲 Reading Strategis</div>
-              <div className={styles.materiItem}>🔲 Reading For Details</div>
-            </div>
-          </div>
-
-          <div className={`${styles.totalBar} ${styles.red}`}>
-            <div><h3>Total Keseluruhan</h3></div>
-            <span className={styles.totalBadge}>3 Sesi</span>
-            <span className={styles.totalBadge}>28 Sub-Materi</span>
-            <span className={styles.totalBadge}>100 Soal</span>
-            <span className={styles.totalText}>Semua materi siap diujikan ✓</span>
-          </div>
-        </div>
-
       </div>
-    </>
+
+      <div className={styles.lineDivider}></div>
+
+      <div className={styles.contentLayout}>
+        <div className={styles.leftSection}>
+          <div className={styles.questionContainer}>
+            <QuestionComponent
+              {...q}
+              questionNumber={current + 1}
+              totalQuestions={totalQuestions}
+              selectedAnswer={answers[current]}
+              onAnswer={(val) => {
+                setAnswers(prev => ({ ...prev, [current]: val }));
+                setSubmitError(false);
+              }}
+            />
+          </div>
+
+          <div className={styles.bottomActions}>
+            <button className={styles.prevBtn} onClick={() => setCurrent(prev => Math.max(0, prev - 1))} disabled={current === 0}>← PREVIOUS</button>
+            <button className={`${styles.reviewBtn} ${flagged[current] ? styles.reviewBtnActive : ""}`} onClick={handleFlag}>
+              <FaFlag />{flagged[current] ? "FLAGGED" : "MARK FOR REVIEW"}
+            </button>
+            <button className={styles.nextBtn} onClick={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))} disabled={current === totalQuestions - 1}>NEXT QUESTION →</button>
+          </div>
+        </div>
+
+        <div className={styles.rightSection}>
+          <div className={styles.questionPanel}>
+            <div className={styles.questionPanelHeader}>
+              <h2>Question<br />Panel</h2>
+              <span>{current + 1} /<br />{totalQuestions}</span>
+            </div>
+            <div className={styles.lineDivider}></div>
+            <div className={styles.questionGrid}>
+              {questions.map((_, index) => (
+                <div key={index} className={getQuestionClass(index)} onClick={() => setCurrent(index)} style={{ cursor: "pointer" }}>
+                  {index + 1}
+                </div>
+              ))}
+            </div>
+            <div className={styles.legendBox}>
+              <div><span className={styles.legendAnswered}></span>Answered</div>
+              <div><span className={styles.legendReview}></span>Marked for Review</div>
+              <div><span className={styles.legendUnanswered}></span>Unanswered</div>
+            </div>
+          </div>
+
+          <div className={styles.submitBox}>
+            <p>Please review all your answers before finishing the examination.</p>
+            {submitError && (
+              <p className={styles.submitError}>⚠ Jawab semua soal terlebih dahulu sebelum submit!</p>
+            )}
+            <button
+              className={`${styles.submitBtn} ${!allAnswered ? styles.submitBtnDisabled : ""}`}
+              onClick={handleSubmit}
+            >
+              SUBMIT EXAM
+            </button>
+          </div>
+
+          <div className={styles.decorShapes}>
+            <div className={styles.circle}></div>
+            <div className={styles.square}></div>
+            <div className={styles.diamond}></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   );
 }

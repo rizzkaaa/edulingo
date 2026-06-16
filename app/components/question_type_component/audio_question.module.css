@@ -1,0 +1,94 @@
+.audioHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.audioIcon {
+  width: 64px;
+  height: 64px;
+  background: #F3C356;
+  border: 3px solid #1D1B18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #6F5200;
+  flex-shrink: 0;
+}
+
+.audioTitle {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1D1B18;
+  margin-bottom: 4px;
+}
+
+.audioSub {
+  font-size: 14px;
+  color: #57423C;
+}
+
+.audioPlayer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 2px solid #1D1B18;
+  padding: 16px 20px;
+}
+
+.playBtn {
+  width: 48px;
+  height: 48px;
+  background: #B0411B;
+  border: 3px solid #1D1B18;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.progressWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressTrack {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: #D9D0C7;
+}
+
+.progressFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #B0411B;
+}
+
+.progressThumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border: 2px solid #1D1B18;
+}
+
+.progressTimes {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: #57423C;
+}
