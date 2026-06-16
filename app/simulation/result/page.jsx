@@ -7,6 +7,7 @@ import Image from "next/image";
 import {
   FaCheckCircle,
   FaTimesCircle,
+  FaEye,
   FaClock,
   FaBolt,
   FaExclamationCircle,
@@ -14,8 +15,6 @@ import {
   FaBook,
   FaPen,
 } from "react-icons/fa";
-
-import { IoArrowBack } from "react-icons/io5";
 
 export default function ResultPage() {
   const router = useRouter();
@@ -190,10 +189,10 @@ export default function ResultPage() {
         <div className={styles.reviewSection}>
           <button
             className={styles.reviewBtn}
-            onClick={() => router.push("/dashboard")}
+            onClick={() => router.push("/dashboard/history")}
           >
-            <IoArrowBack className={styles.reviewIcon} />
-            <span>BACK TO DASHBOARD</span>
+            <FaEye className={styles.reviewIcon} />
+            <span>CHECK YOUR HISTORY</span>
           </button>
         </div>
 

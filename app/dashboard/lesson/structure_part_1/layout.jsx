@@ -129,13 +129,11 @@ function BottomBar({
 
   function prevModule() {
     if (currentModuleOpen == 1) return;
-    console.log(currentModuleOpen);
 
     const sub_material = main_material.sub_modules.find(
       (material) => material.sub_module_id == currentModuleOpen - 1,
     );
     const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_");
-    console.log(nextPath);
 
     setCurrentModuleOpen(currentModuleOpen - 1);
     router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
@@ -144,18 +142,14 @@ function BottomBar({
   function nextModule() {
     if (currentModuleOpen == length) return;
     if (currentId < currentModuleOpen + 1) {
-      console.log(currentId, currentModuleOpen + 1);
 
-      console.log(1);
       setShake(true);
       setTimeout(() => setShake(false), 900);
     } else {
-      console.log(2);
       const sub_material = main_material.sub_modules.find(
         (material) => material.sub_module_id == currentModuleOpen + 1,
       );
       const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_");
-      console.log(nextPath);
 
       setCurrentModuleOpen(currentModuleOpen + 1);
       router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);

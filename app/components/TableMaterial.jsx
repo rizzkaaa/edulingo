@@ -1,8 +1,6 @@
 import styles from "./TableMaterial.module.css";
 
 export default function TableMaterial({ material, styleHeader, styleData }) {
-  console.log(material);
-
   return (
     <div className={styles.container}>
       <h3>{material.title}</h3>

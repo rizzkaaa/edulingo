@@ -1,3 +1,4 @@
+import styles from "./true_false_question.module.css";
 import shared from "./shared.module.css";
 
 export default function TrueFalseQuestion({ questionNumber, totalQuestions, question, onAnswer, selectedAnswer }) {
@@ -8,7 +9,7 @@ export default function TrueFalseQuestion({ questionNumber, totalQuestions, ques
 
   return (
     <div className={shared.wrapper}>
-      <div className={shared.questionSection}>
+      <div className={styles.questionSection}>
         <span className={shared.questionLabel}>
           QUESTION {questionNumber} OF {totalQuestions}
         </span>

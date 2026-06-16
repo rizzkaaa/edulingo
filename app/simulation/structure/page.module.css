@@ -1,6 +1,9 @@
 .container{
   width:100%;
-  padding: 24px 48px;
+  min-height:100vh;
+
+  padding:140px 48px 24px;
+
   position:relative;
   overflow:hidden;
 }
@@ -34,10 +37,24 @@
 }
 
 .headerSection{
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
-  margin-bottom:24px;
+
+  padding:12px 48px;
+
+  background:#F6F1EB;
+
+  z-index:999;
+
+  border-bottom:5px solid #1D1B18;
 }
 
 .headerSection h1{
@@ -102,15 +119,6 @@
   cursor:pointer;
 }
 
-.lineDivider{
-  width:100%;
-  height:5px;
-
-  background:#1D1B18;
-
-  margin-bottom:24px;
-}
-
 .contentLayout{
   display:flex;
   gap:40px;
@@ -122,24 +130,7 @@
 }
 
 .questionContainer{
-  padding:25px;
-}
-
-.yellowPlaceholder{
-  width:100%;
-  height:420px;
-
-  border:4px dashed #1D1B18;
-
-  background:rgba(255,255,255,.3);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:32px;
-  font-weight:900;
-  color:#8B6B00;
+  padding:0px 25px;
 }
 
 .bottomActions{
@@ -187,6 +178,8 @@
   display:flex;
   flex-direction:column;
   gap:30px;
+
+  position:sticky;
 }
 
 .questionPanel{
@@ -379,30 +372,30 @@
   transform:rotate(45deg);
 }
 
-.answeredQuestion {
-  border: 4px solid #1D1B18;
-  background: #B0411B;
-  color: #fff;
+.answeredQuestion{
+  border:4px solid #1D1B18;
+  background:#B0411B;
+  color:#fff;
 }
 
-.reviewBtnActive {
-  background: #E8A33D;
-  color: #1D1B18;
+.reviewBtnActive{
+  background:#E8A33D;
+  color:#1D1B18;
 }
 
-.submitBtnDisabled {
-  background: #7A6A65;
-  cursor: not-allowed;
-  opacity: 0.6;
+.submitBtnDisabled{
+  background:#7A6A65;
+  cursor:not-allowed;
+  opacity:.6;
 }
 
-.submitError {
-  background: #fff3cd;
-  border: 2px solid #1D1B18;
-  color: #7A1F1F;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 10px 14px;
-  margin-bottom: 16px;
-  text-align: center;
+.submitError{
+  background:#fff3cd;
+  border:2px solid #1D1B18;
+  color:#7A1F1F;
+  font-size:13px;
+  font-weight:700;
+  padding:10px 14px;
+  margin-bottom:16px;
+  text-align:center;
 }

@@ -1,16 +1,17 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import styles from "./audio_question.module.css";
 import shared from "./shared.module.css";
 import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa";
 
 export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc, question, options, onAnswer, selectedAnswer }) {
   const audioRef = useRef(null);
-  const [playing, setPlaying]       = useState(false);
-  const [progress, setProgress]     = useState(0);   // 0-100
+  const [playing, setPlaying]         = useState(false);
+  const [progress, setProgress]       = useState(0);
   const [currentTime, setCurrentTime] = useState("0:00");
-  const [duration, setDuration]     = useState("0:00");
+  const [duration, setDuration]       = useState("0:00");
+  const [ended, setEnded]             = useState(false); // ← state baru
 
   function formatTime(sec) {
     const m = Math.floor(sec / 60);
@@ -19,6 +20,7 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
   }
 
   function handlePlayPause() {
+    if (ended) return; // gak bisa diplay lagi kalau sudah selesai
     const audio = audioRef.current;
     if (!audio) return;
     if (playing) {
@@ -45,12 +47,11 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
 
   function handleEnded() {
     setPlaying(false);
-    setProgress(0);
-    setCurrentTime("0:00");
-    if (audioRef.current) audioRef.current.currentTime = 0;
+    setEnded(true); // ← audio selesai, kunci tombol
   }
 
   function handleProgressClick(e) {
+    if (ended) return; // gak bisa skip kalau sudah selesai
     const audio = audioRef.current;
     if (!audio) return;
     const rect = e.currentTarget.getBoundingClientRect();
@@ -62,7 +63,6 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
   return (
     <div className={shared.wrapper}>
 
-      {/* Audio element tersembunyi */}
       <audio
         ref={audioRef}
         src={audioSrc}
@@ -80,13 +80,24 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
           </div>
           <div>
             <h3 className={styles.audioTitle}>Listen to the Audio</h3>
-            <p className={styles.audioSub}>Press the play button to listen to the conversation.</p>
+            {/* ← keterangan berubah sesuai state */}
+            <p className={styles.audioSub}>
+            {ended
+              ? "The audio has finished playing and cannot be replayed."
+              : "Listen carefully to the audio. The audio can only be played once."
+            }
+            </p>
           </div>
         </div>
 
         <div className={styles.audioPlayer}>
 
-          <button className={styles.playBtn} onClick={handlePlayPause}>
+          {/* Tombol play — abu-abu dan disabled kalau ended */}
+          <button
+            className={`${styles.playBtn} ${ended ? styles.playBtnDisabled : ""}`}
+            onClick={handlePlayPause}
+            disabled={ended}
+          >
             {playing ? <FaPause /> : <FaPlay />}
           </button>
 
@@ -94,6 +105,7 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
             <div
               className={styles.progressTrack}
               onClick={handleProgressClick}
+              style={{ cursor: ended ? "not-allowed" : "pointer" }}
             >
               <div
                 className={styles.progressFill}
@@ -128,9 +140,9 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
               key={i}
               className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
               onClick={() => {
-                if(selectedAnswer === i){
+                if (selectedAnswer === i) {
                   onAnswer(undefined);
-                }else{
+                } else {
                   onAnswer(i);
                 }
               }}

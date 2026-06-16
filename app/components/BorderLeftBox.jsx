@@ -13,7 +13,6 @@ export default function BorderLeftBox({
   backgroundColor,
   style
 }) {
-    console.log(className);
     
   return (
     <div
