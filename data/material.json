@@ -3,6 +3,7 @@
         {
             "part_id": 1,
             "part_title": "Structure Part 1",
+            "desc": "Pronouns, possessives, adjective dan adverb",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -732,6 +733,7 @@
         {
             "part_id": 2,
             "part_title": "Structure Part 2",
+            "desc": "Clause connectors dalam berbagai bentuk kalimat",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -1208,6 +1210,7 @@
         {
             "part_id": 3,
             "part_title": "Written Expression Part 1",
+            "desc": "Agreement dan parallel structure",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -1981,6 +1984,7 @@
         {
             "part_id": 4,
             "part_title": "Written Expression Part 2",
+            "desc": "Participle dan penggunaan verb yang tepat",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -2312,6 +2316,7 @@
         {
             "part_id": 5,
             "part_title": "Reading Strategies",
+            "desc": "Strategi memahami kosakata dalam bacaan",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -2490,6 +2495,7 @@
         {
             "part_id": 6,
             "part_title": "Reading For Details",
+            "desc": "Memahami informasi utama dan detail dalam teks",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
@@ -2933,6 +2939,7 @@
         {
             "part_id": 7,
             "part_title": "Listening Comprehension",
+            "desc": "Melatih pemahaman percakapan dan monolog bahasa Inggris",
             "sub_modules": [
                 {
                     "sub_module_id": 1,
