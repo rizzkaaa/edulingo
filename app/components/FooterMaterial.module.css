@@ -26,6 +26,7 @@
 .container h1 {
   text-align: center;
   color: white;
+  width: 70%;
 }
 .container p {
   color: white;

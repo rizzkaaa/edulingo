@@ -6,14 +6,14 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import {TemplateVer21 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ComparisonTable from "@/app/components/ComparisonTable";
-import { WithAudio } from "@/app/components/MultipleChoice";
+import { WithText } from "@/app/components/MultipleChoice";
 
-export default function ListeningToShortConversation() {
+export default function PastParticipleAfterHave() {
   const main_material = material.materials.find(
-    (material) => material.part_id == 7,
+    (material) => material.part_id == 4,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == 1,
+    (material) => material.sub_module_id == 2,
   );
 
   const currentId = sub_material.sub_module_id;
@@ -32,11 +32,8 @@ export default function ListeningToShortConversation() {
         materials={sub_material.content[0].explain}
         version={4}
       />
-      <ComparisonTable material={sub_material.content[1]} />
-      <TemplateVer21 material={sub_material.content[2]} />
-      <WithAudio material={sub_material.content[3]} />
-      <WithAudio material={sub_material.content[4]} />
-      <ToeflTips material={sub_material.content[5]} />
+      <WithText material={sub_material.content[1]} />
+      <ToeflTips material={sub_material.content[2]} />
       <FooterMaterial
         color="#E8A838"
         title={sub_material.title}

@@ -193,7 +193,7 @@ function Ver4({ material, color, style }) {
           ) : (
             <>
               {material.explain.content.map((item, i) => (
-                <div style={{ marginBottom: "10px" }} key={i}>
+                <div style={{ marginBlock: "10px" }} key={i}>
                   <p>{item.title}</p>
                   <ListSentence material={item.lists} bgColor={color} />
                 </div>

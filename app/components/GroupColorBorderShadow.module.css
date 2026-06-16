@@ -80,6 +80,7 @@
 
 .tujuan,
 .container span+p{
+  white-space: pre-line;
   margin-top: 20px;
 }
 

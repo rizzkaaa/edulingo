@@ -8,7 +8,6 @@
 
 .container2 h3 + div {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
   margin-block: 20px;
 }

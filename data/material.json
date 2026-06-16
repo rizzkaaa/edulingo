@@ -2078,20 +2078,20 @@
                             "explain": [
                                 {
                                     "title": "Main Rule",
-                                    "definition": [
+                                    "explain": [
                                         "After have, has, or had, we always use the Past Participle (Verb 3).",
                                         "Formula: Subject + Have/Has/Had + Past Participle"
                                     ],
-                                    "tujuan": "TUJUAN : MEMAHAMI RUMUS VERB 3"
+                                    "note": "TUJUAN : MEMAHAMI RUMUS VERB 3"
                                 },
                                 {
                                     "title": "Examples",
-                                    "definition": [
+                                    "explain": [
                                         "I have finished my homework.",
                                         "She has written a letter.",
                                         "They had arrived before noon."
                                     ],
-                                    "tujuan": "TUJUAN : MENGUASAI PERFECT TENSE"
+                                    "note": "TUJUAN : MENGUASAI PERFECT TENSE"
                                 }
                             ]
                         },
@@ -2110,7 +2110,7 @@
                                     "correct_index": 2
                                 }
                             ],
-                            "clue": "Kalimat menggunakan Present Perfect, sehingga setelah 'has' wajib menggunakan Verb 3."
+                            "clue": "Kalimat menggunakan <b>Present Perfect</b>, sehingga setelah <b>\"has\"</b> wajib menggunakan <b>Verb 3</b>."
                         },
                         {
                             "type": "Toefl Tips",
@@ -2132,70 +2132,82 @@
                             "explain": [
                                 {
                                     "title": "Present Participle",
-                                    "definition": "Be + Verb-ing\nPresent participles are used in active sentences.",
-                                    "examples": [
-                                        "She is listing.",
-                                        "They are studying.",
-                                        "Father is washing the car."
-                                    ],
-                                    "tujuan": "TUJUAN: MEMAHAMI FORMULA PRESENT"
+                                    "definition": "Formula:\nBe + Verb-ing\nPresent participles are used in active sentences.",
+                                    "explain": {
+                                        "content": [
+                                            {
+                                                "title": "Example:",
+                                                "lists": [
+                                                    "She is listing.",
+                                                    "They are studying.",
+                                                    "Father is washing the car."
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "note": "TUJUAN: MEMAHAMI FORMULA PRESENT"
                                 },
                                 {
                                     "title": "Past Participle",
-                                    "definition": "Be + Verb-ed\n Present participles are used in passive sentences.",
-                                    "examples": [
-                                        "The car was washed.",
-                                        "The apples were eaten.",
-                                        "The room is cleaned."
-                                    ],
-                                    "tujuan": "TUJUAN: MEMAHAMI FORMULA PAST"
+                                    "definition": "Formula:\nBe + Verb-ed\n Present participles are used in passive sentences.",
+                                    "explain": {
+                                        "content": [
+                                            {
+                                                "title": "Example:",
+                                                "lists": [
+                                                    "The car was washed.",
+                                                    "The apples were eaten.",
+                                                    "The room is cleaned."
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "note": "TUJUAN: MEMAHAMI FORMULA PAST"
                                 }
                             ]
                         },
                         {
                             "title": "TO BE",
-                            "explain": [
-                                {
-                                    "header": [
-                                        "PRESENT PARTICIPLE",
-                                        "PAST PARTICIPLE"
+                            "explain": {
+                                "header": [
+                                    "PRESENT PARTICIPLE",
+                                    "PAST PARTICIPLE"
+                                ],
+                                "data": [
+                                    [
+                                        "Am",
+                                        "Am"
                                     ],
-                                    "data": [
-                                        [
-                                            "Am",
-                                            "Am"
-                                        ],
-                                        [
-                                            "Is",
-                                            "Is"
-                                        ],
-                                        [
-                                            "Arc",
-                                            "Arc"
-                                        ],
-                                        [
-                                            "Was",
-                                            "Was"
-                                        ],
-                                        [
-                                            "Were",
-                                            "Were"
-                                        ],
-                                        [
-                                            "Be",
-                                            "Be"
-                                        ],
-                                        [
-                                            "Been",
-                                            "Been"
-                                        ],
-                                        [
-                                            "Being",
-                                            "Being"
-                                        ]
+                                    [
+                                        "Is",
+                                        "Is"
+                                    ],
+                                    [
+                                        "Arc",
+                                        "Arc"
+                                    ],
+                                    [
+                                        "Was",
+                                        "Was"
+                                    ],
+                                    [
+                                        "Were",
+                                        "Were"
+                                    ],
+                                    [
+                                        "Be",
+                                        "Be"
+                                    ],
+                                    [
+                                        "Been",
+                                        "Been"
+                                    ],
+                                    [
+                                        "Being",
+                                        "Being"
                                     ]
-                                }
-                            ]
+                                ]
+                            }
                         },
                         {
                             "type": "Application Examples",
@@ -2235,22 +2247,29 @@
                                 {
                                     "title": "Modals",
                                     "definition": "Modals are auxiliary verbs used to express ability, possibility, necessity, permission, or obligation. After modal verbs, the main verb must be in the base form (verb 1), without \"to\".",
-                                    "tujuan": "TUJUAN: MEMAHAMI PENGERTIAN MODALS"
+                                    "note": "TUJUAN: MEMAHAMI PENGERTIAN MODALS"
                                 },
                                 {
                                     "title": "Formula",
                                     "definition": "Formula:\nSubject + Modals + Base Form",
-                                    "examples": [
-                                        "She can swim well",
-                                        "They must study tonight",
-                                        "I should go now"
-                                    ],
-                                    "tujuan": "TUJUAN: MEMAHAMI FORMULA"
+                                    "explain": {
+                                        "content": [
+                                            {
+                                                "title": "Example:",
+                                                "lists": [
+                                                    "She can swim well",
+                                                    "They must study tonight",
+                                                    "I should go now"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "note": "TUJUAN: MEMAHAMI FORMULA"
                                 }
                             ]
                         },
                         {
-                            "title": "MODALS",
+                            "title": "9 CORE MODALS ✦",
                             "explain": [
                                 "Can",
                                 "May",
