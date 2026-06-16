@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: space-between;
+  gap: 30px;
 }
 .left h5 {
   color: #e8a838;

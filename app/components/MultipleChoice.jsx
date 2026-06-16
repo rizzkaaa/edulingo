@@ -192,6 +192,8 @@ export function WithAudio({ material }) {
 }
 
 export function WithText({ material }) {
+  console.log(material);
+  
   return (
     <MultipleChoice material={material}>
       <br />

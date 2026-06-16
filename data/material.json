@@ -2490,7 +2490,445 @@
         {
             "part_id": 6,
             "part_title": "Reading For Details",
-            "sub_modules": []
+            "sub_modules": [
+                {
+                    "sub_module_id": 1,
+                    "title": "Understanding Main Ideas",
+                    "image": "6_1",
+                    "description": "Kemampuan memahami ide pokok merupakan salah satu keterampilan dasar dalam TOEFL Reading.",
+                    "content": [
+                        {
+                            "title": "Apa itu Main Ideas ? ✦",
+                            "definition": "Main idea adalah gagasan utama atau pesan inti yang ingin disampaikan penulis dalam sebuah paragraf atau bacaan. Main idea berfungsi sebagai pusat pembahasan yang didukung oleh kalimat-kalimat penjelas <b>(supporting details)</b>. Semua informasi dalam paragraf biasanya berkaitan dengan main idea. Oleh karena itu, kemampuan menemukan ide pokok sangat penting untuk memahami isi bacaan secara keseluruhan. Tanpa mengetahui main idea, pembaca akan kesulitan memahami tujuan penulis dan hubungan antar informasi dalam teks."
+                        },
+                        {
+                            "explain": [
+                                {
+                                    "title": "TOPICS",
+                                    "subtitle": "Tentukan Topik Bacaan",
+                                    "definition": "Identifikasi siapa atau apa yang sedang dibahas dalam paragraf.",
+                                    "example": "Jika paragraf membahas tentang <b>\"renewable energy\"</b>, maka topiknya adalah energi terbarukan."
+                                },
+                                {
+                                    "title": "MAIN POINT",
+                                    "subtitle": "Cocokkan Informasi",
+                                    "definition": "Cari Gagasan Utama. Tentukan informasi terpenting yang ingin disampaikan penulis tentang topik tersebut.",
+                                    "example": "Renewable energy helps reduce environmental pollution."
+                                },
+                                {
+                                    "title": "SUPPORTING DETAILS",
+                                    "subtitle": "Abaikan Detail Pendukung",
+                                    "definition": "Jangan tertipu oleh contoh, angka, atau fakta pendukung yang hanya menjelaskan main idea.",
+                                    "example": "Statistics, examples, and explanations biasanya bukan main idea."
+                                },
+                                {
+                                    "title": "SUMMARY",
+                                    "subtitle": "Ringkas Isi Paragraf",
+                                    "definition": "Setelah membaca paragraf, coba simpulkan isi bacaan dalam satu kalimat sederhana."
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Tips TOEFL: Understanding Main Ideas",
+                            "explain": [
+                                "Baca kalimat pertama dan terakhir paragraf.",
+                                "Cari kata yang paling umum dan mencakup seluruh isi bacaan.",
+                                "Jangan memilih contoh atau detail pendukung sebagai jawaban.",
+                                "Perhatikan kata kunci yang sering diulang dalam paragraf.",
+                                "Pilih jawaban yang paling mewakili tujuan utama penulis."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 2,
+                    "title": "Stated Detail Information",
+                    "image": "6_2",
+                    "description": "Stated Detail Information menguji kemampuan menemukan informasi yang secara eksplisit disebutkan dalam teks.",
+                    "content": [
+                        {
+                            "title": "Apa itu Stated Detail Information? ✦",
+                            "definition": "Stated Detail Information adalah jenis pertanyaan Reading TOEFL yang meminta peserta menemukan informasi yang secara langsung disebutkan dalam teks. Jawaban yang benar biasanya merupakan parafrase atau pengulangan dari informasi yang tertulis dalam bacaan. \n\nPada tipe soal ini, informasi yang dicari tidak perlu disimpulkan atau diinferensikan karena sudah tersedia secara eksplisit di dalam teks."
+                        },
+                        {
+                            "title": "Cara Menjawab Strategis ✦",
+                            "explain": [
+                                {
+                                    "title": "Keyword",
+                                    "example": "Cari Kata Kunci",
+                                    "definition": "Identifikasi kata kunci dalam pertanyaan, seperti nama orang, tempat, tanggal, atau istilah penting."
+                                },
+                                {
+                                    "title": "Scanning",
+                                    "example": "Scan Teks",
+                                    "definition": "Cari kata kunci atau sinonimnya dalam bacaan tanpa membaca seluruh teks dari awal."
+                                },
+                                {
+                                    "title": "Match",
+                                    "example": "Cocokkan Informasi",
+                                    "definition": "Bandingkan informasi pada teks dengan pilihan jawaban, eliminasi jawaban yang jelas salah dan pilih jawaban yang memiliki makna paling sesuai."
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Karakteristik Stated Detail Questions",
+                            "explain": {
+                                "header": [
+                                    "CIRI",
+                                    "PENJELASAN"
+                                ],
+                                "data": [
+                                    [
+                                        "Informasi eksplisit",
+                                        "Jawaban tertulis langsung dalam teks"
+                                    ],
+                                    [
+                                        "Menggunakan kata kunci",
+                                        "Dapat ditemukan melalui scanning"
+                                    ],
+                                    [
+                                        "Sering menggunakan parafrase",
+                                        "Kata berbeda, makna sama"
+                                    ],
+                                    [
+                                        "Tidak membutuhkan inferensi",
+                                        "Tidak perlu menyimpulkan"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "title": "Kalimat Tanya yang Sering Muncul",
+                            "explain": {
+                                "header": [
+                                    "QUESTION WORD",
+                                    "TUJUAN"
+                                ],
+                                "data": [
+                                    [
+                                        "According to the passage...?",
+                                        "Mencari informasi langsung"
+                                    ],
+                                    [
+                                        "It is stated in the passage that...?",
+                                        "Informasi tertulis dalam teks"
+                                    ],
+                                    [
+                                        "The passage states that...?",
+                                        "Fakta yang disebutkan"
+                                    ],
+                                    [
+                                        "According to the author...?",
+                                        "Informasi dari penulis"
+                                    ],
+                                    [
+                                        "The passage indicates that...?",
+                                        "Informasi yang dijelaskan"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "title": "Tips TOEFL: Stated Detail Information",
+                            "explain": [
+                                "Fokus pada informasi yang tertulis langsung dalam teks.",
+                                "Gunakan teknik scanning untuk menemukan kata kunci dengan cepat.",
+                                "Perhatikan sinonim dari kata kunci pada pilihan jawaban.",
+                                "Jangan memilih jawaban berdasarkan opini atau pengetahuan pribadi.",
+                                "Jawaban biasanya berada di sekitar kalimat yang mengandung kata kunci dari pertanyaan."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 3,
+                    "title": "Unstated Detail Information",
+                    "image": "6_3",
+                    "description": "Pertanyaan Unstated Detail Information menguji kemampuan untuk menemukan informasi yang tidak disebutkan, tidak didukung, atau bertentangan dengan bacaan.",
+                    "content": [
+                        {
+                            "title": "Apa itu Unstated Detail Information? ✦",
+                            "definition": "Unstated Detail Information adalah jenis pertanyaan Reading TOEFL yang meminta peserta menemukan informasi yang tidak dinyatakan secara langsung dalam teks. Berbeda dengan Stated Detail Information yang mencari informasi yang tertulis dalam bacaan, pada Unstated Detail Information peserta harus menemukan pilihan yang tidak disebutkan atau tidak didukung oleh teks. Pertanyaan Reading dianggap lebih sulit karena peserta harus memeriksa setiap pilihan jawaban dan membandingkannya dengan informasi dalam bacaan."
+                        },
+                        {
+                            "title": "Cara Menjawab Strategis ✦",
+                            "explain": [
+                                {
+                                    "title": "Keyword",
+                                    "example": "Cari Kata Kunci",
+                                    "definition": "Temukan kata kunci utama dalam pertanyaan, seperti nama, tempat, tanggal, atau istilah penting."
+                                },
+                                {
+                                    "title": "Scanning",
+                                    "example": "Scan Bacaan",
+                                    "definition": "Gunakan teknik scanning untuk menemukan bagian teks yang berkaitan dengan kata kunci."
+                                },
+                                {
+                                    "title": "Match",
+                                    "example": "Cocokkan Semua Pilihan",
+                                    "definition": "Bandingkan setiap pilihan jawaban dengan informasi dalam teks dan eliminasi pilihan jawaban yang dinyatakan benar dalam teks."
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Karakteristik Soal Unstated Detail ✦",
+                            "explain": {
+                                "header": [
+                                    "CIRI",
+                                    "PENJELASAN"
+                                ],
+                                "data": [
+                                    [
+                                        "Mengandung kata NOT atau EXCEPT",
+                                        "Fokus utama pada soal"
+                                    ],
+                                    [
+                                        "Membutuhkan scanning",
+                                        "Tidak perlu membaca ulang seluruh teks"
+                                    ],
+                                    [
+                                        "Menguji ketelitian",
+                                        "Harus membandingkan semua pilihan"
+                                    ],
+                                    [
+                                        "Tiga pilihan benar",
+                                        "Satu pilihan tidak disebutkan"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "title": "Kata Tanya yang Sering Muncul ✦",
+                            "explain": {
+                                "header": [
+                                    "QUESTION PATTERN",
+                                    "ARTI"
+                                ],
+                                "data": [
+                                    [
+                                        "Which of the following is NOT stated...?",
+                                        "Manakah yang tidak dinyatakan"
+                                    ],
+                                    [
+                                        "Which of the following is NOT mentioned...?",
+                                        "Manakah yang tidak dibahas"
+                                    ],
+                                    [
+                                        "All of the following are true EXCEPT...",
+                                        "Semua benar kecuali"
+                                    ],
+                                    [
+                                        "Which of the following is NOT discussed...?",
+                                        "Manakah yang tidak didiskusikan"
+                                    ],
+                                    [
+                                        "Which statement is NOT supported by the passage?",
+                                        "Pernyataan yang tidak didukung teks"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "title": "Strategi Cepat TOEFL ✦",
+                            "definition": "Fokus pada kalimat tersebut saat menemukan kata:",
+                            "examples": [
+                                [
+                                    "NOT",
+                                    "EXCEPT"
+                                ],
+                                [
+                                    "LEAST",
+                                    "FALSE"
+                                ]
+                            ]
+                        },
+                        {
+                            "title": "Tips TOEFL: Unstated Detail Information",
+                            "explain": [
+                                "Perhatikan kata NOT atau EXCEPT yang terdapat dalam pertanyaan.",
+                                "Jangan langsung memilih jawaban yang pertama kali Anda lihat.",
+                                "Pastikan tiga pilihan jawaban benar-benar ada di dalam teks.",
+                                "Gunakan scanning untuk menemukan informasi dengan cepat.",
+                                "Eliminasi semua pilihan yang dapat dibuktikan dari bacaan.",
+                                "Hindari memilih jawaban berdasarkan asumsi sendiri."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 4,
+                    "title": "Inferences Questions",
+                    "image": "6_4",
+                    "description": "Inference Questions menguji kemampuan untuk menarik kesimpulan yang tidak disebutkan secara langsung dalam bacaan.",
+                    "content": [
+                        {
+                            "title": "Apa itu Inferences Questions? ✦",
+                            "definition": "Inference Questions adalah jenis pertanyaan Reading TOEFL yang meminta peserta menarik kesimpulan yang tidak tertulis dalam bacaan. Pada tipe soal ini, jawaban tidak ditemukan secara langsung (eksplisit), melainkan setelah melalui proses penafsiran berdasarkan informasi yang diberikan penulis. \n\nUntuk menjawab soal inference, pembaca harus menghubungkan beberapa fakta dalam bacaan dan menarik kesimpulan yang paling logis. Oleh karena itu, kemampuan memahami konteks sangat penting dalam tipe soal ini."
+                        },
+                        {
+                            "title": "Karakteristik Soal Unstated Detail ✦",
+                            "explain": {
+                                "header": [
+                                    "CIRI",
+                                    "PENJELASAN"
+                                ],
+                                "data": [
+                                    [
+                                        "Jawaban tidak tertulis langsung",
+                                        "Informasi bersifat tersirat"
+                                    ],
+                                    [
+                                        "Membutuhkan penalaran",
+                                        "Harus menghubungkan beberapa fakta"
+                                    ],
+                                    [
+                                        "Menguji pemahaman konteks",
+                                        "Fokus pada makna keseluruhan"
+                                    ],
+                                    [
+                                        "Berdasarkan bukti dari teks",
+                                        "Tidak boleh menggunakan opini pribadi"
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "title": "Jenis Inferensi yang Sering Muncul ✦",
+                            "explain": [
+                                {
+                                    "title": "Deduction",
+                                    "definition": "Menarik kesimpulan logis berdasarkan fakta yang terdapat dalam teks.",
+                                    "example": "Jika teks menyebutkan bahwa jalanan basah dan orang-orang membawa payung, maka dapat disimpulkan bahwa hujan telah turun."
+                                },
+                                {
+                                    "title": "Prediction",
+                                    "definition": "Memperkirakan kemungkinan yang akan terjadi berdasarkan informasi dalam bacaan.",
+                                    "example": "Jika sebuah perusahaan terus mengalami kerugian, kemungkinan perusahaan tersebut akan melakukan perubahan strategi."
+                                },
+                                {
+                                    "title": "Examination",
+                                    "definition": "Menentukan sikap atau pandangan penulis terhadap topik yang dibahas.",
+                                    "example": "Dari pilihan kata yang digunakan penulis, pembaca dapat menyimpulkan apakah penulis mendukung atau menolak suatu gagasan."
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Strategi Cepat TOEFL ✦",
+                            "explain": [
+                                {
+                                    "title": "No Matching",
+                                    "example": "Jangan Cari Kalimat yang Sama",
+                                    "definition": "Pada soal inference, jawaban biasanya tidak ditulis secara langsung dalam bacaan."
+                                },
+                                {
+                                    "title": "Hidden Meaning",
+                                    "example": "Fokus pada Makna Tersirat",
+                                    "definition": "Perhatikan apa yang ingin disampaikan penulis di balik informasi yang tertulis."
+                                },
+                                {
+                                    "title": "Stay Logical",
+                                    "example": "Hindari Kesimpulan Berlebihan",
+                                    "definition": "Pilih jawaban yang didukung oleh teks, bukan yang terlalu ekstrem atau terlalu jauh dari isi bacaan."
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Tips TOEFL: Inference Questions",
+                            "explain": [
+                                "Cari petunjuk atau fakta yang mendukung kesimpulan.",
+                                "Hubungkan beberapa informasi dalam bacaan.",
+                                "Jangan menggunakan pengalaman atau opini pribadi. ",
+                                "Hindari jawaban yang terlalu ekstrem seperti always, never, atau all jika tidak didukung teks.",
+                                "Pilih jawaban yang paling logis berdasarkan informasi yang tersedia.",
+                                "Fokus pada apa yang disiratkan penulis, bukan hanya apa yang ditulis secara langsung."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "sub_module_id": 5,
+                    "title": "References Questions",
+                    "image": "6_5",
+                    "description": "Panduan lengkap mengenai soal Kata Rujukan dalam TOEFL Reading untuk meningkatkan skor Reading Anda.",
+                    "content": [
+                        {
+                            "title": "Apa itu References Questions? ✦",
+                            "definition": "Reference questions menguji kemampuan Anda untuk mengidentifikasi hubungan antara kata rujukan (biasanya berupa kata ganti atau pronoun) dengan Kata Benda (noun) yang dirujuk sebelumnya.",
+                            "note": "Tugas utama Anda adalah Determining the antecedent of a pronoun—menentukan asal-usul atau rujukan asli dari kata ganti tersebut."
+                        },
+                        {
+                            "title": "Cara Menjawab Strategis ✦",
+                            "explain": [
+                                {
+                                    "title": "Find Nouns",
+                                    "example": "Cari Noun Sesuai",
+                                    "definition": "Temukan kata ganti yang disorot dalam teks. Identifikasi apakah ia tunggal (singular) atau jamak (plural)."
+                                },
+                                {
+                                    "title": "Check Context",
+                                    "example": "Kalimat Efektif",
+                                    "definition": "Baca kalimat sebelum dan sesudah kata tersebut. Rujukan biasanya berada dalam 1-2 kalimat sebelumnya."
+                                },
+                                {
+                                    "title": "Test Answers",
+                                    "example": "Uji Pilihan",
+                                    "definition": "Substitusi kata ganti dengan pilihan jawaban. Pastikan maknanya logis dan gramatikalnya tepat."
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Jenis Kata Rujukan ✦",
+                            "explain": {
+                                "header": [
+                                    "JENIS",
+                                    "KATA"
+                                ],
+                                "data": [
+                                    [
+                                        "Subject Pronoun",
+                                        "He, she, it, they."
+                                    ],
+                                    [
+                                        "Object Pronoun",
+                                        "Him, her, it, them."
+                                    ],
+                                    [
+                                        "Possessive Adjective",
+                                        "His, her, its, their."
+                                    ],
+                                    [
+                                        "Demonstrative Pronoun",
+                                        "This, that, these, those."
+                                    ]
+                                ]
+                            }
+                        },
+                        {
+                            "title": "Contoh Soal 💡",
+                            "text_block": "\"The architect presented two distinct blueprints for the museum. The former was inspired by classical Greek structures while the latter incorporated modern glass elements.\" The word 'former' refers to?",
+                            "questions": [
+                                {
+                                    "options": [
+                                        "The museum",
+                                        "The first design",
+                                        "The architect"
+                                    ],
+                                    "correct_index": 1
+                                }
+                            ],
+                            "clue": "<span>Gunakan STRATEGY:</span> Kata <b>'former'</b> merujuk pada benda pertama yang disebutkan dari dua benda, yaitu <b>'two distinct blueprints'</b> (desain pertama)."
+                        },
+                        {
+                            "type": "Toefl Tips",
+                            "title": "Tips TOEFL: References Questions",
+                            "explain": [
+                                "Rujukan biasanya muncul sebelum kata ganti tersebut, jarang sekali muncul setelahnya.",
+                                "Fokus pada konteks kalimat. Kadang ada beberapa kata benda sebelum kata ganti, pilihlah yang paling sesuai dengan arti atau definisi yang sedang dibahas."
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "part_id": 7,

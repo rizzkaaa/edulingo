@@ -8,10 +8,10 @@ import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";
 import LessonProgressBar from "@/app/components/LessonProgressBar";
 
 export default function LessonLayout({ children }) {
-  const [sub_module_id, setSub_module_id] = useState(1);
+  const [sub_module_id, setSub_module_id] = useState(5);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(sub_module_id);
   const main_material = material.materials.find(
-    (material) => material.part_id == 2,
+    (material) => material.part_id == 6,
   );
   const sub_material = main_material.sub_modules.find(
     (material) => material.sub_module_id == currentModuleOpen,
@@ -47,7 +47,7 @@ export default function LessonLayout({ children }) {
       <section>
         <main>
           <h4 className={styles.indicator}>
-            BERANDA › MATERI › STRUCTURE PART 2 ›{" "}
+            BERANDA › MATERI › READING FOR DETAILS ›{" "}
             {sub_material.title.toUpperCase()}{" "}
           </h4>
           {children}
@@ -88,7 +88,7 @@ function ButtonMenu({
       setTimeout(() => setShake(false), 900);
     } else {
       setCurrentModuleOpen(sub_material_id);
-      router.push(`/dashboard/lesson/structure_part_2/${nextPath}`);
+      router.push(`/dashboard/lesson/reading_for_details/${nextPath}`);
     }
   }
 
@@ -138,7 +138,7 @@ function BottomBar({
     console.log(nextPath);
 
     setCurrentModuleOpen(currentModuleOpen - 1);
-    router.push(`/dashboard/lesson/structure_part_2/${nextPath}`);
+    router.push(`/dashboard/lesson/reading_for_details/${nextPath}`);
   }
 
   function nextModule() {
@@ -158,7 +158,7 @@ function BottomBar({
       console.log(nextPath);
 
       setCurrentModuleOpen(currentModuleOpen + 1);
-      router.push(`/dashboard/lesson/structure_part_2/${nextPath}`);
+      router.push(`/dashboard/lesson/reading_for_details/${nextPath}`);
     }
   }
   return (

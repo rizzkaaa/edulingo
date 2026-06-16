@@ -1,0 +1,13 @@
+.container {
+  margin-top: 30px;
+}
+.box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.wrap{
+  width: 50%;
+  display: grid;
+  gap: 20px;
+}

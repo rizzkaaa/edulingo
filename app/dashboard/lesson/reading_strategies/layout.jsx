@@ -1,7 +1,7 @@
 "use client";
 
 import material from "@/data/material.json";
-import styles from "./layout.module.css";
+import styles from "../layout.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";

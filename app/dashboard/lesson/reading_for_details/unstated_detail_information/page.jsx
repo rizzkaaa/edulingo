@@ -3,16 +3,16 @@ import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
-import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ComparisonTable from "@/app/components/ComparisonTable";
-import { WithText } from "@/app/components/MultipleChoice";
+import { FirstExplainVer11 } from "@/app/components/first_explain";
+import { TemplateVer9, TemplateVer24 } from "@/app/components/other_material";
 
-export default function PresentPastParticiple() {
+export default function UnstatedDetailInformation() {
   const main_material = material.materials.find(
-    (material) => material.part_id == 4,
+    (material) => material.part_id == 6,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == 1,
+    (material) => material.sub_module_id == 3,
   );
 
   const currentId = sub_material.sub_module_id;
@@ -26,15 +26,12 @@ export default function PresentPastParticiple() {
         borderColor="#C5502A"
         sub_material={sub_material}
       />
-
-      <GroupColorBorderShadow
-        materials={sub_material.content[0].explain}
-        version={4}
-        style={{marginTop: "10px"}}
-      />
-      <ComparisonTable material={sub_material.content[1]} />
-      <WithText material={sub_material.content[2]} />
-      <ToeflTips material={sub_material.content[3]} />
+      <FirstExplainVer11 material={sub_material.content[0]} divider={true} />
+      <TemplateVer9 sub_material={sub_material.content[1]} grey={false} />
+      <ComparisonTable material={sub_material.content[2]} styleData={[{fontWeight: "bold"}]}/>
+      <ComparisonTable material={sub_material.content[3]} styleData={[{fontWeight: "bold"}]}/>
+      <TemplateVer24 material={sub_material.content[4]} />
+      <ToeflTips material={sub_material.content[5]} />
       <FooterMaterial
         color="#E8A838"
         title={sub_material.title}

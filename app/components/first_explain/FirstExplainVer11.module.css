@@ -1,11 +1,12 @@
 .container {
   margin-top: 30px;
 }
-.container h3 + p {
+.container .definition {
+  white-space: pre-line;
   text-align: justify;
   margin-top: 15px;
 }
-.container h3 + p b{
+.container .definition b{
   background-color: #E8A838;
   padding: 0 5px;
 }

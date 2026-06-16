@@ -6,6 +6,21 @@ import SmallShadowBorder from "./SmallShadowBorder";
 import ListSentence from "./ListSentences";
 import LabelValueMaterial from "./LabelValueMaterial";
 
+const colors = {
+  "#2D7A5E": {
+    backgroundColor: "#E8F4EF",
+    color: "white",
+  },
+  "#C5502A": {
+    backgroundColor: "#FAE8E3",
+    color: "white",
+  },
+  "#D9A126": {
+    backgroundColor: "#FDFFCB",
+    color: "#2C2A26",
+  },
+};
+
 export function GroupColorBorderShadow({
   materials,
   version,
@@ -33,6 +48,9 @@ export function GroupColorBorderShadow({
             break;
           case 4:
             content = <Ver4 material={material} color={color} style={style} />;
+            break;
+          case 5:
+            content = <Ver5 material={material} color={color} />;
             break;
           default:
             content = null;
@@ -69,21 +87,6 @@ function Ver1({ material, color }) {
 }
 
 function Ver2({ material, color }) {
-  const colors = {
-    "#2D7A5E": {
-      backgroundColor: "#E8F4EF",
-      color: "white",
-    },
-    "#C5502A": {
-      backgroundColor: "#FAE8E3",
-      color: "white",
-    },
-    "#D9A126": {
-      backgroundColor: "#FDFFCB",
-      color: "#2C2A26",
-    },
-  };
-
   return (
     <>
       <h5 style={{ backgroundColor: color, color: colors[color].color }}>
@@ -164,21 +167,6 @@ function Ver3({ material, color }) {
 }
 
 function Ver4({ material, color, style }) {
-  const colors = {
-    "#2D7A5E": {
-      backgroundColor: "#E8F4EF",
-      color: "white",
-    },
-    "#C5502A": {
-      backgroundColor: "#FAE8E3",
-      color: "white",
-    },
-    "#D9A126": {
-      backgroundColor: "#FDFFCB",
-      color: "#2C2A26",
-    },
-  };
-
   return (
     <>
       <div>
@@ -216,6 +204,34 @@ function Ver4({ material, color, style }) {
       >
         {material.note}
       </SmallShadowBorder>
+    </>
+  );
+}
+
+function Ver5({ material, color }) {
+  return (
+    <>
+      <div>
+        <h1 style={{ color: color }}>{material.title}</h1>
+        <h4>{material.subtitle}</h4>
+        <div className="divider"></div>
+        <p className={styles.definition}>{material.definition}</p>
+      </div>
+      {material.example ? (
+        <div>
+          <br />
+          <p>EXAMPLE:</p>
+          <p
+            className={styles.example_sentences}
+            style={{
+              "--b-color": colors[color].color,
+              "--b-backgroundColor": color,
+              backgroundColor: colors[color].backgroundColor,
+            }}
+            dangerouslySetInnerHTML={{ __html: material.example }}
+          />
+        </div>
+      ) : null}
     </>
   );
 }

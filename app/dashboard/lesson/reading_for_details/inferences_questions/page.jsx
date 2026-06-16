@@ -3,16 +3,17 @@ import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
-import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ComparisonTable from "@/app/components/ComparisonTable";
-import { WithText } from "@/app/components/MultipleChoice";
+import { FirstExplainVer11 } from "@/app/components/first_explain";
+import { TemplateVer9 } from "@/app/components/other_material";
+import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 
-export default function PresentPastParticiple() {
+export default function InferencesQuestions() {
   const main_material = material.materials.find(
-    (material) => material.part_id == 4,
+    (material) => material.part_id == 6,
   );
   const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == 1,
+    (material) => material.sub_module_id == 4,
   );
 
   const currentId = sub_material.sub_module_id;
@@ -26,15 +27,18 @@ export default function PresentPastParticiple() {
         borderColor="#C5502A"
         sub_material={sub_material}
       />
-
-      <GroupColorBorderShadow
-        materials={sub_material.content[0].explain}
-        version={4}
-        style={{marginTop: "10px"}}
+      <FirstExplainVer11 material={sub_material.content[0]} divider={true} />
+      <ComparisonTable
+        material={sub_material.content[1]}
+        styleData={[{ fontWeight: "bold" }]}
       />
-      <ComparisonTable material={sub_material.content[1]} />
-      <WithText material={sub_material.content[2]} />
-      <ToeflTips material={sub_material.content[3]} />
+      <GroupColorBorderShadow
+        materials={sub_material.content[2].explain}
+        version={5}
+      />
+
+      <TemplateVer9 sub_material={sub_material.content[3]} grey={false} />
+      <ToeflTips material={sub_material.content[4]} />
       <FooterMaterial
         color="#E8A838"
         title={sub_material.title}
