@@ -214,8 +214,1968 @@
                 ]
             }
         ]
-    },{
-        "module_id": "subject_&_object_pronouns"
-
+    },
+    {
+        "module_id": "possessive_pronouns",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "She cut hers hairs recently.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "My desk is located near hers.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "Please lend me yours note from history lecture.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The tree fell on its side during the storm.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "You don't have yours gloves with you, but I have mine.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "adjective_&_adverb",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "The mother was pleasant surprised when her daughter came to visit.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The salespeople frequently visit the East Coast for trade shows.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "He was driving an expensively sports car.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The car was not complete ready at 3:00.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The children finished their homework quickly so that they could watch television.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "coordinate_connectors",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "The book was not long, it difficult to read.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "I was tired, so i went to bed early.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The furnace broke so the house got quite cold.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The manager approved the budget, ___ the project was launched immediately.",
+                "options": [
+                    {
+                        "option": [
+                            "yet",
+                            "or",
+                            "but",
+                            "so"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "She knew the answer, ___ she chose not to speak up in the meeting.",
+                "options": [
+                    {
+                        "option": [
+                            "so",
+                            "yet",
+                            "or",
+                            "and"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "adverb_clause_connectors",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "After the plane circled the airport, it landed on the main runway.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "Although the area is a desert many plants bloom there in the springtime.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "We need to get a new car whether is on sale or not.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The scientist kept revising her paper ___ her supervisor was fully satisfied with the results.",
+                "options": [
+                    {
+                        "option": [
+                            "since",
+                            "although",
+                            "until",
+                            "whereas"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "___ the new software was installed, productivity in the office increased dramatically.",
+                "options": [
+                    {
+                        "option": [
+                            "Although",
+                            "After",
+                            "Unless",
+                            "Whether"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "noun_clause_connectors",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "When the meeting will start is still unknown.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "She explained why was she late.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "I know where he lives.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The teacher asked if the students were ready.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "What he said surprised everyone.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "adjective_clause_connectors",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "The girl who sits near me is very smart.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The book which you lent me was interesting.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The man whom helped us was kind.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "I visited the city where my father was born.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The student whose phone rang apologized to the class.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "subject_-_verb_agreement",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "The teacher ___ English every day.",
+                "options": [
+                    {
+                        "option": [
+                            "teach",
+                            "teaches"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "My friends ___ playing basketball.",
+                "options": [
+                    {
+                        "option": [
+                            "likes",
+                            "like"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The cat ___ on the sofa.",
+                "options": [
+                    {
+                        "option": [
+                            "sleep",
+                            "sleeps"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "They ___ to school by bus.",
+                "options": [
+                    {
+                        "option": [
+                            "go",
+                            "goes"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Sarah and Lina ___ classmates.",
+                "options": [
+                    {
+                        "option": [
+                            "is",
+                            "are"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "agreement_after_prepositional_phrases",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "The students in the laboratory ___ until late at night.",
+                "options": [
+                    {
+                        "option": [
+                            "works",
+                            "work"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The teacher with several assistants ___ preparing the materials.",
+                "options": [
+                    {
+                        "option": [
+                            "is",
+                            "are"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The cars under the bridge ___ maintenance.",
+                "options": [
+                    {
+                        "option": [
+                            "needs",
+                            "need"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The woman beside the children ___ waiting outside.",
+                "options": [
+                    {
+                        "option": [
+                            "was",
+                            "were"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The players across the field ___ every morning.",
+                "options": [
+                    {
+                        "option": [
+                            "runs",
+                            "run"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "agreement_after_expression_of_quality",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "All of the water in the pond ___ evaporated.",
+                "options": [
+                    {
+                        "option": [
+                            "has",
+                            "have"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Most of the coins ___ found under the sofa.",
+                "options": [
+                    {
+                        "option": [
+                            "was",
+                            "were"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Half of the pie ___ already eaten.",
+                "options": [
+                    {
+                        "option": [
+                            "is",
+                            "are"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Some of the equipment in the laboratory ___ to be replaced.",
+                "options": [
+                    {
+                        "option": [
+                            "needs",
+                            "need"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "All of the students ___ required to attend the seminar.",
+                "options": [
+                    {
+                        "option": [
+                            "is",
+                            "are"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "agreement_after_certain_words",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "Everybody ___ going to the meeting.",
+                "options": [
+                    {
+                        "option": [
+                            "are",
+                            "were",
+                            "is",
+                            "have"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Each of the students ___ a laptop.",
+                "options": [
+                    {
+                        "option": [
+                            "have",
+                            "has",
+                            "are",
+                            "were"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Many students ___ absent yesterday.",
+                "options": [
+                    {
+                        "option": [
+                            "is",
+                            "was",
+                            "are",
+                            "has"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Some of the milk ___ spoiled.",
+                "options": [
+                    {
+                        "option": [
+                            "are",
+                            "were",
+                            "is",
+                            "have"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Both teachers ___ already arrived.",
+                "options": [
+                    {
+                        "option": [
+                            "has",
+                            "have",
+                            "is",
+                            "was"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "parallel_structure",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "She enjoys ___.",
+                "options": [
+                    {
+                        "option": [
+                            "reading, to swim, and cooking",
+                            "to read, swimming, and cook",
+                            "reading, swimming, and cooking",
+                            "to read, to swimming, and cooking"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The students were told ___.",
+                "options": [
+                    {
+                        "option": [
+                            "to study hard, finishing their homework, and to rest well",
+                            "to study hard, to finish their homework, and to rest well",
+                            "studying hard, to finish their homework, and resting well",
+                            "to study hard, finished their homework, and resting well"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "My hobby is ___.",
+                "options": [
+                    {
+                        "option": [
+                            "reading, to cook, and gardening",
+                            "to read, cooking, and to garden",
+                            "reading, cooking, and to garden",
+                            "reading, cooking, and gardening"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The teacher asked us ___.",
+                "options": [
+                    {
+                        "option": [
+                            "to be quiet, to listen carefully, and taking notes",
+                            "to be quiet, to listen carefully, and to take notes",
+                            "being quiet, to listen carefully, and to take notes",
+                            "to be quiet, listening carefully, and to take notes"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "He spends his time ___.",
+                "options": [
+                    {
+                        "option": [
+                            "playing guitar, to paint, and reading books",
+                            "to play guitar, painting, and to read books",
+                            "playing guitar, painting, and reading books",
+                            "to play guitar, to paint, and reading books"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "parallel_structure_with_coordinate_conjunctions",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "The food was ___.",
+                "options": [
+                    {
+                        "option": [
+                            "delicious but expensively",
+                            "delicious but expensive",
+                            "deliciously but expensive",
+                            "delicious but to be expensive"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Mom ___ every evening.",
+                "options": [
+                    {
+                        "option": [
+                            "cooks dinner and washing the dishes",
+                            "cooks dinner and washes the dishes",
+                            "cooking dinner and washes the dishes",
+                            "to cook dinner and washes the dishes"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "You can ___ to school.",
+                "options": [
+                    {
+                        "option": [
+                            "take the bus or riding a bicycle",
+                            "take the bus or to ride a bicycle",
+                            "take the bus or ride a bicycle",
+                            "taking the bus or ride a bicycle"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "She is ___.",
+                "options": [
+                    {
+                        "option": [
+                            "smart, kindly, and creative",
+                            "smart, to be kind, and creative",
+                            "smart, kind, and creative",
+                            "smartly, kind, and creatively"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "He wants ___.",
+                "options": [
+                    {
+                        "option": [
+                            "to travel the world but saving enough money first",
+                            "to travel the world but to saving enough money first",
+                            "to travel the world but save enough money first",
+                            "to travel the world but to save enough money first"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "parallel_structure_with_paired_conjunctions",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "She likes both singing and ___.",
+                "options": [
+                    {
+                        "option": [
+                            "dance",
+                            "dancing",
+                            "to dance",
+                            "danced"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Either the manager or the employees ___ responsible.",
+                "options": [
+                    {
+                        "option": [
+                            "is",
+                            "are",
+                            "was",
+                            "has"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Neither John nor Michael ___ at school yesterday.",
+                "options": [
+                    {
+                        "option": [
+                            "were",
+                            "are",
+                            "was",
+                            "have"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The teacher not only explained the lesson but also ___ examples.",
+                "options": [
+                    {
+                        "option": [
+                            "give",
+                            "gave",
+                            "giving",
+                            "gives"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "He enjoys neither reading novels nor ___ movies.",
+                "options": [
+                    {
+                        "option": [
+                            "watch",
+                            "watching",
+                            "watched",
+                            "watches"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "present_&_past_participle",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "Pilihlah kalimat yang menggunakan present participle dengan benar!",
+                "options": [
+                    {
+                        "option": [
+                            "She is read a book right now.",
+                            "She is reading a book right now.",
+                            "She was read a book right now.",
+                            "She reads a book right now."
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Apakah fungsi kata 'crying' dalam kalimat 'The crying baby kept everyone awake'?",
+                "options": [
+                    {
+                        "option": [
+                            "Kata kerja (verb) dalam bentuk continuous",
+                            "Kata sifat (adjective) yang menerangkan kata benda 'baby'",
+                            "Kata keterangan (adverb) yang menerangkan kata kerja 'kept'",
+                            "Subjek kalimat"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Sederhanakanlah kalimat: 'The boy who is playing guitar is my brother.'",
+                "options": [
+                    {
+                        "option": [
+                            "The boy played guitar is my brother.",
+                            "The boy plays guitar is my brother.",
+                            "The boy playing guitar is my brother.",
+                            "The boy to play guitar is my brother."
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "The homework ___ by all students before the deadline.",
+                "options": [
+                    {
+                        "option": [
+                            "finishing",
+                            "finished",
+                            "finishes",
+                            "to finish"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "Manakah kalimat yang mengandung kesalahan penggunaan past participle?",
+                "options": [
+                    {
+                        "option": [
+                            "She has never traveled abroad.",
+                            "The windows were cleaned this morning.",
+                            "I have already ate dinner.",
+                            "The letter was signed by the manager."
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "past_participle_after_have",
+        "questions": [
+            {
+                "type": "FillInTheBlank",
+                "question": "My father has ___ the car every Sunday morning.",
+                "options": [
+                    {
+                        "option": [
+                            "wash",
+                            "washed",
+                            "washing",
+                            "washer"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "They had never ___ such a heavy storm before last night.",
+                "options": [
+                    {
+                        "option": [
+                            "experience",
+                            "experiences",
+                            "experiencing",
+                            "experienced"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "She will have ___ dinner by the time her husband gets home.",
+                "options": [
+                    {
+                        "option": [
+                            "prepare",
+                            "prepared",
+                            "prepares",
+                            "preparing"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "I have already ___ my laundry before it started raining.",
+                "options": [
+                    {
+                        "option": [
+                            "hang",
+                            "hanged",
+                            "hung",
+                            "hanging"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "FillInTheBlank",
+                "question": "My roommate has just ___ back from the traditional market.",
+                "options": [
+                    {
+                        "option": [
+                            "come",
+                            "came",
+                            "coming",
+                            "comes"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "present_participle_or_past_participle_after_be",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "The developer is integrate the new software metrics into the CI/CD pipeline.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The boarding house management system was designed by the university students last month.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "A Level 0 Data Flow Diagram is create to map the web system's processes.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The students were simulate the network configuration using Cisco Packet Tracer yesterday.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The grammar modules are being studied for the upcoming TOEFL quiz.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "base_form_verb_after_modals",
+        "questions": [
+            {
+                "type": "TrueOrFalse",
+                "question": "The manager will to approve the new project proposal tomorrow morning.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "A programmer must write clean and efficient code.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "She could analyzes the statistical data much faster using the new software.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "The students should bringing their identification cards during the final examination.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "TrueOrFalse",
+                "question": "We may need to upgrade the server capacity next year.",
+                "options": [
+                    {
+                        "option": [
+                            "Benar",
+                            "Salah"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "skimming_&_scanning",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "Coral reefs are among the most diverse and biologically complex ecosystems on Earth. Often called the \"rainforests of the sea,\" they cover less than 1% of the ocean floor but support an estimated 25% of all marine species. Reefs are built by colonies of tiny animals called polyps, which secrete a hard calcium carbonate skeleton. Unfortunately, these vital ecosystems are currently facing severe threats from climate change, ocean acidification, and destructive fishing practices. Rising sea temperatures cause a phenomenon known as coral bleaching, where corals expel the symbiotic algae living in their tissues, turning them completely white and often leading to death.",
+                "options": [
+                    {
+                        "question": "Which of the following is NOT mentioned as a threat to coral reefs?",
+                        "option": [
+                            "Ocean acidification",
+                            "Climate change",
+                            "Destructive fishing practices",
+                            "Overpopulation of marine species"
+                        ],
+                        "index_answer": 3
+                    },
+                    {
+                        "question": "What are the builders of coral reefs called?",
+                        "option": [
+                            "Symbiotic algae",
+                            "Calcium carbonates",
+                            "Polyps",
+                            "Rainforests"
+                        ],
+                        "index_answer": 2
+                    },
+                    {
+                        "question": "What is the primary topic of the passage?",
+                        "option": [
+                            "The process of coral bleaching.",
+                            "An overview of coral reefs and the threats they face.",
+                            "The life cycle of marine species.",
+                            "How to prevent ocean acidification."
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Mars has long fascinated astronomers and space enthusiasts alike. Often referred to as the \"Red Planet\" due to the iron oxide prevalent on its surface, Mars is the fourth planet from the Sun. In recent decades, numerous robotic rovers, such as Curiosity and Perseverance, have been sent by NASA to explore the Martian terrain. These missions aim to discover signs of ancient microbial life and assess the planet's habitability for future human exploration. One of the most significant discoveries thus far is the evidence of ancient river valleys and lake beds, suggesting that liquid water once flowed on the surface of Mars billions of years ago.",
+                "options": [
+                    {
+                        "question": "According to the passage, why is Mars often called the \"Red Planet\"?",
+                        "option": [
+                            "Because of its extremely high surface temperatures.",
+                            "Because it is the fourth planet from the Sun.",
+                            "Because of the prevalence of iron oxide on its surface.",
+                            "Because of the ancient river valleys found by rovers."
+                        ],
+                        "index_answer": 2
+                    },
+                    {
+                        "question": "What is the main idea of the passage?",
+                        "option": [
+                            "The technical process of building NASA's robotic rovers.",
+                            "A brief overview of Mars and recent scientific exploration efforts.",
+                            "The history of all planets in the solar system.",
+                            "Strategies for building human settlements on the Red Planet."
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "vocabulary_questions",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "The human brain is a highly intricate organ responsible for regulating all bodily functions, processing sensory information, and managing cognitive tasks. Despite its relatively small size, it consumes roughly 20% of the body's total energy. Neuroscientists have discovered that the brain possesses remarkable plasticity, meaning it has the capacity to reorganize itself by forming new neural connections throughout life. This adaptability is particularly evident when a person learns a new skill or recovers from a brain injury. However, severe sleep deprivation can severely impair these functions, leading to memory loss and decreased focus.",
+                "options": [
+                    {
+                        "question": "The word \"plasticity\" in the passage is closest in meaning to...",
+                        "option": [
+                            "rigidity",
+                            "flexibility",
+                            "fragility",
+                            "density"
+                        ],
+                        "index_answer": 1
+                    },
+                    {
+                        "question": "The word \"evident\" in the passage is closest in meaning to...",
+                        "option": [
+                            "hidden",
+                            "obvious",
+                            "questionable",
+                            "confusing"
+                        ],
+                        "index_answer": 1
+                    },
+                    {
+                        "question": "The word \"deprivation\" in the passage is closest in meaning to...",
+                        "option": [
+                            "lack",
+                            "abundance",
+                            "quality",
+                            "schedule"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Camouflage is a crucial survival strategy for many animal species, allowing them to blend seamlessly into their surroundings. For instance, the cuttlefish is famous for its ability to alter its skin color and texture to match the ocean floor, helping it evade dangerous predators. Similarly, the Arctic hare's fur turns completely white in the winter, making it nearly invisible against the snowy landscape. However, if a habitat undergoes rapid environmental changes due to human activity, an animal's natural camouflage might quickly become obsolete, leaving it highly vulnerable to threats until the species can adapt over many generations.",
+                "options": [
+                    {
+                        "question": "The word \"alter\" in the passage is closest in meaning to...",
+                        "option": [
+                            "maintain",
+                            "change",
+                            "display",
+                            "protect"
+                        ],
+                        "index_answer": 1
+                    },
+                    {
+                        "question": "The word \"obsolete\" in the passage is closest in meaning to...",
+                        "option": [
+                            "useful",
+                            "dangerous",
+                            "outdated",
+                            "common"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "understanding_main_ideas",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "Plastic pollution has become one of the most serious environmental problems in the world. Millions of tons of plastic waste are dumped into the ocean every year, killing marine life and destroying ecosystems. Plastic takes hundreds of years to decompose, meaning the damage it causes is long-lasting. Communities around the world are now calling for stricter regulations on plastic use. Therefore, addressing plastic pollution must be made a global priority.",
+                "options": [
+                    {
+                        "question": "What is the main idea of the paragraph?",
+                        "option": [
+                            "Plastic takes hundreds of years to decompose",
+                            "Communities are calling for stricter regulations",
+                            "Plastic pollution is a serious global problem that must be addressed immediately",
+                            "Millions of tons of plastic are dumped into the ocean every year"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Every day, James reads for at least one hour before bed. He attends weekly book club meetings and always carries a book wherever he goes. On vacations, he visits local libraries instead of tourist spots. He also keeps a journal where he writes reflections on every book he finishes.",
+                "options": [
+                    {
+                        "question": "What is the main idea of the paragraph?",
+                        "option": [
+                            "James visits libraries when he goes on vacation",
+                            "James writes reflections in a journal after reading",
+                            "James attends a weekly book club",
+                            "James is someone who is deeply passionate about reading"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Deforestation is destroying the planet's lungs. Every year, millions of acres of forest are cleared for agriculture and urban development. This leads to the loss of biodiversity, as countless species lose their natural habitat. The destruction of forests also contributes significantly to climate change by releasing stored carbon dioxide into the atmosphere. Without forests, the Earth's ability to sustain life is severely threatened.",
+                "options": [
+                    {
+                        "question": "What is the main idea of the paragraph?",
+                        "option": [
+                            "Deforestation is causing serious damage to the planet and all life on it",
+                            "Forests are cleared every year for agriculture and urban development",
+                            "Deforestation releases carbon dioxide into the atmosphere",
+                            "Many species lose their habitat due to deforestation"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Social media platforms allow people to connect with friends and family across the world. They also serve as powerful tools for sharing news and information instantly. Businesses use social media to reach millions of potential customers with low marketing costs. Artists and creators can showcase their work to a global audience without the need for traditional publishers or galleries.",
+                "options": [
+                    {
+                        "question": "What is the main idea of the paragraph?",
+                        "option": [
+                            "Businesses can use social media for low-cost marketing",
+                            "Artists can showcase their work through social media",
+                            "Social media helps people connect with friends and family",
+                            "Social media plays many important roles in modern life"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Learning a new language opens up countless opportunities in life. It improves cognitive abilities such as memory and problem-solving skills. People who speak more than one language tend to perform better in academic settings. Knowing another language also makes traveling to foreign countries much easier and more enjoyable. It even increases career prospects, as many companies prefer bilingual employees.",
+                "options": [
+                    {
+                        "question": "What is the main idea of the paragraph?",
+                        "option": [
+                            "Bilingual people perform better academically",
+                            "Traveling is easier when you speak another language",
+                            "Learning a new language brings many benefits to a person's life",
+                            "Many companies prefer to hire bilingual employees"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "stated_detail_information",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "The Great Wall of China was built over many centuries by different Chinese dynasties. Its primary purpose was to protect Chinese states from invasions by nomadic groups from the north. The wall stretches over 13,000 miles and required millions of workers to construct, many of whom died during its construction and were buried within the wall itself.",
+                "options": [
+                    {
+                        "question": "According to the passage, what was the main purpose of building the Great Wall of China?",
+                        "option": [
+                            "To serve as a trade route between cities",
+                            "To showcase the power of the Chinese empire",
+                            "To protect Chinese states from northern invasions",
+                            "To provide employment for millions of workers"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Honeybees play a crucial role in agriculture by pollinating crops. Without bees, many of the fruits and vegetables we eat every day would not exist. A single bee colony can pollinate millions of flowers in a single day. Unfortunately, bee populations around the world have been declining rapidly due to pesticide use, habitat loss, and climate change.",
+                "options": [
+                    {
+                        "question": "According to the passage, why are bee populations declining?",
+                        "option": [
+                            "Because farmers are not planting enough flowers",
+                            "Because bees are being overharvested for honey production",
+                            "Because of pesticide use, habitat loss, and climate change",
+                            "Because bee colonies are becoming too large to sustain themselves"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Mount Everest, located in the Himalayas on the border of Nepal and Tibet, is the highest mountain in the world at 8,849 meters above sea level. It was first successfully climbed on May 29, 1953, by Sir Edmund Hillary of New Zealand and Tenzing Norgay, a Sherpa from Nepal. Since then, thousands of climbers have attempted to reach its summit, though many have lost their lives in the process.",
+                "options": [
+                    {
+                        "question": "According to the passage, who were the first people to successfully climb Mount Everest?",
+                        "option": [
+                            "A team of American and Chinese mountaineers",
+                            "Sir Edmund Hillary and a guide from Tibet",
+                            "Sir Edmund Hillary and Tenzing Norgay",
+                            "A group of explorers from New Zealand"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "The human brain is made up of approximately 86 billion neurons. These neurons communicate with each other through electrical and chemical signals. The brain is divided into several regions, each responsible for different functions such as memory, emotion, movement, and language. Despite decades of research, scientists still do not fully understand how the brain produces consciousness.",
+                "options": [
+                    {
+                        "question": "According to the passage, how do neurons in the brain communicate?",
+                        "option": [
+                            "Through physical contact between brain cells",
+                            "Through electrical and chemical signals",
+                            "Through the flow of oxygen in the bloodstream",
+                            "Through a system of nerves connected to the spine"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Coffee is one of the most widely consumed beverages in the world. It was first discovered in Ethiopia, where legend has it that a goat herder noticed his goats became unusually energetic after eating berries from a certain tree. Coffee cultivation and trade began on the Arabian Peninsula, and by the 16th century it had spread to the rest of the world.",
+                "options": [
+                    {
+                        "question": "According to the passage, where did coffee cultivation and trade first begin?",
+                        "option": [
+                            "In Ethiopia, where coffee was originally discovered",
+                            "On the Arabian Peninsula",
+                            "In Europe during the 16th century",
+                            "In South America among local farming communities"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "unstated_detail_information",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "The Venus Flytrap is a carnivorous plant native to subtropical wetlands on the East Coast of the United States. It catches its prey—chiefly insects and arachnids—with a trapping structure formed by the terminal portion of each of the plant's leaves. The trap is triggered by tiny hairs on the inner surfaces. The plant does not eat meat for energy, but rather to get nutrients that are missing from the poor soil where it grows.",
+                "options": [
+                    {
+                        "question": "Which of the following is NOT true about the Venus Flytrap?",
+                        "option": [
+                            "It is a carnivorous plant.",
+                            "It is native to the East Coast of the United States.",
+                            "It gets energy directly from the insects it catches.",
+                            "It grows in soil that lacks certain nutrients"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands. It is located in the Coral Sea, off the coast of Queensland, Australia. The reef is so large that it can be seen from outer space and is the world's biggest single structure made by living organisms.",
+                "options": [
+                    {
+                        "question": "All of the following are mentioned about the Great Barrier Reef EXCEPT....",
+                        "option": [
+                            "It is located off the coast of Australia.",
+                            "It consists of more than 2,000 individual reefs.",
+                            "It was built by humans thousands of years ago.",
+                            "It is visible from outer space."
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Bears are mammals of the family Ursidae. They are classified as caniforms, or doglike carnivorans. Although there are only eight species of bears, they are widespread, appearing in a wide variety of habitats throughout the Northern Hemisphere and partially in the Southern Hemisphere. Common characteristics include large bodies with stocky legs, long snouts, and shaggy hair.",
+                "options": [
+                    {
+                        "question": "Which of the following is NOT mentioned as a characteristic of bears?",
+                        "option": [
+                            "They have long snouts.",
+                            "They have shaggy hair.",
+                            "They have thin, long legs.",
+                            "They have large bodies."
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "The Sahara Desert is the largest hot desert in the world and the third largest desert overall, smaller only than the deserts of Antarctica and the northern Arctic. It covers much of North Africa, stretching from the Red Sea in the east to the Atlantic Ocean in the west. The landscape includes sand dunes, stone plateaus, and dry valleys.",
+                "options": [
+                    {
+                        "question": "Which of the following is NOT discussed about the Sahara Desert?",
+                        "option": [
+                            "Its location in North Africa.",
+                            "The types of animals that live there.",
+                            "The composition of its landscape.",
+                            "Its size compared to other deserts"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "The Titanic was a British passenger liner operated by the White Star Line. It sank in the North Atlantic Ocean in the early morning hours of April 15, 1912, after striking an iceberg during her maiden voyage from Southampton to New York City. There were an estimated 2,224 passengers and crew aboard, and more than 1,500 died.",
+                "options": [
+                    {
+                        "question": "Which of the following is NOT stated in the passage about the Titanic?",
+                        "option": [
+                            "It was operated by the White Star Line.",
+                            "It sank because of a collision with another ship.",
+                            "Its destination was New York City.",
+                            "More than 1,500 people lost their lives."
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "inference_questions",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "The old artisan, Elias, sat in his workshop surrounded by clockwork gears and copper springs. On his desk lay a 'smart-watch,' a sleek piece of glass and silicon sent by his nephew for repair. Elias poked at the screen with his calloused fingers, but the device remained dark, offering no click, no hum, no heartbeat of machinery. His nephew's note said, 'It's faster and more efficient, Uncle. It tells me the weather, my heart rate, and the news.' Elias looked at the grand pendulum clock in the corner, which he had wound every morning for forty years. It didn't tell the news, but its steady tick-tock filled the room like a living breath. He picked up his smallest screwdriver, but then hesitated, realizing there was nothing inside this new 'watch' for a man like him to actually fix.",
+                "options": [
+                    {
+                        "question": "Based on the passage, why does Elias hesitate to use his screwdriver on the smart-watch?",
+                        "option": [
+                            "He is afraid of breaking the expensive glass screen.",
+                            "He does not have the correct tools to open a device made of silicon.",
+                            "The mechanical components he is trained to repair are absent in this digital device.",
+                            "His nephew strictly told him not to open the watch."
+                        ],
+                        "index_answer": 2
+                    },
+                    {
+                        "question": "The author describes the grandfather clock's sound as \"like a living breath\" to suggest that...",
+                        "option": [
+                            "The clock is broken and making strange, loud noises.",
+                            "Elias feels a deep, vital connection to traditional mechanical objects.",
+                            "The workshop is too quiet and needs more background noise.",
+                            "The clock is haunted by the spirits of past watchmakers."
+                        ],
+                        "index_answer": 1
+                    },
+                    {
+                        "question": "How would Elias most likely respond if his nephew offered to replace the grand pendulum clock with a modern digital wall display?",
+                        "option": [
+                            "With gratitude, because he is tired of winding the clock every morning.",
+                            "With rejection, because he values the \"soul\" and mechanical presence of his old clock.",
+                            "With excitement, because he wants to know the weather and news more easily.",
+                            "With confusion, because he does not know how to tell time on a digital screen."
+                        ],
+                        "index_answer": 1
+                    },
+                    {
+                        "question": "According to the nephew's note and Elias's observation, what is one major difference between the smart-watch and the pendulum clock?",
+                        "option": [
+                            "The smart-watch is much larger and heavier than the pendulum clock.",
+                            "The pendulum clock provides more information, such as heart rate and news.",
+                            "The smart-watch lacks the physical moving parts (machinery) found in Elias's traditional clocks.",
+                            "The pendulum clock is faster and more efficient than the smart-watch."
+                        ],
+                        "index_answer": 2
+                    },
+                    {
+                        "question": "The author mentions Elias's \"calloused fingers\" primarily to emphasize...",
+                        "option": [
+                            "A skin condition caused by working with dangerous chemicals.",
+                            "His years of physical, hands-on labor in his craft.",
+                            "His inability to use modern touch-screen technology properly.",
+                            "The lack of proper safety equipment in his old workshop."
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "reference_questions",
+        "questions": [
+            {
+                "type": "LongReading",
+                "long_text": "The Renaissance was a period of intense artistic and intellectual activity in Europe. During this, many scholars rediscovered ancient Greek and Roman texts that had been forgotten for centuries. They began to emphasize human potential and achievements, a philosophy now known as humanism.",
+                "options": [
+                    {
+                        "question": "The word \"this\" in the passage refers to...",
+                        "option": [
+                            "Intellectual activity",
+                            "The Renaissance",
+                            "Europe",
+                            "Humanism"
+                        ],
+                        "index_answer": 1
+                    },
+                    {
+                        "question": "The word \"They\" in the passage refers to...",
+                        "option": [
+                            "Ancient Greek and Roman texts",
+                            "Centuries",
+                            "Many scholars",
+                            "Achievements"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "Electric vehicles (EVs) are becoming increasingly popular due to their low carbon emissions. However, the production of another remains a challenge for the industry: the high-capacity battery. The materials needed for these batteries are often difficult to extract.",
+                "options": [
+                    {
+                        "question": "The word \"another\" in the passage refers to...",
+                        "option": [
+                            "Electric vehicles",
+                            "Carbon emissions",
+                            "The industry",
+                            "High-capacity battery"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "When a honeybee finds a rich source of nectar, it returns to the hive to perform a 'waggle dance.' This complex movement tells others the exact direction and distance of the flowers. This ensures the colony can gather food efficiently.",
+                "options": [
+                    {
+                        "question": "The word \"others\" in the passage refers to...",
+                        "option": [
+                            "Honeybees (the colony members)",
+                            "Sources of nectar",
+                            "Flowers",
+                            "Waggle dances"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "LongReading",
+                "long_text": "The architect presented two designs for the new museum. The first was inspired by industrial steel, while the former was eventually chosen by the committee for its bold and modern aesthetic.",
+                "options": [
+                    {
+                        "question": "The word \"former\" in the passage refers to...",
+                        "option": [
+                            "The architect",
+                            "The new museum",
+                            "The first design (industrial steel)",
+                            "The committee"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "listening_to_short_conversation",
+        "questions": [
+            {
+                "type": "ShortAudio",
+                "options": [
+                    {
+                        "audio": "",
+                        "option": [
+                            "He closed the suitcase",
+                            "He just left on a trip",
+                            "He put the suitcase away",
+                            "He packed his clothes"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "ShortAudio",
+                "options": [
+                    {
+                        "audio": "",
+                        "option": [
+                            "He came too late to have lunch",
+                            "He is going to eat dinner early",
+                            "He's not very hungry",
+                            "He's not going to eat anything"
+                        ],
+                        "index_answer": 2
+                    }
+                ]
+            },
+            {
+                "type": "ShortAudio",
+                "options": [
+                    {
+                        "audio": "",
+                        "option": [
+                            "She adjusted to college life easily",
+                            "It was hard for her to get into college",
+                            "She no longer attends college",
+                            "It doesn't take her long to get to campus"
+                        ],
+                        "index_answer": 0
+                    }
+                ]
+            },
+            {
+                "type": "ShortAudio",
+                "options": [
+                    {
+                        "audio": "",
+                        "option": [
+                            "The chairman decided that Tony would serve on the board for another year",
+                            "The chairman elected the board",
+                            "The board decided Tony could be chairman after one year",
+                            "Tony became chairman for one more year"
+                        ],
+                        "index_answer": 3
+                    }
+                ]
+            },
+            {
+                "type": "ShortAudio",
+                "options": [
+                    {
+                        "audio": "",
+                        "option": [
+                            "The baby-sitter went to bed quite early",
+                            "The children were forced to go to bed early",
+                            "The baby-sitter made the bed after the children got up",
+                            "The baby-sitter did not stay up late"
+                        ],
+                        "index_answer": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "listening_to_talks_and_no",
+        "questions": [
+            {
+                "type": "LongAudio",
+                "audio": "",
+                "options": [
+                    {
+                        "audio": "",
+                        "option": [
+                            "Attend a football game alone.",
+                            "Go to a sporting event.",
+                            "Eat in the cafeteria and study.",
+                            "See a play."
+                        ],
+                        "index_answer": -1
+                    },
+                    {
+                        "audio": "",
+                        "option": [
+                            "It's the final game of the season.",
+                            "It's better than the drama departments play.",
+                            "It's a very important game.",
+                            "It's close to the cafeteria"
+                        ],
+                        "index_answer": -1
+                    },
+                    {
+                        "audio": "",
+                        "option": [
+                            "A play.",
+                            "A game.",
+                            "A study group meeting.",
+                            "Dinner in the cafeteria"
+                        ],
+                        "index_answer": -1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "module_id": "listening_to_talks_and_note_taking",
+        "questions": [
+            {
+                "type": "LongAudio",
+                "audio": "",
+                "options": [
+                    {
+                        "audio": "",
+                        "question": "When does the assignment need to be turned in?",
+                        "option": [
+                            "On the first day of class",
+                            "In the final week of the semester",
+                            "In the middle of the semester",
+                            "At the end of class"
+                        ],
+                        "index_answer": -1
+                    },
+                    {
+                        "audio": "",
+                        "question": "When will the topic list be available?",
+                        "option": [
+                            "In two weeks",
+                            "In three weeks",
+                            "Later today",
+                            "By Friday of this week"
+                        ],
+                        "index_answer": -1
+                    },
+                    {
+                        "audio": "",
+                        "question": "What kind of sources should students use?",
+                        "option": [
+                            "Books listed in student journals",
+                            "Books from outside the library",
+                            "Both books and journals",
+                            "Journal and magazine articles"
+                        ],
+                        "index_answer": -1
+                    },
+                    {
+                        "audio": "",
+                        "question": "How many sources are required for the assignment?",
+                        "option": [
+                            "Two",
+                            "Three",
+                            "Five",
+                            "Seven"
+                        ],
+                        "index_answer": -1
+                    }
+                ]
+            }
+        ]
     }
 ]
