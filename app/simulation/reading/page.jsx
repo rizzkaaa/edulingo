@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../../components/Alert";
@@ -13,6 +13,13 @@ import ImageQuestion from "../../components/question_type_component/image_questi
 import LongTextQuestion from "../../components/question_type_component/long_text_question";
 import TrueFalseQuestion from "../../components/question_type_component/true_false_question";
 
+// Path disesuaikan dengan struktur folder Anda
+import { db } from "../../../lib/firebase"; 
+import { doc, setDoc } from "firebase/firestore";
+
+// Menggunakan import langsung karena folder data ada di root
+import simulasiData from "../../../data/simulasi.json";
+
 const questionComponents = {
   audio: AudioQuestion,
   basic: BasicQuestion,
@@ -21,57 +28,14 @@ const questionComponents = {
   true_false: TrueFalseQuestion,
 };
 
-const questions = [
-  {
-    type: "long_text",
-    passage: "Coral reefs are among the most diverse and biologically complex ecosystems on Earth. Often called the \"rainforests of the sea,\" they cover less than 1% of the ocean floor but support an estimated 25% of all marine species. Reefs are built by colonies of tiny animals called polyps, which secrete a hard calcium carbonate skeleton. Unfortunately, these vital ecosystems are currently facing severe threats from climate change, ocean acidification, and destructive fishing practices. Rising sea temperatures cause a phenomenon known as coral bleaching, where corals expel the symbiotic algae living in their tissues, turning them completely white and often leading to death.",
-    question: "According to the passage, what is the primary factor reshaping our understanding of language acquisition in the digital age?",
-    options: [
-      "A. The increased global distribution of physical textbooks",
-      "B. The integration of traditional methods with computational models",
-      "C. The complete elimination of curricula based on classical theories",
-      "D. A general decline in language learning interest among teenagers",
-    ],
-  },
-  {
-    type: "image",
-    imageUrl: "/question_assets/photo/sample_image.png",
-    question: "Based on the image, what can be inferred about the subject being presented?",
-    options: [
-      "A. It depicts an ancient manuscript from the medieval period",
-      "B. It shows a modern academic reference book",
-      "C. It illustrates a scientific journal from the 19th century",
-      "D. It represents a government policy document",
-    ],
-  },
-  {
-    type: "basic",
-    question: "According to the passage, which of the following best describes the author's tone?",
-    options: [
-      "A. Optimistic and encouraging",
-      "B. Critical and analytical",
-      "C. Neutral and informative",
-      "D. Pessimistic and discouraging",
-    ],
-  },
-  {
-    type: "true_false",
-    question: "The author implies that digital tools have completely replaced traditional learning methods.",
-  },
-  {
-    type: "basic",
-    question: "What does the word 'acquisition' most likely mean in the context of the passage?",
-    options: [
-      "A. The process of buying something",
-      "B. The act of gaining a skill or knowledge",
-      "C. A formal agreement between two parties",
-      "D. The removal of an existing system",
-    ],
-  },
-];
-
 export default function ReadingPage() {
   const router = useRouter();
+
+  const [questions, setQuestions]     = useState([]);
+  const [isLoading, setIsLoading]     = useState(true);
+
+  // State untuk menyimpan User ID
+  const [userId, setUserId]           = useState("");
 
   const [current, setCurrent]         = useState(0);
   const [answers, setAnswers]         = useState({});
@@ -81,8 +45,174 @@ export default function ReadingPage() {
     show: false, text: "", isAlert: true, onOke: () => {},
   });
 
+  // Waktu 80 menit (80 * 60 detik = 4800 detik)
+  const [timeLeft, setTimeLeft] = useState(80 * 60);
+
+  // Fungsi untuk mengacak array
+  const shuffleArray = (array) => {
+    let shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Mengambil ID user yang sedang login
+  useEffect(() => {
+    let loggedInUser = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");
+    
+    if (loggedInUser) {
+      setUserId(loggedInUser);
+    } else {
+      console.warn("Data login tidak ditemukan. Menggunakan ID Guest sementara.");
+      let storedId = sessionStorage.getItem("toefl_guest_id");
+      if (!storedId) {
+        storedId = "guest_" + Math.random().toString(36).substring(2, 15);
+        sessionStorage.setItem("toefl_guest_id", storedId);
+      }
+      setUserId(storedId);
+    }
+  }, []);
+
+  // Load soal Reading dari JSON, Normalisasi, Acak, Batasi 36
+  useEffect(() => {
+    try {
+      let readingSession = null;
+      if (Array.isArray(simulasiData)) {
+        readingSession = simulasiData.find(item => item.session_id === "Reading");
+      } else if (simulasiData.session_id === "Reading") {
+        readingSession = simulasiData;
+      }
+
+      if (readingSession && readingSession.questions) {
+        
+        let normalizedQuestions = readingSession.questions.map(q => {
+          let mappedType = q.type;
+          
+          if (mappedType === "TrueOrFalse") mappedType = "true_false";
+          if (mappedType === "FillInTheBlank" || mappedType === "MultipleChoice") mappedType = "basic";
+          if (mappedType === "LongText") mappedType = "long_text"; 
+
+          let flatOptions = q.options || [];
+          let correctAns = q.correct_answer !== undefined ? q.correct_answer : (q.answer !== undefined ? q.answer : null);
+          let correctIdx = q.index_answer !== undefined ? parseInt(q.index_answer) : null;
+
+          if (Array.isArray(q.options) && q.options.length > 0) {
+            if (q.options[0] && typeof q.options[0] === 'object' && q.options[0].option) {
+              flatOptions = q.options[0].option; 
+              const idx = q.options[0].index_answer; 
+              if (idx !== undefined && idx !== null) {
+                correctIdx = parseInt(idx);
+                if (flatOptions[correctIdx] !== undefined) {
+                  correctAns = flatOptions[correctIdx]; 
+                }
+              }
+            }
+          }
+
+          return {
+            ...q,
+            type: mappedType,
+            options: flatOptions,
+            correctAnswer: correctAns,
+            correctIndex: correctIdx
+          };
+        });
+        
+        if (normalizedQuestions.length > 36) {
+          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, 36);
+        }
+        
+        setQuestions(normalizedQuestions);
+      } else {
+        console.error("Data Reading session tidak ditemukan di file simulasi.json");
+      }
+    } catch (error) {
+      console.error("Gagal memproses data soal:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Interval berjalan konstan tanpa re-create tiap detik
+  useEffect(() => {
+    if (isLoading || questions.length === 0) return;
+
+    const timerId = setInterval(() => {
+      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [isLoading, questions.length]);
+
+  // Efek pendukung untuk mendeteksi auto-submit saat waktu habis
+  useEffect(() => {
+    if (timeLeft === 0 && !isLoading && questions.length > 0) {
+      handleTimeUp();
+    }
+  }, [timeLeft, isLoading, questions.length]);
+
+  // Fungsi menghitung skor Reading dan menyimpannya ke Firebase berdasarkan ID Login
+  const saveDataToFirebase = async () => {
+    if (!userId) return; 
+
+    const timeSpent = (80 * 60) - timeLeft;
+    let correctCount = 0;
+
+    questions.forEach((q, index) => {
+      const ans = answers[index];
+      if (ans !== undefined) {
+        let isCorrect = false;
+
+        if (q.correctAnswer !== null && ans === q.correctAnswer) {
+          isCorrect = true;
+        }
+        if (q.correctIndex !== null && (ans === q.correctIndex || String(ans) === String(q.correctIndex))) {
+          isCorrect = true;
+        }
+        if (typeof ans === 'string' && typeof q.correctAnswer === 'string' && 
+            ans.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase()) {
+          isCorrect = true;
+        }
+
+        if (isCorrect) {
+          correctCount++;
+        }
+      }
+    });
+
+    const totalQ = questions.length;
+    const scorePercentage = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
+
+    try {
+      await setDoc(doc(db, "exam_sessions", userId), {
+        reading_time_left: timeLeft,
+        reading_time_spent: timeSpent,
+        reading_correct_answers: correctCount,
+        reading_total_questions: totalQ,
+        reading_score_percentage: scorePercentage,
+        updatedAt: new Date()
+      }, { merge: true });
+      console.log(`Waktu dan skor Reading berhasil disimpan ke Akun Login ID: ${userId}`);
+    } catch (error) {
+      console.error("Gagal menyimpan data ke Firebase: ", error);
+    }
+  };
+
+  const handleTimeUp = async () => {
+    await saveDataToFirebase();
+    router.push("/simulation/result");
+  };
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60).toString().padStart(2, "0");
+    const s = (seconds % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+  };
+
   const totalQuestions = questions.length;
-  const allAnswered = questions.every((_, i) => answers[i] !== undefined);
+  const allAnswered = questions.length > 0 && questions.every((_, i) => answers[i] !== undefined);
 
   function showAlert(text, isAlert = true, onOke = () => {}) {
     setAlertConfig({ show: true, text, isAlert, onOke });
@@ -101,17 +231,22 @@ export default function ReadingPage() {
   }
 
   function handleSubmit() {
-    if (!allAnswered) {
-      setSubmitError(true);
-      const firstUnanswered = questions.findIndex((_, i) => answers[i] === undefined);
-      if (firstUnanswered !== -1) setCurrent(firstUnanswered);
-      return;
-    }
     showAlert(
       "Sudah yakin mau submit? Jawaban tidak bisa diubah setelah submit.",
       false,
-      () => router.push("/simulation/result")
+      async () => {
+        await saveDataToFirebase();
+        router.push("/simulation/result");
+      }
     );
+  }
+
+  function handleNext() {
+    if (current === totalQuestions - 1) {
+      showAlert("Ini adalah soal terakhir. Silakan klik tombol 'SUBMIT EXAM' di panel kanan untuk menyelesaikan ujian.", false);
+    } else {
+      setCurrent(prev => prev + 1);
+    }
   }
 
   function handleFlag() {
@@ -119,10 +254,18 @@ export default function ReadingPage() {
   }
 
   function getQuestionClass(index) {
-    if (index === current)            return styles.activeQuestion;
+    if (index === current)             return styles.activeQuestion;
     if (flagged[index])               return styles.reviewQuestion;
     if (answers[index] !== undefined) return styles.answeredQuestion;
     return styles.unansweredQuestion;
+  }
+
+  if (isLoading) {
+    return <div className={styles.container} style={{ color: 'white', textAlign: 'center', paddingTop: '20vh' }}>Loading questions...</div>;
+  }
+
+  if (questions.length === 0) {
+    return <div className={styles.container} style={{ color: 'white', textAlign: 'center', paddingTop: '20vh' }}>Soal tidak tersedia. Cek file simulasi.json Anda.</div>;
   }
 
   const q = questions[current];
@@ -150,7 +293,7 @@ export default function ReadingPage() {
           <p>Session: Reading</p>
         </div>
         <div className={styles.headerRight}>
-          <div className={styles.timerBox}><FaClock />40:00</div>
+          <div className={styles.timerBox}><FaClock />{formatTime(timeLeft)}</div>
           <button className={styles.exitBtn} onClick={handleExit}>EXIT SESSION</button>
         </div>
       </div>
@@ -160,24 +303,39 @@ export default function ReadingPage() {
       <div className={styles.contentLayout}>
         <div className={styles.leftSection}>
           <div className={styles.questionContainer}>
-            <QuestionComponent
-              {...q}
-              questionNumber={current + 1}
-              totalQuestions={totalQuestions}
-              selectedAnswer={answers[current]}
-              onAnswer={(val) => {
-                setAnswers(prev => ({ ...prev, [current]: val }));
-                setSubmitError(false);
-              }}
-            />
+            {QuestionComponent ? (
+              <QuestionComponent
+                {...q}
+                questionNumber={current + 1}
+                totalQuestions={totalQuestions}
+                selectedAnswer={answers[current]}
+                onAnswer={(val) => {
+                  setAnswers(prev => ({ ...prev, [current]: val }));
+                  setSubmitError(false);
+                }}
+              />
+            ) : (
+              <div style={{ padding: "20px", color: "red", border: "2px dashed red", background: "#ffe6e6", borderRadius: "8px" }}>
+                <h3 style={{ margin: "0 0 10px 0" }}>⚠️ Error Merender Soal No. {current + 1}</h3>
+                <p style={{ margin: 0 }}>
+                  Sistem tidak menemukan komponen untuk tipe soal <strong><code>"{q.type}"</code></strong>.
+                </p>
+              </div>
+            )}
           </div>
 
           <div className={styles.bottomActions}>
-            <button className={styles.prevBtn} onClick={() => setCurrent(prev => Math.max(0, prev - 1))} disabled={current === 0}>← PREVIOUS</button>
+            <button 
+              className={styles.prevBtn} 
+              onClick={() => setCurrent(prev => prev - 1)} 
+              disabled={current === 0}
+            >
+              ← PREVIOUS
+            </button>
             <button className={`${styles.reviewBtn} ${flagged[current] ? styles.reviewBtnActive : ""}`} onClick={handleFlag}>
               <FaFlag />{flagged[current] ? "FLAGGED" : "MARK FOR REVIEW"}
             </button>
-            <button className={styles.nextBtn} onClick={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))} disabled={current === totalQuestions - 1}>NEXT QUESTION →</button>
+            <button className={styles.nextBtn} onClick={handleNext}>NEXT QUESTION →</button>
           </div>
         </div>
 
@@ -189,11 +347,19 @@ export default function ReadingPage() {
             </div>
             <div className={styles.lineDivider}></div>
             <div className={styles.questionGrid}>
-              {questions.map((_, index) => (
-                <div key={index} className={getQuestionClass(index)} onClick={() => setCurrent(index)} style={{ cursor: "pointer" }}>
-                  {index + 1}
-                </div>
-              ))}
+              {questions.map((_, index) => {
+                // KELUAR DARI JEBAKAN: Komentar dipindah ke sini (gaya JS biasa sebelum return JSX)
+                return (
+                  <div 
+                    key={index} 
+                    className={getQuestionClass(index)} 
+                    onClick={() => setCurrent(index)} 
+                    style={{ cursor: "pointer" }}
+                  >
+                    {index + 1}
+                  </div>
+                );
+              })}
             </div>
             <div className={styles.legendBox}>
               <div><span className={styles.legendAnswered}></span>Answered</div>
@@ -204,12 +370,10 @@ export default function ReadingPage() {
 
           <div className={styles.submitBox}>
             <p>Please review all your answers before finishing the examination.</p>
-            {submitError && (
-              <p className={styles.submitError}>⚠ Jawab semua soal terlebih dahulu sebelum submit!</p>
-            )}
             <button
               className={`${styles.submitBtn} ${!allAnswered ? styles.submitBtnDisabled : ""}`}
               onClick={handleSubmit}
+              disabled={!allAnswered}
             >
               SUBMIT EXAM
             </button>

@@ -1,8 +1,13 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Image from "next/image";
+
+// Import Firebase
+import { db } from "../../../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 import {
   FaCheckCircle,
@@ -19,30 +24,152 @@ import {
 export default function ResultPage() {
   const router = useRouter();
 
-  // ===== DATA (nanti diganti dari state/API) =====
-  const result = {
-    grade: "GOOD",
-    totalScore: 85,
-    description: "Excellent effort! You are currently in the top 15% of all Edulingo students this week.",
-    correct: 78,
-    incorrect: 22,
-    completionTime: "1h 45m",
-    quote: '"Success is a series of small wins."',
-    sections: [
-      { label: "Structure", icon: <FaPen />, score: 80, correct: 24, total: 30 },
-      { label: "Reading",   icon: <FaBook />, score: 90, correct: 27, total: 30 },
-      { label: "Listening", icon: <FaHeadphones />, score: 85, correct: 34, total: 40 },
-    ],
-    analytics: {
-      totalQuestions: 100,
-      answered: 100,
-      answeredPct: "100%",
-      unanswered: 0,
-      averageAccuracy: "85%",
-      fastestSection: "Listening",
-      hardestSection: "Structure",
-    },
+  const [userId, setUserId] = useState("");
+  const [result, setResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Helper fungsi untuk mengubah detik menjadi format jam/menit/detik yang rapi
+  const formatCompletionTime = (totalSeconds) => {
+    if (!totalSeconds || totalSeconds <= 0) return "0m";
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    let timeString = "";
+    if (hours > 0) timeString += `${hours}h `;
+    if (minutes > 0) timeString += `${minutes}m `;
+    if (hours === 0 && minutes === 0) timeString += `${seconds}s`;
+    return timeString.trim();
   };
+
+  // 1. Ambil User ID yang aktif saat ini
+  useEffect(() => {
+    let loggedInUser = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");
+    
+    if (loggedInUser) {
+      setUserId(loggedInUser);
+    } else {
+      // Fallback jika guest id digunakan
+      let storedId = sessionStorage.getItem("toefl_guest_id");
+      if (storedId) {
+        setUserId(storedId);
+      } else {
+        console.warn("User ID tidak ditemukan.");
+        setIsLoading(false);
+      }
+    }
+  }, []);
+
+  // 2. Tarik data hasil simulasi dari Firebase Firestore
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchExamResult = async () => {
+      try {
+        const docRef = doc(db, "exam_sessions", userId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+
+          // Ambil metrik tiap sesi (Sediakan default nilai 0 jika sesi lain belum dikerjakan)
+          const readingCorrect = data.reading_correct_answers || 0;
+          const readingTotal = data.reading_total_questions || 0;
+          const readingScore = data.reading_score_percentage || 0;
+          const readingTime = data.reading_time_spent || 0;
+
+          const structureCorrect = data.structure_correct_answers || 0;
+          const structureTotal = data.structure_total_questions || 0;
+          const structureScore = data.structure_score_percentage || 0;
+          const structureTime = data.structure_time_spent || 0;
+
+          const listeningCorrect = data.listening_correct_answers || 0;
+          const listeningTotal = data.listening_total_questions || 0;
+          const listeningScore = data.listening_score_percentage || 0;
+          const listeningTime = data.listening_time_spent || 0;
+
+          // Akumulasi Total Keseluruhan
+          const totalCorrect = readingCorrect + structureCorrect + listeningCorrect;
+          const totalQuestions = readingTotal + structureTotal + listeningTotal;
+          const totalIncorrect = totalQuestions - totalCorrect;
+          
+          // Rata-rata skor atau skor gabungan akumulatif
+          const totalScore = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+          const totalTimeSpent = readingTime + structureTime + listeningTime;
+
+          // Menentukan Grade & Deskripsi Berdasarkan Skor Akumulasi
+          let grade = "NEED IMPROVEMENT";
+          let description = "Keep practicing! Every mistake is a step closer to mastering the exam.";
+          if (totalScore >= 80) {
+            grade = "GOOD";
+            description = "Excellent effort! You are currently performing remarkably well in this simulation.";
+          } else if (totalScore >= 65) {
+            grade = "AVERAGE";
+            description = "Great job! With a little more focus on your weak sections, you can ace this.";
+          }
+
+          // Cari section tercepat dan tersulit secara dinamis sederhana
+          const scoresArr = [
+            { name: "Reading", score: readingScore },
+            { name: "Structure", score: structureScore },
+            { name: "Listening", score: listeningScore }
+          ];
+          
+          // Urutkan untuk mencari skor paling rendah (termasuk yang paling sulit)
+          const hardestSection = scoresArr.reduce((prev, current) => (prev.score < current.score) ? prev : current).name;
+
+          // Susun state object hasil akhir
+          setResult({
+            grade: grade,
+            totalScore: totalScore,
+            description: description,
+            correct: totalCorrect,
+            incorrect: totalIncorrect,
+            completionTime: formatCompletionTime(totalTimeSpent),
+            quote: '"Success is a series of small wins."',
+            sections: [
+              { label: "Structure", icon: <FaPen />, score: structureScore, correct: structureCorrect, total: structureTotal },
+              { label: "Reading", icon: <FaBook />, score: readingScore, correct: readingCorrect, total: readingTotal },
+              { label: "Listening", icon: <FaHeadphones />, score: listeningScore, correct: listeningCorrect, total: listeningTotal },
+            ],
+            analytics: {
+              totalQuestions: totalQuestions,
+              answered: totalCorrect + totalIncorrect,
+              answeredPct: totalQuestions > 0 ? `${Math.round(((totalCorrect + totalIncorrect) / totalQuestions) * 100)}%` : "0%",
+              unanswered: totalQuestions - (totalCorrect + totalIncorrect),
+              averageAccuracy: `${totalScore}%`,
+              fastestSection: "Reading", // Anda bisa kembangkan tracking waktu per sesi jika ada datanya di Firestore
+              hardestSection: hardestSection,
+            },
+          });
+        } else {
+          console.error("Dokumen hasil ujian tidak ditemukan di Firebase.");
+        }
+      } catch (error) {
+        console.error("Gagal mengambil data dari Firebase:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchExamResult();
+  }, [userId]);
+
+  if (isLoading) {
+    return <div className={styles.page} style={{ color: "white", textAlign: "center", paddingTop: "20vh" }}>Loading simulation results...</div>;
+  }
+
+  if (!result) {
+    return (
+      <div className={styles.page} style={{ color: "white", textAlign: "center", paddingTop: "20vh" }}>
+        <h3>Belum ada data hasil ujian.</h3>
+        <p>Silakan selesaikan sesi simulasi Anda terlebih dahulu.</p>
+        <button className={styles.reviewBtn} onClick={() => router.push("/dashboard/history")} style={{ marginTop: "20px" }}>
+          MENU HISTORY
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
