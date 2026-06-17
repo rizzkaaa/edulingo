@@ -1,5 +1,6 @@
 "use client";
 
+import materials from "@/data/material.json";
 import styles from "./page.module.css";
 import Link from "next/link";
 import * as FaIcons from "react-icons/fa";
@@ -11,44 +12,44 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 export default function DashboardPage() {
   const [lessonStatus, setLessonStatus] = useState([]);
   const [username, setUsername] = useState("User");
-
-  const defaultLessonsMetadata = [
-    {
-      id: 1,
-      title: "Written Expression Part 1",
-      path: "/dashboard/lesson/written_expression_part_1",
-    },
-    {
-      id: 2,
-      title: "Written Expression Part 2",
-      path: "/dashboard/lesson/written_expression_part_2",
-    },
-    {
-      id: 3,
-      title: "Structure Part 1",
-      path: "/dashboard/lesson/structure_part_1",
-    },
-    {
-      id: 4,
-      title: "Structure Part 2",
-      path: "/dashboard/lesson/structure_part_2",
-    },
-    {
-      id: 5,
-      title: "Reading Strategies",
-      path: "/dashboard/lesson/reading_strategies",
-    },
-    {
-      id: 6,
-      title: "Reading for Details",
-      path: "/dashboard/lesson/reading_for_details",
-    },
-    {
-      id: 7,
-      title: "Listening Comprehension",
-      path: "/dashboard/lesson/listening_comprehension",
-    },
-  ];
+  const defaultLessonsMetadata = materials.materials;
+  // const defaultLessonsMetadata = [
+  //   {
+  //     id: 1,
+  //     title: "Written Expression Part 1",
+  //     path: "/dashboard/lesson/written_expression_part_1",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Written Expression Part 2",
+  //     path: "/dashboard/lesson/written_expression_part_2",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Structure Part 1",
+  //     path: "/dashboard/lesson/structure_part_1",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Structure Part 2",
+  //     path: "/dashboard/lesson/structure_part_2",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Reading Strategies",
+  //     path: "/dashboard/lesson/reading_strategies",
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Reading for Details",
+  //     path: "/dashboard/lesson/reading_for_details",
+  //   },
+  //   {
+  //     id: 7,
+  //     title: "Listening Comprehension",
+  //     path: "/dashboard/lesson/listening_comprehension",
+  //   },
+  // ];
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -61,15 +62,21 @@ export default function DashboardPage() {
             const data = docSnap.data();
             setUsername(data.username || user.displayName || "User");
             const firebaseLessons = data.lessonStatus || [];
-            const mergedLessons = defaultLessonsMetadata.map((lesson, index) => {
-              const fbLesson = firebaseLessons[index];
-              return {
-                id: lesson.id,
-                title: lesson.title,
-                path: lesson.path,
-                status: fbLesson ? fbLesson.status : index === 0 ? "progress" : "locked",
-              };
-            });
+            const mergedLessons = defaultLessonsMetadata.map(
+              (lesson, index) => {
+                const fbLesson = firebaseLessons[index];
+                return {
+                  id: lesson.part_id,
+                  title: lesson.part_title,
+                  path: `/dashboard/lesson/${lesson.part_title.toLowerCase().replaceAll(" ", "_")}`,
+                  status: fbLesson
+                    ? fbLesson.status
+                    : index === 0
+                      ? "progress"
+                      : "locked",
+                };
+              },
+            );
 
             setLessonStatus(mergedLessons);
           }
@@ -87,13 +94,31 @@ export default function DashboardPage() {
 
   const today = new Date();
   const hari = ["MINGGU", "SENIN", "SELASA", "RABU", "KAMIS", "JUMAT", "SABTU"];
-  const bulan = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGU", "SEP", "OKT", "NOV", "DES"];
+  const bulan = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MEI",
+    "JUN",
+    "JUL",
+    "AGU",
+    "SEP",
+    "OKT",
+    "NOV",
+    "DES",
+  ];
   const tanggalText = `${hari[today.getDay()]}, ${today.getDate()} ${bulan[today.getMonth()]}`;
 
-  const doneCount = lessonStatus.filter((lesson) => lesson.status === "done").length;
+  const doneCount = lessonStatus.filter(
+    (lesson) => lesson.status === "done",
+  ).length;
   // Mencegah NaN jika lessonStatus masih kosong saat loading
-  const progressPercent = lessonStatus.length > 0 ? Math.round((doneCount / 7) * 100) : 0;
-  const currentLesson = lessonStatus.find((lesson) => lesson.status === "progress") || lessonStatus[0];
+  const progressPercent =
+    lessonStatus.length > 0 ? Math.round((doneCount / 7) * 100) : 0;
+  const currentLesson =
+    lessonStatus.find((lesson) => lesson.status === "progress") ||
+    lessonStatus[0];
   const currentTitle = currentLesson?.title || "TOEFL Preparation";
   const allLessonsCompleted = doneCount === 7 && lessonStatus.length > 0;
 
@@ -102,11 +127,11 @@ export default function DashboardPage() {
     if (user) {
       try {
         const resetData = defaultLessonsMetadata.map((l, i) => ({
-          status: i === 0 ? "progress" : "locked",
-          path: l.path
+          status: i == 0 ? "progress" : "locked",
+          path: l.path,
         }));
         await updateDoc(doc(db, "users", user.uid), {
-          lessonStatus: resetData
+          lessonStatus: resetData,
         });
         window.location.reload();
       } catch (error) {
@@ -118,9 +143,7 @@ export default function DashboardPage() {
   return (
     <div className={styles.container}>
       <div className={styles.topbar}>
-        <h1>
-          SELAMAT DATANG, {username} 👋 ✨
-        </h1>
+        <h1>SELAMAT DATANG, {username} 👋 ✨</h1>
         <div className={styles.dateBox}>
           <FaIcons.FaCalendarAlt />
           {tanggalText}
@@ -133,9 +156,7 @@ export default function DashboardPage() {
             <p className={styles.heroCompletedLabel}>
               🎉 SEMUA MATERI SELESAI!
             </p>
-            <h1>
-              Luar Biasa, {username}!
-            </h1>
+            <h1>Luar Biasa, {username}!</h1>
             <div className={styles.wave}></div>
             <p>
               Kamu telah menyelesaikan seluruh 7 materi TOEFL Preparation.
@@ -154,12 +175,8 @@ export default function DashboardPage() {
       ) : (
         <div className={styles.heroSection}>
           <div className={styles.heroLeft}>
-            <p className={styles.label}>
-              KURSUS BERLANGSUNG
-            </p>
-            <h2>
-              {currentTitle}
-            </h2>
+            <p className={styles.label}>KURSUS BERLANGSUNG</p>
+            <h2>{currentTitle}</h2>
             <div className={styles.wave}></div>
             <div className={styles.progressTop}>
               <span>Progress Belajar</span>
@@ -171,7 +188,10 @@ export default function DashboardPage() {
                 style={{ width: `${progressPercent}%` }}
               ></div>
             </div>
-            <Link href={currentLesson?.path || "#"} className={styles.buttonLink}>
+            <Link
+              href={currentLesson?.path || "#"}
+              className={styles.buttonLink}
+            >
               <button className={styles.continueBtn}>
                 LANJUTKAN
                 <FaIcons.FaArrowRight />
@@ -179,34 +199,41 @@ export default function DashboardPage() {
             </Link>
           </div>
           <div className={styles.heroRight}>
-            <div className={styles.badge}>
-              {progressPercent}%
-            </div>
+            <div className={styles.badge}>{progressPercent}%</div>
             <img src="/images/book.png" alt="Book" />
           </div>
         </div>
       )}
 
-      <div className={styles.sectionTitle}>
-        MATERI SAYA ✨
-      </div>
+      <div className={styles.sectionTitle}>MATERI SAYA ✨</div>
 
       <div className={styles.lessonList}>
         {lessonStatus.map((lesson) => (
           <div key={lesson.id}>
             {lesson.status !== "locked" ? (
               <Link href={lesson.path} className={styles.linkCard}>
-                <div className={lesson.status === "done" ? styles.lessonDone : styles.lessonProgress}>
+                <div
+                  className={
+                    lesson.status === "done"
+                      ? styles.lessonDone
+                      : styles.lessonProgress
+                  }
+                >
                   <div className={styles.lessonInfo}>
                     <h3>
-                      {lesson.id < 10 ? `0${lesson.id}` : lesson.id} {lesson.title}
+                      {lesson.id < 10 ? `0${lesson.id}` : lesson.id}{" "}
+                      {lesson.title}
                     </h3>
                     <p>
                       {lesson.status === "done" ? "Completed" : "In Progress"}
                     </p>
                   </div>
                   <span className={styles.lessonIcon}>
-                    {lesson.status === "done" ? <FaIcons.FaCheck /> : <FaIcons.FaPlayCircle />}
+                    {lesson.status === "done" ? (
+                      <FaIcons.FaCheck />
+                    ) : (
+                      <FaIcons.FaPlayCircle />
+                    )}
                   </span>
                 </div>
               </Link>
@@ -214,11 +241,10 @@ export default function DashboardPage() {
               <div className={styles.lessonLocked}>
                 <div className={styles.lessonInfo}>
                   <h3>
-                    {lesson.id < 10 ? `0${lesson.id}` : lesson.id} {lesson.title}
+                    {lesson.id < 10 ? `0${lesson.id}` : lesson.id}{" "}
+                    {lesson.title}
                   </h3>
-                  <p>
-                    Selesaikan materi sebelumnya
-                  </p>
+                  <p>Selesaikan materi sebelumnya</p>
                 </div>
                 <div className={styles.lockedBadge}>
                   <FaIcons.FaLock />
@@ -233,7 +259,9 @@ export default function DashboardPage() {
       <div className={styles.bottomBanner}>
         <div>
           <h2>
-            {allLessonsCompleted ? "SIMULASI UJIAN TERBUKA !" : "SIAP UJIAN SIMULASI?"}
+            {allLessonsCompleted
+              ? "SIMULASI UJIAN TERBUKA !"
+              : "SIAP UJIAN SIMULASI?"}
           </h2>
           <p>
             {allLessonsCompleted
@@ -243,9 +271,7 @@ export default function DashboardPage() {
         </div>
         {allLessonsCompleted ? (
           <Link href="/simulation_rule" className={styles.buttonLink}>
-            <div className={styles.startButton}>
-              MULAI SIMULASI SEKARANG →
-            </div>
+            <div className={styles.startButton}>MULAI SIMULASI SEKARANG →</div>
           </Link>
         ) : (
           <div className={styles.lockButton}>
@@ -257,7 +283,14 @@ export default function DashboardPage() {
 
       <button
         onClick={handleResetProgress}
-        style={{ marginTop: '20px', padding: '10px', cursor: 'pointer', background: '#ffebee', border: '1px solid #ef9a9a', borderRadius: '4px' }}
+        style={{
+          marginTop: "20px",
+          padding: "10px",
+          cursor: "pointer",
+          background: "#ffebee",
+          border: "1px solid #ef9a9a",
+          borderRadius: "4px",
+        }}
       >
         Reset Progress (Firebase)
       </button>
