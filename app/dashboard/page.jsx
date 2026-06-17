@@ -113,7 +113,6 @@ export default function DashboardPage() {
   const doneCount = lessonStatus.filter(
     (lesson) => lesson.status === "done",
   ).length;
-  // Mencegah NaN jika lessonStatus masih kosong saat loading
   const progressPercent =
     lessonStatus.length > 0 ? Math.round((doneCount / 7) * 100) : 0;
   const currentLesson =
@@ -122,23 +121,40 @@ export default function DashboardPage() {
   const currentTitle = currentLesson?.title || "TOEFL Preparation";
   const allLessonsCompleted = doneCount === 7 && lessonStatus.length > 0;
 
+  // Editing fungsi reset progress
   const handleResetProgress = async () => {
-    const user = auth.currentUser;
-    if (user) {
-      try {
-        const resetData = defaultLessonsMetadata.map((l, i) => ({
-          status: i == 0 ? "progress" : "locked",
-          path: l.path,
-        }));
-        await updateDoc(doc(db, "users", user.uid), {
-          lessonStatus: resetData,
-        });
-        window.location.reload();
-      } catch (error) {
-        console.error("Gagal mereset data:", error);
-      }
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      localStorage.removeItem("structure_part_1_sub_progress");
+      localStorage.removeItem("structure_part_2_sub_progress");
+      localStorage.removeItem("written_part_1_sub_progress");
+      localStorage.removeItem("written_part_2_sub_progress");
+      localStorage.removeItem("reading_strategies_sub_progress");
+      localStorage.removeItem("reading_for_details_sub_progress");
+      localStorage.removeItem("listening_comprehension_sub_progress");
+
+      const resetData = defaultLessonsMetadata.map((l, i) => {
+        const generatedPath = `/dashboard/lesson/${l.part_title.toLowerCase().replaceAll(" ", "_")}`;
+        return {
+          status: i === 0 ? "progress" : "locked",
+          path: generatedPath, 
+        };
+      });
+
+      await updateDoc(doc(db, "users", user.uid), {
+        lessonStatus: resetData,
+      });
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Gagal mereset data:", error);
+      alert("Terjadi kesalahan saat mereset progress belajar.");
     }
-  };
+  } else {
+    alert("User tidak ditemukan, pastikan kamu sudah login.");
+  }
+};
 
   return (
     <div className={styles.container}>

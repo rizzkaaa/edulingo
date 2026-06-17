@@ -25,7 +25,6 @@ export default function LessonLayout({ children }) {
   const length = main_material.sub_modules.length;
 useEffect(() => {
     const initializeProgress = async () => {
-      // 1. Cek dulu status modul ini di Firestore via Firebase Auth
       const currentUser = auth.currentUser;
       if (currentUser) {
         try {
@@ -34,15 +33,12 @@ useEffect(() => {
           
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
-            // Asumsi: Modul Written Expression Part 1 berada di indeks 0
-            const currentStatus = userData.lessonStatus?.[0]?.status;
-
-            // 🟢 Jika di database sudah SELESAI, buka semua materi (set ke max length)
+            const currentStatus = userData.lessonStatus?.[2]?.status;
             if (currentStatus === "done") {
               setSub_module_id(length);
-              setCurrentModuleOpen(1); // Tetap buka halaman pertama sebagai default view
+              setCurrentModuleOpen(1); 
               setHasHydrated(true);
-              return; // Keluar dari fungsi, tidak perlu baca localStorage lagi
+              return; 
             }
           }
         } catch (error) {
@@ -50,7 +46,6 @@ useEffect(() => {
         }
       }
 
-      // 2. Fallback ke localStorage jika modul belum selesai di database
       const savedProgress = localStorage.getItem("written_part_1_sub_progress");
       if (savedProgress) {
         const parsedId = parseInt(savedProgress, 10);
@@ -65,7 +60,7 @@ useEffect(() => {
 
     initializeProgress();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.currentUser]); // Pemicu berjalan setelah auth berhasil dimuat
+  }, [auth.currentUser]); 
 
   const sub_material = main_material.sub_modules.find(
     (material) => material.sub_module_id == currentModuleOpen,
@@ -119,7 +114,6 @@ useEffect(() => {
           currentId={sub_module_id}
           length={length}
           widthFill={widthFill}
-          // 🟢 PERBAIKAN DI SINI: Mengunci gembok tombol jika materi selanjutnya belum berhak dibuka
           isLock={sub_module_id < currentModuleOpen + 1}
           setCurrentModuleOpen={setCurrentModuleOpen}
           currentModuleOpen={currentModuleOpen}
@@ -143,7 +137,7 @@ function ButtonMenu({
   const router = useRouter();
 
   function handleClick(sub_material_id) {
-    const nextPath = material.title.toLowerCase().replaceAll(" ", "_");
+    const nextPath = material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
 
     console.log(nextPath);
 
@@ -202,7 +196,7 @@ function BottomBar({
     const sub_material = main_material.sub_modules.find(
       (material) => material.sub_module_id == currentModuleOpen - 1,
     );
-    const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_");
+    const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
 
     setCurrentModuleOpen(currentModuleOpen - 1);
     router.push(`/dashboard/lesson/written_expression_part_1/${nextPath}`);
@@ -218,7 +212,7 @@ function BottomBar({
       const sub_material = main_material.sub_modules.find(
         (material) => material.sub_module_id == currentModuleOpen + 1,
       );
-      const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_");
+      const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
 
       setCurrentModuleOpen(currentModuleOpen + 1);
       router.push(`/dashboard/lesson/written_expression_part_1/${nextPath}`);
@@ -252,11 +246,11 @@ function BottomBar({
 
         if (currentStatusList.length > 0) {
 
-          currentStatusList[0] = { ...currentStatusList[0], status: "done" };
+          currentStatusList[2] = { ...currentStatusList[2], status: "done" };
 
 
-          if (currentStatusList[1] && currentStatusList[1].status === "locked") {
-            currentStatusList[1] = { ...currentStatusList[1], status: "progress" };
+          if (currentStatusList[3] && currentStatusList[3].status === "locked") {
+            currentStatusList[3] = { ...currentStatusList[3], status: "progress" };
           }
 
           await updateDoc(userDocRef, { lessonStatus: currentStatusList });
@@ -266,7 +260,7 @@ function BottomBar({
       }
     } catch (error) {
       console.error(error);
-      alert("Terjadi gangguan koneksi internet, kemajuan belajar gagal disimpan.");
+      alert("Terjadi kegagalan, kemajuan belajar gagal disimpan.");
     } finally {
       setIsUpdating(false);
     }

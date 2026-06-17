@@ -53,7 +53,7 @@ export default function RegisterPage() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
     if (!emailRegex.test(email)) {
-      showAlert("Format email tidak valid! Pastikan menyertakan domain lengkap (misal: xxxx@email.com)");
+      showAlert("Format email tidak valid! Pastikan menyertakan domain lengkap (misal: xxxx@gmail.com)");
       return;
     }
 
@@ -143,7 +143,7 @@ export default function RegisterPage() {
         <label>Email</label>
         <input
           type="email"
-          placeholder="nama@email.com"
+          placeholder="nama@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           // Edit load

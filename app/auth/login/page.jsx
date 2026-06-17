@@ -25,8 +25,6 @@ export default function LoginPage() {
  
   // Fungsi untuk Load login
   const [isLoading, setIsLoading] = useState(false);
-
-  // === STATE ALERT ===
   const [alertConfig, setAlertConfig] = useState({
     show: false,
     text: "",
@@ -91,7 +89,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
 
   return (
     <>
-      {/* === PERBAIKAN: Komponen Alert sekarang aman di dalam return === */}
+      {/*  */}
       {alertConfig.show && (
         <Alert
           isAlert={alertConfig.isAlert}
@@ -103,7 +101,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
           handleCancel={closeAlert}
         />
       )}
-      {/* ============================================================ */}
+      {/* ===*/}
     <motion.form
       className={styles.form}
       initial={{ opacity: 0, x: 50 }}
@@ -116,7 +114,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
     >
       <label>Email</label>
       <input type="email" 
-      placeholder="nama@email.com"
+      placeholder="nama@gmail.com"
       value={email} onChange={(e) => setEmail(e.target.value)}
       required
       // edit load
