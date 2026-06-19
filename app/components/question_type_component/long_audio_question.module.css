@@ -1,0 +1,195 @@
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.audioCard {
+  background: #F5F1EB;
+  border: 4px solid #1D1B18;
+  box-shadow: 8px 8px 0 #1D1B18;
+  padding: 36px;
+}
+
+.audioHeader {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.iconBox {
+  width: 72px;
+  height: 72px;
+  background: #F3C356;
+  border: 3px solid #1D1B18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.audioHeader h2 {
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.audioHeader p {
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.audioPlayer {
+  border: 3px solid #1D1B18;
+  background: #fff;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.playBtn {
+  width: 64px;
+  height: 64px;
+  background: #B0411B;
+  color: white;
+  border: 3px solid #1D1B18;
+  box-shadow: 4px 4px 0 #1D1B18;
+  cursor: pointer;
+}
+
+.playBtnDisabled {
+  background: #A0A0A0 !important; /* Mengubah tombol menjadi abu-abu */
+  color: #D3D3D3 !important;      /* Teks/icon menjadi abu-abu pudar */
+  border-color: #555555 !important;
+  box-shadow: 0px 0px 0 #1D1B18 !important; /* Menghilangkan shadow efek retro neubrutalism */
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.progressArea {
+  flex: 1;
+}
+
+.track {
+  position: relative;
+  height: 8px;
+  background: #ddd;
+}
+
+.fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #B0411B;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid #1D1B18;
+  transform: translate(-50%, -50%);
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+.questionList {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.questionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- UPDATE STYLING OPTION SESUAI GAMBAR BARU (HITAM PEKAT & JELAS) --- */
+.previewTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1D1B18;
+  margin-bottom: 4px;
+}
+
+.option {
+  width: 100%;
+  background: white;
+  border: 3px solid #1D1B18;
+  box-shadow: 4px 4px 0 #1D1B18;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  color: #1D1B18;       /* Memastikan warna teks jawaban hitam pekat */
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.optionSelected {
+  background: #FADADD;
+}
+
+/* Kotak huruf abjad (A, B, C, D) di sebelah kiri */
+.choiceLetter {
+  width: 44px;
+  height: 44px;
+  background: #F5F1EB;  /* Warna krem abu-abu mengikuti background card di gambar */
+  border: 3px solid #1D1B18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #1D1B18;
+  flex-shrink: 0;      /* Mencegah kotak mengecil jika teks jawaban panjang */
+}
+
+/* --- TOMBOL NEXT DI DALAM CARD AUDIO --- */
+.nextActionContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 3px dashed #1D1B18;
+}
+
+.buttonNext {
+  width: max-content;
+  height: 80px;
+  padding: 0 40px;
+  border: 4px solid #1D1B18;
+  box-shadow: 4px 4px 0 #1D1B18;
+  background: #C7542C;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.buttonNext:hover {
+  background-color: #b04c2b;
+}
+
+.buttonNext:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0 #1D1B18;
+}

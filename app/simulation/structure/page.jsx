@@ -28,6 +28,8 @@ const questionComponents = {
   true_false: TrueFalseQuestion,
 };
 
+const MAX_QUESTIONS = 28;
+
 export default function StructurePage() {
   const router = useRouter();
 
@@ -118,9 +120,9 @@ export default function StructurePage() {
             correctIndex: correctIdx 
           };
         });
-        
-        if (normalizedQuestions.length > 36) {
-          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, 36);
+
+        if (normalizedQuestions.length > MAX_QUESTIONS) {
+          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, MAX_QUESTIONS);
         }
         
         setQuestions(normalizedQuestions);

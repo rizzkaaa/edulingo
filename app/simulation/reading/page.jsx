@@ -28,6 +28,8 @@ const questionComponents = {
   true_false: TrueFalseQuestion,
 };
 
+const MAX_QUESTIONS = 36;
+
 export default function ReadingPage() {
   const router = useRouter();
 
@@ -87,7 +89,7 @@ export default function ReadingPage() {
 
       if (readingSession && readingSession.questions) {
         
-        let normalizedQuestions = readingSession.questions.map(q => {
+        let normalizedQuestions = readingSession.questions.map((q, idx) => {
           let mappedType = q.type;
           
           if (mappedType === "TrueOrFalse") mappedType = "true_false";
@@ -101,9 +103,9 @@ export default function ReadingPage() {
           if (Array.isArray(q.options) && q.options.length > 0) {
             if (q.options[0] && typeof q.options[0] === 'object' && q.options[0].option) {
               flatOptions = q.options[0].option; 
-              const idx = q.options[0].index_answer; 
-              if (idx !== undefined && idx !== null) {
-                correctIdx = parseInt(idx);
+              const idx2 = q.options[0].index_answer; 
+              if (idx2 !== undefined && idx2 !== null) {
+                correctIdx = parseInt(idx2);
                 if (flatOptions[correctIdx] !== undefined) {
                   correctAns = flatOptions[correctIdx]; 
                 }
@@ -111,17 +113,21 @@ export default function ReadingPage() {
             }
           }
 
+          // Passage: ambil dari field passage/text/reading_text di JSON
+          const passageText = q.passage || q.text || q.reading_text || null;
+
           return {
             ...q,
             type: mappedType,
             options: flatOptions,
             correctAnswer: correctAns,
-            correctIndex: correctIdx
+            correctIndex: correctIdx,
+            passage: passageText,
           };
         });
-        
-        if (normalizedQuestions.length > 36) {
-          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, 36);
+
+        if (normalizedQuestions.length > MAX_QUESTIONS) {
+          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, MAX_QUESTIONS);
         }
         
         setQuestions(normalizedQuestions);
@@ -348,7 +354,6 @@ export default function ReadingPage() {
             <div className={styles.lineDivider}></div>
             <div className={styles.questionGrid}>
               {questions.map((_, index) => {
-                // KELUAR DARI JEBAKAN: Komentar dipindah ke sini (gaya JS biasa sebelum return JSX)
                 return (
                   <div 
                     key={index} 

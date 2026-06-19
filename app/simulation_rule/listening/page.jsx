@@ -84,8 +84,8 @@ export default function ListeningPage() {
             <div className={styles.ruleItem}>
               <span className={styles.ruleNumber}>01</span>
               <div>
-                <h3>Waktu 80 Menit</h3>
-                <p>Timer berjalan otomatis saat Mulai ditekan.</p>
+                <h3>Waktu Terbatas per Sesi</h3>
+                <p>Timer berjalan otomatis saat Mulai ditekan. Sesi akan otomatis submit jika waktu habis.</p>
               </div>
             </div>
             <div className={styles.divider}></div>
@@ -93,8 +93,8 @@ export default function ListeningPage() {
             <div className={styles.ruleItem}>
               <span className={styles.ruleNumber}>02</span>
               <div>
-                <h3>Tidak Bisa Kembali</h3>
-                <p>Jawaban tidak dapat diubah setelah lanjut ke soal berikutnya.</p>
+                <h3>Tidak Bisa Kembali ke Sesi Sebelumnya</h3>
+                <p>Setelah sesi disubmit, kamu tidak bisa kembali untuk mengubah jawaban di sesi tersebut.</p>
               </div>
             </div>
             <div className={styles.divider}></div>
@@ -103,7 +103,7 @@ export default function ListeningPage() {
               <span className={styles.ruleNumber}>03</span>
               <div>
                 <h3>Urutan Sesi Tetap</h3>
-                <p>7 topik dikerjakan berurutan dan tidak bisa dilewati.</p>
+                <p>Sesi dikerjakan berurutan (Listening → Structure → Reading) dan tidak bisa dilewati.</p>
               </div>
             </div>
             <div className={styles.divider}></div>
@@ -112,7 +112,7 @@ export default function ListeningPage() {
               <span className={styles.ruleNumber}>04</span>
               <div>
                 <h3>Semua Soal Wajib Dijawab</h3>
-                <p>Soal yang dilewati dianggap salah dan mengurangi skor.</p>
+                <p>Tombol submit hanya aktif setelah seluruh soal dalam sesi terjawab.</p>
               </div>
             </div>
             <div className={styles.divider}></div>
@@ -120,8 +120,8 @@ export default function ListeningPage() {
             <div className={styles.ruleItem}>
               <span className={styles.ruleNumber}>05</span>
               <div>
-                <h3>Tanpa Referensi Eksternal</h3>
-                <p>Dilarang menggunakan kamus atau catatan apapun selama simulasi.</p>
+                <h3>Bisa Ditandai untuk Ditinjau</h3>
+                <p>Gunakan tombol "Mark for Review" untuk menandai soal yang ingin dicek ulang sebelum submit.</p>
               </div>
             </div>
             <div className={styles.divider}></div>
@@ -129,8 +129,17 @@ export default function ListeningPage() {
             <div className={styles.ruleItem}>
               <span className={styles.ruleNumber}>06</span>
               <div>
+                <h3>Tanpa Referensi Eksternal</h3>
+                <p>Dilarang menggunakan kamus atau catatan apapun selama simulasi berlangsung.</p>
+              </div>
+            </div>
+            <div className={styles.divider}></div>
+
+            <div className={styles.ruleItem}>
+              <span className={styles.ruleNumber}>07</span>
+              <div>
                 <h3>Hasil Otomatis</h3>
-                <p>Skor dan pembahasan lengkap tersedia setelah simulasi selesai.</p>
+                <p>Skor dan pembahasan lengkap tersedia setelah seluruh sesi simulasi selesai.</p>
               </div>
             </div>
           </div>
@@ -206,7 +215,7 @@ export default function ListeningPage() {
               <span>LISTENING</span>
               <div className={styles.badges}>
                 <span className={styles.badge}>25 Menit</span>
-                <span className={styles.badge}>~35 Soal</span>
+                <span className={styles.badge}>~36 Soal</span>
               </div>
             </div>
 

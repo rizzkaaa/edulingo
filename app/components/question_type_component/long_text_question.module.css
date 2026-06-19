@@ -1,30 +1,48 @@
-.passageHeader {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+.stickyPassage{
+  background:#F5F1EB;
+
+  padding:28px 32px;
+
+  border:4px solid #1D1B18;
+  box-shadow:6px 6px 0 #1D1B18;
+
+  margin-bottom:32px;
 }
 
-.passageIcon {
-  font-size: 18px;
-  color: #B0411B;
+.passageHeader{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-bottom:16px;
 }
 
-.passageLabel {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: #B0411B;
+.passageIcon{
+  font-size:18px;
+  color:#B0411B;
 }
 
-.passageBorder {
-  border-left: 4px solid #8B6B00;
-  padding-left: 20px;
+.passageLabel{
+  font-size:13px;
+  font-weight:800;
+
+  letter-spacing:1.5px;
+
+  color:#B0411B;
 }
 
-.passageText {
-  font-size: 15px;
-  font-style: italic;
-  line-height: 1.9;
-  color: #2D241D;
+.passageBorder{
+  border-left:4px solid #8B6B00;
+
+  padding-left:20px;
+}
+
+.passageText{
+  font-size:15px;
+
+  font-style:italic;
+
+  line-height:1.9;
+
+  color:#2D241D;
 }

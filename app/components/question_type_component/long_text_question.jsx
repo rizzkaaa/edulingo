@@ -1,53 +1,93 @@
+import { memo } from "react";
 import styles from "./long_text_question.module.css";
 import shared from "./shared.module.css";
 
-export default function LongTextQuestion({ questionNumber, totalQuestions, passage, question, options, onAnswer, selectedAnswer }) {
+function LongTextQuestion({
+  questionNumber,
+  totalQuestions,
+  passage,
+  question,
+  options,
+  onAnswer,
+  selectedAnswer
+}) {
+
   return (
     <div className={shared.wrapper}>
 
-      {/* ===== PASSAGE SECTION ===== */}
-      <div className={shared.mediaSection}>
-        <div className={styles.passageHeader}>
-          <span className={styles.passageIcon}>📖</span>
-          <span className={styles.passageLabel}>READING REFERENCE</span>
-        </div>
-        <div className={styles.passageBorder}>
-          <p className={styles.passageText}>{passage}</p>
-        </div>
-      </div>
+      {passage && (
+        <PassageBlock passage={passage} />
+      )}
 
-      {/* ===== QUESTION SECTION ===== */}
       <div className={shared.questionSection}>
+
         <span className={shared.questionLabel}>
           QUESTION {questionNumber} OF {totalQuestions}
         </span>
 
-        <h2 className={shared.questionText}>{question}</h2>
+        <h2 className={shared.questionText}>
+          {question}
+        </h2>
 
-        <div className={shared.options}>
-          {options.map((opt, i) => (
-            <button
-              key={i}
-              className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
-              onClick={() => {
-                if(selectedAnswer === i){
-                  onAnswer(undefined);
-                }else{
-                  onAnswer(i);
-                }
-              }}
-            >
-              <span className={`${shared.radio} ${selectedAnswer === i ? shared.radioSelected : ""}`}>
-                {selectedAnswer === i && <span className={shared.radioFill} />}
-              </span>
-              <span className={`${shared.optionText} ${selectedAnswer === i ? shared.optionTextSelected : ""}`}>
-                {opt}
-              </span>
-            </button>
-          ))}
-        </div>
+        {options && options.length > 0 && (
+          <div className={shared.options}>
+            {options.map((opt, i) => (
+              <button
+                key={i}
+                className={`${shared.option} ${
+                  selectedAnswer === i ? shared.optionSelected : ""
+                }`}
+                onClick={() => {
+                  if (selectedAnswer === i) {
+                    onAnswer(undefined);
+                  } else {
+                    onAnswer(i);
+                  }
+                }}
+              >
+                <span
+                  className={`${shared.radio} ${
+                    selectedAnswer === i ? shared.radioSelected : ""
+                  }`}
+                >
+                  {selectedAnswer === i && (
+                    <span className={shared.radioFill}></span>
+                  )}
+                </span>
+
+                <span
+                  className={`${shared.optionText} ${
+                    selectedAnswer === i ? shared.optionTextSelected : ""
+                  }`}
+                >
+                  {opt}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+
       </div>
 
     </div>
   );
 }
+
+// Komponen passage dipisah & di-memo sendiri,
+// supaya hanya re-render kalau teks "passage" beneran berubah
+const PassageBlock = memo(function PassageBlock({ passage }) {
+  return (
+    <div className={styles.stickyPassage}>
+      <div className={styles.passageHeader}>
+        <span className={styles.passageIcon}>📖</span>
+        <span className={styles.passageLabel}>READING REFERENCE</span>
+      </div>
+
+      <div className={styles.passageBorder}>
+        <p className={styles.passageText}>{passage}</p>
+      </div>
+    </div>
+  );
+});
+
+export default memo(LongTextQuestion);

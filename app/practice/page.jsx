@@ -10,6 +10,7 @@ import BasicQuestion from "../components/question_type_component/basic_question"
 import ImageQuestion from "../components/question_type_component/image_question";
 import LongTextQuestion from "../components/question_type_component/long_text_question";
 import TrueFalseQuestion from "../components/question_type_component/true_false_question";
+import LongAudioQuestion from "../components/question_type_component/long_audio_question";
 
 const questionComponents = {
   audio: AudioQuestion,
@@ -17,9 +18,18 @@ const questionComponents = {
   image: ImageQuestion,
   long_text: LongTextQuestion,
   true_false: TrueFalseQuestion,
+  long_audio: LongAudioQuestion,
 };
 
 const questions = [
+  {
+    type: "long_audio",
+    audioSrc: "/question_assets/audio/sample_audio.mp3",
+    questions: [
+      { options: ["A. Weekend holiday plans", "B. Business conference", "C. University lecture", "D. Family reunion"] },
+      { options: ["A. Go to the library", "B. Call the professor", "C. Cancel the meeting", "D. Postpone the exam"] },
+    ]
+  },
   {
     type: "audio",
     audioSrc: "/question_assets/audio/sample_audio.mp3",
@@ -82,6 +92,27 @@ export default function PracticePage() {
 
   const totalQuestions = questions.length;
 
+  // Total soal "asli" — tidak menghitung long_audio sebagai soal
+  const realQuestionsCount = questions.filter(q => q.type !== "long_audio").length;
+
+  // Nomor soal asli di posisi index tertentu (skip long_audio dalam hitungan)
+  function getRealQuestionNumber(index) {
+    let count = 0;
+    for (let i = 0; i <= index; i++) {
+      if (questions[i].type !== "long_audio") count++;
+    }
+    return count;
+  }
+
+  // Cari index sebelumnya, skip kalau ketemu long_audio
+  function getPrevIndex(fromIndex) {
+    let prevIndex = fromIndex - 1;
+    while (prevIndex >= 0 && questions[prevIndex].type === "long_audio") {
+      prevIndex--;
+    }
+    return prevIndex;
+  }
+
   function showAlert(text, isAlert = true, onOke = () => {}) {
     setAlertConfig({ show: true, text, isAlert, onOke });
   }
@@ -109,6 +140,54 @@ export default function PracticePage() {
   const q = questions[current];
   const QuestionComponent = questionComponents[q.type];
 
+  // ==========================================
+  // VIEW KHUSUS LAYOUT LONG_AUDIO (penampil saja)
+  // ==========================================
+  if (q && q.type === "long_audio") {
+    return (
+      <div className={styles.container}>
+
+        {alertConfig.show && (
+          <Alert
+            isAlert={alertConfig.isAlert}
+            text={alertConfig.text}
+            handleClick={() => { closeAlert(); alertConfig.onOke(); }}
+            handleCancel={closeAlert}
+          />
+        )}
+
+        <div className={styles.topDecoration}></div>
+        <div className={styles.bottomDecoration}></div>
+
+        <div className={styles.headerSection}>
+          <div>
+            <h1>TOEFL Practice</h1>
+            <div className={styles.line}></div>
+            <p>Session: Listening Comprehension</p>
+          </div>
+
+          <div className={styles.headerRight}>
+            <button className={styles.exitBtn} onClick={handleExit}>
+              EXIT PRACTICE
+            </button>
+          </div>
+        </div>
+
+        <LongAudioQuestion
+          {...q}
+          answers={answers}
+          parentIndex={current}
+          onNextQuestion={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))}
+          isLastQuestion={current === totalQuestions - 1}
+        />
+
+      </div>
+    );
+  }
+
+  // ==========================================
+  // VIEW NORMAL UNTUK TIPE SOAL LAINNYA
+  // ==========================================
   return (
     <div className={styles.container}>
 
@@ -140,18 +219,16 @@ export default function PracticePage() {
         </div>
       </div>
 
-      <div className={styles.lineDivider}></div>
-
       {/* ===== PROGRESS BAR ===== */}
       <div className={styles.progressSection}>
         <div className={styles.progressTrack}>
           <div
             className={styles.progressFill}
-            style={{ width: `${((current + 1) / totalQuestions) * 100}%` }}
+            style={{ width: `${(getRealQuestionNumber(current) / realQuestionsCount) * 100}%` }}
           ></div>
         </div>
         <span className={styles.progressLabel}>
-          Question {String(current + 1).padStart(2, "0")} of {String(totalQuestions).padStart(2, "0")}
+          Question {String(getRealQuestionNumber(current)).padStart(2, "0")} of {String(realQuestionsCount).padStart(2, "0")}
         </span>
       </div>
 
@@ -159,8 +236,8 @@ export default function PracticePage() {
       <div className={styles.questionContainer}>
         <QuestionComponent
           {...q}
-          questionNumber={current + 1}
-          totalQuestions={totalQuestions}
+          questionNumber={getRealQuestionNumber(current)}
+          totalQuestions={realQuestionsCount}
           selectedAnswer={answers[current]}
           onAnswer={(val) => setAnswers(prev => ({ ...prev, [current]: val }))}
         />
@@ -171,8 +248,8 @@ export default function PracticePage() {
 
         <button
           className={styles.prevBtn}
-          onClick={() => setCurrent(prev => Math.max(0, prev - 1))}
-          disabled={current === 0}
+          onClick={() => setCurrent(getPrevIndex(current))}
+          disabled={getPrevIndex(current) < 0}
         >
           ← PREVIOUS
         </button>
