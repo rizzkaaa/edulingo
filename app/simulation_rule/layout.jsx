@@ -9,51 +9,40 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 export default function SimulationLayout({ children }) {
-  // State untuk data profil user secara dinamis
   const [userProfile, setUserProfile] = useState({
     avatarUrl: null,
-    initials: "H", 
+    initials: "U",
   });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // 1. Ambil foto langsung dari akun Google/Firebase Auth
-        let photo = currentUser.photoURL || null;
-        let name = currentUser.displayName || "Heri Vian";
+        let fullName = currentUser.displayName || "User";
 
-        // 2. Cadangan: Jika data profil disimpan terpisah di Firestore koleksi 'users'
+        // Prioritas: Ambil dari Firestore dengan field 'fullName' (sesuai screenshot Anda)
         try {
           const userDocRef = doc(db, "users", currentUser.uid);
           const userDocSnap = await getDoc(userDocRef);
+          
           if (userDocSnap.exists()) {
             const data = userDocSnap.data();
-            if (data.name) name = data.name;
-            if (data.avatarUrl) photo = data.avatarUrl;
-            if (data.photoURL) photo = data.photoURL;
+            // Menggunakan 'fullName' karena itu field yang ada di screenshot Firestore Anda
+            if (data.fullName) fullName = data.fullName;
           }
         } catch (error) {
-          console.error("Gagal mengambil profil tambahan dari Firestore:", error);
+          console.error("Gagal mengambil nama dari Firestore:", error);
         }
 
-        // Generate inisial otomatis dari nama user (Contoh: Heri Vian -> HV)
-        const initials = name
-          .split(" ")
-          .filter(Boolean)
-          .map((n) => n[0])
-          .join("")
-          .toUpperCase()
-          .substring(0, 2);
+        const firstLetter = fullName ? fullName.trim().charAt(0).toUpperCase() : "U";
 
         setUserProfile({
-          avatarUrl: photo,
-          initials: initials || "H",
+          avatarUrl: null, 
+          initials: firstLetter,
         });
       } else {
-        // Jika tidak ada user login (guest), tampilkan inisial default HV
         setUserProfile({
           avatarUrl: null,
-          initials: "HV",
+          initials: "U",
         });
       }
     });
@@ -61,25 +50,20 @@ export default function SimulationLayout({ children }) {
     return () => unsubscribe();
   }, []);
 
-  // Fungsi aksi klik untuk tombol Keluar
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      // Bersihkan juga token/id di session lokal jika ada
+      // Memperbaiki typo sessionStorage agar tidak menyebabkan error lagi
+      sessionStorage.clear();
       localStorage.removeItem("user_id");
-      sessionStorage.removeItem("user_id");
-      sessionStorage.removeItem("toefl_guest_id");
-      
-      // Arahkan user kembali ke halaman utama setelah keluar
       window.location.href = "/";
     } catch (error) {
-      console.error("Gagal melakukan proses logout:", error);
+      console.error("Gagal logout:", error);
     }
   };
 
   return (
     <div className={styles.wrapper}>
-
       <header className={styles.topHeader}>
         <div className={styles.logoSection}>
           <h1>EduLingo</h1>
@@ -91,21 +75,10 @@ export default function SimulationLayout({ children }) {
         </div>
 
         <div className={styles.rightSection}>
-          {/* Kondisional: Tampilkan foto jika ada, jika tidak ada tampilkan inisial teks */}
-          {userProfile.avatarUrl ? (
-            <img 
-              src={userProfile.avatarUrl} 
-              className={styles.profileCircle} 
-              alt="Profil User" 
-              style={{ objectFit: "cover", borderRadius: "50%", display: "block" }}
-            />
-          ) : (
-            <div className={styles.profileCircle}>
-              {userProfile.initials}
-            </div>
-          )}
+          <div className={styles.profileCircle}>
+            {userProfile.initials}
+          </div>
           
-          {/* Mengubah Link biasa menjadi tombol dengan fungsi logout asli */}
           <button className={styles.exitBtn} onClick={handleLogout}>
             Keluar
           </button>
@@ -115,7 +88,6 @@ export default function SimulationLayout({ children }) {
       <main className={styles.mainContent}>
         {children}
       </main>
-
     </div>
   );
 }
