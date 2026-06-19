@@ -13,13 +13,9 @@ import ImageQuestion from "../../components/question_type_component/image_questi
 import LongTextQuestion from "../../components/question_type_component/long_text_question";
 import TrueFalseQuestion from "../../components/question_type_component/true_false_question";
 
-// Path disesuaikan dengan struktur folder Anda
 import { db } from "../../../lib/firebase"; 
 import { doc, setDoc } from "firebase/firestore";
-// ALGORITMA BARU: Import untuk mendeteksi user yang sedang login agar ID sama dengan Structure
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-// Menggunakan import langsung karena folder data ada di root
 import simulasiData from "../../../data/simulasi.json";
 
 const questionComponents = {
@@ -38,21 +34,21 @@ export default function ReadingPage() {
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
 
-  // State untuk menyimpan User ID (Asli atau Acak)
   const [userId, setUserId]           = useState("");
+  const [sessionId, setSessionId]     = useState("");
 
   const [current, setCurrent]         = useState(0);
   const [answers, setAnswers]         = useState({});
   const [flagged, setFlagged]         = useState({});
   const [submitError, setSubmitError] = useState(false);
+  
   const [alertConfig, setAlertConfig] = useState({
     show: false, text: "", isAlert: true, onOke: () => {},
   });
 
-  // Waktu 80 menit (80 * 60 detik = 4800 detik)
+  const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(80 * 60);
 
-  // Fungsi untuk mengacak array
   const shuffleArray = (array) => {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -61,8 +57,6 @@ export default function ReadingPage() {
     }
     return shuffled;
   };
-
-  // ALGORITMA BARU: Cek User Login Asli, jika tidak ada baru gunakan Guest ID yang SAMA dengan Structure
   useEffect(() => {
     const auth = getAuth();
     
@@ -70,20 +64,19 @@ export default function ReadingPage() {
       if (user) {
         setUserId(user.uid);
       } else {
-        // Gunakan key yang SAMA persis dengan yang digenerate di StructurePage
-        let storedId = sessionStorage.getItem("toefl_user_id");
-        if (!storedId) {
-          storedId = "user_" + Math.random().toString(36).substring(2, 15);
-          sessionStorage.setItem("toefl_user_id", storedId);
-        }
-        setUserId(storedId);
+        setUserId("guest");
       }
+
+      let currentSessionId = sessionStorage.getItem("current_exam_session");
+      if (!currentSessionId) {
+        currentSessionId = "session_" + new Date().getTime() + "_" + Math.random().toString(36).substring(2, 9);
+        sessionStorage.setItem("current_exam_session", currentSessionId);
+      }
+      setSessionId(currentSessionId);
     });
 
     return () => unsubscribe();
   }, []);
-
-  // Load soal Reading dari JSON, Normalisasi, Acak, Batasi 36
   useEffect(() => {
     try {
       let readingSession = null;
@@ -94,8 +87,7 @@ export default function ReadingPage() {
       }
 
       if (readingSession && readingSession.questions) {
-        
-        let normalizedQuestions = readingSession.questions.map((q, idx) => {
+        let normalizedQuestions = readingSession.questions.map((q) => {
           let mappedType = q.type;
           
           if (mappedType === "TrueOrFalse") mappedType = "true_false";
@@ -119,7 +111,6 @@ export default function ReadingPage() {
             }
           }
 
-          // Passage: ambil dari field passage/text/reading_text di JSON
           const passageText = q.passage || q.text || q.reading_text || null;
 
           return {
@@ -137,9 +128,7 @@ export default function ReadingPage() {
         }
         
         setQuestions(normalizedQuestions);
-      } else {
-        console.error("Data Reading session tidak ditemukan di file simulasi.json");
-      }
+      };
     } catch (error) {
       console.error("Gagal memproses data soal:", error);
     } finally {
@@ -147,34 +136,36 @@ export default function ReadingPage() {
     }
   }, []);
 
-  // Interval berjalan konstan tanpa re-create tiap detik
   useEffect(() => {
     if (isLoading || questions.length === 0) return;
 
-    const timerId = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-
-    return () => clearInterval(timerId);
-  }, [isLoading, questions.length]);
-
-  // Efek pendukung untuk mendeteksi auto-submit saat waktu habis
-  useEffect(() => {
-    if (timeLeft === 0 && !isLoading && questions.length > 0) {
+    if (timeLeft <= 0 && !timeUpAlertShown) {
+      setTimeUpAlertShown(true);
       handleTimeUp();
+      return;
     }
-  }, [timeLeft, isLoading, questions.length]);
+    
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+      return () => clearInterval(timerId);
+    }
+  }, [timeLeft, isLoading, questions.length, timeUpAlertShown]);
 
-  // Fungsi menghitung skor Reading dan menyimpannya ke Firebase berdasarkan ID yang konsisten
   const saveDataToFirebase = async () => {
-    if (!userId) return; 
+    if (!sessionId) return; 
 
     const timeSpent = (80 * 60) - timeLeft;
     let correctCount = 0;
+    let answeredCount = 0;
 
     questions.forEach((q, index) => {
       const ans = answers[index];
-      if (ans !== undefined) {
+      
+      if (ans !== undefined && ans !== null && String(ans).trim() !== "") {
+        answeredCount++;
+
         let isCorrect = false;
 
         if (q.correctAnswer !== null && ans === q.correctAnswer) {
@@ -194,27 +185,32 @@ export default function ReadingPage() {
       }
     });
 
-    const totalQ = questions.length;
-    const scorePercentage = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
+    const scorePercentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
 
     try {
-      await setDoc(doc(db, "exam_sessions", userId), {
+      await setDoc(doc(db, "exam_sessions", sessionId), {
+        userId: userId, 
         reading_time_left: timeLeft,
         reading_time_spent: timeSpent,
         reading_correct_answers: correctCount,
-        reading_total_questions: totalQ,
+        reading_total_questions: answeredCount,
         reading_score_percentage: scorePercentage,
         updatedAt: new Date()
       }, { merge: true });
-      console.log(`Waktu dan skor Reading berhasil disimpan ke Akun Login ID: ${userId}`);
     } catch (error) {
       console.error("Gagal menyimpan data ke Firebase: ", error);
     }
   };
 
-  const handleTimeUp = async () => {
-    await saveDataToFirebase();
-    router.push("/simulation/result");
+  const handleTimeUp = () => {
+    showAlert(
+      "Waktu pengerjaan sesi ini telah habis! Jawaban Anda telah disimpan otomatis.",
+      true, 
+      async () => {
+        await saveDataToFirebase();
+        router.push("/simulation/result");
+      }
+    );
   };
 
   const formatTime = (seconds) => {
@@ -224,7 +220,8 @@ export default function ReadingPage() {
   };
 
   const totalQuestions = questions.length;
-  const allAnswered = questions.length > 0 && questions.every((_, i) => answers[i] !== undefined);
+
+  const allAnswered = questions.length > 0 && questions.every((_, i) => answers[i] !== undefined && String(answers[i]).trim() !== "");
 
   function showAlert(text, isAlert = true, onOke = () => {}) {
     setAlertConfig({ show: true, text, isAlert, onOke });
@@ -255,7 +252,11 @@ export default function ReadingPage() {
 
   function handleNext() {
     if (current === totalQuestions - 1) {
-      showAlert("Ini adalah soal terakhir. Silakan klik tombol 'SUBMIT EXAM' di panel kanan untuk menyelesaikan ujian.", false);
+      if (!allAnswered) {
+        showAlert("Ini adalah soal terakhir. Selesaikan semua soal terlebih dahulu untuk mengaktifkan tombol SUBMIT.", true);
+      } else {
+        showAlert("Ini adalah soal terakhir. Silakan klik tombol 'SUBMIT EXAM' di panel kanan untuk menyelesaikan ujian.", false);
+      }
     } else {
       setCurrent(prev => prev + 1);
     }
@@ -381,6 +382,7 @@ export default function ReadingPage() {
 
           <div className={styles.submitBox}>
             <p>Please review all your answers before finishing the examination.</p>
+            {/* PERBAIKAN DI SINI: Mengunci tombol jika belum allAnswered */}
             <button
               className={`${styles.submitBtn} ${!allAnswered ? styles.submitBtnDisabled : ""}`}
               onClick={handleSubmit}

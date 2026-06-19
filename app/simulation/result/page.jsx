@@ -7,7 +7,6 @@ import Image from "next/image";
 
 import { db } from "../../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import {
   FaCheckCircle,
@@ -24,11 +23,10 @@ import {
 export default function ResultPage() {
   const router = useRouter();
 
-  const [userId, setUserId] = useState("");
+  const [sessionId, setSessionId] = useState("");
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Helper fungsi untuk mengubah detik menjadi format jam/menit/detik yang rapi
   const formatCompletionTime = (totalSeconds) => {
     if (!totalSeconds || totalSeconds <= 0) return "0m";
     const hours = Math.floor(totalSeconds / 3600);
@@ -42,67 +40,65 @@ export default function ResultPage() {
     return timeString.trim();
   };
 
-  // 1. ALGORITMA BARU: Ambil User ID yang sinkron dengan sesi ujian (Login atau Guest)
   useEffect(() => {
-    const auth = getAuth();
-    
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Jika sudah login, ambil UID
-        setUserId(user.uid);
-      } else {
-        // Jika belum login, ambil ID guest yang digenerate saat ujian
-        let storedId = sessionStorage.getItem("toefl_user_id");
-        if (storedId) {
-          setUserId(storedId);
-        } else {
-          console.warn("User ID tidak ditemukan. Mungkin ujian belum dikerjakan.");
-          setIsLoading(false); // Stop loading jika benar-benar tidak ada ID
-        }
-      }
-    });
-
-    return () => unsubscribe();
+    const currentSession = sessionStorage.getItem("current_exam_session");
+    if (currentSession) {
+      setSessionId(currentSession);
+    } else {
+      console.warn("Session ID tidak ditemukan. Mungkin ujian belum dikerjakan.");
+      setIsLoading(false);
+    }
   }, []);
 
-  // 2. Tarik data hasil simulasi dari Firebase Firestore
   useEffect(() => {
-    if (!userId) return;
+    if (!sessionId) return;
 
     const fetchExamResult = async () => {
       try {
-        const docRef = doc(db, "exam_sessions", userId);
+        const docRef = doc(db, "exam_sessions", sessionId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
-
-          // Ambil metrik tiap sesi (Sediakan default nilai 0 jika sesi lain belum dikerjakan)
-          const readingCorrect = data.reading_correct_answers || 0;
-          const readingTotal = data.reading_total_questions || 0;
-          const readingScore = data.reading_score_percentage || 0;
-          const readingTime = data.reading_time_spent || 0;
-
-          const structureCorrect = data.structure_correct_answers || 0;
-          const structureTotal = data.structure_total_questions || 0;
-          const structureScore = data.structure_score_percentage || 0;
-          const structureTime = data.structure_time_spent || 0;
-
-          const listeningCorrect = data.listening_correct_answers || 0;
-          const listeningTotal = data.listening_total_questions || 0;
-          const listeningScore = data.listening_score_percentage || 0;
-          const listeningTime = data.listening_time_spent || 0;
-
-          // Akumulasi Total Keseluruhan
-          const totalCorrect = readingCorrect + structureCorrect + listeningCorrect;
-          const totalQuestions = readingTotal + structureTotal + listeningTotal;
-          const totalIncorrect = totalQuestions - totalCorrect;
+          const sections = [
+            { 
+              name: "Reading", 
+              correct: Number(data.reading_correct_answers) || 0, 
+              total: Number(data.reading_total_questions) || 0, 
+              time: Number(data.reading_time_spent) || 0, 
+              score: Number(data.reading_score_percentage) || 0 
+            },
+            { 
+              name: "Structure", 
+              correct: Number(data.structure_correct_answers) || 0, 
+              total: Number(data.structure_total_questions) || 0, 
+              time: Number(data.structure_time_spent) || 0, 
+              score: Number(data.structure_score_percentage) || 0 
+            },
+            { 
+              name: "Listening", 
+              correct: Number(data.listening_correct_answers) || 0, 
+              total: Number(data.listening_total_questions) || 0, 
+              time: Number(data.listening_time_spent) || 0, 
+              score: Number(data.listening_score_percentage) || 0 
+            }
+          ];
+          const totalCorrect = sections.reduce((sum, s) => sum + s.correct, 0);
+          const totalQuestions = sections.reduce((sum, s) => sum + s.total, 0);
           
-          // Rata-rata skor atau skor gabungan akumulatif
+          const totalAnswered = totalQuestions; 
+          const totalUnanswered = 0;
+          
           const totalScore = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
-          const totalTimeSpent = readingTime + structureTime + listeningTime;
+          const totalTimeSpent = sections.reduce((sum, s) => sum + s.time, 0);
 
-          // Menentukan Grade & Deskripsi Berdasarkan Skor Akumulasi
+          const validSections = sections.filter(s => s.time > 0);
+          const fastestSection = validSections.length > 0 
+            ? validSections.reduce((prev, curr) => prev.time < curr.time ? prev : curr).name 
+            : "-";
+          
+          const hardestSection = sections.reduce((prev, curr) => prev.score < curr.score ? prev : curr).name;
+
           let grade = "NEED IMPROVEMENT";
           let description = "Keep practicing! Every mistake is a step closer to mastering the exam.";
           if (totalScore >= 80) {
@@ -112,41 +108,32 @@ export default function ResultPage() {
             grade = "AVERAGE";
             description = "Great job! With a little more focus on your weak sections, you can ace this.";
           }
-
-          // Cari section tercepat dan tersulit secara dinamis sederhana
-          const scoresArr = [
-            { name: "Reading", score: readingScore },
-            { name: "Structure", score: structureScore },
-            { name: "Listening", score: listeningScore }
-          ];
-          
-          // Urutkan untuk mencari skor paling rendah (termasuk yang paling sulit)
-          const hardestSection = scoresArr.reduce((prev, current) => (prev.score < current.score) ? prev : current).name;
-
-          // Susun state object hasil akhir
           setResult({
-            grade: grade,
-            totalScore: totalScore,
-            description: description,
+            grade,
+            totalScore,
+            description,
             correct: totalCorrect,
-            incorrect: totalIncorrect,
+            incorrect: totalQuestions - totalCorrect,
             completionTime: formatCompletionTime(totalTimeSpent),
             quote: '"Success is a series of small wins."',
-            sections: [
-              { label: "Structure", icon: <FaPen />, score: structureScore, correct: structureCorrect, total: structureTotal },
-              { label: "Reading", icon: <FaBook />, score: readingScore, correct: readingCorrect, total: readingTotal },
-              { label: "Listening", icon: <FaHeadphones />, score: listeningScore, correct: listeningCorrect, total: listeningTotal },
-            ],
+            sections: sections.map(s => ({
+              label: s.name,
+              icon: s.name === "Reading" ? <FaBook /> : s.name === "Structure" ? <FaPen /> : <FaHeadphones />,
+              score: s.score,
+              correct: s.correct,
+              total: s.total
+            })),
             analytics: {
-              totalQuestions: totalQuestions,
-              answered: totalCorrect + totalIncorrect,
-              answeredPct: totalQuestions > 0 ? `${Math.round(((totalCorrect + totalIncorrect) / totalQuestions) * 100)}%` : "0%",
-              unanswered: totalQuestions - (totalCorrect + totalIncorrect),
+              totalQuestions,
+              answered: totalAnswered,
+              answeredPct: totalQuestions > 0 ? `${Math.round((totalAnswered / totalQuestions) * 100)}%` : "0%",
+              unanswered: totalUnanswered,
               averageAccuracy: `${totalScore}%`,
-              fastestSection: "Reading", // Anda bisa kembangkan tracking waktu per sesi jika ada datanya di Firestore
-              hardestSection: hardestSection,
+              fastestSection,
+              hardestSection,
             },
           });
+
         } else {
           console.error("Dokumen hasil ujian tidak ditemukan di Firebase.");
         }
@@ -158,7 +145,12 @@ export default function ResultPage() {
     };
 
     fetchExamResult();
-  }, [userId]);
+  }, [sessionId]);
+
+  const handleFinishAndReview = () => {
+    sessionStorage.removeItem("current_exam_session");
+    router.push("/dashboard/history");
+  };
 
   if (isLoading) {
     return <div className={styles.page} style={{ color: "white", textAlign: "center", paddingTop: "20vh" }}>Loading simulation results...</div>;
@@ -317,11 +309,11 @@ export default function ResultPage() {
           </table>
         </div>
 
-        {/* Review Button */}
+        {/* Review Button yang sudah dipasangkan dengan fungsi pembersih ID */}
         <div className={styles.reviewSection}>
           <button
             className={styles.reviewBtn}
-            onClick={() => router.push("/dashboard/history")}
+            onClick={handleFinishAndReview}
           >
             <FaEye className={styles.reviewIcon} />
             <span>CHECK YOUR HISTORY</span>

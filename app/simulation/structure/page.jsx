@@ -13,13 +13,10 @@ import ImageQuestion from "../../components/question_type_component/image_questi
 import LongTextQuestion from "../../components/question_type_component/long_text_question";
 import TrueFalseQuestion from "../../components/question_type_component/true_false_question";
 
-// Path disesuaikan dengan struktur folder Anda
 import { db } from "../../../lib/firebase"; 
 import { doc, setDoc } from "firebase/firestore";
-// ALGORITMA BARU: Import untuk mendeteksi user yang sedang login
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-// Menggunakan import langsung karena folder data ada di root
 import simulasiData from "../../../data/simulasi.json";
 
 const questionComponents = {
@@ -36,21 +33,21 @@ export default function StructurePage() {
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
   
-  // State untuk menyimpan User ID (Asli atau Acak)
   const [userId, setUserId]           = useState("");
+  const [sessionId, setSessionId]     = useState("");
 
   const [current, setCurrent]         = useState(0);
   const [answers, setAnswers]         = useState({});
   const [flagged, setFlagged]         = useState({});
   const [submitError, setSubmitError] = useState(false);
+  
   const [alertConfig, setAlertConfig] = useState({
     show: false, text: "", isAlert: true, onOke: () => {},
   });
 
-  // Waktu 80 menit (80 * 60 detik = 4800 detik)
+  const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(80 * 60);
 
-  // Fungsi untuk mengacak array
   const shuffleArray = (array) => {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -60,29 +57,26 @@ export default function StructurePage() {
     return shuffled;
   };
 
-  // ALGORITMA BARU: Cek User Login Asli, jika tidak ada baru gunakan Guest ID
   useEffect(() => {
     const auth = getAuth();
     
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // JIKA SUDAH LOGIN: Gunakan ID asli dari akun (UID Firebase)
         setUserId(user.uid);
       } else {
-        // JIKA BELUM LOGIN (GUEST): Baru gunakan ID acak dari sessionStorage
-        let storedId = sessionStorage.getItem("toefl_user_id");
-        if (!storedId) {
-          storedId = "user_" + Math.random().toString(36).substring(2, 15);
-          sessionStorage.setItem("toefl_user_id", storedId);
-        }
-        setUserId(storedId);
+        setUserId("guest");
       }
+
+      let currentSessionId = sessionStorage.getItem("current_exam_session");
+      if (!currentSessionId) {
+        currentSessionId = "session_" + new Date().getTime() + "_" + Math.random().toString(36).substring(2, 9);
+        sessionStorage.setItem("current_exam_session", currentSessionId);
+      }
+      setSessionId(currentSessionId);
     });
 
     return () => unsubscribe();
   }, []);
-
-  // Load soal dari JSON, Normalisasi struktur, Acak, dan Batasi maksimal 36 soal
   useEffect(() => {
     try {
       let structureSession = null;
@@ -93,7 +87,6 @@ export default function StructurePage() {
       }
 
       if (structureSession && structureSession.questions) {
-        
         let normalizedQuestions = structureSession.questions.map(q => {
           let mappedType = q.type;
           if (mappedType === "TrueOrFalse") mappedType = "true_false";
@@ -140,41 +133,44 @@ export default function StructurePage() {
     }
   }, []);
 
-  // Timer countdown & auto-submit jika waktu habis
   useEffect(() => {
     if (isLoading || questions.length === 0) return;
 
-    if (timeLeft <= 0) {
-      handleTimeUp();
+    if (timeLeft <= 0 && !timeUpAlertShown) {
+      setTimeUpAlertShown(true);
+      handleTimeUp(); 
       return;
     }
-    const timerId = setInterval(() => {
-      setTimeLeft(prev => prev - 1);
-    }, 1000);
-    return () => clearInterval(timerId);
-  }, [timeLeft, isLoading, questions.length]);
+    
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+      return () => clearInterval(timerId);
+    }
+  }, [timeLeft, isLoading, questions.length, timeUpAlertShown]);
 
-  // Fungsi menghitung skor dan menyimpannya ke Firebase
   const saveDataToFirebase = async () => {
-    if (!userId) return; 
+    if (!sessionId) return; 
 
     const timeSpent = (80 * 60) - timeLeft;
     let correctCount = 0;
+    let answeredCount = 0;
     
     questions.forEach((q, index) => {
       const ans = answers[index];
-      if (ans !== undefined) {
+      
+      if (ans !== undefined && ans !== null && String(ans).trim() !== "") {
+        answeredCount++;
+
         let isCorrect = false;
 
-        // Cek jika jawaban user sama dengan index jawaban benar
         if (q.correctIndex !== null && String(ans) === String(q.correctIndex)) {
           isCorrect = true;
         } 
-        // Cek jika jawaban user sama dengan teks jawaban benar
         else if (q.correctAnswer !== null && String(ans) === String(q.correctAnswer)) {
           isCorrect = true;
         }
-        // Fallback: pencocokan string tingkat lanjut
         else if (typeof ans === 'string' && typeof q.correctAnswer === 'string' && 
                  ans.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase()) {
           isCorrect = true;
@@ -186,27 +182,34 @@ export default function StructurePage() {
       }
     });
 
-    const totalQ = questions.length;
-    const scorePercentage = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
+    const scorePercentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
 
     try {
-      await setDoc(doc(db, "exam_sessions", userId), {
+      await setDoc(doc(db, "exam_sessions", sessionId), {
+        userId: userId, 
         structure_time_left: timeLeft,
         structure_time_spent: timeSpent,
         structure_correct_answers: correctCount,
-        structure_total_questions: totalQ,
+        structure_total_questions: answeredCount,
         structure_score_percentage: scorePercentage,
         updatedAt: new Date()
       }, { merge: true });
-      console.log(`Waktu dan skor Structure berhasil disimpan ke ID: ${userId}`);
+      
+      console.log(`Skor Structure berhasil disimpan ke Sesi ID: ${sessionId}`);
     } catch (error) {
       console.error("Gagal menyimpan data ke Firebase: ", error);
     }
   };
 
-  const handleTimeUp = async () => {
-    await saveDataToFirebase();
-    router.push("/simulation_rule/reading");
+  const handleTimeUp = () => {
+    showAlert(
+      "Waktu pengerjaan sesi ini telah habis! Silakan klik tombol untuk menyimpan jawaban dan melanjutkan ke sesi berikutnya.",
+      true, 
+      async () => {
+        await saveDataToFirebase();
+        router.push("/simulation_rule/reading");
+      }
+    );
   };
 
   const formatTime = (seconds) => {
@@ -216,7 +219,8 @@ export default function StructurePage() {
   };
 
   const totalQuestions = questions.length;
-  const allAnswered = questions.length > 0 && questions.every((_, i) => answers[i] !== undefined);
+  
+  const allAnswered = questions.length > 0 && questions.every((_, i) => answers[i] !== undefined && String(answers[i]).trim() !== "");
 
   function showAlert(text, isAlert = true, onOke = () => {}) {
     setAlertConfig({ show: true, text, isAlert, onOke });
@@ -247,7 +251,11 @@ export default function StructurePage() {
 
   function handleNext() {
     if (current === totalQuestions - 1) {
-      showAlert("Ini adalah soal terakhir. Silakan klik tombol 'SUBMIT EXAM' di panel kanan untuk menyelesaikan sesi.", false);
+      if (!allAnswered) {
+        showAlert("Ini adalah soal terakhir. Selesaikan semua soal terlebih dahulu untuk mengaktifkan tombol SUBMIT.", true);
+      } else {
+        showAlert("Ini adalah soal terakhir. Silakan klik tombol 'SUBMIT EXAM' di panel kanan untuk menyelesaikan sesi.", false);
+      }
     } else {
       setCurrent(prev => prev + 1);
     }
@@ -258,7 +266,7 @@ export default function StructurePage() {
   }
 
   function getQuestionClass(index) {
-    if (index === current)            return styles.activeQuestion;
+    if (index === current)             return styles.activeQuestion;
     if (flagged[index])               return styles.reviewQuestion;
     if (answers[index] !== undefined) return styles.answeredQuestion;
     return styles.unansweredQuestion;
@@ -329,7 +337,13 @@ export default function StructurePage() {
           </div>
 
           <div className={styles.bottomActions}>
-            <button className={styles.prevBtn} onClick={() => {}} disabled={true}>← PREVIOUS</button>
+            <button 
+              className={styles.prevBtn} 
+              onClick={() => setCurrent(prev => prev - 1)} 
+              disabled={current === 0}
+            >
+              ← PREVIOUS
+            </button>
             <button className={`${styles.reviewBtn} ${flagged[current] ? styles.reviewBtnActive : ""}`} onClick={handleFlag}>
               <FaFlag />{flagged[current] ? "FLAGGED" : "MARK FOR REVIEW"}
             </button>
@@ -347,7 +361,12 @@ export default function StructurePage() {
             <div className={styles.questionGrid}>
               {questions.map((_, index) => {
                 return (
-                  <div key={index} className={getQuestionClass(index)} onClick={() => {}} style={{ cursor: "pointer" }}>
+                  <div 
+                    key={index} 
+                    className={getQuestionClass(index)} 
+                    onClick={() => setCurrent(index)} 
+                    style={{ cursor: "pointer" }}
+                  >
                     {index + 1}
                   </div>
                 );
@@ -362,9 +381,11 @@ export default function StructurePage() {
 
           <div className={styles.submitBox}>
             <p>Please review all your answers before finishing the examination.</p>
+            {/* PERBAIKAN: Tombol dikunci menggunakan allAnswered dan atribut disabled */}
             <button
               className={`${styles.submitBtn} ${!allAnswered ? styles.submitBtnDisabled : ""}`}
               onClick={handleSubmit}
+              disabled={!allAnswered}
             >
               SUBMIT EXAM
             </button>
