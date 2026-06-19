@@ -54,6 +54,6 @@ import { redirect } from "next/navigation";
 
 export default function Home() {
   redirect(
-    "/dashboard/lesson/written_expression_part_2/base_form_verb_after_modals",
+    "/dashboard/lesson/written_expression_part_2/present_&_past_participle",
   );
 }

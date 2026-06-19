@@ -14,16 +14,19 @@ export default function LessonLayout({ children }) {
   const [sub_module_id, setSub_module_id] = useState(1);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
   
-
   const [hasHydrated, setHasHydrated] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+
+  const [isCurrentModuleCompleted, setIsCurrentModuleCompleted] = useState(false);
+  const [isPartDone, setIsPartDone] = useState(false);
 
   const main_material = material.materials.find(
     (material) => material.part_id == 4,
   );
   
   const length = main_material.sub_modules.length;
-useEffect(() => {
+
+  useEffect(() => {
     const initializeProgress = async () => {
       const currentUser = auth.currentUser;
       if (currentUser) {
@@ -36,6 +39,7 @@ useEffect(() => {
             const currentStatus = userData.lessonStatus?.[3]?.status;
 
             if (currentStatus === "done") {
+              setIsPartDone(true);
               setSub_module_id(length);
               setCurrentModuleOpen(1); 
               setHasHydrated(true);
@@ -63,12 +67,27 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]); 
 
+  useEffect(() => {
+    const checkModuleCompletion = () => {
+      const isCompleted = 
+        isPartDone || 
+        localStorage.getItem(`module_status_part_4_mod_${currentModuleOpen}`) === "completed";
+      setIsCurrentModuleCompleted(!!isCompleted);
+    };
+
+    checkModuleCompletion();
+
+    window.addEventListener("practice-completed", checkModuleCompletion);
+    return () => {
+      window.removeEventListener("practice-completed", checkModuleCompletion);
+    };
+  }, [currentModuleOpen, isPartDone]);
+
   const sub_material = main_material.sub_modules.find(
     (material) => material.sub_module_id == currentModuleOpen,
   ) || main_material.sub_modules[0];
   
   const widthFill = (sub_module_id / length) * 100;
-
 
   if (!hasHydrated) {
     return (
@@ -122,6 +141,7 @@ useEffect(() => {
           setSub_module_id={setSub_module_id}
           isUpdating={isUpdating}
           setIsUpdating={setIsUpdating}
+          isCurrentModuleCompleted={isCurrentModuleCompleted}
         />
       </section>
     </div>
@@ -139,8 +159,6 @@ function ButtonMenu({
 
   function handleClick(sub_material_id) {
     const nextPath = material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
-
-    console.log(nextPath);
 
     if (currentModuleOpen == sub_material_id) return;
     if (sub_material_id > sub_module_id) {
@@ -185,14 +203,13 @@ function BottomBar({
   setSub_module_id,
   isUpdating,
   setIsUpdating,
+  isCurrentModuleCompleted,
 }) {
   const [shake, setShake] = useState(false);
   const router = useRouter();
 
   function prevModule() {
-
     if (currentModuleOpen == 1 || isUpdating) return;
-    console.log(currentModuleOpen);
     
     const sub_material = main_material.sub_modules.find(
       (material) => material.sub_module_id == currentModuleOpen - 1,
@@ -206,7 +223,6 @@ function BottomBar({
   function nextModule() {
     if (currentModuleOpen == length || isUpdating) return;
     if (currentId < currentModuleOpen + 1) {
-
       setShake(true);
       setTimeout(() => setShake(false), 900);
     } else {
@@ -219,8 +235,9 @@ function BottomBar({
       router.push(`/dashboard/lesson/written_expression_part_2/${nextPath}`);
     }
   }
+
   async function handleCompleteClick() {
-    if (currentId + 1 != currentModuleOpen + 1 || isUpdating) return;
+    if (currentId + 1 != currentModuleOpen + 1 || isUpdating || !isCurrentModuleCompleted) return;
 
     if (currentId < length) {
       const nextProgress = currentId + 1;
@@ -228,7 +245,6 @@ function BottomBar({
       localStorage.setItem("written_part_2_sub_progress", nextProgress.toString());
       return;
     }
-
 
     const currentUser = auth.currentUser;
     if (!currentUser) {
@@ -291,14 +307,13 @@ function BottomBar({
             "→"
           )}
         </button>
-        <span></span>
       </div>
       <button
         onClick={handleCompleteClick}
-        disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating}
+        disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating || !isCurrentModuleCompleted}
         style={{
-          backgroundColor: isUpdating ? "#A0A0A0" : "",
-          cursor: isUpdating ? "not-allowed" : "pointer"
+          backgroundColor: isUpdating || !isCurrentModuleCompleted ? "#A0A0A0" : "",
+          cursor: isUpdating || !isCurrentModuleCompleted ? "not-allowed" : "pointer"
         }}
       >
         {isUpdating 

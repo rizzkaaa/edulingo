@@ -216,7 +216,7 @@
         ]
     },
     {
-        "module_id": "possessive_pronouns",
+        "module_id": "possessive_pronoun",
         "questions": [
             {
                 "type": "TrueOrFalse",
@@ -1541,7 +1541,7 @@
         ]
     },
     {
-        "module_id": "vocabulary_questions",
+        "module_id": "vocabulary_question",
         "questions": [
             {
                 "type": "LongReading",
@@ -1863,7 +1863,7 @@
         ]
     },
     {
-        "module_id": "inference_questions",
+        "module_id": "inferences_questions",
         "questions": [
             {
                 "type": "LongReading",
@@ -1924,7 +1924,7 @@
         ]
     },
     {
-        "module_id": "reference_questions",
+        "module_id": "references_questions",
         "questions": [
             {
                 "type": "LongReading",

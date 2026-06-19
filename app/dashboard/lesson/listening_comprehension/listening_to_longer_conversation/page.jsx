@@ -1,4 +1,7 @@
 "use client";
+
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import ToeflTips from "@/app/components/ToeflTips";
@@ -7,6 +10,10 @@ import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow"
 import { WithAudio } from "@/app/components/MultipleChoice";
 
 export default function ListeningToLongerConversation() {
+  const [hasAnswered, setHasAnswered] = useState(false);
+  const searchParams = useSearchParams();
+  const statusParam = searchParams.get("status");
+
   const main_material = material.materials.find(
     (material) => material.part_id == 7,
   );
@@ -16,6 +23,16 @@ export default function ListeningToLongerConversation() {
 
   const currentId = sub_material.sub_module_id;
   const length = main_material.sub_modules.length;
+
+  useEffect(() => {
+    const isCompleted = 
+      localStorage.getItem(`module_status_part_7_mod_${currentId}`) === "completed" || 
+      statusParam === "completed";
+      
+    if (isCompleted) {
+      setHasAnswered(true);
+    }
+  }, [currentId, statusParam]);
 
   return (
     <div>
@@ -30,13 +47,25 @@ export default function ListeningToLongerConversation() {
         materials={sub_material.content[0].explain}
         version={4}
       />
-      <WithAudio material={sub_material.content[1]} />
+      
+      <WithAudio 
+        material={sub_material.content[1]} 
+        onAnswered={() => {
+          setHasAnswered(true);
+          localStorage.setItem(`module_status_part_7_mod_${currentId}`, "completed");
+          window.dispatchEvent(new Event("practice-completed"));
+        }}
+      />
+      
       <ToeflTips material={sub_material.content[2]} />
       <FooterMaterial
         color="#E8A838"
         title={sub_material.title}
         isEnd={currentId == length}
         main_part_title={main_material.part_title}
+        part_id={main_material.part_id}
+        sub_module_id={sub_material.sub_module_id}
+        isButtonDisabled={!hasAnswered}
       />
     </div>
   );

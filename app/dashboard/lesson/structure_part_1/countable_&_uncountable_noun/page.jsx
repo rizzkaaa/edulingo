@@ -1,4 +1,6 @@
 "use client";
+
+import { useState } from "react"; 
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer1 } from "@/app/components/FirstExplain";
@@ -8,6 +10,8 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import { TemplateVer1, TemplateVer2 } from "@/app/components/OtherMaterialTemplate";
 
 export default function CountableUncountableNouns() {
+  const [hasAnswered, setHasAnswered] = useState(false);
+
   const main_material = material.materials.find(
     (material) => material.part_id == 1,
   );
@@ -27,10 +31,29 @@ export default function CountableUncountableNouns() {
       />
       <FirstExplainVer1 sub_material={sub_material} />
       <TemplateVer1 material={sub_material.content[1]} />
-      <TrueFalse material={sub_material.content[2]} />
+      
+      {/* 🌟 ALGORITMA DIPERBAIKI: 
+          Selain mengubah state lokal, kita tembakkan juga Custom Event "practice-completed" 
+          agar didengar oleh file LessonLayout untuk membuka gembok tombol TANDAI SELESAI */}
+      <TrueFalse 
+        material={sub_material.content[2]} 
+        onAnswered={() => {
+          setHasAnswered(true);
+          window.dispatchEvent(new Event("practice-completed"));
+        }} 
+      />
+      
       <TemplateVer2 material={sub_material.content[3]} />
       <ToeflTips material={sub_material.content[4]} />
-      <FooterMaterial title={sub_material.title} isEnd={currentId == length} main_part_title={main_material.part_title} />
+      
+      <FooterMaterial 
+        title={sub_material.title} 
+        isEnd={currentId == length} 
+        main_part_title={main_material.part_title} 
+        part_id={main_material.part_id}
+        sub_module_id={sub_material.sub_module_id}
+        isButtonDisabled={!hasAnswered} 
+      />
     </div>
   );
 }

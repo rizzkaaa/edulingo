@@ -1,9 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../components/Alert";
+
+// 🌟 IMPORT FIREBASE
+import { db, auth } from "@/lib/firebase"; 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+// Import file JSON data soal kamu
+import allQuestionsData from "@/data/questions.json"; 
 
 import AudioQuestion from "../components/question_type_component/audio_question";
 import BasicQuestion from "../components/question_type_component/basic_question";
@@ -19,95 +26,105 @@ const questionComponents = {
   long_text: LongTextQuestion,
   true_false: TrueFalseQuestion,
   long_audio: LongAudioQuestion,
+  FillInTheBlank: BasicQuestion,
+  LongReading: LongTextQuestion, 
 };
-
-const questions = [
-  {
-    type: "long_audio",
-    audioSrc: "/question_assets/audio/sample_audio.mp3",
-    questions: [
-      { options: ["A. Weekend holiday plans", "B. Business conference", "C. University lecture", "D. Family reunion"] },
-      { options: ["A. Go to the library", "B. Call the professor", "C. Cancel the meeting", "D. Postpone the exam"] },
-    ]
-  },
-  {
-    type: "audio",
-    audioSrc: "/question_assets/audio/sample_audio.mp3",
-    question: "What is the main topic of the conversation between the two students?",
-    options: [
-      "A. The schedule for the upcoming semester",
-      "B. A research project on climate change",
-      "C. Plans for a campus event next week",
-      "D. The professor's grading policy",
-    ],
-  },
-  {
-    type: "long_text",
-    passage:
-      "Coral reefs are among the most diverse and biologically complex ecosystems on Earth. Often called the \"rainforests of the sea,\" they cover less than 1% of the ocean floor but support an estimated 25% of all marine species.",
-    question:
-      "According to the passage, what percentage of marine species do coral reefs support?",
-    options: [
-      "A. Less than 1%",
-      "B. About 10%",
-      "C. An estimated 25%",
-      "D. More than 50%",
-    ],
-  },
-  {
-    type: "image",
-    imageUrl: "/question_assets/photo/sample_image.png",
-    question: "Based on the image, what can be inferred about the subject being presented?",
-    options: [
-      "A. It depicts an ancient manuscript from the medieval period",
-      "B. It shows a modern academic reference book",
-      "C. It illustrates a scientific journal from the 19th century",
-      "D. It represents a government policy document",
-    ],
-  },
-  {
-    type: "basic",
-    question: "Which of the following best completes the sentence: The committee _____ not yet reached a final decision.",
-    options: [
-      "A. have",
-      "B. has",
-      "C. having",
-      "D. had been",
-    ],
-  },
-  {
-    type: "true_false",
-    question: "When the meeting will start is still unknown.",
-  },
-];
 
 export default function PracticePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  const moduleParam = searchParams.get("module") || "1_5";
+  const folderParam = searchParams.get("folder"); 
+  const partParam = searchParams.get("part"); 
+
+  const targetModule = allQuestionsData.find((m) => m.module_id === moduleParam);
+  const categoryParam = targetModule?.category_id || "structure_part_1"; 
+  const rawQuestions = targetModule ? targetModule.questions : [];
+
+  // 🌟 LOGIKA FLATTENING + HALAMAN BACA (READING INTRO)
+  const questions = [];
+
+  rawQuestions.forEach((item) => {
+    const mappedType = item.type === "TrueOrFalse" ? "true_false" : item.type;
+    
+    if ((mappedType === "LongReading" || mappedType === "long_text") && Array.isArray(item.options) && typeof item.options[0] === 'object' && (item.options[0].option || item.options[0].options)) {
+      
+      // 1. SISIPKAN HALAMAN KHUSUS BACAAN DI AWAL
+      questions.push({
+        ...item,
+        type: "reading_intro", // Tipe custom untuk merender UI teks saja
+      });
+
+      // 2. MASUKKAN SOAL-SOAL SETELAHNYA
+      item.options.forEach((subQ) => {
+        questions.push({
+          ...item,
+          type: "long_text", // Gunakan long_text agar komponen tetap berjalan normal saat menjawab soal
+          question: subQ.question || item.question,
+          options: subQ.option || subQ.options || [],
+          index_answer: subQ.index_answer !== undefined ? subQ.index_answer : item.index_answer
+        });
+      });
+
+    } else {
+      let normalizedOptions = item.options;
+      let correctAnswer = item.index_answer;
+      let questionText = item.question;
+      
+      if (Array.isArray(item.options) && typeof item.options[0] === 'object' && item.options[0]?.option) {
+        normalizedOptions = item.options[0].option || item.options[0].options;
+        correctAnswer = item.options[0].index_answer !== undefined ? item.options[0].index_answer : correctAnswer; 
+        questionText = item.options[0].question || questionText;
+      }
+      
+      questions.push({
+        ...item,
+        type: mappedType,
+        question: questionText,
+        options: normalizedOptions,
+        index_answer: correctAnswer
+      });
+    }
+  });
 
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false); 
   const [alertConfig, setAlertConfig] = useState({
     show: false, text: "", isAlert: true, onOke: () => {},
   });
 
   const totalQuestions = questions.length;
 
-  // Total soal "asli" — tidak menghitung long_audio sebagai soal
-  const realQuestionsCount = questions.filter(q => q.type !== "long_audio").length;
+  if (totalQuestions === 0) {
+    return (
+      <div className={styles.container} style={{ textAlign: "center", padding: "50px" }}>
+        <h2>Mempersiapkan soal latihan... 🔍</h2>
+        <p>Jika tidak berpindah, pastikan data soal dengan module_id: "{moduleParam}" tersedia di JSON.</p>
+      </div>
+    );
+  }
 
-  // Nomor soal asli di posisi index tertentu (skip long_audio dalam hitungan)
+  // 🌟 UPDATE: Halaman bacaan (reading_intro) tidak dihitung sebagai soal bernilai skor
+  const realQuestionsCount = questions.reduce((acc, q) => {
+    if (q.type === "long_audio" || q.type === "reading_intro") return acc;
+    return acc + 1;
+  }, 0);
+
   function getRealQuestionNumber(index) {
     let count = 0;
     for (let i = 0; i <= index; i++) {
-      if (questions[i].type !== "long_audio") count++;
+      if (questions[i] && questions[i].type !== "long_audio" && questions[i].type !== "reading_intro") {
+        count++;
+      }
     }
     return count;
   }
 
-  // Cari index sebelumnya, skip kalau ketemu long_audio
   function getPrevIndex(fromIndex) {
     let prevIndex = fromIndex - 1;
-    while (prevIndex >= 0 && questions[prevIndex].type === "long_audio") {
+    while (prevIndex >= 0 && questions[prevIndex]?.type === "long_audio") {
       prevIndex--;
     }
     return prevIndex;
@@ -129,24 +146,94 @@ export default function PracticePage() {
     );
   }
 
+  async function saveResultsToFirebase() {
+    setIsSubmitting(true);
+    try {
+      let correctAnswersCount = 0;
+
+      questions.forEach((question, index) => {
+        // Jangan hitung skor untuk halaman audio maupun halaman baca (reading_intro)
+        if (question.type !== "long_audio" && question.type !== "reading_intro") {
+          const userAnswer = answers[index];
+          const correctIndex = question.index_answer;
+          
+          if (userAnswer !== undefined && correctIndex !== undefined) {
+            if (typeof userAnswer === "boolean") {
+              const booleanToNumber = userAnswer ? 0 : 1; 
+              if (String(booleanToNumber) === String(correctIndex)) {
+                correctAnswersCount++;
+              }
+            } 
+            else if (question.options && String(userAnswer) === String(question.options[correctIndex])) {
+              correctAnswersCount++;
+            }
+            else if (String(userAnswer) === String(correctIndex)) {
+              correctAnswersCount++;
+            }
+          }
+        }
+      });
+
+      const finalScore = realQuestionsCount > 0 
+        ? Math.round((correctAnswersCount / realQuestionsCount) * 100) 
+        : 0;
+
+      const sanitizedAnswers = {};
+      questions.forEach((_, index) => {
+        sanitizedAnswers[index] = answers[index] !== undefined ? answers[index] : null;
+      });
+
+      const practiceResult = {
+        userId: auth?.currentUser?.uid || "anonymous_user", 
+        userEmail: auth?.currentUser?.email || "anonymous",
+        moduleId: moduleParam || "unknown_module",
+        categoryId: partParam || categoryParam || "structure_part_1", 
+        totalQuestions: realQuestionsCount || 0,
+        correctAnswers: correctAnswersCount || 0,
+        score: finalScore || 0,
+        userAnswers: sanitizedAnswers, 
+        createdAt: serverTimestamp(), 
+      };
+
+      await addDoc(collection(db, "practice_history"), practiceResult);
+      window.dispatchEvent(new Event("practice-completed"));
+
+      const finalCategory = partParam || categoryParam;
+      const finalFolder = folderParam || targetModule?.folder_name || moduleParam;
+
+      router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=completed`);
+
+    } catch (error) {
+      console.error("Gagal menyimpan ke Firebase:", error);
+      showAlert("Waduh, gagal menyimpan hasil latihan. Coba lagi, yuk!");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   function handleFinish() {
     showAlert(
       "Yakin mau selesaikan practice? Pastikan semua soal sudah dijawab.",
       false,
-      () => router.push("/dashboard/history")
+      () => saveResultsToFirebase() 
     );
   }
 
-  const q = questions[current];
-  const QuestionComponent = questionComponents[q.type];
+  const formatModuleName = (str) => {
+    if (!str) return "";
+    return str
+      .split("_")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
-  // ==========================================
-  // VIEW KHUSUS LAYOUT LONG_AUDIO (penampil saja)
-  // ==========================================
+  const q = questions[current];
+  const QuestionComponent = questionComponents[q?.type];
+
   if (q && q.type === "long_audio") {
     return (
       <div className={styles.container}>
-
+        {/* ... KODE LONG AUDIO TIDAK DIUBAH ... */}
         {alertConfig.show && (
           <Alert
             isAlert={alertConfig.isAlert}
@@ -155,24 +242,20 @@ export default function PracticePage() {
             handleCancel={closeAlert}
           />
         )}
-
         <div className={styles.topDecoration}></div>
         <div className={styles.bottomDecoration}></div>
-
         <div className={styles.headerSection}>
           <div>
             <h1>TOEFL Practice</h1>
             <div className={styles.line}></div>
-            <p>Session: Listening Comprehension</p>
+            <p>Module: {formatModuleName(moduleParam)}</p>
           </div>
-
           <div className={styles.headerRight}>
-            <button className={styles.exitBtn} onClick={handleExit}>
+            <button className={styles.exitBtn} onClick={handleExit} disabled={isSubmitting}>
               EXIT PRACTICE
             </button>
           </div>
         </div>
-
         <LongAudioQuestion
           {...q}
           answers={answers}
@@ -180,18 +263,12 @@ export default function PracticePage() {
           onNextQuestion={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))}
           isLastQuestion={current === totalQuestions - 1}
         />
-
       </div>
     );
   }
 
-  // ==========================================
-  // VIEW NORMAL UNTUK TIPE SOAL LAINNYA
-  // ==========================================
   return (
     <div className={styles.container}>
-
-      {/* ===== ALERT ===== */}
       {alertConfig.show && (
         <Alert
           isAlert={alertConfig.isAlert}
@@ -209,11 +286,11 @@ export default function PracticePage() {
         <div>
           <h1>TOEFL Practice</h1>
           <div className={styles.line}></div>
-          <p>Session: Listening Comprehension</p>
+          <p>Module: {formatModuleName(moduleParam)}</p>
         </div>
 
         <div className={styles.headerRight}>
-          <button className={styles.exitBtn} onClick={handleExit}>
+          <button className={styles.exitBtn} onClick={handleExit} disabled={isSubmitting}>
             EXIT PRACTICE
           </button>
         </div>
@@ -228,28 +305,44 @@ export default function PracticePage() {
           ></div>
         </div>
         <span className={styles.progressLabel}>
-          Question {String(getRealQuestionNumber(current)).padStart(2, "0")} of {String(realQuestionsCount).padStart(2, "0")}
+          Progress Tracker (Est. Questions Count)
         </span>
       </div>
 
       {/* ===== CONTENT ===== */}
       <div className={styles.questionContainer}>
-        <QuestionComponent
-          {...q}
-          questionNumber={getRealQuestionNumber(current)}
-          totalQuestions={realQuestionsCount}
-          selectedAnswer={answers[current]}
-          onAnswer={(val) => setAnswers(prev => ({ ...prev, [current]: val }))}
-        />
+        {/* 🌟 LOGIKA RENDER CUSTOM UNTUK HALAMAN BACAAN */}
+        {q?.type === "reading_intro" ? (
+          <div style={{ backgroundColor: "#fdfdfd", padding: "30px", borderRadius: "8px", border: "2px solid #a34327" }}>
+            <h3 style={{ color: "#a34327", marginBottom: "20px", borderBottom: "1px solid #ddd", paddingBottom: "10px", textTransform: "uppercase" }}>
+              📖 Please read the text below before proceeding
+            </h3>
+            <div style={{ fontSize: "16px", lineHeight: "1.8", color: "#333", whiteSpace: "pre-wrap" }}>
+              {/* Jika letak teks di JSON mu berbeda (misal di property 'text' atau 'paragraph'), sesuaikan pemanggilannya di bawah ini */}
+              {q.long_text || q.passage || q.text || q.paragraph || q.question || "Teks bacaan tidak tersedia."}
+            </div>
+          </div>
+        ) : QuestionComponent ? (
+          <QuestionComponent
+            {...q}
+            questionNumber={getRealQuestionNumber(current)}
+            totalQuestions={realQuestionsCount}
+            selectedAnswer={answers[current]}
+            onAnswer={(val) => setAnswers(prev => ({ ...prev, [current]: val }))}
+          />
+        ) : (
+          <div style={{ color: "red", textAlign: "center", padding: "20px" }}>
+            Tipe komponen soal "{q?.type}" tidak ditemukan atau gagal dimuat.
+          </div>
+        )}
       </div>
 
       {/* ===== NAVIGASI ===== */}
       <div className={styles.bottomActions}>
-
         <button
           className={styles.prevBtn}
           onClick={() => setCurrent(getPrevIndex(current))}
-          disabled={getPrevIndex(current) < 0}
+          disabled={getPrevIndex(current) < 0 || isSubmitting}
         >
           ← PREVIOUS
         </button>
@@ -258,20 +351,21 @@ export default function PracticePage() {
           <button
             className={styles.nextBtn}
             onClick={() => setCurrent(prev => prev + 1)}
+            disabled={isSubmitting}
           >
-            NEXT QUESTION →
+            {/* Ubah teks tombol jika sedang berada di halaman Intro Text */}
+            {q?.type === "reading_intro" ? "PROCEED TO QUESTIONS →" : "NEXT QUESTION →"}
           </button>
         ) : (
           <button
             className={styles.finishBtn}
             onClick={handleFinish}
+            disabled={isSubmitting}
           >
-            FINISH PRACTICE ✓
+            {isSubmitting ? "STORING DATA..." : "FINISH PRACTICE ✓"}
           </button>
         )}
-
       </div>
-
     </div>
   );
 }

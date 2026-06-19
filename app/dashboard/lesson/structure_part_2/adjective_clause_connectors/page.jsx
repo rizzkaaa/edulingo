@@ -1,4 +1,7 @@
 "use client";
+
+import { useState, useEffect } from "react"; // 🌟 PERBAIKAN 1: Import useState & useEffect
+import { useSearchParams } from "next/navigation"; // 🌟 PERBAIKAN 2: Import useSearchParams untuk deteksi URL
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer9 } from "@/app/components/FirstExplain";
@@ -9,6 +12,11 @@ import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow"
 import { TemplateVer8 } from "@/app/components/OtherMaterialTemplate";
 
 export default function AdjectiveClauseConnectors() {
+  // 🌟 PERBAIKAN 3: Buat state hasAnswered untuk melacak status pengerjaan kuis
+  const [hasAnswered, setHasAnswered] = useState(false);
+  const searchParams = useSearchParams();
+  const statusParam = searchParams.get("status");
+
   const main_material = material.materials.find(
     (material) => material.part_id == 2,
   );
@@ -18,6 +26,17 @@ export default function AdjectiveClauseConnectors() {
 
   const currentId = sub_material.sub_module_id;
   const length = main_material.sub_modules.length;
+
+  useEffect(() => {
+    // Jalankan pengecekan apakah materi ini sudah pernah diselesaikan sebelumnya
+    const isCompleted = 
+      localStorage.getItem(`module_status_part_2_mod_${currentId}`) === "completed" || 
+      statusParam === "completed";
+      
+    if (isCompleted) {
+      setHasAnswered(true);
+    }
+  }, [currentId, statusParam]);
 
   return (
     <div>
@@ -33,13 +52,28 @@ export default function AdjectiveClauseConnectors() {
         version={2}
         materials={sub_material.content[2].explain}
       />
-      <TrueFalse material={sub_material.content[3]} />
+      
+      {/* 🌟 PERBAIKAN 4: Pasang fungsi perubah state onAnswered pada komponen TrueFalse */}
+      <TrueFalse 
+        material={sub_material.content[3]} 
+        onAnswered={() => {
+          setHasAnswered(true);
+          localStorage.setItem(`module_status_part_2_mod_${currentId}`, "completed");
+          window.dispatchEvent(new Event("practice-completed"));
+        }}
+      />
+      
       <ToeflTips material={sub_material.content[4]} />
+      
+      {/* 🌟 PERBAIKAN 5: Lengkapi properti kemajuan belajar ke dalam FooterMaterial */}
       <FooterMaterial
         title={sub_material.title}
         isEnd={currentId == length}
         color="#E8A838"
         main_part_title={main_material.part_title}
+        part_id={main_material.part_id}
+        sub_module_id={sub_material.sub_module_id}
+        isButtonDisabled={!hasAnswered}
       />
     </div>
   );

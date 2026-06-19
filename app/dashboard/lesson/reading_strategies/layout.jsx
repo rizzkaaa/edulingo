@@ -14,16 +14,20 @@ export default function LessonLayout({ children }) {
   const [sub_module_id, setSub_module_id] = useState(1);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
   
-
   const [hasHydrated, setHasHydrated] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  
+  // 🌟 PERBAIKAN 1: State pelacak status kelulusan modul aktif & status global bab
+  const [isCurrentModuleCompleted, setIsCurrentModuleCompleted] = useState(false);
+  const [isPartDone, setIsPartDone] = useState(false);
 
   const main_material = material.materials.find(
     (material) => material.part_id == 5,
   );
   
   const length = main_material.sub_modules.length;
-useEffect(() => {
+
+  useEffect(() => {
     const initializeProgress = async () => {
       const currentUser = auth.currentUser;
       if (currentUser) {
@@ -36,6 +40,7 @@ useEffect(() => {
             const currentStatus = userData.lessonStatus?.[4]?.status;
 
             if (currentStatus === "done") {
+              setIsPartDone(true); // Tandai bab global telah selesai
               setSub_module_id(length);
               setCurrentModuleOpen(1); 
               setHasHydrated(true);
@@ -63,12 +68,29 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]); 
 
+  // 🌟 PERBAIKAN 2: Jalankan Event Listener untuk menangkap sinyal penyelesaian dari halaman anak (children)
+  useEffect(() => {
+    const checkModuleCompletion = () => {
+      const isCompleted = 
+        isPartDone || 
+        localStorage.getItem(`module_status_part_5_mod_${currentModuleOpen}`) === "completed";
+      setIsCurrentModuleCompleted(!!isCompleted);
+    };
+
+    // Periksa instan saat modul berpindah halaman
+    checkModuleCompletion();
+
+    window.addEventListener("practice-completed", checkModuleCompletion);
+    return () => {
+      window.removeEventListener("practice-completed", checkModuleCompletion);
+    };
+  }, [currentModuleOpen, isPartDone]);
+
   const sub_material = main_material.sub_modules.find(
     (material) => material.sub_module_id == currentModuleOpen,
   ) || main_material.sub_modules[0];
   
   const widthFill = (sub_module_id / length) * 100;
-
 
   if (!hasHydrated) {
     return (
@@ -122,6 +144,7 @@ useEffect(() => {
           setSub_module_id={setSub_module_id}
           isUpdating={isUpdating}
           setIsUpdating={setIsUpdating}
+          isCurrentModuleCompleted={isCurrentModuleCompleted} // 🌟 Kirim status kunci ke BottomBar
         />
       </section>
     </div>
@@ -139,8 +162,6 @@ function ButtonMenu({
 
   function handleClick(sub_material_id) {
     const nextPath = material.title.toLowerCase().replaceAll(" ", "_");
-
-    console.log(nextPath);
 
     if (currentModuleOpen == sub_material_id) return;
     if (sub_material_id > sub_module_id) {
@@ -185,14 +206,13 @@ function BottomBar({
   setSub_module_id,
   isUpdating,
   setIsUpdating,
+  isCurrentModuleCompleted, // 🌟 Terima properti kontrol enkripsi tombol
 }) {
   const [shake, setShake] = useState(false);
   const router = useRouter();
 
   function prevModule() {
-
     if (currentModuleOpen == 1 || isUpdating) return;
-    console.log(currentModuleOpen);
     
     const sub_material = main_material.sub_modules.find(
       (material) => material.sub_module_id == currentModuleOpen - 1,
@@ -206,7 +226,6 @@ function BottomBar({
   function nextModule() {
     if (currentModuleOpen == length || isUpdating) return;
     if (currentId < currentModuleOpen + 1) {
-
       setShake(true);
       setTimeout(() => setShake(false), 900);
     } else {
@@ -219,8 +238,9 @@ function BottomBar({
       router.push(`/dashboard/lesson/reading_strategies/${nextPath}`);
     }
   }
+
   async function handleCompleteClick() {
-    if (currentId + 1 != currentModuleOpen + 1 || isUpdating) return;
+    if (currentId + 1 != currentModuleOpen + 1 || isUpdating || !isCurrentModuleCompleted) return;
 
     if (currentId < length) {
       const nextProgress = currentId + 1;
@@ -228,7 +248,6 @@ function BottomBar({
       localStorage.setItem("reading_strategies_sub_progress", nextProgress.toString());
       return;
     }
-
 
     const currentUser = auth.currentUser;
     if (!currentUser) {
@@ -291,14 +310,15 @@ function BottomBar({
             "→"
           )}
         </button>
-        <span></span>
       </div>
+      
+      {/* 🌟 PERBAIKAN 3: Kunci tombol jika kuis belum diselesaikan oleh pengguna (!isCurrentModuleCompleted) */}
       <button
         onClick={handleCompleteClick}
-        disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating}
+        disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating || !isCurrentModuleCompleted}
         style={{
-          backgroundColor: isUpdating ? "#A0A0A0" : "",
-          cursor: isUpdating ? "not-allowed" : "pointer"
+          backgroundColor: isUpdating || !isCurrentModuleCompleted ? "#A0A0A0" : "",
+          cursor: isUpdating || !isCurrentModuleCompleted ? "not-allowed" : "pointer"
         }}
       >
         {isUpdating 

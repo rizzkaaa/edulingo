@@ -54,5 +54,5 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  redirect("/dashboard/lesson/reading_for_details/references_questions/");
+  redirect("/dashboard/lesson/reading_for_details/understanding_main_ideas");
 }

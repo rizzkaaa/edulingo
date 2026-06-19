@@ -53,5 +53,5 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  redirect("/dashboard/lesson/structure_part_1/adjective_&_adverb");
+  redirect("/dashboard/lesson/structure_part_1/singular_&_plural_nouns");
 }

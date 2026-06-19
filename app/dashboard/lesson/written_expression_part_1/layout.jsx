@@ -4,6 +4,7 @@ import material from "@/data/material.json";
 import styles from "../layout.module.css";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";
 import LessonProgressBar from "@/app/components/LessonProgressBar";
 
@@ -14,16 +15,45 @@ export default function LessonLayout({ children }) {
   const [sub_module_id, setSub_module_id] = useState(1);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
   
+  // State utama pelacak jawaban
+  const [hasAnswered, setHasAnswered] = useState(false);
+  const searchParams = useSearchParams();
+
+  const handlePracticeAnswered = () => {
+    setHasAnswered(true);
+  };
 
   const [hasHydrated, setHasHydrated] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const main_material = material.materials.find(
-    (material) => material.part_id == 3,
-  );
+  // Ambil data main_material dengan aman (Disesuaikan untuk Part 3)
+  const main_material = material?.materials?.find(
+    (m) => m.part_id == 3,
+  ) || { part_title: "WRITTEN EXPRESSION PART 1", sub_modules: [] };
   
-  const length = main_material.sub_modules.length;
-useEffect(() => {
+  // Ambil panjang data dengan aman menggunakan optional chaining
+  const length = main_material?.sub_modules?.length || 0;
+
+  // Custom Event Listener global untuk mendeteksi status jawaban
+  useEffect(() => {
+    setHasAnswered(false);
+
+    const status = searchParams.get("status");
+    const isCompletedInStorage = localStorage.getItem(`module_status_part_3_mod_${currentModuleOpen}`) === "completed";
+
+    if (status === "completed" || isCompletedInStorage) {
+      setHasAnswered(true);
+    }
+
+    window.addEventListener("practice-completed", handlePracticeAnswered);
+    
+    return () => {
+      window.removeEventListener("practice-completed", handlePracticeAnswered);
+    };
+  }, [searchParams, currentModuleOpen]);
+
+  // Inisialisasi Progress Awal
+  useEffect(() => {
     const initializeProgress = async () => {
       const currentUser = auth.currentUser;
       if (currentUser) {
@@ -33,7 +63,9 @@ useEffect(() => {
           
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
+            // Written Expression Part 1 dipetakan ke index [2] pada array lessonStatus
             const currentStatus = userData.lessonStatus?.[2]?.status;
+
             if (currentStatus === "done") {
               setSub_module_id(length);
               setCurrentModuleOpen(1); 
@@ -60,14 +92,14 @@ useEffect(() => {
 
     initializeProgress();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.currentUser]); 
+  }, [auth.currentUser, length]); 
 
-  const sub_material = main_material.sub_modules.find(
-    (material) => material.sub_module_id == currentModuleOpen,
-  ) || main_material.sub_modules[0];
+  // Ambil data sub_material dengan aman menggunakan optional chaining
+  const sub_material = main_material?.sub_modules?.find(
+    (m) => m.sub_module_id == currentModuleOpen,
+  ) || main_material?.sub_modules?.[0] || { title: "" };
   
-  const widthFill = (sub_module_id / length) * 100;
-
+  const widthFill = length > 0 ? (sub_module_id / length) * 100 : 0;
 
   if (!hasHydrated) {
     return (
@@ -80,13 +112,13 @@ useEffect(() => {
   return (
     <div className={styles.container}>
       <aside>
-        <header>{main_material.part_title.toUpperCase()}</header>
+        <header>{main_material?.part_title?.toUpperCase()}</header>
         <ul>
-          {main_material.sub_modules.map((material) => {
+          {main_material?.sub_modules?.map((item) => {
             return (
-              <li key={`li${material.sub_module_id}`}>
+              <li key={`li${item.sub_module_id}`}>
                 <ButtonMenu
-                  material={material}
+                  material={item}
                   sub_module_id={sub_module_id}
                   currentModuleOpen={currentModuleOpen}
                   setCurrentModuleOpen={setCurrentModuleOpen}
@@ -105,12 +137,12 @@ useEffect(() => {
         <main>
           <h4 className={styles.indicator}>
             BERANDA › MATERI › WRITTEN EXPRESSION PART 1 ›{" "}
-            {sub_material.title.toUpperCase()}{" "}
+            {sub_material?.title?.toUpperCase()}{" "}
           </h4>
           {children}
         </main>
         <BottomBar
-          title={main_material.part_title}
+          title={main_material?.part_title}
           currentId={sub_module_id}
           length={length}
           widthFill={widthFill}
@@ -121,6 +153,8 @@ useEffect(() => {
           setSub_module_id={setSub_module_id}
           isUpdating={isUpdating}
           setIsUpdating={setIsUpdating}
+          hasAnswered={hasAnswered}
+          sub_module_id={sub_module_id}
         />
       </section>
     </div>
@@ -137,10 +171,7 @@ function ButtonMenu({
   const router = useRouter();
 
   function handleClick(sub_material_id) {
-    const nextPath = material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
-
-    console.log(nextPath);
-
+    const nextPath = material?.title?.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and") || "";
     if (currentModuleOpen == sub_material_id) return;
     if (sub_material_id > sub_module_id) {
       setShake(true);
@@ -153,16 +184,16 @@ function ButtonMenu({
 
   return (
     <button
-      className={`${material.sub_module_id > sub_module_id ? styles.loked : ""} ${currentModuleOpen === material.sub_module_id ? styles.active : ""}`}
-      onClick={() => handleClick(material.sub_module_id)}
+      className={`${material?.sub_module_id > sub_module_id ? styles.loked : ""} ${currentModuleOpen === material?.sub_module_id ? styles.active : ""}`}
+      onClick={() => handleClick(material?.sub_module_id)}
     >
-      <span>{material.title}</span>
+      <span>{material?.title}</span>
       <span className={styles.status}>
-        {currentModuleOpen === material.sub_module_id ? (
+        {currentModuleOpen === material?.sub_module_id ? (
           <span className={styles.activeSign}>AKTIF</span>
-        ) : material.sub_module_id < sub_module_id ? (
+        ) : material?.sub_module_id < sub_module_id ? (
           <LuCheck style={{ color: "#2D7A5E" }} />
-        ) : material.sub_module_id === sub_module_id ? (
+        ) : material?.sub_module_id === sub_module_id ? (
           <LuLockOpen />
         ) : (
           <LuLock className={shake ? styles.shake : ""} />
@@ -184,19 +215,19 @@ function BottomBar({
   setSub_module_id,
   isUpdating,
   setIsUpdating,
+  hasAnswered,
+  sub_module_id
 }) {
   const [shake, setShake] = useState(false);
   const router = useRouter();
 
   function prevModule() {
-
     if (currentModuleOpen == 1 || isUpdating) return;
-    console.log(currentModuleOpen);
     
-    const sub_material = main_material.sub_modules.find(
-      (material) => material.sub_module_id == currentModuleOpen - 1,
+    const sub_material = main_material?.sub_modules?.find(
+      (m) => m.sub_module_id == currentModuleOpen - 1,
     );
-    const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
+    const nextPath = sub_material?.title?.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and") || "";
 
     setCurrentModuleOpen(currentModuleOpen - 1);
     router.push(`/dashboard/lesson/written_expression_part_1/${nextPath}`);
@@ -205,21 +236,21 @@ function BottomBar({
   function nextModule() {
     if (currentModuleOpen == length || isUpdating) return;
     if (currentId < currentModuleOpen + 1) {
-
       setShake(true);
       setTimeout(() => setShake(false), 900);
     } else {
-      const sub_material = main_material.sub_modules.find(
-        (material) => material.sub_module_id == currentModuleOpen + 1,
+      const sub_material = main_material?.sub_modules?.find(
+        (m) => m.sub_module_id == currentModuleOpen + 1,
       );
-      const nextPath = sub_material.title.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and");
+      const nextPath = sub_material?.title?.toLowerCase().replaceAll(" ", "_").replaceAll("&", "and") || "";
 
       setCurrentModuleOpen(currentModuleOpen + 1);
       router.push(`/dashboard/lesson/written_expression_part_1/${nextPath}`);
     }
   }
+
   async function handleCompleteClick() {
-    if (currentId + 1 != currentModuleOpen + 1 || isUpdating) return;
+    if (currentId !== currentModuleOpen || isUpdating) return;
 
     if (currentId < length) {
       const nextProgress = currentId + 1;
@@ -227,7 +258,6 @@ function BottomBar({
       localStorage.setItem("written_part_1_sub_progress", nextProgress.toString());
       return;
     }
-
 
     const currentUser = auth.currentUser;
     if (!currentUser) {
@@ -245,9 +275,8 @@ function BottomBar({
         let currentStatusList = userData.lessonStatus ? [...userData.lessonStatus] : [];
 
         if (currentStatusList.length > 0) {
-
+          // Menyelesaikan Part 3 (index 2) dan membuka modul berikutnya (index 3) jika ada
           currentStatusList[2] = { ...currentStatusList[2], status: "done" };
-
 
           if (currentStatusList[3] && currentStatusList[3].status === "locked") {
             currentStatusList[3] = { ...currentStatusList[3], status: "progress" };
@@ -265,6 +294,8 @@ function BottomBar({
       setIsUpdating(false);
     }
   }
+
+  const isCompleteDisabled = !hasAnswered && (currentModuleOpen === sub_module_id);
 
   return (
     <div className={styles.bottomBar}>
@@ -292,22 +323,21 @@ function BottomBar({
             "→"
           )}
         </button>
-        <span></span>
       </div>
       <button
         onClick={handleCompleteClick}
-        disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating}
+        disabled={currentId !== currentModuleOpen || isUpdating || isCompleteDisabled}
         style={{
-          backgroundColor: isUpdating ? "#A0A0A0" : "",
-          cursor: isUpdating ? "not-allowed" : "pointer"
+          backgroundColor: isUpdating || isCompleteDisabled || currentId !== currentModuleOpen ? "#A0A0A0" : "#2D7A5E",
+          cursor: isUpdating || isCompleteDisabled || currentId !== currentModuleOpen ? "not-allowed" : "pointer",
+          opacity: isCompleteDisabled || currentId !== currentModuleOpen ? 0.6 : 1,
+          color: "white"
         }}
       >
-        {isUpdating 
-          ? "MENYIMPAN..." 
-          : currentId + 1 == currentModuleOpen + 1 
-            ? "TANDAI" 
-            : ""}{" "}
-        SELESAI ✓
+        {isUpdating ? "MENYIMPAN..." 
+          : currentId !== currentModuleOpen ? "SUDAH SELESAI ✓" 
+          : !hasAnswered ? "JAWAB SOAL DULU 🔒" 
+          : "TANDAI SELESAI ✓"}
       </button>
     </div>
   );

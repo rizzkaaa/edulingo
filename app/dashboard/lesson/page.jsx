@@ -268,7 +268,7 @@ export default function LessonPage() {
             const path = lessonStatus[originalIndex]?.path || "#";
 
             return (
-              <div key={item.id} className={getCardClass(status)}>
+              <div key={item.part_id} className={getCardClass(status)}>
                 <div>
                   <div className={styles.cardTop}>
                     <div

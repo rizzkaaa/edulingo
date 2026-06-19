@@ -1,4 +1,7 @@
 "use client";
+
+import { useState, useEffect } from "react"; // 🌟 PERBAIKAN 1: Import useState dan useEffect
+import { useSearchParams } from "next/navigation"; // 🌟 PERBAIKAN 2: Import useSearchParams untuk deteksi status URL
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer1 } from "@/app/components/FirstExplain";
@@ -8,6 +11,11 @@ import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
 
 export default function SingularPluralNouns() {
+  // 🌟 PERBAIKAN 3: Buat state hasAnswered untuk mengontrol status tombol disable
+  const [hasAnswered, setHasAnswered] = useState(false);
+  const searchParams = useSearchParams();
+  const statusParam = searchParams.get("status");
+
   const main_material = material.materials.find(
     (material) => material.part_id == 1,
   );
@@ -18,6 +26,17 @@ export default function SingularPluralNouns() {
   const currentId = sub_material.sub_module_id;
   const length = main_material.sub_modules.length;
 
+  useEffect(() => {
+    // Cek apakah modul ini sebelumnya sudah pernah diselesaikan
+    const isCompleted = 
+      localStorage.getItem(`module_status_part_1_mod_${currentId}`) === "completed" || 
+      statusParam === "completed";
+      
+    if (isCompleted) {
+      setHasAnswered(true);
+    }
+  }, [currentId, statusParam]);
+
   return (
     <div>
       <HeaderMaterial
@@ -27,14 +46,34 @@ export default function SingularPluralNouns() {
       />
 
       <FirstExplainVer1 sub_material={sub_material} />
-      <TrueFalse material={sub_material.content[1]} />
+      
+      {/* 🌟 PERBAIKAN 4: Pasang properti onAnswered pada komponen TrueFalse */}
+      <TrueFalse 
+        material={sub_material.content[1]} 
+        onAnswered={() => {
+          setHasAnswered(true);
+          localStorage.setItem(`module_status_part_1_mod_${currentId}`, "completed");
+          window.dispatchEvent(new Event("practice-completed"));
+        }}
+      />
+      
       <TableMaterial
         material={sub_material.content[2]}
         styleHeader={[{ textAlign: "start" },{ textAlign: "start" },{ textAlign: "start" }]}
         styleData={[{ fontWeight: "700" }]}
       />
+      
       <ToeflTips material={sub_material.content[3]} />
-      <FooterMaterial title={sub_material.title} isEnd={currentId == length} main_part_title={main_material.part_title} />
+      
+      {/* 🌟 PERBAIKAN 5: Lengkapi properti tracking progress pada FooterMaterial */}
+      <FooterMaterial 
+        title={sub_material.title} 
+        isEnd={currentId == length} 
+        main_part_title={main_material.part_title} 
+        part_id={main_material.part_id}
+        sub_module_id={sub_material.sub_module_id}
+        isButtonDisabled={!hasAnswered}
+      />
     </div>
   );
 }
