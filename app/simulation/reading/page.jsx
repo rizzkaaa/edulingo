@@ -16,6 +16,8 @@ import TrueFalseQuestion from "../../components/question_type_component/true_fal
 // Path disesuaikan dengan struktur folder Anda
 import { db } from "../../../lib/firebase"; 
 import { doc, setDoc } from "firebase/firestore";
+// ALGORITMA BARU: Import untuk mendeteksi user yang sedang login agar ID sama dengan Structure
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // Menggunakan import langsung karena folder data ada di root
 import simulasiData from "../../../data/simulasi.json";
@@ -36,7 +38,7 @@ export default function ReadingPage() {
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
 
-  // State untuk menyimpan User ID
+  // State untuk menyimpan User ID (Asli atau Acak)
   const [userId, setUserId]           = useState("");
 
   const [current, setCurrent]         = useState(0);
@@ -60,21 +62,25 @@ export default function ReadingPage() {
     return shuffled;
   };
 
-  // Mengambil ID user yang sedang login
+  // ALGORITMA BARU: Cek User Login Asli, jika tidak ada baru gunakan Guest ID yang SAMA dengan Structure
   useEffect(() => {
-    let loggedInUser = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");
+    const auth = getAuth();
     
-    if (loggedInUser) {
-      setUserId(loggedInUser);
-    } else {
-      console.warn("Data login tidak ditemukan. Menggunakan ID Guest sementara.");
-      let storedId = sessionStorage.getItem("toefl_guest_id");
-      if (!storedId) {
-        storedId = "guest_" + Math.random().toString(36).substring(2, 15);
-        sessionStorage.setItem("toefl_guest_id", storedId);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        // Gunakan key yang SAMA persis dengan yang digenerate di StructurePage
+        let storedId = sessionStorage.getItem("toefl_user_id");
+        if (!storedId) {
+          storedId = "user_" + Math.random().toString(36).substring(2, 15);
+          sessionStorage.setItem("toefl_user_id", storedId);
+        }
+        setUserId(storedId);
       }
-      setUserId(storedId);
-    }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   // Load soal Reading dari JSON, Normalisasi, Acak, Batasi 36
@@ -159,7 +165,7 @@ export default function ReadingPage() {
     }
   }, [timeLeft, isLoading, questions.length]);
 
-  // Fungsi menghitung skor Reading dan menyimpannya ke Firebase berdasarkan ID Login
+  // Fungsi menghitung skor Reading dan menyimpannya ke Firebase berdasarkan ID yang konsisten
   const saveDataToFirebase = async () => {
     if (!userId) return; 
 

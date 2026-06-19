@@ -16,6 +16,8 @@ import TrueFalseQuestion from "../../components/question_type_component/true_fal
 // Path disesuaikan dengan struktur folder Anda
 import { db } from "../../../lib/firebase"; 
 import { doc, setDoc } from "firebase/firestore";
+// ALGORITMA BARU: Import untuk mendeteksi user yang sedang login
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // Menggunakan import langsung karena folder data ada di root
 import simulasiData from "../../../data/simulasi.json";
@@ -28,15 +30,13 @@ const questionComponents = {
   true_false: TrueFalseQuestion,
 };
 
-const MAX_QUESTIONS = 28;
-
 export default function StructurePage() {
   const router = useRouter();
 
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
   
-  // State untuk menyimpan User ID dari session login
+  // State untuk menyimpan User ID (Asli atau Acak)
   const [userId, setUserId]           = useState("");
 
   const [current, setCurrent]         = useState(0);
@@ -60,22 +60,26 @@ export default function StructurePage() {
     return shuffled;
   };
 
-  // PERBAIKAN: Mengambil ID user yang sedang login (Sama dengan Reading)
+  // ALGORITMA BARU: Cek User Login Asli, jika tidak ada baru gunakan Guest ID
   useEffect(() => {
-    // Pastikan "user_id" sesuai dengan key token/id login di aplikasi Anda
-    let loggedInUser = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");
+    const auth = getAuth();
     
-    if (loggedInUser) {
-      setUserId(loggedInUser);
-    } else {
-      console.warn("Data login tidak ditemukan di sesi Structure. Menggunakan ID Guest.");
-      let storedId = sessionStorage.getItem("toefl_guest_id");
-      if (!storedId) {
-        storedId = "guest_" + Math.random().toString(36).substring(2, 15);
-        sessionSessionStorage.setItem("toefl_guest_id", storedId);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // JIKA SUDAH LOGIN: Gunakan ID asli dari akun (UID Firebase)
+        setUserId(user.uid);
+      } else {
+        // JIKA BELUM LOGIN (GUEST): Baru gunakan ID acak dari sessionStorage
+        let storedId = sessionStorage.getItem("toefl_user_id");
+        if (!storedId) {
+          storedId = "user_" + Math.random().toString(36).substring(2, 15);
+          sessionStorage.setItem("toefl_user_id", storedId);
+        }
+        setUserId(storedId);
       }
-      setUserId(storedId);
-    }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   // Load soal dari JSON, Normalisasi struktur, Acak, dan Batasi maksimal 36 soal
@@ -120,9 +124,9 @@ export default function StructurePage() {
             correctIndex: correctIdx 
           };
         });
-
-        if (normalizedQuestions.length > MAX_QUESTIONS) {
-          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, MAX_QUESTIONS);
+        
+        if (normalizedQuestions.length > 36) {
+          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, 36);
         }
         
         setQuestions(normalizedQuestions);
@@ -150,109 +154,30 @@ export default function StructurePage() {
     return () => clearInterval(timerId);
   }, [timeLeft, isLoading, questions.length]);
 
-  // Fungsi menghitung skor dan menyimpannya ke Firebase berdasarkan ID Login
+  // Fungsi menghitung skor dan menyimpannya ke Firebase
   const saveDataToFirebase = async () => {
     if (!userId) return; 
 
     const timeSpent = (80 * 60) - timeLeft;
-    
     let correctCount = 0;
     
     questions.forEach((q, index) => {
-      let ans = answers[index];
-      if (ans === undefined) {
-        ans = answers[String(index)];
-      }
-
-      if (ans !== undefined && ans !== null) {
+      const ans = answers[index];
+      if (ans !== undefined) {
         let isCorrect = false;
-        let userAns = ans;
 
-        // 1. Ekstraksi nilai jika ans berupa objek event radio button ({target: {value}} / {value} / {index})
-        if (ans && typeof ans === 'object') {
-          if (ans.target && ans.target.value !== undefined) {
-            userAns = ans.target.value;
-          } else if (ans.value !== undefined) {
-            userAns = ans.value;
-          } else if (ans.index !== undefined) {
-            userAns = ans.index;
-          }
-        }
-
-        // 2. Tentukan kunci teks dan indeks jawaban dari berbagai kemungkinan fallback struktur
-        let targetAnsText = q.correctAnswer;
-        let targetAnsIdx = q.correctIndex;
-
-        if (targetAnsIdx === undefined || targetAnsIdx === null) {
-          if (q.index_answer !== undefined) {
-            targetAnsIdx = parseInt(q.index_answer);
-          } else if (Array.isArray(q.options) && q.options[0] && typeof q.options[0] === 'object' && q.options[0].index_answer !== undefined) {
-            targetAnsIdx = parseInt(q.options[0].index_answer);
-          }
-        }
-
-        if (targetAnsText === undefined || targetAnsText === null) {
-          if (q.correct_answer !== undefined) targetAnsText = q.correct_answer;
-          else if (q.answer !== undefined) targetAnsText = q.answer;
-          else if (targetAnsIdx !== null) {
-            if (Array.isArray(q.options)) {
-              if (typeof q.options[0] === 'object' && Array.isArray(q.options[0].option)) {
-                targetAnsText = q.options[0].option[targetAnsIdx];
-              } else if (typeof q.options[targetAnsIdx] === 'string') {
-                targetAnsText = q.options[targetAnsIdx];
-              }
-            }
-          }
-        }
-
-        // 3. Pengecekan kecocokan nilai langsung (Exact Match)
-        if (targetAnsText !== null && targetAnsText !== undefined && userAns === targetAnsText) {
+        // Cek jika jawaban user sama dengan index jawaban benar
+        if (q.correctIndex !== null && String(ans) === String(q.correctIndex)) {
+          isCorrect = true;
+        } 
+        // Cek jika jawaban user sama dengan teks jawaban benar
+        else if (q.correctAnswer !== null && String(ans) === String(q.correctAnswer)) {
           isCorrect = true;
         }
-
-        // 4. Pengecekan indeks langsung (Angka atau String Angka)
-        if (targetAnsIdx !== null && targetAnsIdx !== undefined && (userAns === targetAnsIdx || String(userAns) === String(targetAnsIdx))) {
+        // Fallback: pencocokan string tingkat lanjut
+        else if (typeof ans === 'string' && typeof q.correctAnswer === 'string' && 
+                 ans.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase()) {
           isCorrect = true;
-        }
-
-        // 5. Pengecekan Teks Case-Insensitive & Trimmed (Menghindari beda spasi/huruf kapital)
-        if (userAns !== undefined && userAns !== null && targetAnsText !== undefined && targetAnsText !== null) {
-          if (String(userAns).trim().toLowerCase() === String(targetAnsText).trim().toLowerCase()) {
-            isCorrect = true;
-          }
-        }
-
-        // 6. Pengecekan Karakter Huruf Pilihan (A, B, C, D) atau Format "A. Teks" bawaan beberapa template komponen
-        if (typeof userAns === 'string' && targetAnsIdx !== null && targetAnsIdx !== undefined) {
-          const cleanAns = userAns.trim().toUpperCase();
-          const letterIndices = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
-          if (letterIndices[cleanAns] !== undefined && letterIndices[cleanAns] === targetAnsIdx) {
-            isCorrect = true;
-          }
-          if (cleanAns.startsWith('A.') && targetAnsIdx === 0) isCorrect = true;
-          if (cleanAns.startsWith('B.') && targetAnsIdx === 1) isCorrect = true;
-          if (cleanAns.startsWith('C.') && targetAnsIdx === 2) isCorrect = true;
-          if (cleanAns.startsWith('D.') && targetAnsIdx === 3) isCorrect = true;
-        }
-
-        // 7. Pengecekan nilai teks berdasarkan urutan indeks opsi array alternatif
-        if (targetAnsText !== null && targetAnsText !== undefined) {
-          let userAnsInt = parseInt(userAns);
-          if (!isNaN(userAnsInt)) {
-            let currentOptions = [];
-            if (Array.isArray(q.options)) {
-              if (q.options[0] && typeof q.options[0] === 'object' && Array.isArray(q.options[0].option)) {
-                currentOptions = q.options[0].option;
-              } else {
-                currentOptions = q.options;
-              }
-            }
-            if (currentOptions[userAnsInt] !== undefined) {
-              if (String(currentOptions[userAnsInt]).trim().toLowerCase() === String(targetAnsText).trim().toLowerCase()) {
-                isCorrect = true;
-              }
-            }
-          }
         }
 
         if (isCorrect) {
@@ -265,7 +190,6 @@ export default function StructurePage() {
     const scorePercentage = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
 
     try {
-      // Menggunakan userId hasil login, digabung menggunakan { merge: true }
       await setDoc(doc(db, "exam_sessions", userId), {
         structure_time_left: timeLeft,
         structure_time_spent: timeSpent,
@@ -273,8 +197,8 @@ export default function StructurePage() {
         structure_total_questions: totalQ,
         structure_score_percentage: scorePercentage,
         updatedAt: new Date()
-      }, { merge: true }); 
-      console.log(`Waktu dan skor Structure berhasil disimpan ke Akun Login ID: ${userId}`);
+      }, { merge: true });
+      console.log(`Waktu dan skor Structure berhasil disimpan ke ID: ${userId}`);
     } catch (error) {
       console.error("Gagal menyimpan data ke Firebase: ", error);
     }
@@ -334,7 +258,7 @@ export default function StructurePage() {
   }
 
   function getQuestionClass(index) {
-    if (index === current)             return styles.activeQuestion;
+    if (index === current)            return styles.activeQuestion;
     if (flagged[index])               return styles.reviewQuestion;
     if (answers[index] !== undefined) return styles.answeredQuestion;
     return styles.unansweredQuestion;

@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Image from "next/image";
 
-// Import Firebase
 import { db } from "../../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import {
   FaCheckCircle,
@@ -42,22 +42,27 @@ export default function ResultPage() {
     return timeString.trim();
   };
 
-  // 1. Ambil User ID yang aktif saat ini
+  // 1. ALGORITMA BARU: Ambil User ID yang sinkron dengan sesi ujian (Login atau Guest)
   useEffect(() => {
-    let loggedInUser = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");
+    const auth = getAuth();
     
-    if (loggedInUser) {
-      setUserId(loggedInUser);
-    } else {
-      // Fallback jika guest id digunakan
-      let storedId = sessionStorage.getItem("toefl_guest_id");
-      if (storedId) {
-        setUserId(storedId);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Jika sudah login, ambil UID
+        setUserId(user.uid);
       } else {
-        console.warn("User ID tidak ditemukan.");
-        setIsLoading(false);
+        // Jika belum login, ambil ID guest yang digenerate saat ujian
+        let storedId = sessionStorage.getItem("toefl_user_id");
+        if (storedId) {
+          setUserId(storedId);
+        } else {
+          console.warn("User ID tidak ditemukan. Mungkin ujian belum dikerjakan.");
+          setIsLoading(false); // Stop loading jika benar-benar tidak ada ID
+        }
       }
-    }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   // 2. Tarik data hasil simulasi dari Firebase Firestore
