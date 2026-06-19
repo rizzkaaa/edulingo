@@ -2097,7 +2097,7 @@
                             "Eat in the cafeteria and study.",
                             "See a play."
                         ],
-                        "index_answer": -1
+                        "index_answer": 1
                     },
                     {
                         "audio": "latihan7.2.2.mp3",
@@ -2107,7 +2107,7 @@
                             "It's a very important game.",
                             "It's close to the cafeteria"
                         ],
-                        "index_answer": -1
+                        "index_answer": 2
                     },
                     {
                         "audio": "latihan7.2.3.mp3",
@@ -2117,7 +2117,7 @@
                             "A study group meeting.",
                             "Dinner in the cafeteria"
                         ],
-                        "index_answer": -1
+                        "index_answer": 0
                     }
                 ]
             }
@@ -2168,7 +2168,7 @@
                             "Five",
                             "Seven"
                         ],
-                        "index_answer": -1
+                        "index_answer": 2
                     }
                 ]
             }
