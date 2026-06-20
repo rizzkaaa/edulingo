@@ -1,765 +1,1182 @@
 [
-    {
+  {
     "session_id": "Structure",
     "questions": [
-
-        {
-            "type": "TrueOrFalse",
-            "question": "The childs in the playground are playing happily.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "She has two ___ at home that she feeds every morning.",
-            "options": [
-                {
-                    "option": ["cat", "cats", "cates", "cat's"],
-                    "index_answer": 1
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "There is a lot of furnitures in the living room.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "She gave me some ___ about how to improve my writing skills.",
-            "options": [
-                {
-                    "option": ["advices", "advice", "an advice", "advise"],
-                    "index_answer": 1
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "The teacher gave the assignment to John and I yesterday.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "The manager called ___ to discuss the new project proposal.",
-            "options": [
-                {
-                    "option": ["he and I", "him and me", "he and me", "him and I"],
-                    "index_answer": 1
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "Each of the students must submit their own assignment before the deadline.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 0
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "The book on the table is ___. I left it there this morning.",
-            "options": [
-                {
-                    "option": ["my", "me", "mine", "myself"],
-                    "index_answer": 2
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "She speaks very fluent English after studying abroad for two years.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "The exam was ___ difficult that many students were unable to finish on time.",
-            "options": [
-                {
-                    "option": ["such", "so", "too", "very"],
-                    "index_answer": 1
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "She studied hard for the exam, but she failed to pass it.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 0
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "He wanted to attend the conference, ___ he could not afford the registration fee.",
-            "options": [
-                {
-                    "option": ["so", "yet", "for", "and"],
-                    "index_answer": 1
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "Although the weather was bad, but the team decided to continue the match.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "___ the flight was delayed for several hours, the passengers remained calm and patient.",
-            "options": [
-                {
-                    "option": ["Despite", "Because", "Even though", "So that"],
-                    "index_answer": 2
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "The professor explained what did the experiment prove to the graduate students.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-        {
-            "type": "FillInTheBlank",
-            "question": "The researchers were surprised by ___ the new drug reduced the symptoms so quickly.",
-            "options": [
-                {
-                    "option": ["that", "how", "what", "which"],
-                    "index_answer": 1
-                }
-            ]
-        },
-
-        {
-            "type": "TrueOrFalse",
-            "question": "The scientist whom discovered the vaccine received an international award.",
-            "options": [
-                {
-                    "option": ["Correct", "Incorrect"],
-                    "index_answer": 1
-                }
-            ]
-        },
-{
-    "type": "FillInTheBlank",
-    "question": "The report ___ was submitted last week contains several critical errors.",
-    "options": [
-        {
-            "option": ["who", "whom", "which", "where"],
+      {
+        "type": "TrueOrFalse",
+        "question": "The childs in the playground are playing happily.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "She has two ___ at home that she feeds every morning.",
+        "options": [
+          {
+            "option": [
+              "cat",
+              "cats",
+              "cates",
+              "cat's"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "There is a lot of furnitures in the living room.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "She gave me some ___ about how to improve my writing skills.",
+        "options": [
+          {
+            "option": [
+              "advices",
+              "advice",
+              "an advice",
+              "advise"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "The teacher gave the assignment to John and I yesterday.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The manager called ___ to discuss the new project proposal.",
+        "options": [
+          {
+            "option": [
+              "he and I",
+              "him and me",
+              "he and me",
+              "him and I"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "Each of the students must submit their own assignment before the deadline.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 0
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The book on the table is ___. I left it there this morning.",
+        "options": [
+          {
+            "option": [
+              "my",
+              "me",
+              "mine",
+              "myself"
+            ],
             "index_answer": 2
-        }
-    ]
-},
-
-{
-    "type": "TrueOrFalse",
-    "question": "The number of students in the classroom are increasing every year.",
-    "options": [
-        {
-            "option": ["Correct", "Incorrect"],
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "She speaks very fluent English after studying abroad for two years.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-{
-    "type": "FillInTheBlank",
-    "question": "Each of the participants ___ required to register before attending the seminar.",
-    "options": [
-        {
-            "option": ["are", "were", "is", "have"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The exam was ___ difficult that many students were unable to finish on time.",
+        "options": [
+          {
+            "option": [
+              "such",
+              "so",
+              "too",
+              "very"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "She studied hard for the exam, but she failed to pass it.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 0
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "He wanted to attend the conference, ___ he could not afford the registration fee.",
+        "options": [
+          {
+            "option": [
+              "so",
+              "yet",
+              "for",
+              "and"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "Although the weather was bad, but the team decided to continue the match.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "___ the flight was delayed for several hours, the passengers remained calm and patient.",
+        "options": [
+          {
+            "option": [
+              "Despite",
+              "Because",
+              "Even though",
+              "So that"
+            ],
             "index_answer": 2
-        }
-    ]
-},
-
-{
-    "type": "TrueOrFalse",
-    "question": "The teacher, together with her students, are attending the science exhibition.",
-    "options": [
-        {
-            "option": ["Correct", "Incorrect"],
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "The professor explained what did the experiment prove to the graduate students.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-
-{
-    "type": "FillInTheBlank",
-    "question": "The bouquet of flowers ___ on the table.",
-    "options": [
-        {
-            "option": ["are", "were", "is", "have"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The researchers were surprised by ___ the new drug reduced the symptoms so quickly.",
+        "options": [
+          {
+            "option": [
+              "that",
+              "how",
+              "what",
+              "which"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "The scientist whom discovered the vaccine received an international award.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The report ___ was submitted last week contains several critical errors.",
+        "options": [
+          {
+            "option": [
+              "who",
+              "whom",
+              "which",
+              "where"
+            ],
             "index_answer": 2
-        }
-    ]
-},
-
-{
-    "type": "TrueOrFalse",
-    "question": "A number of employees is requesting additional training sessions.",
-    "options": [
-        {
-            "option": ["Correct", "Incorrect"],
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "The number of students in the classroom are increasing every year.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-
-{
-    "type": "FillInTheBlank",
-    "question": "The majority of the information ___ available online.",
-    "options": [
-        {
-            "option": ["are", "were", "is", "have"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "Each of the participants ___ required to register before attending the seminar.",
+        "options": [
+          {
+            "option": [
+              "are",
+              "were",
+              "is",
+              "have"
+            ],
             "index_answer": 2
-        }
-    ]
-},
-
-{
-    "type": "TrueOrFalse",
-    "question": "Everybody in the office know the new policy.",
-    "options": [
-        {
-            "option": ["Correct", "Incorrect"],
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "The teacher, together with her students, are attending the science exhibition.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-
-{
-    "type": "FillInTheBlank",
-    "question": "Neither of the answers ___ correct.",
-    "options": [
-        {
-            "option": ["are", "were", "is", "have"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The bouquet of flowers ___ on the table.",
+        "options": [
+          {
+            "option": [
+              "are",
+              "were",
+              "is",
+              "have"
+            ],
             "index_answer": 2
-        }
-    ]
-},
-
-{
-    "type": "TrueOrFalse",
-    "question": "She enjoys swimming, to run, and cycling every weekend.",
-    "options": [
-        {
-            "option": ["Correct", "Incorrect"],
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "A number of employees is requesting additional training sessions.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-
-{
-    "type": "FillInTheBlank",
-    "question": "The manager asked the employees to work efficiently, communicate clearly, and ___ deadlines.",
-    "options": [
-        {
-            "option": ["meeting", "meet", "met", "meets"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The majority of the information ___ available online.",
+        "options": [
+          {
+            "option": [
+              "are",
+              "were",
+              "is",
+              "have"
+            ],
+            "index_answer": 2
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "Everybody in the office know the new policy.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-
-{
-    "type": "TrueOrFalse",
-    "question": "He likes reading books and to watch movies during his free time.",
-    "options": [
-        {
-            "option": ["Correct", "Incorrect"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "Neither of the answers ___ correct.",
+        "options": [
+          {
+            "option": [
+              "are",
+              "were",
+              "is",
+              "have"
+            ],
+            "index_answer": 2
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "She enjoys swimming, to run, and cycling every weekend.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
             "index_answer": 1
-        }
-    ]
-},
-
-{
-    "type": "FillInTheBlank",
-    "question": "The students prepared reports, created presentations, and ___ demonstrations.",
-    "options": [
-        {
-            "option": ["conduct", "conducted", "conducting", "conducts"],
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The manager asked the employees to work efficiently, communicate clearly, and ___ deadlines.",
+        "options": [
+          {
+            "option": [
+              "meeting",
+              "meet",
+              "met",
+              "meets"
+            ],
             "index_answer": 1
-        }
+          }
+        ]
+      },
+      {
+        "type": "TrueOrFalse",
+        "question": "He likes reading books and to watch movies during his free time.",
+        "options": [
+          {
+            "option": [
+              "Correct",
+              "Incorrect"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "FillInTheBlank",
+        "question": "The students prepared reports, created presentations, and ___ demonstrations.",
+        "options": [
+          {
+            "option": [
+              "conduct",
+              "conducted",
+              "conducting",
+              "conducts"
+            ],
+            "index_answer": 1
+          }
+        ]
+      }
     ]
-}
-
+  },
+  {
+    "session_id": "Reading",
+    "questions": [
+      {
+        "type": "long_text",
+        "passage": "Modern laptops are no longer just portable computers. They have become all-in-one productivity hubs with features like facial recognition login, OLED touchscreens, and built-in AI assistants. Battery technology has also improved significantly, with some models offering over 20 hours of usage on a single charge. Manufacturers are now competing not just on processing speed, but on thinness, weight, and thermal efficiency.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. Laptop batteries now last more than 20 hours on a single charge.",
+          "B. Modern laptops have evolved into versatile, feature-rich devices that rival desktop computers.",
+          "C. Facial recognition and OLED screens are the most important laptop features today.",
+          "D. Manufacturers prioritize thinness over performance in modern laptop design."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Artificial intelligence is no longer confined to research laboratories. It is now embedded in everyday tools such as email filters, music recommendation algorithms, navigation apps, and smart home devices. Most users interact with AI dozens of times a day without realizing it. This quiet integration into daily life marks a significant shift from AI being a futuristic concept to becoming an invisible layer of modern infrastructure.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. Smart home devices are the most advanced form of artificial intelligence available today.",
+          "B. AI research laboratories are becoming more accessible to the general public.",
+          "C. Artificial intelligence has quietly become embedded in the everyday tools people use.",
+          "D. Music recommendation algorithms are the most widely used AI application worldwide."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "Cloud gaming is challenging the traditional model of video game ownership. Instead of purchasing expensive consoles or high-end gaming PCs, players can now stream games directly to any screen through services like Xbox Cloud Gaming and NVIDIA GeForce Now. This shift reduces hardware barriers for new gamers but raises concerns about internet dependency and data privacy, since all game processing happens on remote servers rather than local devices.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. Xbox Cloud Gaming and NVIDIA GeForce Now are the two dominant platforms in the gaming industry.",
+          "B. Cloud gaming is transforming how people access and play video games by removing the need for expensive hardware.",
+          "C. Data privacy is the biggest threat to the future of the cloud gaming industry.",
+          "D. Smartphones are replacing consoles as the preferred device for gaming worldwide."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Wearable health technology has expanded far beyond simple step counters. Smartwatches can now monitor blood oxygen levels, detect irregular heart rhythms, measure skin temperature, and even perform electrocardiograms. Some devices alert users to potential health conditions before symptoms appear, effectively turning everyday accessories into passive medical monitoring tools. Researchers are exploring whether continuous wearable data could eventually assist in early detection of conditions like diabetes and atrial fibrillation.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. Smartwatches are now capable of detecting diabetes and atrial fibrillation in all users.",
+          "B. Wearable health technology has advanced significantly and now functions as a personal medical monitoring tool.",
+          "C. Electrocardiograms performed by smartwatches are more accurate than those done in hospitals.",
+          "D. Step counters remain the most popular feature of modern smartwatches."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The rise of quantum computing poses a serious threat to current encryption standards. Most online security systems today rely on the difficulty of factoring large prime numbers, a task that classical computers cannot complete in any reasonable timeframe. Quantum computers could theoretically solve such problems in seconds, rendering widely used encryption protocols like RSA obsolete. Governments and cybersecurity firms are now racing to develop post-quantum cryptography before quantum hardware becomes powerful enough to break existing systems.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. RSA encryption is already broken by current quantum computers available on the market.",
+          "B. Factoring large prime numbers is the primary method used to build quantum computers.",
+          "C. Quantum computing threatens existing encryption systems, driving urgent development of new security standards.",
+          "D. Governments are building their own quantum computers to replace those made by private companies."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "E-waste has become one of the fastest-growing environmental problems linked to the technology industry. As consumers upgrade devices more frequently due to rapid product cycles, millions of tons of discarded smartphones, laptops, and accessories end up in landfills each year. Many of these devices contain toxic materials such as lead, mercury, and cadmium that can leach into soil and groundwater. Despite recycling programs offered by major brands, only a small fraction of global e-waste is properly processed, leaving significant environmental and health risks unaddressed.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. Lead, mercury, and cadmium are the three most dangerous chemicals found in electronic devices.",
+          "B. E-waste is a growing environmental crisis caused by rapid technology consumption and inadequate recycling.",
+          "C. Major tech brands are the primary cause of environmental destruction through their recycling programs.",
+          "D. Consumers should stop upgrading their devices in order to solve the e-waste problem."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Smartphones today are equipped with processors that outperform computers from just a decade ago. The Apple A17 Pro chip, for example, features a 3-nanometer architecture that allows billions of transistors to fit within a space smaller than a fingernail. This level of miniaturization enables smartphones to handle tasks such as real-time video editing, on-device machine learning, and augmented reality applications without relying on cloud servers. Despite this processing power, manufacturers continue to face challenges in battery capacity, since energy demands grow faster than battery technology can keep up.",
+        "question": "According to the passage, what does the Apple A17 Pro chip use?",
+        "options": [
+          "A. A 5-nanometer architecture with millions of transistors.",
+          "B. A 3-nanometer architecture that fits billions of transistors in a very small space.",
+          "C. A cloud-based processing system that reduces battery consumption.",
+          "D. A dual-core design optimized for augmented reality applications."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Smartphones today are equipped with processors that outperform computers from just a decade ago. The Apple A17 Pro chip, for example, features a 3-nanometer architecture that allows billions of transistors to fit within a space smaller than a fingernail. This level of miniaturization enables smartphones to handle tasks such as real-time video editing, on-device machine learning, and augmented reality applications without relying on cloud servers. Despite this processing power, manufacturers continue to face challenges in battery capacity, since energy demands grow faster than battery technology can keep up.",
+        "question": "According to the passage, what challenge do manufacturers still face despite advances in smartphone processors?",
+        "options": [
+          "A. The inability to support real-time video editing on mobile devices.",
+          "B. The high cost of producing 3-nanometer chips at scale.",
+          "C. Battery capacity that cannot keep pace with growing energy demands.",
+          "D. The lack of software capable of utilizing modern smartphone processors."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "Smartphones today are equipped with processors that outperform computers from just a decade ago. The Apple A17 Pro chip, for example, features a 3-nanometer architecture that allows billions of transistors to fit within a space smaller than a fingernail. This level of miniaturization enables smartphones to handle tasks such as real-time video editing, on-device machine learning, and augmented reality applications without relying on cloud servers. Despite this processing power, manufacturers continue to face challenges in battery capacity, since energy demands grow faster than battery technology can keep up.",
+        "question": "According to the passage, which of the following tasks can modern smartphones perform without relying on cloud servers?",
+        "options": [
+          "A. Storing large amounts of data on remote databases.",
+          "B. Streaming high-definition video from online platforms.",
+          "C. On-device machine learning and augmented reality applications.",
+          "D. Synchronizing data across multiple devices simultaneously."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "Generative AI tools have fundamentally changed how creative professionals work. Graphic designers now use AI platforms such as Adobe Firefly and Midjourney to produce initial concept drafts in minutes rather than hours. Copywriters use large language models to generate multiple variations of marketing text, which they then edit and refine. However, the widespread adoption of these tools has sparked debate in creative industries about intellectual property, since AI models are trained on existing human-created content without explicit permission from original creators. Several lawsuits have already been filed against AI companies by artists and writers who argue that their work was used without consent or compensation.",
+        "question": "According to the passage, which tools do graphic designers use to produce concept drafts?",
+        "options": [
+          "A. ChatGPT and Stable Diffusion.",
+          "B. Adobe Firefly and Midjourney.",
+          "C. Canva and Adobe Photoshop.",
+          "D. DALL-E and Microsoft Copilot."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Generative AI tools have fundamentally changed how creative professionals work. Graphic designers now use AI platforms such as Adobe Firefly and Midjourney to produce initial concept drafts in minutes rather than hours. Copywriters use large language models to generate multiple variations of marketing text, which they then edit and refine. However, the widespread adoption of these tools has sparked debate in creative industries about intellectual property, since AI models are trained on existing human-created content without explicit permission from original creators. Several lawsuits have already been filed against AI companies by artists and writers who argue that their work was used without consent or compensation.",
+        "question": "According to the passage, what concern has the use of generative AI raised in creative industries?",
+        "options": [
+          "A. The high subscription cost of AI tools making them inaccessible to freelancers.",
+          "B. The risk of AI-generated content being lower in quality than human-created work.",
+          "C. Intellectual property issues, since AI models are trained on human-created content without explicit permission.",
+          "D. The inability of AI tools to produce content in languages other than English."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "Generative AI tools have fundamentally changed how creative professionals work. Graphic designers now use AI platforms such as Adobe Firefly and Midjourney to produce initial concept drafts in minutes rather than hours. Copywriters use large language models to generate multiple variations of marketing text, which they then edit and refine. However, the widespread adoption of these tools has sparked debate in creative industries about intellectual property, since AI models are trained on existing human-created content without explicit permission from original creators. Several lawsuits have already been filed against AI companies by artists and writers who argue that their work was used without consent or compensation.",
+        "question": "According to the passage, what action have some artists and writers taken regarding AI companies?",
+        "options": [
+          "A. They have formed unions to negotiate fair compensation directly with AI developers.",
+          "B. They have filed lawsuits arguing their work was used without consent or compensation.",
+          "C. They have published open letters demanding government regulation of AI tools.",
+          "D. They have stopped using digital platforms to protect their intellectual property."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "Which of the following is NOT mentioned as a threat to the Great Barrier Reef?",
+        "options": [
+          "A. Rising ocean temperatures",
+          "B. Agricultural runoff",
+          "C. Overfishing by commercial boats",
+          "D. Coastal development"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "Which of the following is NOT a characteristic of the Great Barrier Reef mentioned in the text?",
+        "options": [
+          "A. It is the largest coral reef system in the world.",
+          "B. It consists of fewer than 2,000 individual reefs.",
+          "C. It is located off the Australian coast.",
+          "D. It covers a distance of more than 2,300 kilometers."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "Which of the following is NOT stated as a consequence of coral bleaching?",
+        "options": [
+          "A. Corals lose the algae living in their tissues.",
+          "B. Corals change their color to white.",
+          "C. Corals die immediately upon turning white.",
+          "D. Corals experience stress due to high temperatures."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "Which of the following is NOT mentioned regarding the reef’s status?",
+        "options": [
+          "A. It is a protected marine park.",
+          "B. It is currently facing environmental challenges.",
+          "C. It requires ongoing conservation efforts.",
+          "D. It is open for international deep-sea mining."
+        ],
+        "index_answer": 3
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "It can be inferred that coral bleaching is a sign that:",
+        "options": [
+          "A. The reef is becoming healthier.",
+          "B. The ecosystem is under environmental distress.",
+          "C. The algae are thriving due to the heat.",
+          "D. The water is becoming cleaner."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "Based on the text, why might the reef be struggling to recover?",
+        "options": [
+          "A. Because there are no conservation efforts in place.",
+          "B. Because the threats (pollution and heat) are persistent.",
+          "C. Because the reef is too small to sustain itself.",
+          "D. Because the reefs are located too far from the coast."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "What can be inferred about the algae living in the coral?",
+        "options": [
+          "A. They are harmful parasites to the coral.",
+          "B. They are essential to the coral’s normal appearance.",
+          "C. They only survive in cold water.",
+          "D. They are not affected by human activity."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "From the passage, it can be inferred that 'agricultural runoff' refers to:",
+        "options": [
+          "A. Natural rain that helps the reef grow.",
+          "B. Chemicals or waste from farms flowing into the sea.",
+          "C. Tourists visiting the reef from farms.",
+          "D. A method used to clean the ocean."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "The word 'it' in the phrase 'It is composed of over 2,900...' refers to:",
+        "options": [
+          "A. Australia",
+          "B. The Great Barrier Reef",
+          "C. The ocean",
+          "D. A single reef"
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "The word 'which' in the phrase 'rising ocean temperatures, which lead to coral bleaching' refers to:",
+        "options": [
+          "A. The reef",
+          "B. Scientists",
+          "C. Rising ocean temperatures",
+          "D. Climate change"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "The word 'them' in the phrase 'causing them to turn completely white' refers to:",
+        "options": [
+          "A. The algae",
+          "B. The tissues",
+          "C. The corals",
+          "D. The scientists"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
+        "question": "The word 'their' in the phrase 'algae living in their tissues' refers to:",
+        "options": [
+          "A. The corals",
+          "B. The scientists",
+          "C. The reefs",
+          "D. The tourists"
+        ],
+        "index_answer": 0
+      },
+      {
+        "type": "long_text",
+        "passage": "Electric vehicles (EVs) are rapidly reshaping the automotive industry as nations strive to reduce carbon emissions. Powered by rechargeable lithium-ion battery packs, EVs produce zero tailpipe emissions, making them a cleaner alternative to traditional internal combustion engine vehicles. However, the widespread adoption of EVs faces several hurdles, including the high cost of battery manufacturing, limited driving range per charge, and the current scarcity of public charging infrastructure. Despite these challenges, continuous advancements in battery technology and increasing government subsidies are expected to accelerate EV adoption over the next decade.",
+        "question": "What is the main idea of this passage?",
+        "options": [
+          "A. Lithium-ion batteries are the only efficient way to power modern vehicles.",
+          "B. The automotive industry is completely stopping the production of gas-powered cars.",
+          "C. Government subsidies are the sole reason why people buy electric vehicles.",
+          "D. Electric vehicles are transforming transportation, though they still face infrastructure and cost challenges."
+        ],
+        "index_answer": 3
+      },
+      {
+        "type": "long_text",
+        "passage": "The Renaissance was a fervent period of European cultural, artistic, political, and scientific 'rebirth' following the Middle Ages. Promoted by a rediscovery of classical philosophy, literature, and art, it produced some of the world's greatest thinkers and creators, including Leonardo da Vinci and Michelangelo. This era fundamentally shifted human perspective from a strictly religious worldview to humanism, which emphasized individual potential and agency. The intellectual movement eventually paved the way for the Scientific Revolution and the dawn of the modern world.",
+        "question": "What is the primary topic of the passage?",
+        "options": [
+          "A. The artistic rivalry between Leonardo da Vinci and Michelangelo.",
+          "B. An overview of the Renaissance period and its cultural and intellectual impact.",
+          "C. The economic systems that funded the European Middle Ages.",
+          "D. How the Scientific Revolution directly ended religious beliefs in Europe."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Deep-sea hydrothermal vents are fissures on the ocean floor that geothermally heat water. Unlike most ecosystems on Earth that rely on sunlight for energy through photosynthesis, hydrothermal vent communities depend on chemosynthesis. Bacteria in these vents use toxic chemical compounds, such as hydrogen sulfide, to produce energy, forming the base of a unique food web. This discovery proved to scientists that highly complex life forms can thrive in absolute darkness and under extreme hydrostatic pressure, altering our understanding of life's boundaries.",
+        "question": "What is the main idea of this paragraph?",
+        "options": [
+          "A. Hydrothermal vents are dangerous fissures that destroy marine ecosystems.",
+          "B. Photosynthesis remains the only reliable process to sustain life forms on the ocean floor.",
+          "C. Deep-sea vent ecosystems thrive without sunlight by relying on chemical-based energy production.",
+          "D. Hydrogen sulfide is a chemical compound that is highly toxic to all living organisms."
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The concept of sustainable architecture focuses on minimizing the negative environmental impact of buildings through efficiency and moderation. Architects achieve this by utilizing eco-friendly materials, optimizing energy and water consumption, and integrating renewable energy sources like solar panels. Beyond environmental benefits, sustainable buildings often improve indoor air quality and reduce long-term operational costs for owners. As urbanization accelerates globally, adopting these green building practices has transitioned from an ethical choice to an absolute necessity for future urban planning.",
+        "question": "What is the primary topic of this passage?",
+        "options": [
+          "A. The financial breakdown of installing solar panels on corporate buildings.",
+          "B. An introduction to sustainable architecture, its methods, and its growing importance.",
+          "C. A historical review of how ancient cities managed their water systems.",
+          "D. The negative impacts of rapid global urbanization on natural habitats."
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The James Webb Space Telescope (JWST), launched in December 2021, is the most powerful space observatory ever built. Operating primarily in the infrared spectrum, JWST allows astronomers to peer through cosmic dust clouds and look back in time to observe the very first galaxies formed after the Big Bang. The telescope features a massive gold-coated primary mirror measuring 6.5 meters in diameter, which collects significantly more light than its predecessor, the Hubble Space Telescope. Located about 1.5 million kilometers from Earth at a stable gravitational point known as L2, JWST continues to provide unprecedented images of deep space.",
+        "question": "When was the James Webb Space Telescope launched?",
+        "options": [
+          "A. In December 2019",
+          "B. In December 2021",
+          "C. Exactly ten years after Hubble",
+          "D. It has not been launched yet"
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The James Webb Space Telescope (JWST), launched in December 2021, is the most powerful space observatory ever built. Operating primarily in the infrared spectrum, JWST allows astronomers to peer through cosmic dust clouds and look back in time to observe the very first galaxies formed after the Big Bang. The telescope features a massive gold-coated primary mirror measuring 6.5 meters in diameter, which collects significantly more light than its predecessor, the Hubble Space Telescope. Located about 1.5 million kilometers from Earth at a stable gravitational point known as L2, JWST continues to provide unprecedented images of deep space.",
+        "question": "How far from Earth is the telescope located?",
+        "options": [
+          "A. 6.5 meters",
+          "B. 1.5 million kilometers",
+          "C. At the center of the Big Bang",
+          "D. Right next to the Hubble telescope"
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "The Olympic Games originated in ancient Greece nearly 3,000 years ago as a religious festival honoring Zeus. The first recorded games took place in 776 BC in Olympia, featuring a single footrace won by a cook named Coroebus. The ancient games were held every four years until they were banned by Emperor Theodosius I in 393 AD due to their pagan associations. The tradition was revived centuries later in 1896, when the first modern Olympic Games were hosted in Athens, Greece, featuring 241 athletes from 14 nations competing in 43 events.",
+        "question": "Who won the first recorded footrace in the ancient Olympic Games?",
+        "options": [
+          "A. Emperor Theodosius I",
+          "B. A Greek priest from Olympia",
+          "C. A cook named Coroebus",
+          "D. One of the 241 modern athletes"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The Olympic Games originated in ancient Greece nearly 3,000 years ago as a religious festival honoring Zeus. The first recorded games took place in 776 BC in Olympia, featuring a single footrace won by a cook named Coroebus. The ancient games were held every four years until they were banned by Emperor Theodosius I in 393 AD due to their pagan associations. The tradition was revived centuries later in 1896, when the first modern Olympic Games were hosted in Athens, Greece, featuring 241 athletes from 14 nations competing in 43 events.",
+        "question": "In what year were the first modern Olympic Games held?",
+        "options": [
+          "A. 776 BC",
+          "B. 393 AD",
+          "C. 1896",
+          "D. 1492"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The human immune system is a sophisticated defense network designed to identify and eliminate harmful pathogens, such as bacteria and viruses. When a foreign invader enters the body, white blood cells act swiftly to neutralize the threat. However, if the system malfunctions, it may mistakenly attack healthy tissues, leading to autoimmune disorders. Maintaining a balanced diet and obtaining adequate sleep are critical factors that directly bolster immune resilience against seasonal illnesses.",
+        "question": "The word 'swiftly' in the passage is closest in meaning to...",
+        "options": [
+          "A. slowly",
+          "B. poorly",
+          "C. quickly",
+          "D. safely"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "The human immune system is a sophisticated defense network designed to identify and eliminate harmful pathogens, such as bacteria and viruses. When a foreign invader enters the body, white blood cells act swiftly to neutralize the threat. However, if the system malfunctions, it may mistakenly attack healthy tissues, leading to autoimmune disorders. Maintaining a balanced diet and obtaining adequate sleep are critical factors that directly bolster immune resilience against seasonal illnesses.",
+        "question": "The word 'bolster' in the passage is closest in meaning to...",
+        "options": [
+          "A. weaken",
+          "B. strengthen",
+          "C. ignore",
+          "D. predict"
+        ],
+        "index_answer": 1
+      },
+      {
+        "type": "long_text",
+        "passage": "Desert plants have developed unique adaptations to survive in arid environments where water is scarce. For example, cactuses possess thick, fleshy stems that store water for extended droughts, while their leaves have modified into sharp spines to reduce evaporation. Additionally, many desert shrubs have extensive, widespread root systems that absorb moisture rapidly from sporadic rain showers before it vanishes into the dry soil.",
+        "question": "The word 'arid' in the passage is closest in meaning to...",
+        "options": [
+          "A. wet",
+          "B. freezing",
+          "C. dry",
+          "D. crowded"
+        ],
+        "index_answer": 2
+      },
+      {
+        "type": "long_text",
+        "passage": "Desert plants have developed unique adaptations to survive in arid environments where water is scarce. For example, cactuses possess thick, fleshy stems that store water for extended droughts, while their leaves have modified into sharp spines to reduce evaporation. Additionally, many desert shrubs have extensive, widespread root systems that absorb moisture rapidly from sporadic rain showers before it vanishes into the dry soil.",
+        "question": "The word 'sporadic' in the passage is closest in meaning to...",
+        "options": [
+          "A. continuous",
+          "B. occasional",
+          "C. heavy",
+          "D. predictable"
+        ],
+        "index_answer": 1
+      }
     ]
-},
-    {
-  "session_id": "Reading",
-  "questions": [
-    {
-      "type": "long_text",
-      "passage": "Modern laptops are no longer just portable computers. They have become all-in-one productivity hubs with features like facial recognition login, OLED touchscreens, and built-in AI assistants. Battery technology has also improved significantly, with some models offering over 20 hours of usage on a single charge. Manufacturers are now competing not just on processing speed, but on thinness, weight, and thermal efficiency.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. Laptop batteries now last more than 20 hours on a single charge.",
-        "B. Modern laptops have evolved into versatile, feature-rich devices that rival desktop computers.",
-        "C. Facial recognition and OLED screens are the most important laptop features today.",
-        "D. Manufacturers prioritize thinness over performance in modern laptop design."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Artificial intelligence is no longer confined to research laboratories. It is now embedded in everyday tools such as email filters, music recommendation algorithms, navigation apps, and smart home devices. Most users interact with AI dozens of times a day without realizing it. This quiet integration into daily life marks a significant shift from AI being a futuristic concept to becoming an invisible layer of modern infrastructure.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. Smart home devices are the most advanced form of artificial intelligence available today.",
-        "B. AI research laboratories are becoming more accessible to the general public.",
-        "C. Artificial intelligence has quietly become embedded in the everyday tools people use.",
-        "D. Music recommendation algorithms are the most widely used AI application worldwide."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "Cloud gaming is challenging the traditional model of video game ownership. Instead of purchasing expensive consoles or high-end gaming PCs, players can now stream games directly to any screen through services like Xbox Cloud Gaming and NVIDIA GeForce Now. This shift reduces hardware barriers for new gamers but raises concerns about internet dependency and data privacy, since all game processing happens on remote servers rather than local devices.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. Xbox Cloud Gaming and NVIDIA GeForce Now are the two dominant platforms in the gaming industry.",
-        "B. Cloud gaming is transforming how people access and play video games by removing the need for expensive hardware.",
-        "C. Data privacy is the biggest threat to the future of the cloud gaming industry.",
-        "D. Smartphones are replacing consoles as the preferred device for gaming worldwide."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Wearable health technology has expanded far beyond simple step counters. Smartwatches can now monitor blood oxygen levels, detect irregular heart rhythms, measure skin temperature, and even perform electrocardiograms. Some devices alert users to potential health conditions before symptoms appear, effectively turning everyday accessories into passive medical monitoring tools. Researchers are exploring whether continuous wearable data could eventually assist in early detection of conditions like diabetes and atrial fibrillation.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. Smartwatches are now capable of detecting diabetes and atrial fibrillation in all users.",
-        "B. Wearable health technology has advanced significantly and now functions as a personal medical monitoring tool.",
-        "C. Electrocardiograms performed by smartwatches are more accurate than those done in hospitals.",
-        "D. Step counters remain the most popular feature of modern smartwatches."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The rise of quantum computing poses a serious threat to current encryption standards. Most online security systems today rely on the difficulty of factoring large prime numbers, a task that classical computers cannot complete in any reasonable timeframe. Quantum computers could theoretically solve such problems in seconds, rendering widely used encryption protocols like RSA obsolete. Governments and cybersecurity firms are now racing to develop post-quantum cryptography before quantum hardware becomes powerful enough to break existing systems.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. RSA encryption is already broken by current quantum computers available on the market.",
-        "B. Factoring large prime numbers is the primary method used to build quantum computers.",
-        "C. Quantum computing threatens existing encryption systems, driving urgent development of new security standards.",
-        "D. Governments are building their own quantum computers to replace those made by private companies."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "E-waste has become one of the fastest-growing environmental problems linked to the technology industry. As consumers upgrade devices more frequently due to rapid product cycles, millions of tons of discarded smartphones, laptops, and accessories end up in landfills each year. Many of these devices contain toxic materials such as lead, mercury, and cadmium that can leach into soil and groundwater. Despite recycling programs offered by major brands, only a small fraction of global e-waste is properly processed, leaving significant environmental and health risks unaddressed.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. Lead, mercury, and cadmium are the three most dangerous chemicals found in electronic devices.",
-        "B. E-waste is a growing environmental crisis caused by rapid technology consumption and inadequate recycling.",
-        "C. Major tech brands are the primary cause of environmental destruction through their recycling programs.",
-        "D. Consumers should stop upgrading their devices in order to solve the e-waste problem."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Smartphones today are equipped with processors that outperform computers from just a decade ago. The Apple A17 Pro chip, for example, features a 3-nanometer architecture that allows billions of transistors to fit within a space smaller than a fingernail. This level of miniaturization enables smartphones to handle tasks such as real-time video editing, on-device machine learning, and augmented reality applications without relying on cloud servers. Despite this processing power, manufacturers continue to face challenges in battery capacity, since energy demands grow faster than battery technology can keep up.",
-      "question": "According to the passage, what does the Apple A17 Pro chip use?",
-      "options": [
-        "A. A 5-nanometer architecture with millions of transistors.",
-        "B. A 3-nanometer architecture that fits billions of transistors in a very small space.",
-        "C. A cloud-based processing system that reduces battery consumption.",
-        "D. A dual-core design optimized for augmented reality applications."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Smartphones today are equipped with processors that outperform computers from just a decade ago. The Apple A17 Pro chip, for example, features a 3-nanometer architecture that allows billions of transistors to fit within a space smaller than a fingernail. This level of miniaturization enables smartphones to handle tasks such as real-time video editing, on-device machine learning, and augmented reality applications without relying on cloud servers. Despite this processing power, manufacturers continue to face challenges in battery capacity, since energy demands grow faster than battery technology can keep up.",
-      "question": "According to the passage, what challenge do manufacturers still face despite advances in smartphone processors?",
-      "options": [
-        "A. The inability to support real-time video editing on mobile devices.",
-        "B. The high cost of producing 3-nanometer chips at scale.",
-        "C. Battery capacity that cannot keep pace with growing energy demands.",
-        "D. The lack of software capable of utilizing modern smartphone processors."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "Smartphones today are equipped with processors that outperform computers from just a decade ago. The Apple A17 Pro chip, for example, features a 3-nanometer architecture that allows billions of transistors to fit within a space smaller than a fingernail. This level of miniaturization enables smartphones to handle tasks such as real-time video editing, on-device machine learning, and augmented reality applications without relying on cloud servers. Despite this processing power, manufacturers continue to face challenges in battery capacity, since energy demands grow faster than battery technology can keep up.",
-      "question": "According to the passage, which of the following tasks can modern smartphones perform without relying on cloud servers?",
-      "options": [
-        "A. Storing large amounts of data on remote databases.",
-        "B. Streaming high-definition video from online platforms.",
-        "C. On-device machine learning and augmented reality applications.",
-        "D. Synchronizing data across multiple devices simultaneously."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "Generative AI tools have fundamentally changed how creative professionals work. Graphic designers now use AI platforms such as Adobe Firefly and Midjourney to produce initial concept drafts in minutes rather than hours. Copywriters use large language models to generate multiple variations of marketing text, which they then edit and refine. However, the widespread adoption of these tools has sparked debate in creative industries about intellectual property, since AI models are trained on existing human-created content without explicit permission from original creators. Several lawsuits have already been filed against AI companies by artists and writers who argue that their work was used without consent or compensation.",
-      "question": "According to the passage, which tools do graphic designers use to produce concept drafts?",
-      "options": [
-        "A. ChatGPT and Stable Diffusion.",
-        "B. Adobe Firefly and Midjourney.",
-        "C. Canva and Adobe Photoshop.",
-        "D. DALL-E and Microsoft Copilot."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Generative AI tools have fundamentally changed how creative professionals work. Graphic designers now use AI platforms such as Adobe Firefly and Midjourney to produce initial concept drafts in minutes rather than hours. Copywriters use large language models to generate multiple variations of marketing text, which they then edit and refine. However, the widespread adoption of these tools has sparked debate in creative industries about intellectual property, since AI models are trained on existing human-created content without explicit permission from original creators. Several lawsuits have already been filed against AI companies by artists and writers who argue that their work was used without consent or compensation.",
-      "question": "According to the passage, what concern has the use of generative AI raised in creative industries?",
-      "options": [
-        "A. The high subscription cost of AI tools making them inaccessible to freelancers.",
-        "B. The risk of AI-generated content being lower in quality than human-created work.",
-        "C. Intellectual property issues, since AI models are trained on human-created content without explicit permission.",
-        "D. The inability of AI tools to produce content in languages other than English."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "Generative AI tools have fundamentally changed how creative professionals work. Graphic designers now use AI platforms such as Adobe Firefly and Midjourney to produce initial concept drafts in minutes rather than hours. Copywriters use large language models to generate multiple variations of marketing text, which they then edit and refine. However, the widespread adoption of these tools has sparked debate in creative industries about intellectual property, since AI models are trained on existing human-created content without explicit permission from original creators. Several lawsuits have already been filed against AI companies by artists and writers who argue that their work was used without consent or compensation.",
-      "question": "According to the passage, what action have some artists and writers taken regarding AI companies?",
-      "options": [
-        "A. They have formed unions to negotiate fair compensation directly with AI developers.",
-        "B. They have filed lawsuits arguing their work was used without consent or compensation.",
-        "C. They have published open letters demanding government regulation of AI tools.",
-        "D. They have stopped using digital platforms to protect their intellectual property."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "Which of the following is NOT mentioned as a threat to the Great Barrier Reef?",
-      "options": [
-        "A. Rising ocean temperatures",
-        "B. Agricultural runoff",
-        "C. Overfishing by commercial boats",
-        "D. Coastal development"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "Which of the following is NOT a characteristic of the Great Barrier Reef mentioned in the text?",
-      "options": [
-        "A. It is the largest coral reef system in the world.",
-        "B. It consists of fewer than 2,000 individual reefs.",
-        "C. It is located off the Australian coast.",
-        "D. It covers a distance of more than 2,300 kilometers."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "Which of the following is NOT stated as a consequence of coral bleaching?",
-      "options": [
-        "A. Corals lose the algae living in their tissues.",
-        "B. Corals change their color to white.",
-        "C. Corals die immediately upon turning white.",
-        "D. Corals experience stress due to high temperatures."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "Which of the following is NOT mentioned regarding the reef’s status?",
-      "options": [
-        "A. It is a protected marine park.",
-        "B. It is currently facing environmental challenges.",
-        "C. It requires ongoing conservation efforts.",
-        "D. It is open for international deep-sea mining."
-      ],
-      "index_answer": 3
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "It can be inferred that coral bleaching is a sign that:",
-      "options": [
-        "A. The reef is becoming healthier.",
-        "B. The ecosystem is under environmental distress.",
-        "C. The algae are thriving due to the heat.",
-        "D. The water is becoming cleaner."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "Based on the text, why might the reef be struggling to recover?",
-      "options": [
-        "A. Because there are no conservation efforts in place.",
-        "B. Because the threats (pollution and heat) are persistent.",
-        "C. Because the reef is too small to sustain itself.",
-        "D. Because the reefs are located too far from the coast."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "What can be inferred about the algae living in the coral?",
-      "options": [
-        "A. They are harmful parasites to the coral.",
-        "B. They are essential to the coral’s normal appearance.",
-        "C. They only survive in cold water.",
-        "D. They are not affected by human activity."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "From the passage, it can be inferred that 'agricultural runoff' refers to:",
-      "options": [
-        "A. Natural rain that helps the reef grow.",
-        "B. Chemicals or waste from farms flowing into the sea.",
-        "C. Tourists visiting the reef from farms.",
-        "D. A method used to clean the ocean."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "The word 'it' in the phrase 'It is composed of over 2,900...' refers to:",
-      "options": [
-        "A. Australia",
-        "B. The Great Barrier Reef",
-        "C. The ocean",
-        "D. A single reef"
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "The word 'which' in the phrase 'rising ocean temperatures, which lead to coral bleaching' refers to:",
-      "options": [
-        "A. The reef",
-        "B. Scientists",
-        "C. Rising ocean temperatures",
-        "D. Climate change"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "The word 'them' in the phrase 'causing them to turn completely white' refers to:",
-      "options": [
-        "A. The algae",
-        "B. The tissues",
-        "C. The corals",
-        "D. The scientists"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The Great Barrier Reef, located off the coast of Australia, is the world's largest coral reef system. It is composed of over 2,900 individual reefs and stretches for over 2,300 kilometers. Scientists have observed that the reef is currently facing significant threats due to climate change, specifically rising ocean temperatures, which lead to 'coral bleaching.' When corals are stressed by heat, they expel the algae living in their tissues, causing them to turn completely white. While the reef is a protected marine park, local pollution from agricultural runoff and coastal development continue to challenge conservation efforts.",
-      "question": "The word 'their' in the phrase 'algae living in their tissues' refers to:",
-      "options": [
-        "A. The corals",
-        "B. The scientists",
-        "C. The reefs",
-        "D. The tourists"
-      ],
-      "index_answer": 0
-    },
-{
-      "type": "long_text",
-      "passage": "Electric vehicles (EVs) are rapidly reshaping the automotive industry as nations strive to reduce carbon emissions. Powered by rechargeable lithium-ion battery packs, EVs produce zero tailpipe emissions, making them a cleaner alternative to traditional internal combustion engine vehicles. However, the widespread adoption of EVs faces several hurdles, including the high cost of battery manufacturing, limited driving range per charge, and the current scarcity of public charging infrastructure. Despite these challenges, continuous advancements in battery technology and increasing government subsidies are expected to accelerate EV adoption over the next decade.",
-      "question": "What is the main idea of this passage?",
-      "options": [
-        "A. Lithium-ion batteries are the only efficient way to power modern vehicles.",
-        "B. The automotive industry is completely stopping the production of gas-powered cars.",
-        "C. Government subsidies are the sole reason why people buy electric vehicles.",
-        "D. Electric vehicles are transforming transportation, though they still face infrastructure and cost challenges."
-      ],
-      "index_answer": 3
-    },
-    {
-      "type": "long_text",
-      "passage": "The Renaissance was a fervent period of European cultural, artistic, political, and scientific 'rebirth' following the Middle Ages. Promoted by a rediscovery of classical philosophy, literature, and art, it produced some of the world's greatest thinkers and creators, including Leonardo da Vinci and Michelangelo. This era fundamentally shifted human perspective from a strictly religious worldview to humanism, which emphasized individual potential and agency. The intellectual movement eventually paved the way for the Scientific Revolution and the dawn of the modern world.",
-      "question": "What is the primary topic of the passage?",
-      "options": [
-        "A. The artistic rivalry between Leonardo da Vinci and Michelangelo.",
-        "B. An overview of the Renaissance period and its cultural and intellectual impact.",
-        "C. The economic systems that funded the European Middle Ages.",
-        "D. How the Scientific Revolution directly ended religious beliefs in Europe."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Deep-sea hydrothermal vents are fissures on the ocean floor that geothermally heat water. Unlike most ecosystems on Earth that rely on sunlight for energy through photosynthesis, hydrothermal vent communities depend on chemosynthesis. Bacteria in these vents use toxic chemical compounds, such as hydrogen sulfide, to produce energy, forming the base of a unique food web. This discovery proved to scientists that highly complex life forms can thrive in absolute darkness and under extreme hydrostatic pressure, altering our understanding of life's boundaries.",
-      "question": "What is the main idea of this paragraph?",
-      "options": [
-        "A. Hydrothermal vents are dangerous fissures that destroy marine ecosystems.",
-        "B. Photosynthesis remains the only reliable process to sustain life forms on the ocean floor.",
-        "C. Deep-sea vent ecosystems thrive without sunlight by relying on chemical-based energy production.",
-        "D. Hydrogen sulfide is a chemical compound that is highly toxic to all living organisms."
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The concept of sustainable architecture focuses on minimizing the negative environmental impact of buildings through efficiency and moderation. Architects achieve this by utilizing eco-friendly materials, optimizing energy and water consumption, and integrating renewable energy sources like solar panels. Beyond environmental benefits, sustainable buildings often improve indoor air quality and reduce long-term operational costs for owners. As urbanization accelerates globally, adopting these green building practices has transitioned from an ethical choice to an absolute necessity for future urban planning.",
-      "question": "What is the primary topic of this passage?",
-      "options": [
-        "A. The financial breakdown of installing solar panels on corporate buildings.",
-        "B. An introduction to sustainable architecture, its methods, and its growing importance.",
-        "C. A historical review of how ancient cities managed their water systems.",
-        "D. The negative impacts of rapid global urbanization on natural habitats."
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The James Webb Space Telescope (JWST), launched in December 2021, is the most powerful space observatory ever built. Operating primarily in the infrared spectrum, JWST allows astronomers to peer through cosmic dust clouds and look back in time to observe the very first galaxies formed after the Big Bang. The telescope features a massive gold-coated primary mirror measuring 6.5 meters in diameter, which collects significantly more light than its predecessor, the Hubble Space Telescope. Located about 1.5 million kilometers from Earth at a stable gravitational point known as L2, JWST continues to provide unprecedented images of deep space.",
-      "question": "When was the James Webb Space Telescope launched?",
-      "options": [
-        "A. In December 2019",
-        "B. In December 2021",
-        "C. Exactly ten years after Hubble",
-        "D. It has not been launched yet"
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The James Webb Space Telescope (JWST), launched in December 2021, is the most powerful space observatory ever built. Operating primarily in the infrared spectrum, JWST allows astronomers to peer through cosmic dust clouds and look back in time to observe the very first galaxies formed after the Big Bang. The telescope features a massive gold-coated primary mirror measuring 6.5 meters in diameter, which collects significantly more light than its predecessor, the Hubble Space Telescope. Located about 1.5 million kilometers from Earth at a stable gravitational point known as L2, JWST continues to provide unprecedented images of deep space.",
-      "question": "How far from Earth is the telescope located?",
-      "options": [
-        "A. 6.5 meters",
-        "B. 1.5 million kilometers",
-        "C. At the center of the Big Bang",
-        "D. Right next to the Hubble telescope"
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "The Olympic Games originated in ancient Greece nearly 3,000 years ago as a religious festival honoring Zeus. The first recorded games took place in 776 BC in Olympia, featuring a single footrace won by a cook named Coroebus. The ancient games were held every four years until they were banned by Emperor Theodosius I in 393 AD due to their pagan associations. The tradition was revived centuries later in 1896, when the first modern Olympic Games were hosted in Athens, Greece, featuring 241 athletes from 14 nations competing in 43 events.",
-      "question": "Who won the first recorded footrace in the ancient Olympic Games?",
-      "options": [
-        "A. Emperor Theodosius I",
-        "B. A Greek priest from Olympia",
-        "C. A cook named Coroebus",
-        "D. One of the 241 modern athletes"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The Olympic Games originated in ancient Greece nearly 3,000 years ago as a religious festival honoring Zeus. The first recorded games took place in 776 BC in Olympia, featuring a single footrace won by a cook named Coroebus. The ancient games were held every four years until they were banned by Emperor Theodosius I in 393 AD due to their pagan associations. The tradition was revived centuries later in 1896, when the first modern Olympic Games were hosted in Athens, Greece, featuring 241 athletes from 14 nations competing in 43 events.",
-      "question": "In what year were the first modern Olympic Games held?",
-      "options": [
-        "A. 776 BC",
-        "B. 393 AD",
-        "C. 1896",
-        "D. 1492"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The human immune system is a sophisticated defense network designed to identify and eliminate harmful pathogens, such as bacteria and viruses. When a foreign invader enters the body, white blood cells act swiftly to neutralize the threat. However, if the system malfunctions, it may mistakenly attack healthy tissues, leading to autoimmune disorders. Maintaining a balanced diet and obtaining adequate sleep are critical factors that directly bolster immune resilience against seasonal illnesses.",
-      "question": "The word 'swiftly' in the passage is closest in meaning to...",
-      "options": [
-        "A. slowly",
-        "B. poorly",
-        "C. quickly",
-        "D. safely"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "The human immune system is a sophisticated defense network designed to identify and eliminate harmful pathogens, such as bacteria and viruses. When a foreign invader enters the body, white blood cells act swiftly to neutralize the threat. However, if the system malfunctions, it may mistakenly attack healthy tissues, leading to autoimmune disorders. Maintaining a balanced diet and obtaining adequate sleep are critical factors that directly bolster immune resilience against seasonal illnesses.",
-      "question": "The word 'bolster' in the passage is closest in meaning to...",
-      "options": [
-        "A. weaken",
-        "B. strengthen",
-        "C. ignore",
-        "D. predict"
-      ],
-      "index_answer": 1
-    },
-    {
-      "type": "long_text",
-      "passage": "Desert plants have developed unique adaptations to survive in arid environments where water is scarce. For example, cactuses possess thick, fleshy stems that store water for extended droughts, while their leaves have modified into sharp spines to reduce evaporation. Additionally, many desert shrubs have extensive, widespread root systems that absorb moisture rapidly from sporadic rain showers before it vanishes into the dry soil.",
-      "question": "The word 'arid' in the passage is closest in meaning to...",
-      "options": [
-        "A. wet",
-        "B. freezing",
-        "C. dry",
-        "D. crowded"
-      ],
-      "index_answer": 2
-    },
-    {
-      "type": "long_text",
-      "passage": "Desert plants have developed unique adaptations to survive in arid environments where water is scarce. For example, cactuses possess thick, fleshy stems that store water for extended droughts, while their leaves have modified into sharp spines to reduce evaporation. Additionally, many desert shrubs have extensive, widespread root systems that absorb moisture rapidly from sporadic rain showers before it vanishes into the dry soil.",
-      "question": "The word 'sporadic' in the passage is closest in meaning to...",
-      "options": [
-        "A. continuous",
-        "B. occasional",
-        "C. heavy",
-        "D. predictable"
-      ],
-      "index_answer": 1
-    }
-  ]
-}
+  },
+  {
+    "session_id": "Listening",
+    "questions": [
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 1.mp3",
+            "option": [
+              "She forgot her umbrella too",
+              "The man should prepare for rain",
+              "It Will not rain today",
+              "She has an umbrella"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 2.mp3",
+            "option": [
+              "The project is easy",
+              "They should work seperately",
+              "They can make the project more manageable",
+              "They should ask someone else to do it"
+            ],
+            "index_answer": 2
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 3.mp3",
+            "option": [
+              "Continue working immediately",
+              "Take a short break",
+              "She no longer attends college",
+              "It doesn't take her long to get to campus"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 4.mp3",
+            "option": [
+              "It was very exciting ",
+              "It lasted too long",
+              "She watched it twice",
+              "She expected it to be longer"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 5.mp3",
+            "option": [
+              "She already ate lunch",
+              "She is not hungry",
+              "She must complete her work",
+              "She has another meeting outside"
+            ],
+            "index_answer": 2
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 6.mp3",
+            "option": [
+              "By bus",
+              "By taxi",
+              "With her friend",
+              "on foot"
+            ],
+            "index_answer": 2
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 7.mp3",
+            "option": [
+              "She is going to the dentist",
+              "She finished all her work",
+              "She is not feeling well",
+              "She has a a family meeting"
+            ],
+            "index_answer": 0
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 8.mp3",
+            "option": [
+              "The final exam was harder than the other",
+              "There were two exams rather than one",
+              "He thought the exam would be easier",
+              "The exam was not very difficult"
+            ],
+            "index_answer": 3
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 9.mp3",
+            "option": [
+              "He's not feeling very well",
+              "He's rather sick of working",
+              "He's feeling better today than yesterday",
+              "He'd really rather not answer the question"
+            ],
+            "index_answer": 0
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 10.mp3",
+            "option": [
+              "The company was founded about a year ago.",
+              "It was just established that he could go into business.",
+              "The family is well established.",
+              "The business only lasted a year."
+            ],
+            "index_answer": 0
+          }
+        ]
+      },
+      {
+        "type": "ShortAudio",
+        "options": [
+          {
+            "audio": "soal 11.mp3",
+            "option": [
+              "He did not look at the right place",
+              "The plane landed in the right place",
+              "The plane arrived on time",
+              "He had to wait for the plane to land"
+            ],
+            "index_answer": 2
+          }
+        ]
+      },
+      {
+        "type": "LongAudio",
+        "audio": "simulasi7.1.mp3",
+        "options": [
+          {
+            "audio": "simulasi7.1.1.mp3",
+            "option": [
+              "The history of maritime trade in the Americas",
+              "The construction and significance of the Panama Canal",
+              "The causes of diseases in tropical regions",
+              "The role of the French in building the canal"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.1.2.mp3",
+            "option": [
+              "There was no demand for a canal at that time",
+              "The project was abandoned due to international conflicts",
+              "Financial and technical difficulties caused the failure",
+              "The local population protested against the construction"
+            ],
+            "index_answer": 2
+          },
+          {
+            "audio": "simulasi7.1.3.mp3",
+            "option": [
+              "It allows ships to pass by lowering bridges",
+              "It uses a system of locks to raise and lower ships",
+              "Ships travel through underground tunnels",
+              "It relies on natural water currents to move ships"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "LongAudio",
+        "audio": "simulasi7.2.mp3",
+        "options": [
+          {
+            "audio": "simulasi7.2.1.mp3",
+            "option": [
+              "In the Pacific Ocean",
+              "Near the northeastern coast of Australia",
+              "Off the coast of South America",
+              "In the Atlantic Ocean"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.2.2.mp3",
+            "option": [
+              "Overfishing",
+              "Climate change",
+              "Increased marine life",
+              "Oil drilling"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.2.3.mp3",
+            "option": [
+              "More than 1,500",
+              "Around 500",
+              "Less than 1,000",
+              "About 2,000"
+            ],
+            "index_answer": 0
+          },
+          {
+            "audio": "simulasi7.2.4.mp3",
+            "option": [
+              "Encouraging people to build artificial reefs",
+              "Regulating tourism",
+              "Removing coral from the reef",
+              "Increasing fishing activities"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.2.5.mp3",
+            "option": [
+              "To explain how coral reefs form",
+              "To describe the dangers facing the Great Barrier Reef and conservation efforts",
+              "To encourage people to visit the reef",
+              "To discuss marine life in general"
+            ],
+            "index_answer": 1
+          }
+        ]
+      },
+      {
+        "type": "LongAudio",
+        "audio": "simulasi7.3.mp3",
+        "options": [
+          {
+            "audio": "simulasi7.3.1.mp3",
+            "option": [
+              "It reduces energy consumption",
+              "It decreases greenhouse gas emissions",
+              "It creates jobs in the energy sector",
+              "It provides cheaper energy"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.3.2.mp3",
+            "option": [
+              "Solar power",
+              "Wind energy",
+              "Nuclear power",
+              "Geothermal heat"
+            ],
+            "index_answer": 2
+          },
+          {
+            "audio": "simulasi7.3.3.mp3",
+            "option": [
+              "Renewable energy is not efficient enough",
+              "Renewable energy sources are unpredictable",
+              "Renewable energy does not create jobs",
+              "Renewable energy is more expensive in the long term"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.3.4.mp3",
+            "option": [
+              "The cost of renewable energy infrastructure",
+              "Energy storage solutions",
+              "The number of renewable energy workers",
+              "Government subsidies"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.3.5.mp3",
+            "option": [
+              "Renewable energy will replace fossil fuels immediately",
+              "The transition to renewable energy is easy and affordable",
+              "Renewable energy is essential for a sustainable future but has challenges",
+              "Renewable energy sources are unreliable and inefficient"
+            ],
+            "index_answer": 2
+          }
+        ]
+      }
+    ]
+  }
 ]
