@@ -179,28 +179,25 @@ export default function AudioQuestion({
 
         <h2 className={shared.questionText}>{question}</h2>
 
-        <div className={shared.options}>
-          {options.map((opt, i) => (
-            <button
-              key={i}
-              className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
-              onClick={() => {
-                if (selectedAnswer === i) {
-                  onAnswer(undefined);
-                } else {
-                  onAnswer(i);
-                }
-              }}
-            >
-              <span className={`${shared.radio} ${selectedAnswer === i ? shared.radioSelected : ""}`}>
-                {selectedAnswer === i && <span className={shared.radioFill} />}
-              </span>
-              <span className={`${shared.optionText} ${selectedAnswer === i ? shared.optionTextSelected : ""}`}>
-                {opt}
-              </span>
-            </button>
-          ))}
-        </div>
+              <div className={shared.options}>
+  {/* 🌟 Tambahkan pengecekan null/undefined dan pastikan array ada */}
+  {options && Array.isArray(options) && options.length > 0 ? (
+    options.map((opt, i) => (
+      <button
+        key={i}
+        className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
+        onClick={() => onAnswer(i)}
+      >
+        <span className={shared.optionText}>{opt}</span>
+      </button>
+    ))
+  ) : (
+    // Tambahkan log untuk membantu kita melihat apakah data memang kosong
+    <p style={{ color: "red" }}>
+      {options === undefined ? "Data options belum diterima (Cek PracticePage.js)" : "Pilihan tidak tersedia."}
+    </p>
+  )}
+</div>
       </div>
 
     </div>

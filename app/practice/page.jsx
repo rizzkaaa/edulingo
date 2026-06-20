@@ -46,57 +46,37 @@ export default function PracticePage() {
   const questions = [];
 
   rawQuestions.forEach((item) => {
-    let mappedType = item.type === "TrueOrFalse" ? "true_false" : item.type;
-    
-    if ((mappedType === "LongReading" || mappedType === "long_text") && Array.isArray(item.options) && typeof item.options[0] === 'object' && (item.options[0].option || item.options[0].options)) {
+    // Pastikan kita menangani 'LongAudio' atau 'ShortAudio'
+    if (item.type === "LongAudio" || item.type === "ShortAudio") {
       
-      questions.push({
-        ...item,
-        type: "reading_intro",
-      });
-
-      item.options.forEach((subQ) => {
+      // Jika ini adalah LongAudio, masukkan audio utamanya dulu
+      if (item.type === "LongAudio") {
         questions.push({
           ...item,
-          type: "long_text", 
-          question: subQ.question || item.question,
-          options: subQ.option || subQ.options || [],
-          index_answer: subQ.index_answer !== undefined ? subQ.index_answer : item.index_answer
+          type: "long_audio", // Menandakan ini player audio panjang
+          audioSrc: item.audio ? `/audio/${item.audio}` : null,
         });
-      });
-
-    } else if (mappedType === "ShortAudio" && Array.isArray(item.options) && item.options.length > 0) {
-      
-      item.options.forEach((subQ) => {
-        const audioPath = subQ.audio ? `/audio/${subQ.audio}` : null;
-        
-        questions.push({
-          ...item,
-          type: "audio", 
-          question: subQ.question || item.question || "Listen to the audio and choose the correct answer.",
-          audioSrc: audioPath, 
-          options: subQ.option || subQ.options || [],
-          index_answer: subQ.index_answer !== undefined ? subQ.index_answer : item.index_answer
-        });
-      });
-
-    } else {
-      let normalizedOptions = item.options;
-      let correctAnswer = item.index_answer;
-      let questionText = item.question;
-      
-      if (Array.isArray(item.options) && typeof item.options[0] === 'object' && item.options[0]?.option) {
-        normalizedOptions = item.options[0].option || item.options[0].options;
-        correctAnswer = item.options[0].index_answer !== undefined ? item.options[0].index_answer : correctAnswer; 
-        questionText = item.options[0].question || questionText;
       }
-      
+
+      // Masukkan setiap soal (sub-audio) ke dalam array questions
+      item.options.forEach((subQ) => {
+        questions.push({
+          ...item, // Salin properti asal
+          type: "audio", // Paksa jadi tipe 'audio' agar masuk ke AudioQuestion
+          question: subQ.question || "Listen and choose the answer.",
+          audioSrc: subQ.audio ? `/audio/${subQ.audio}` : null,
+          options: subQ.option, // Ambil array pilihan jawaban (ini yang penting!)
+          index_answer: subQ.index_answer
+        });
+      });
+    } 
+    // ... sisa logika lainnya (Basic, TrueFalse, dll)
+    else {
       questions.push({
         ...item,
-        type: mappedType,
-        question: questionText,
-        options: normalizedOptions,
-        index_answer: correctAnswer
+        type: item.type === "TrueOrFalse" ? "true_false" : item.type,
+        options: item.options,
+        index_answer: item.index_answer
       });
     }
   });
@@ -263,6 +243,7 @@ export default function PracticePage() {
 
   const q = questions[current];
   const QuestionComponent = questionComponents[q?.type];
+  const [isAudioFinished, setIsAudioFinished] = useState(false);
 
   if (q && q.type === "long_audio") {
     return (
@@ -289,13 +270,30 @@ export default function PracticePage() {
             </button>
           </div>
         </div>
-        <LongAudioQuestion
+       <LongAudioQuestion
           {...q}
           answers={answers}
           parentIndex={current}
-          onNextQuestion={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))}
+          onNextQuestion={() => setCurrent(prev => prev + 1)}
           isLastQuestion={current === totalQuestions - 1}
+          // 🌟 Kirim fungsi ini untuk mengubah state
+          onAudioFinish={() => setIsAudioFinished(true)} 
         />
+
+        {/* 🌟 Tombol ini hanya muncul jika audio sudah selesai */}
+        {isAudioFinished && (
+          <div style={{ textAlign: "center", marginTop: "30px" }}>
+            <button
+              className={styles.nextBtn} // Sesuaikan dengan style tombol Anda
+              onClick={() => {
+                setIsAudioFinished(false); // Reset state
+                setCurrent(prev => prev + 1);
+              }}
+            >
+              PROCEED TO QUESTIONS →
+            </button>
+          </div>
+        )}
       </div>
     );
   }
