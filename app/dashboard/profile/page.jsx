@@ -24,6 +24,7 @@ export default function ProfilePage() {
     email: "",
     createdAt: "",
     lessonStatus: [],
+    photoBase64: "", // ⬅️ baru: simpan foto profil
   });
 
   useEffect(() => {
@@ -51,6 +52,7 @@ export default function ProfilePage() {
               email: data.email || user.email || "",
               createdAt: formattedDate,
               lessonStatus: data.lessonStatus || [],
+              photoBase64: data.photoBase64 || "", // ⬅️ baru: ambil foto dari Firestore
             });
           }
         } catch (error) {
@@ -105,7 +107,7 @@ export default function ProfilePage() {
 
           <div className={styles.avatarWrapper}>
             <img
-              src="/images/default_profile.png"
+              src={userData.photoBase64 || "/images/default_profile.png"} // ⬅️ baru: pakai foto base64 kalau ada
               alt="Profile"
               className={styles.avatar}
             />

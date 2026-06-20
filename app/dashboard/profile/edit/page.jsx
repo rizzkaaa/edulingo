@@ -1,14 +1,15 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { auth, db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase"; // ⬅️ storage tidak dipakai lagi
 import {
   onAuthStateChanged,
   updatePassword,
   EmailAuthProvider,
-  reauthenticateWithCredential
+  reauthenticateWithCredential,
+  updateProfile
 } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { FaPen, FaCog, FaEye, FaEyeSlash } from "react-icons/fa";
@@ -17,6 +18,7 @@ import Alert from "../../../components/Alert";
 export default function EditProfilePage() {
 
   const router = useRouter();
+  const fileInputRef = useRef(null);
 
   const [loading, setSaving]  = useState(false);
   const [saving, setLoading]  = useState(true);
@@ -31,6 +33,9 @@ export default function EditProfilePage() {
     fullName: "",
     username: "",
   });
+
+  // ===== STATE FOTO PROFIL (base64) =====
+  const [photoBase64, setPhotoBase64] = useState(""); // ⬅️ menyimpan string base64 (lama/baru)
 
   // ===== STATE ALERT =====
   const [alertConfig, setAlertConfig] = useState({
@@ -62,6 +67,8 @@ export default function EditProfilePage() {
               fullName: data.fullName || user.displayName || "",
               username: data.username || "",
             });
+            // ⬇️ baru: ambil foto profil (base64) yang sudah ada
+            setPhotoBase64(data.photoBase64 || "");
           }
         } catch (error) {
           console.error("Gagal memuat data:", error);
@@ -76,6 +83,34 @@ export default function EditProfilePage() {
     return () => unsubscribe();
   }, [router]);
 
+  // ⬇️ baru: konversi file gambar jadi base64
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      showAlert("File harus berupa gambar.");
+      return;
+    }
+    if (file.size > 1 * 1024 * 1024) { // max 1MB (base64 lebih besar dari ukuran asli)
+      showAlert("Ukuran gambar maksimal 1MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPhotoBase64(reader.result); // hasil: "data:image/png;base64,...."
+    };
+    reader.onerror = () => {
+      showAlert("Gagal membaca gambar. Coba lagi.");
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleEditAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
   // Fungsi update yang beneran (dipanggil setelah konfirmasi)
   const doSaveChanges = async () => {
     setSaving(true);
@@ -87,6 +122,7 @@ export default function EditProfilePage() {
         await updateDoc(userRef, {
           fullName: formData.fullName,
           username: formData.username,
+          photoBase64: photoBase64, // ⬅️ baru: simpan base64 ke Firestore
         });
 
         if (password.trim() !== "") {
@@ -252,10 +288,24 @@ export default function EditProfilePage() {
         <div className={styles.editSidebar}>
           <div className={styles.miniProfile}>
             <div className={styles.avatarWrapper}>
-              <img src="/images/default_profile.png" alt="Avatar" />
-              <button type="button" className={styles.editAvatarBtn}>
+              <img
+                src={photoBase64 || "/images/default_profile.png"} // ⬅️ langsung pakai base64
+                alt="Avatar"
+              />
+              <button
+                type="button"
+                className={styles.editAvatarBtn}
+                onClick={handleEditAvatarClick}
+              >
                 <FaPen />
               </button>
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handlePhotoChange}
+                style={{ display: "none" }}
+              />
             </div>
             <h3>{formData.fullName || "NO NAME"}</h3>
             <p>@{formData.username || "username"}</p>
