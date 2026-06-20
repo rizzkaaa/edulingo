@@ -27,18 +27,29 @@ export default function ListeningToShortConversation() {
   const length = main_material.sub_modules.length;
 
   useEffect(() => {
-    const isCompleted = 
-      localStorage.getItem(`module_status_part_7_mod_${currentId}`) === "completed" || 
-      statusParam === "completed";
-      
-    if (isCompleted) {
-      setHasAnswered(true);
+    if (main_material && currentId) {
+      const storageKey = `module_status_part_${main_material.part_id}_mod_${currentId}`;
+
+      const isAlreadyCompleted = localStorage.getItem(storageKey) === "completed";
+      const isNewlyCompleted = statusParam === "completed";
+
+      if (isAlreadyCompleted || isNewlyCompleted) {
+        setHasAnswered(true);
+
+        if (!isAlreadyCompleted && isNewlyCompleted) {
+          localStorage.setItem(storageKey, "completed");
+          window.dispatchEvent(new Event("practice-completed"));
+        }
+      } else {
+        setHasAnswered(false);
+      }
     }
-  }, [currentId, statusParam]);
+  }, [currentId, statusParam, main_material]);
 
   const handleAnswered = () => {
     setHasAnswered(true);
-    localStorage.setItem(`module_status_part_7_mod_${currentId}`, "completed");
+    const storageKey = `module_status_part_${main_material.part_id}_mod_${currentId}`;
+    localStorage.setItem(storageKey, "completed");
     window.dispatchEvent(new Event("practice-completed"));
   };
 
@@ -58,6 +69,7 @@ export default function ListeningToShortConversation() {
       <ComparisonTable material={sub_material.content[1]} />
       <TemplateVer21 material={sub_material.content[2]} />
       
+      {/* Jika user menjawab audio di dalam halaman ini, tombol footer akan terbuka */}
       <WithAudio 
         material={sub_material.content[3]} 
         onAnswered={handleAnswered}
@@ -68,6 +80,7 @@ export default function ListeningToShortConversation() {
       />
       
       <ToeflTips material={sub_material.content[5]} />
+      
       <FooterMaterial
         color="#E8A838"
         title={sub_material.title}
@@ -75,7 +88,7 @@ export default function ListeningToShortConversation() {
         main_part_title={main_material.part_title}
         part_id={main_material.part_id}
         sub_module_id={sub_material.sub_module_id}
-        isButtonDisabled={!hasAnswered}
+        isButtonDisabled={!hasAnswered} 
       />
     </div>
   );

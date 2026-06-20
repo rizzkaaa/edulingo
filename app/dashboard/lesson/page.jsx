@@ -7,7 +7,8 @@ import * as FaIcons from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+// 🌟 PERBAIKAN: Tambahkan updateDoc di import Firestore
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export default function LessonPage() {
   const [lessonStatus, setLessonStatus] = useState([]);
@@ -15,7 +16,7 @@ export default function LessonPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const lessonData = materials.materials;
 
-  //backend menyimpan hasil belajar materi ke firebase
+  // backend menyimpan hasil belajar materi ke firebase
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -30,12 +31,34 @@ export default function LessonPage() {
 
             if (data.lessonStatus) {
               setLessonStatus(data.lessonStatus);
+            } else {
+              // 🌟 PERBAIKAN: AUTO-HEAL UNTUK AKUN BARU
+              // Jika lessonStatus tidak ada, kita buatkan data defaultnya
+              const defaultLessonStatus = [
+                { path: "/dashboard/lesson/structure_part_1", status: "progress" },
+                { path: "/dashboard/lesson/structure_part_2", status: "locked" },
+                { path: "/dashboard/lesson/written_expression_part_1", status: "locked" },
+                { path: "/dashboard/lesson/written_expression_part_2", status: "locked" },
+                { path: "/dashboard/lesson/reading_strategies", status: "locked" },
+                { path: "/dashboard/lesson/reading_for_details", status: "locked" },
+                { path: "/dashboard/lesson/listening_comprehension", status: "locked" }
+              ];
+              
+              // 1. Tampilkan ke layar agar user bisa langsung mulai
+              setLessonStatus(defaultLessonStatus);
+              
+              // 2. Simpan ke database Firebase agar permanen
+              await updateDoc(userDocRef, {
+                lessonStatus: defaultLessonStatus
+              });
+              
+              console.log("lessonStatus default berhasil ditambahkan ke akun baru!");
             }
           } else if (user.displayName) {
             setUsername(user.displayName);
           }
         } catch (error) {
-          console.error("Gagal mengambil data user:", error);
+          console.error("Gagal mengambil/memperbarui data user:", error);
         }
       } else {
         setLessonStatus([]);
@@ -45,82 +68,6 @@ export default function LessonPage() {
 
     return () => unsubscribe();
   }, []);
-
-  // const lessonData = [
-  //   {
-  //     id: 1,
-  //     title: "Written Expression Part 1",
-  //     desc: "Agreement dan parallel structure",
-  //     topics: [
-  //       "Subject – Verb Agreement",
-  //       "Agreement after Prepositional Phrases",
-  //       "Agreement after Expression of Quantity",
-  //       "Agreement after Certain Words",
-  //       "Parallel Structure",
-  //       "Parallel Structure with Coordinate Conjunction",
-  //       "Parallel Structure with Paired Conjunction",
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Written Expression Part 2",
-  //     desc: "Participle dan penggunaan verb yang tepat",
-  //     topics: [
-  //       "Present & Past Participle",
-  //       "Past Participle after Have",
-  //       "Present Participle or Past Participle after Be",
-  //       "Base Form Verb after Modals",
-  //     ],
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Structure Part 1",
-  //     desc: "Pronouns, possessives, adjective dan adverb",
-  //     topics: [
-  //       "Subject and Object Pronouns",
-  //       "Possessive Pronouns",
-  //       "Adjective and Adverb",
-  //     ],
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Structure Part 2",
-  //     desc: "Clause connectors dalam berbagai bentuk kalimat",
-  //     topics: [
-  //       "Adverb Clause Connectors",
-  //       "Noun Clause Connectors",
-  //       "Adjective Clause Connectors",
-  //     ],
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Reading Strategies",
-  //     desc: "Strategi memahami kosakata dalam bacaan",
-  //     topics: ["Vocabulary Questions"],
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Reading for Details",
-  //     desc: "Memahami informasi utama dan detail dalam teks",
-  //     topics: [
-  //       "Understanding Main Ideas",
-  //       "Stated Detail Information",
-  //       "Unstated Detail Information",
-  //       "Inference Questions",
-  //       "Reference Questions",
-  //     ],
-  //   },
-  //   {
-  //     id: 7,
-  //     title: "Listening Comprehension",
-  //     desc: "Melatih pemahaman percakapan dan monolog bahasa Inggris",
-  //     topics: [
-  //       "Listening to Short Conversation",
-  //       "Listening to Longer Conversation",
-  //       "Listening to Talks and Note Taking",
-  //     ],
-  //   },
-  // ];
 
   const getCardClass = (status) => {
     if (status === "done") return styles.cardDone;

@@ -27,7 +27,8 @@ const questionComponents = {
   true_false: TrueFalseQuestion,
   long_audio: LongAudioQuestion,
   FillInTheBlank: BasicQuestion,
-  LongReading: LongTextQuestion, 
+  LongReading: LongTextQuestion,
+  ShortAudio: AudioQuestion, 
 };
 
 export default function PracticePage() {
@@ -42,26 +43,38 @@ export default function PracticePage() {
   const categoryParam = targetModule?.category_id || "structure_part_1"; 
   const rawQuestions = targetModule ? targetModule.questions : [];
 
-  // 🌟 LOGIKA FLATTENING + HALAMAN BACA (READING INTRO)
   const questions = [];
 
   rawQuestions.forEach((item) => {
-    const mappedType = item.type === "TrueOrFalse" ? "true_false" : item.type;
+    let mappedType = item.type === "TrueOrFalse" ? "true_false" : item.type;
     
     if ((mappedType === "LongReading" || mappedType === "long_text") && Array.isArray(item.options) && typeof item.options[0] === 'object' && (item.options[0].option || item.options[0].options)) {
       
-      // 1. SISIPKAN HALAMAN KHUSUS BACAAN DI AWAL
       questions.push({
         ...item,
-        type: "reading_intro", // Tipe custom untuk merender UI teks saja
+        type: "reading_intro",
       });
 
-      // 2. MASUKKAN SOAL-SOAL SETELAHNYA
       item.options.forEach((subQ) => {
         questions.push({
           ...item,
-          type: "long_text", // Gunakan long_text agar komponen tetap berjalan normal saat menjawab soal
+          type: "long_text", 
           question: subQ.question || item.question,
+          options: subQ.option || subQ.options || [],
+          index_answer: subQ.index_answer !== undefined ? subQ.index_answer : item.index_answer
+        });
+      });
+
+    } else if (mappedType === "ShortAudio" && Array.isArray(item.options) && item.options.length > 0) {
+      
+      item.options.forEach((subQ) => {
+        const audioPath = subQ.audio ? `/audio/${subQ.audio}` : null;
+        
+        questions.push({
+          ...item,
+          type: "audio", 
+          question: subQ.question || item.question || "Listen to the audio and choose the correct answer.",
+          audioSrc: audioPath, 
           options: subQ.option || subQ.options || [],
           index_answer: subQ.index_answer !== undefined ? subQ.index_answer : item.index_answer
         });
@@ -106,7 +119,6 @@ export default function PracticePage() {
     );
   }
 
-  // 🌟 UPDATE: Halaman bacaan (reading_intro) tidak dihitung sebagai soal bernilai skor
   const realQuestionsCount = questions.reduce((acc, q) => {
     if (q.type === "long_audio" || q.type === "reading_intro") return acc;
     return acc + 1;
@@ -152,7 +164,6 @@ export default function PracticePage() {
       let correctAnswersCount = 0;
 
       questions.forEach((question, index) => {
-        // Jangan hitung skor untuk halaman audio maupun halaman baca (reading_intro)
         if (question.type !== "long_audio" && question.type !== "reading_intro") {
           const userAnswer = answers[index];
           const correctIndex = question.index_answer;
@@ -183,6 +194,16 @@ export default function PracticePage() {
         sanitizedAnswers[index] = answers[index] !== undefined ? answers[index] : null;
       });
 
+      // 🌟 LOGIKA KELULUSAN DINAMIS: Cek apakah ini sesi Listening
+      const isListening = 
+        categoryParam.toLowerCase().includes("listening") || 
+        (partParam && partParam.toLowerCase().includes("listening")) ||
+        moduleParam.toLowerCase().includes("listening");
+
+      // Jika Listening minimal 3, jika modul lain minimal 4
+      const PASSING_THRESHOLD = isListening ? 3 : 4;
+      const isPassed = correctAnswersCount >= PASSING_THRESHOLD;
+
       const practiceResult = {
         userId: auth?.currentUser?.uid || "anonymous_user", 
         userEmail: auth?.currentUser?.email || "anonymous",
@@ -192,16 +213,29 @@ export default function PracticePage() {
         correctAnswers: correctAnswersCount || 0,
         score: finalScore || 0,
         userAnswers: sanitizedAnswers, 
+        isPassed: isPassed,
         createdAt: serverTimestamp(), 
       };
 
       await addDoc(collection(db, "practice_history"), practiceResult);
-      window.dispatchEvent(new Event("practice-completed"));
-
+      
       const finalCategory = partParam || categoryParam;
       const finalFolder = folderParam || targetModule?.folder_name || moduleParam;
 
-      router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=completed`);
+      if (isPassed) {
+        window.dispatchEvent(new Event("practice-completed")); 
+        showAlert(
+          `Luar Biasa! 🎉 Kamu menjawab benar ${correctAnswersCount} dari ${realQuestionsCount} soal. Modul ini telah selesai.`,
+          true, 
+          () => router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=completed`)
+        );
+      } else {
+        showAlert(
+          `Kamu baru menjawab benar ${correctAnswersCount} soal. ❌ Butuh minimal ${PASSING_THRESHOLD} jawaban benar untuk menyelesaikan modul ini. Silakan coba lagi!`,
+          true, 
+          () => router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=failed`)
+        );
+      }
 
     } catch (error) {
       console.error("Gagal menyimpan ke Firebase:", error);
@@ -233,7 +267,6 @@ export default function PracticePage() {
   if (q && q.type === "long_audio") {
     return (
       <div className={styles.container}>
-        {/* ... KODE LONG AUDIO TIDAK DIUBAH ... */}
         {alertConfig.show && (
           <Alert
             isAlert={alertConfig.isAlert}
@@ -311,14 +344,12 @@ export default function PracticePage() {
 
       {/* ===== CONTENT ===== */}
       <div className={styles.questionContainer}>
-        {/* 🌟 LOGIKA RENDER CUSTOM UNTUK HALAMAN BACAAN */}
         {q?.type === "reading_intro" ? (
           <div style={{ backgroundColor: "#fdfdfd", padding: "30px", borderRadius: "8px", border: "2px solid #a34327" }}>
             <h3 style={{ color: "#a34327", marginBottom: "20px", borderBottom: "1px solid #ddd", paddingBottom: "10px", textTransform: "uppercase" }}>
               📖 Please read the text below before proceeding
             </h3>
             <div style={{ fontSize: "16px", lineHeight: "1.8", color: "#333", whiteSpace: "pre-wrap" }}>
-              {/* Jika letak teks di JSON mu berbeda (misal di property 'text' atau 'paragraph'), sesuaikan pemanggilannya di bawah ini */}
               {q.long_text || q.passage || q.text || q.paragraph || q.question || "Teks bacaan tidak tersedia."}
             </div>
           </div>
@@ -353,7 +384,6 @@ export default function PracticePage() {
             onClick={() => setCurrent(prev => prev + 1)}
             disabled={isSubmitting}
           >
-            {/* Ubah teks tombol jika sedang berada di halaman Intro Text */}
             {q?.type === "reading_intro" ? "PROCEED TO QUESTIONS →" : "NEXT QUESTION →"}
           </button>
         ) : (

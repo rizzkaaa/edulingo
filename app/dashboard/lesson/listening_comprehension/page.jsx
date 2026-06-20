@@ -55,6 +55,6 @@ import { redirect } from "next/navigation";
 
 export default function Home() {
   redirect(
-    "/dashboard/lesson/listening_comprehension/listening_to_talks_and_note_taking/",
+    "/dashboard/lesson/listening_comprehension/listening_to_short_conversation",
   );
 }

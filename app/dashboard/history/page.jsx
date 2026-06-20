@@ -26,12 +26,13 @@ export default function HistoryPage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
-  // LOGIKA BARU: State Paginasi
+  // LOGIKA PAGINASI
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 5;
 
   const dropdownRef = useRef(null);
 
+  // Menutup dropdown filter jika klik di luar area
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -42,6 +43,7 @@ export default function HistoryPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Mengecek user yang sedang login
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -55,23 +57,28 @@ export default function HistoryPage() {
     return () => unsubscribe();
   }, []);
 
-  // LOGIKA BARU: Reset halaman ke nomor 1 jika user melakukan filter atau pencarian baru
+  // Reset halaman ke nomor 1 jika user melakukan filter atau pencarian baru
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, activeCategory]);
 
   const fetchHistoryData = async (userId) => {
     try {
-      const q = query(
-        collection(db, "exam_sessions"),
-        where("userId", "==", userId)
-      );
-      
-      const querySnapshot = await getDocs(q);
+      // 1. Siapkan query untuk DUA KOLEKSI
+      const simulationQuery = query(collection(db, "exam_sessions"), where("userId", "==", userId));
+      const practiceQuery = query(collection(db, "practice_history"), where("userId", "==", userId));
+
+      // Tarik data secara bersamaan (paralel) agar loading lebih cepat
+      const [simulationSnap, practiceSnap] = await Promise.all([
+        getDocs(simulationQuery),
+        getDocs(practiceQuery)
+      ]);
+
       let fetchedHistory = [];
       let totalScoreSum = 0;
 
-      querySnapshot.forEach((docSnap) => {
+      // 2. Proses data SIMULATION (exam_sessions)
+      simulationSnap.forEach((docSnap) => {
         const data = docSnap.data();
 
         let totalPercentageSum = 0;
@@ -81,19 +88,16 @@ export default function HistoryPage() {
           totalPercentageSum += data.reading_score_percentage;
           activeSectionsCount++;
         }
-
         if (data.structure_score_percentage !== undefined) {
           totalPercentageSum += data.structure_score_percentage;
           activeSectionsCount++;
         }
-
         if (data.listening_score_percentage !== undefined) {
           totalPercentageSum += data.listening_score_percentage;
           activeSectionsCount++;
         }
 
         const averagePercentage = activeSectionsCount > 0 ? totalPercentageSum / activeSectionsCount : 0;
-
         const minToefl = 310;
         const maxToefl = 677;
         const toeflRange = maxToefl - minToefl; 
@@ -102,11 +106,7 @@ export default function HistoryPage() {
 
         const dateObj = data.updatedAt?.toDate() || new Date();
         const formattedDate = dateObj.toLocaleString("id-ID", {
-          month: "short", 
-          day: "numeric", 
-          year: "numeric", 
-          hour: "2-digit", 
-          minute: "2-digit"
+          month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit"
         });
 
         const passingGrade = 450; 
@@ -116,7 +116,7 @@ export default function HistoryPage() {
           id: docSnap.id,
           dateObj: dateObj, 
           date: formattedDate,
-          category: data.category || data.type || "Simulation",
+          category: "Simulation",
           activity: data.activityName || "TOEFL Prediction Test",
           score: finalScore, 
           status: isSuccess ? "Success" : "Failed",
@@ -126,6 +126,35 @@ export default function HistoryPage() {
         totalScoreSum += finalScore;
       });
 
+      // 3. Proses data EXERCISE (practice_history)
+      practiceSnap.forEach((docSnap) => {
+        const data = docSnap.data();
+        const dateObj = data.createdAt?.toDate() || new Date();
+        const formattedDate = dateObj.toLocaleString("id-ID", {
+          month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit"
+        });
+
+        // Format nama modul (misal: "1_5" jadi "Module 1_5")
+        let activityName = data.moduleId ? `Practice: Module ${data.moduleId.replace("_", ".")}` : "Exercise Practice";
+
+        // Misal batas lulus exercise adalah nilai 70
+        const isSuccess = (data.score || 0) >= 70;
+
+        fetchedHistory.push({
+          id: docSnap.id,
+          dateObj: dateObj,
+          date: formattedDate,
+          category: "Exercise",
+          activity: activityName,
+          score: data.score || 0,
+          status: isSuccess ? "Success" : "Failed",
+          success: isSuccess,
+        });
+
+        totalScoreSum += (data.score || 0);
+      });
+
+      // 4. Mengurutkan riwayat dari yang paling baru ke yang paling lama
       fetchedHistory.sort((a, b) => b.dateObj - a.dateObj);
 
       setHistoryData(fetchedHistory);
@@ -141,21 +170,21 @@ export default function HistoryPage() {
     }
   };
 
-  // 1. Filter data berdasarkan input search & kriteria kategori
+  // --- LOGIKA FILTER & PAGINASI ---
   const filteredHistory = historyData.filter((item) => {
     const matchesCategory = activeCategory === "All Categories" || item.category === activeCategory;
     const matchesSearch = item.activity.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  // 2. LOGIKA BARU: Hitung indeks data yang akan dipotong (sliced) untuk halaman aktif
   const totalPages = Math.ceil(filteredHistory.length / ITEMS_PER_PAGE);
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   
-  // Memotong data hasil filter agar hanya berisi maksimal 5 item saja
+  // Memotong data hasil filter agar hanya berisi maksimal 5 item per halaman
   const currentItems = filteredHistory.slice(indexOfFirstItem, indexOfLastItem);
 
+  // Menghitung total simulasi untuk logika Challenge Box
   const simulationCount = historyData.filter(item => item.category === "Simulation").length;
 
   return (
@@ -269,7 +298,6 @@ export default function HistoryPage() {
             Belum ada riwayat yang sesuai.
           </p>
         ) : (
-          // PERBAIKAN: Mengganti filteredHistory menjadi currentItems (maksimal 5 item)
           currentItems.map((item) => (
             <div key={item.id} className={styles.tableRow}>
               <span>{item.date}</span>
@@ -308,7 +336,6 @@ export default function HistoryPage() {
           
           {totalPages > 1 && (
             <div className={styles.pagination}>
-              {/* Tombol Sebelumnya */}
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -316,7 +343,6 @@ export default function HistoryPage() {
                 <FaChevronLeft />
               </button>
               
-              {/* Daftar Angka Halaman Dinamis */}
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
@@ -327,7 +353,6 @@ export default function HistoryPage() {
                 </button>
               ))}
 
-              {/* Tombol Selanjutnya */}
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}

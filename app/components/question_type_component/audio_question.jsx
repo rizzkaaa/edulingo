@@ -1,34 +1,79 @@
 "use client";
 
-import { useState, useRef } from "react";
+// 🌟 PERBAIKAN: Tambahkan useEffect di import
+import { useState, useRef, useEffect } from "react";
 import styles from "./audio_question.module.css";
 import shared from "./shared.module.css";
 import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa";
 
-export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc, question, options, onAnswer, selectedAnswer }) {
+export default function AudioQuestion({ 
+  questionNumber, 
+  totalQuestions, 
+  audioSrc, // Pastikan di PracticePage.js prop ini bernama audioSrc juga, bukan audioUrl
+  question, 
+  options, 
+  onAnswer, 
+  selectedAnswer 
+}) {
   const audioRef = useRef(null);
-  const [playing, setPlaying]         = useState(false);
+  const [playing, setPlaying]       = useState(false);
   const [progress, setProgress]       = useState(0);
   const [currentTime, setCurrentTime] = useState("0:00");
   const [duration, setDuration]       = useState("0:00");
-  const [ended, setEnded]             = useState(false); // ← state baru
+  const [ended, setEnded]             = useState(false);
+
+  // 🌟 PERBAIKAN 1: Cleanup & Reset State saat pindah soal
+  useEffect(() => {
+    const currentAudio = audioRef.current;
+
+    // Reset semua state saat ganti soal/audioSrc berubah
+    setPlaying(false);
+    setProgress(0);
+    setCurrentTime("0:00");
+    setEnded(false);
+
+    // Cleanup: Matikan audio saat komponen mati / ganti soal
+    return () => {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+    };
+  }, [audioSrc]);
 
   function formatTime(sec) {
+    if (isNaN(sec)) return "0:00";
     const m = Math.floor(sec / 60);
     const s = Math.floor(sec % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   }
 
+  // 🌟 PERBAIKAN 2: Tangkap Promise dari audio.play() untuk hindari AbortError
   function handlePlayPause() {
     if (ended) return; // gak bisa diplay lagi kalau sudah selesai
+    
     const audio = audioRef.current;
     if (!audio) return;
+
     if (playing) {
       audio.pause();
+      setPlaying(false);
     } else {
-      audio.play();
+      const playPromise = audio.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Audio berhasil diputar
+            setPlaying(true);
+          })
+          .catch((error) => {
+            // Pemutaran dibatalkan (misal user klik Next dengan sangat cepat)
+            console.log("Audio play diinterupsi, aman diabaikan:", error);
+            setPlaying(false);
+          });
+      }
     }
-    setPlaying(!playing);
   }
 
   function handleTimeUpdate() {
@@ -53,7 +98,7 @@ export default function AudioQuestion({ questionNumber, totalQuestions, audioSrc
   function handleProgressClick(e) {
     if (ended) return; // gak bisa skip kalau sudah selesai
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || isNaN(audio.duration)) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const pct = clickX / rect.width;

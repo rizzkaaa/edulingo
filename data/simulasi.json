@@ -1,262 +1,330 @@
 [
     {
-        "session_id": "Structure",
-        "questions": [
-            {
-                "type": "TrueOrFalse",
-                "question": "The childs in the playground are playing happily.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "She has two ___ at home that she feeds every morning.",
-                "options": [
-                    {
-                        "option": [
-                            "cat",
-                            "cats",
-                            "cates",
-                            "cat's"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "There is a lot of furnitures in the living room.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "She gave me some ___ about how to improve my writing skills.",
-                "options": [
-                    {
-                        "option": [
-                            "advices",
-                            "advice",
-                            "an advice",
-                            "advise"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "The teacher gave the assignment to John and I yesterday.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "The manager called ___ to discuss the new project proposal.",
-                "options": [
-                    {
-                        "option": [
-                            "he and I",
-                            "him and me",
-                            "he and me",
-                            "him and I"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "Each of the students must submit their own assignment before the deadline.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 0
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "The book on the table is ___. I left it there this morning.",
-                "options": [
-                    {
-                        "option": [
-                            "my",
-                            "me",
-                            "mine",
-                            "myself"
-                        ],
-                        "index_answer": 2
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "She speaks very fluent English after studying abroad for two years.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "The exam was ___ difficult that many students were unable to finish on time.",
-                "options": [
-                    {
-                        "option": [
-                            "such",
-                            "so",
-                            "too",
-                            "very"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "She studied hard for the exam, but she failed to pass it.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 0
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "He wanted to attend the conference, ___ he could not afford the registration fee.",
-                "options": [
-                    {
-                        "option": [
-                            "so",
-                            "yet",
-                            "for",
-                            "and"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "Although the weather was bad, but the team decided to continue the match.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "___ the flight was delayed for several hours, the passengers remained calm and patient.",
-                "options": [
-                    {
-                        "option": [
-                            "Despite",
-                            "Because",
-                            "Even though",
-                            "So that"
-                        ],
-                        "index_answer": 2
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "The professor explained what did the experiment prove to the graduate students.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "The researchers were surprised by ___ the new drug reduced the symptoms so quickly.",
-                "options": [
-                    {
-                        "option": [
-                            "that",
-                            "how",
-                            "what",
-                            "which"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "TrueOrFalse",
-                "question": "The scientist whom discovered the vaccine received an international award.",
-                "options": [
-                    {
-                        "option": [
-                            "Correct",
-                            "Incorrect"
-                        ],
-                        "index_answer": 1
-                    }
-                ]
-            },
-            {
-                "type": "FillInTheBlank",
-                "question": "The report ___ was submitted last week contains several critical errors.",
-                "options": [
-                    {
-                        "option": [
-                            "who",
-                            "whom",
-                            "which",
-                            "where"
-                        ],
-                        "index_answer": 2
-                    }
-                ]
-            }
-        ]
-        
-    },
+    "session_id": "Structure",
+    "questions": [
+
+        {
+            "type": "TrueOrFalse",
+            "question": "The childs in the playground are playing happily.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "She has two ___ at home that she feeds every morning.",
+            "options": [
+                {
+                    "option": ["cat", "cats", "cates", "cat's"],
+                    "index_answer": 1
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "There is a lot of furnitures in the living room.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "She gave me some ___ about how to improve my writing skills.",
+            "options": [
+                {
+                    "option": ["advices", "advice", "an advice", "advise"],
+                    "index_answer": 1
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "The teacher gave the assignment to John and I yesterday.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "The manager called ___ to discuss the new project proposal.",
+            "options": [
+                {
+                    "option": ["he and I", "him and me", "he and me", "him and I"],
+                    "index_answer": 1
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "Each of the students must submit their own assignment before the deadline.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 0
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "The book on the table is ___. I left it there this morning.",
+            "options": [
+                {
+                    "option": ["my", "me", "mine", "myself"],
+                    "index_answer": 2
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "She speaks very fluent English after studying abroad for two years.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "The exam was ___ difficult that many students were unable to finish on time.",
+            "options": [
+                {
+                    "option": ["such", "so", "too", "very"],
+                    "index_answer": 1
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "She studied hard for the exam, but she failed to pass it.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 0
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "He wanted to attend the conference, ___ he could not afford the registration fee.",
+            "options": [
+                {
+                    "option": ["so", "yet", "for", "and"],
+                    "index_answer": 1
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "Although the weather was bad, but the team decided to continue the match.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "___ the flight was delayed for several hours, the passengers remained calm and patient.",
+            "options": [
+                {
+                    "option": ["Despite", "Because", "Even though", "So that"],
+                    "index_answer": 2
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "The professor explained what did the experiment prove to the graduate students.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+        {
+            "type": "FillInTheBlank",
+            "question": "The researchers were surprised by ___ the new drug reduced the symptoms so quickly.",
+            "options": [
+                {
+                    "option": ["that", "how", "what", "which"],
+                    "index_answer": 1
+                }
+            ]
+        },
+
+        {
+            "type": "TrueOrFalse",
+            "question": "The scientist whom discovered the vaccine received an international award.",
+            "options": [
+                {
+                    "option": ["Correct", "Incorrect"],
+                    "index_answer": 1
+                }
+            ]
+        },
+{
+    "type": "FillInTheBlank",
+    "question": "The report ___ was submitted last week contains several critical errors.",
+    "options": [
+        {
+            "option": ["who", "whom", "which", "where"],
+            "index_answer": 2
+        }
+    ]
+},
+
+{
+    "type": "TrueOrFalse",
+    "question": "The number of students in the classroom are increasing every year.",
+    "options": [
+        {
+            "option": ["Correct", "Incorrect"],
+            "index_answer": 1
+        }
+    ]
+},
+{
+    "type": "FillInTheBlank",
+    "question": "Each of the participants ___ required to register before attending the seminar.",
+    "options": [
+        {
+            "option": ["are", "were", "is", "have"],
+            "index_answer": 2
+        }
+    ]
+},
+
+{
+    "type": "TrueOrFalse",
+    "question": "The teacher, together with her students, are attending the science exhibition.",
+    "options": [
+        {
+            "option": ["Correct", "Incorrect"],
+            "index_answer": 1
+        }
+    ]
+},
+
+{
+    "type": "FillInTheBlank",
+    "question": "The bouquet of flowers ___ on the table.",
+    "options": [
+        {
+            "option": ["are", "were", "is", "have"],
+            "index_answer": 2
+        }
+    ]
+},
+
+{
+    "type": "TrueOrFalse",
+    "question": "A number of employees is requesting additional training sessions.",
+    "options": [
+        {
+            "option": ["Correct", "Incorrect"],
+            "index_answer": 1
+        }
+    ]
+},
+
+{
+    "type": "FillInTheBlank",
+    "question": "The majority of the information ___ available online.",
+    "options": [
+        {
+            "option": ["are", "were", "is", "have"],
+            "index_answer": 2
+        }
+    ]
+},
+
+{
+    "type": "TrueOrFalse",
+    "question": "Everybody in the office know the new policy.",
+    "options": [
+        {
+            "option": ["Correct", "Incorrect"],
+            "index_answer": 1
+        }
+    ]
+},
+
+{
+    "type": "FillInTheBlank",
+    "question": "Neither of the answers ___ correct.",
+    "options": [
+        {
+            "option": ["are", "were", "is", "have"],
+            "index_answer": 2
+        }
+    ]
+},
+
+{
+    "type": "TrueOrFalse",
+    "question": "She enjoys swimming, to run, and cycling every weekend.",
+    "options": [
+        {
+            "option": ["Correct", "Incorrect"],
+            "index_answer": 1
+        }
+    ]
+},
+
+{
+    "type": "FillInTheBlank",
+    "question": "The manager asked the employees to work efficiently, communicate clearly, and ___ deadlines.",
+    "options": [
+        {
+            "option": ["meeting", "meet", "met", "meets"],
+            "index_answer": 1
+        }
+    ]
+},
+
+{
+    "type": "TrueOrFalse",
+    "question": "He likes reading books and to watch movies during his free time.",
+    "options": [
+        {
+            "option": ["Correct", "Incorrect"],
+            "index_answer": 1
+        }
+    ]
+},
+
+{
+    "type": "FillInTheBlank",
+    "question": "The students prepared reports, created presentations, and ___ demonstrations.",
+    "options": [
+        {
+            "option": ["conduct", "conducted", "conducting", "conducts"],
+            "index_answer": 1
+        }
+    ]
+}
+
+    ]
+},
     {
   "session_id": "Reading",
   "questions": [
