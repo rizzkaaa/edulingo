@@ -31,9 +31,9 @@ export default function StructurePage() {
 
           <div className={styles.infoRow}>
             <div className={styles.infoBox}>📝 100 Soal</div>
-            <div className={styles.infoBox}>⏱ 80 Menit</div>
+            <div className={styles.infoBox}>⏱ 17 Menit</div>
             <div className={styles.infoBox}>📚 3 Topik</div>
-            <div className={styles.infoBox}>📝 30 Sub-Materi</div>
+            <div className={styles.infoBox}>📝 28 Sub-Materi</div>
           </div>
 
           <button className={styles.formatBtn}>✦ TOEFL Format</button>
@@ -150,7 +150,7 @@ export default function StructurePage() {
             {/* Checkbox 1 - dikunci, selalu tercentang */}
             <label className={styles.checkLine}>
               <input type="checkbox" checked readOnly />
-              <span>Punya waktu 15 menit penuh tanpa gangguan.</span>
+              <span>Punya waktu 17 menit penuh tanpa gangguan.</span>
             </label>
             <div className={styles.divider}></div>
 
@@ -214,7 +214,7 @@ export default function StructurePage() {
             <div className={`${styles.materiCardHeader} ${styles.orange}`}>
               <span>STRUCTURE</span>
               <div className={styles.badges}>
-                <span className={styles.badge}>15 Menit</span>
+                <span className={styles.badge}>17 Menit</span>
                 <span className={styles.badge}>~28 Soal</span>
               </div>
             </div>

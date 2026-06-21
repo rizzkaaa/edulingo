@@ -58,7 +58,6 @@ const defaultLeaderboard = [
   }
 ];
 
-// ⬇️ baru: rumus skor TOEFL yang SAMA seperti di halaman History
 function calculateToeflScore(data) {
   let totalPercentageSum = 0;
   let activeSectionsCount = 0;
@@ -89,7 +88,6 @@ function calculateToeflScore(data) {
     minToefl + (averagePercentage * toeflRange) / 100
   );
 
-  // ⬇️ waktu total pengerjaan (untuk tie-breaker)
   const totalTime =
     (data.reading_time_spent || 0) +
     (data.structure_time_spent || 0) +

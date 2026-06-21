@@ -264,7 +264,7 @@ export default function LongAudioQuestion({
               border: "none",
               cursor: "pointer",
               letterSpacing: "1px",
-              boxShadow: "4px 4px 0px #B23B22" // Sentuhan desain untuk tombol
+              boxShadow: "4px 4px 0px #B23B22"
             }}
           >
             {isLastQuestion ? "FINISH SESSION" : "GO TO QUESTIONS →"}

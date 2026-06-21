@@ -29,7 +29,8 @@ const questionComponents = {
   long_audio: LongAudioQuestion,
 };
 
-// 🌟 PERBAIKAN: MAX_QUESTIONS telah dihapus
+// Batas total pertanyaan (tidak termasuk halaman intro audio)
+const MAX_REAL_QUESTIONS = 36;
 
 export default function ListeningPage() {
   const router = useRouter();
@@ -51,6 +52,15 @@ export default function ListeningPage() {
   const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(25 * 60); 
 
+  // Fungsi pengacak array
+  const shuffleArray = (array) => {
+    let shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
   useEffect(() => {
     const auth = getAuth();
@@ -73,7 +83,7 @@ export default function ListeningPage() {
     return () => unsubscribe();
   }, []);
 
-  // Load soal Listening, Flattening Data
+  // 🌟 PERBAIKAN ALGORITMA: Pisahkan Short dan Long Audio, Acak Short saja, Batasi total 36
   useEffect(() => {
     try {
       let listeningSession = null;
@@ -84,12 +94,14 @@ export default function ListeningPage() {
       }
 
       if (listeningSession && listeningSession.questions) {
-        let normalizedQuestions = [];
+        let shortAudios = [];
+        let longAudios = [];
+        let others = [];
 
         listeningSession.questions.forEach((q) => {
           if (q.type === "ShortAudio" && Array.isArray(q.options)) {
             q.options.forEach((subQ) => {
-              normalizedQuestions.push({
+              shortAudios.push({
                 ...q,
                 type: "audio", 
                 question: subQ.question || "Listen to the audio and choose the correct answer.",
@@ -101,14 +113,16 @@ export default function ListeningPage() {
             });
           } 
           else if (q.type === "LongAudio" && Array.isArray(q.options)) {
-            normalizedQuestions.push({
+            // Intro Long Audio
+            longAudios.push({
               ...q,
               type: "long_audio",
               audioSrc: q.audio ? `/audio/${q.audio}` : null,
             });
 
+            // Anak-anak Soal Long Audio
             q.options.forEach((subQ) => {
-              normalizedQuestions.push({
+              longAudios.push({
                 ...q,
                 type: "audio",
                 question: subQ.question || "Listen to the audio and choose the correct answer.",
@@ -128,7 +142,7 @@ export default function ListeningPage() {
             let correctAns = q.correct_answer !== undefined ? q.correct_answer : (q.answer !== undefined ? q.answer : null);
             let correctIdx = q.index_answer !== undefined ? parseInt(q.index_answer) : null;
 
-            normalizedQuestions.push({
+            others.push({
               ...q,
               type: mappedType,
               options: flatOptions,
@@ -138,7 +152,23 @@ export default function ListeningPage() {
           }
         });
 
-        // 🌟 PERBAIKAN: Pembatasan slice(0, MAX_QUESTIONS) dihapus agar semua soal dimuat
+        // Hitung berapa banyak soal "asli" yang sudah diambil dari LongAudio dan tipe Lainnya
+        const realInLong = longAudios.filter(q => q.type !== "long_audio").length;
+        const realInOthers = others.filter(q => q.type !== "long_audio").length;
+        
+        // Sisa kuota untuk ShortAudio agar totalnya pas 36
+        let neededShorts = MAX_REAL_QUESTIONS - realInLong - realInOthers;
+        if (neededShorts < 0) neededShorts = 0; // Fallback jika LongAudio sudah memenuhi 36
+
+        // Acak HANYA ShortAudio, lalu potong sesuai sisa kuota
+        let selectedShorts = shortAudios;
+        if (shortAudios.length > neededShorts) {
+          selectedShorts = shuffleArray(shortAudios).slice(0, neededShorts);
+        }
+
+        // Susun kembali (ShortAudio -> LongAudio -> Lainnya)
+        let normalizedQuestions = [...selectedShorts, ...longAudios, ...others];
+
         setQuestions(normalizedQuestions);
       } else {
         console.error("Data Listening session tidak ditemukan di file simulasi.json");

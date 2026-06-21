@@ -47,7 +47,7 @@ export default function ReadingPage() {
   });
 
   const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(80 * 60);
+  const [timeLeft, setTimeLeft] = useState(40 * 60);
 
   const shuffleArray = (array) => {
     let shuffled = [...array];

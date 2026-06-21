@@ -46,7 +46,7 @@ export default function StructurePage() {
   });
 
   const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(80 * 60);
+  const [timeLeft, setTimeLeft] = useState(17 * 60);
 
   const shuffleArray = (array) => {
     let shuffled = [...array];
@@ -77,6 +77,7 @@ export default function StructurePage() {
 
     return () => unsubscribe();
   }, []);
+
   useEffect(() => {
     try {
       let structureSession = null;
@@ -118,8 +119,8 @@ export default function StructurePage() {
           };
         });
         
-        if (normalizedQuestions.length > 36) {
-          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, 36);
+        if (normalizedQuestions.length > 28) {
+          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, 28);
         }
         
         setQuestions(normalizedQuestions);
