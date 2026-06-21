@@ -16,7 +16,6 @@ import LongAudioQuestion from "../../components/question_type_component/long_aud
 
 import { db } from "../../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
-// 🌟 PERBAIKAN: Import Auth persis seperti di ReadingPage
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import questionsData from "../../../data/simulasi.json";
@@ -30,7 +29,7 @@ const questionComponents = {
   long_audio: LongAudioQuestion,
 };
 
-const MAX_QUESTIONS = 36;
+// 🌟 PERBAIKAN: MAX_QUESTIONS telah dihapus
 
 export default function ListeningPage() {
   const router = useRouter();
@@ -38,7 +37,6 @@ export default function ListeningPage() {
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
 
-  // 🌟 PERBAIKAN: State User dan Session disamakan dengan ReadingPage
   const [userId, setUserId]           = useState("");
   const [sessionId, setSessionId]     = useState("");
 
@@ -50,20 +48,10 @@ export default function ListeningPage() {
     show: false, text: "", isAlert: true, onOke: () => {},
   });
 
-  // 🌟 PERBAIKAN: State untuk mencegah alert time-up berulang
   const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 Menit untuk Listening
+  const [timeLeft, setTimeLeft] = useState(25 * 60); 
 
-  const shuffleArray = (array) => {
-    let shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
 
-  // 🌟 PERBAIKAN: Logika Auth State dan Session ID disamakan dengan ReadingPage
   useEffect(() => {
     const auth = getAuth();
     
@@ -150,13 +138,10 @@ export default function ListeningPage() {
           }
         });
 
-        if (normalizedQuestions.length > MAX_QUESTIONS) {
-          normalizedQuestions = shuffleArray(normalizedQuestions).slice(0, MAX_QUESTIONS);
-        }
-
+        // 🌟 PERBAIKAN: Pembatasan slice(0, MAX_QUESTIONS) dihapus agar semua soal dimuat
         setQuestions(normalizedQuestions);
       } else {
-        console.error("Data Listening session tidak ditemukan di file question.json");
+        console.error("Data Listening session tidak ditemukan di file simulasi.json");
       }
     } catch (error) {
       console.error("Gagal memproses data soal:", error);
@@ -165,7 +150,6 @@ export default function ListeningPage() {
     }
   }, []);
 
-  // 🌟 PERBAIKAN: Timer countdown disamakan dengan ReadingPage (handle alert)
   useEffect(() => {
     if (isLoading || questions.length === 0) return;
 
@@ -211,7 +195,6 @@ export default function ListeningPage() {
 
   const allAnswered = checkIfAllAnswered();
 
-  // 🌟 PERBAIKAN: Menyimpan ke dokumen SessionId agar data tidak ter-overwrite
   const saveDataToFirebase = async () => {
     if (!sessionId) return; 
 
@@ -252,7 +235,6 @@ export default function ListeningPage() {
     }
   };
 
-  // 🌟 PERBAIKAN: Handler Time Up disamakan dengan ReadingPage
   const handleTimeUp = () => {
     showAlert(
       "Waktu pengerjaan sesi ini telah habis! Jawaban Anda telah disimpan otomatis.",
@@ -326,7 +308,7 @@ export default function ListeningPage() {
   }
 
   if (questions.length === 0) {
-    return <div className={styles.container} style={{ color: 'white', textAlign: 'center', paddingTop: '20vh' }}>Soal tidak tersedia. Cek file question.json Anda.</div>;
+    return <div className={styles.container} style={{ color: 'white', textAlign: 'center', paddingTop: '20vh' }}>Soal tidak tersedia. Cek file simulasi.json Anda.</div>;
   }
 
   const q = questions[current];
@@ -462,8 +444,7 @@ export default function ListeningPage() {
                     {getRealQuestionNumber(index)}
                   </div>
                 );
-              })
-            }
+              })}
             </div>
             <div className={styles.legendBox}>
               <div><span className={styles.legendAnswered}></span>Answered</div>

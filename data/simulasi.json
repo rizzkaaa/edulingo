@@ -1176,10 +1176,8 @@
             "index_answer": 1
           }
         ]
-      }
-    ]
-  },
-  {
+      },
+        {
     "type": "LongAudio",
     "audio": "simulasi7.1.mp3",
     "options": [
@@ -1325,6 +1323,8 @@
         ],
         "index_answer": 2
       }
+    ]
+  }
     ]
   }
 ]

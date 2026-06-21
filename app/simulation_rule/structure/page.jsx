@@ -33,7 +33,7 @@ export default function StructurePage() {
             <div className={styles.infoBox}>📝 100 Soal</div>
             <div className={styles.infoBox}>⏱ 80 Menit</div>
             <div className={styles.infoBox}>📚 3 Topik</div>
-            <div className={styles.infoBox}>📝 28 Sub-Materi</div>
+            <div className={styles.infoBox}>📝 30 Sub-Materi</div>
           </div>
 
           <button className={styles.formatBtn}>✦ TOEFL Format</button>

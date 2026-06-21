@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import styles from "./long_audio_question.module.css";
 import { FaPlay, FaPause, FaVolumeUp, FaCog } from "react-icons/fa";
 
 export default function LongAudioQuestion({
   audioSrc,
-  options = [], // 🌟 Mengambil array sub-soal dari JSON (...q.options)
+  options = [], // Mengambil array sub-soal dari JSON
   onNextQuestion,
   isLastQuestion,
 }) {
@@ -194,7 +193,6 @@ export default function LongAudioQuestion({
         </div>
       </div>
 
-
       {/* 🌟 2. PRATINJAU OPSI (Hanya Preview, Sesuai Gambar) */}
       <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
         {options && Array.isArray(options) && options.map((subQ, qIndex) => {
@@ -204,6 +202,11 @@ export default function LongAudioQuestion({
 
           return (
             <div key={qIndex} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              
+              {/* 🌟 LABEL PRATINJAU SOAL */}
+              <h3 style={{ margin: "0 0 5px 0", color: "#1A1A1A", fontSize: "16px" }}>
+                Preview Question {qIndex + 1}:
+              </h3>
               
               {/* Mapping 4 Pilihan Jawaban (A, B, C, D) */}
               {subQ.option.map((optText, optIndex) => {
@@ -260,7 +263,8 @@ export default function LongAudioQuestion({
               fontWeight: "bold",
               border: "none",
               cursor: "pointer",
-              letterSpacing: "1px"
+              letterSpacing: "1px",
+              boxShadow: "4px 4px 0px #B23B22" // Sentuhan desain untuk tombol
             }}
           >
             {isLastQuestion ? "FINISH SESSION" : "GO TO QUESTIONS →"}
