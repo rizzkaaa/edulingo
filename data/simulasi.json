@@ -1041,7 +1041,7 @@
               "She's a transfer student.",
               "She's a graduate student."
             ],
-            "index_answer": -1
+            "index_answer": 0
           },
           {
             "audio": "soal32.mp3",
@@ -1051,7 +1051,7 @@
               "What courses are required for a literature major.",
               "Who won the campus election."
             ],
-            "index_answer": -1
+            "index_answer": 2
           },
           {
             "audio": "soal33.mp3",
@@ -1061,7 +1061,7 @@
               "Eight.",
               "Ten."
             ],
-            "index_answer": -1
+            "index_answer": 2
           },
           {
             "audio": "soal34.mp3",
@@ -1071,7 +1071,7 @@
               "Literary analysis.",
               "Surveying."
             ],
-            "index_answer": -1
+            "index_answer": 2
           }
         ]
       },
