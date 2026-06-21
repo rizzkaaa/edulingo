@@ -16,8 +16,10 @@ import LongAudioQuestion from "../../components/question_type_component/long_aud
 
 import { db } from "../../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
+// 🌟 PERBAIKAN: Import Auth persis seperti di ReadingPage
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import simulasiData from "../../../data/simulasi.json";
+import questionsData from "../../../data/simulasi.json";
 
 const questionComponents = {
   audio: AudioQuestion,
@@ -33,9 +35,12 @@ const MAX_QUESTIONS = 36;
 export default function ListeningPage() {
   const router = useRouter();
 
-  const [questions, setQuestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [userId, setUserId]       = useState("");
+  const [questions, setQuestions]     = useState([]);
+  const [isLoading, setIsLoading]     = useState(true);
+
+  // 🌟 PERBAIKAN: State User dan Session disamakan dengan ReadingPage
+  const [userId, setUserId]           = useState("");
+  const [sessionId, setSessionId]     = useState("");
 
   const [current, setCurrent]         = useState(0);
   const [answers, setAnswers]         = useState({});
@@ -45,7 +50,9 @@ export default function ListeningPage() {
     show: false, text: "", isAlert: true, onOke: () => {},
   });
 
-  const [timeLeft, setTimeLeft] = useState(25 * 60);
+  // 🌟 PERBAIKAN: State untuk mencegah alert time-up berulang
+  const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 Menit untuk Listening
 
   const shuffleArray = (array) => {
     let shuffled = [...array];
@@ -56,67 +63,91 @@ export default function ListeningPage() {
     return shuffled;
   };
 
-  // Ambil ID user yang sedang login
+  // 🌟 PERBAIKAN: Logika Auth State dan Session ID disamakan dengan ReadingPage
   useEffect(() => {
-    let loggedInUser = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");
-
-    if (loggedInUser) {
-      setUserId(loggedInUser);
-    } else {
-      console.warn("Data login tidak ditemukan. Menggunakan ID Guest sementara.");
-      let storedId = sessionStorage.getItem("toefl_guest_id");
-      if (!storedId) {
-        storedId = "guest_" + Math.random().toString(36).substring(2, 15);
-        sessionStorage.setItem("toefl_guest_id", storedId);
+    const auth = getAuth();
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        setUserId("guest");
       }
-      setUserId(storedId);
-    }
+
+      let currentSessionId = sessionStorage.getItem("current_exam_session");
+      if (!currentSessionId) {
+        currentSessionId = "session_" + new Date().getTime() + "_" + Math.random().toString(36).substring(2, 9);
+        sessionStorage.setItem("current_exam_session", currentSessionId);
+      }
+      setSessionId(currentSessionId);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  // Load soal Listening dari JSON, Normalisasi, Acak, Batasi MAX_QUESTIONS
+  // Load soal Listening, Flattening Data
   useEffect(() => {
     try {
       let listeningSession = null;
-      if (Array.isArray(simulasiData)) {
-        listeningSession = simulasiData.find(item => item.session_id === "Listening");
-      } else if (simulasiData.session_id === "Listening") {
-        listeningSession = simulasiData;
+      if (Array.isArray(questionsData)) {
+        listeningSession = questionsData.find(item => item.session_id === "Listening");
+      } else if (questionsData.session_id === "Listening") {
+        listeningSession = questionsData;
       }
 
       if (listeningSession && listeningSession.questions) {
+        let normalizedQuestions = [];
 
-        let normalizedQuestions = listeningSession.questions.map((q) => {
-          let mappedType = q.type;
+        listeningSession.questions.forEach((q) => {
+          if (q.type === "ShortAudio" && Array.isArray(q.options)) {
+            q.options.forEach((subQ) => {
+              normalizedQuestions.push({
+                ...q,
+                type: "audio", 
+                question: subQ.question || "Listen to the audio and choose the correct answer.",
+                audioSrc: subQ.audio ? `/audio/${subQ.audio}` : null, 
+                options: subQ.option || [], 
+                correctIndex: subQ.index_answer !== undefined ? parseInt(subQ.index_answer) : null,
+                correctAnswer: (subQ.option && subQ.index_answer !== undefined) ? subQ.option[parseInt(subQ.index_answer)] : null
+              });
+            });
+          } 
+          else if (q.type === "LongAudio" && Array.isArray(q.options)) {
+            normalizedQuestions.push({
+              ...q,
+              type: "long_audio",
+              audioSrc: q.audio ? `/audio/${q.audio}` : null,
+            });
 
-          if (mappedType === "TrueOrFalse") mappedType = "true_false";
-          if (mappedType === "FillInTheBlank" || mappedType === "MultipleChoice") mappedType = "basic";
-          if (mappedType === "LongAudio") mappedType = "long_audio";
-          if (mappedType === "Audio") mappedType = "audio";
+            q.options.forEach((subQ) => {
+              normalizedQuestions.push({
+                ...q,
+                type: "audio",
+                question: subQ.question || "Listen to the audio and choose the correct answer.",
+                audioSrc: subQ.audio ? `/audio/${subQ.audio}` : null, 
+                options: subQ.option || [], 
+                correctIndex: subQ.index_answer !== undefined ? parseInt(subQ.index_answer) : null,
+                correctAnswer: (subQ.option && subQ.index_answer !== undefined) ? subQ.option[parseInt(subQ.index_answer)] : null
+              });
+            });
+          } 
+          else {
+            let mappedType = q.type;
+            if (mappedType === "TrueOrFalse") mappedType = "true_false";
+            if (mappedType === "FillInTheBlank" || mappedType === "MultipleChoice") mappedType = "basic";
 
-          let flatOptions = q.options || [];
-          let correctAns = q.correct_answer !== undefined ? q.correct_answer : (q.answer !== undefined ? q.answer : null);
-          let correctIdx = q.index_answer !== undefined ? parseInt(q.index_answer) : null;
+            let flatOptions = q.options || [];
+            let correctAns = q.correct_answer !== undefined ? q.correct_answer : (q.answer !== undefined ? q.answer : null);
+            let correctIdx = q.index_answer !== undefined ? parseInt(q.index_answer) : null;
 
-          if (Array.isArray(q.options) && q.options.length > 0) {
-            if (q.options[0] && typeof q.options[0] === 'object' && q.options[0].option) {
-              flatOptions = q.options[0].option;
-              const idx2 = q.options[0].index_answer;
-              if (idx2 !== undefined && idx2 !== null) {
-                correctIdx = parseInt(idx2);
-                if (flatOptions[correctIdx] !== undefined) {
-                  correctAns = flatOptions[correctIdx];
-                }
-              }
-            }
+            normalizedQuestions.push({
+              ...q,
+              type: mappedType,
+              options: flatOptions,
+              correctAnswer: correctAns,
+              correctIndex: correctIdx,
+            });
           }
-
-          return {
-            ...q,
-            type: mappedType,
-            options: flatOptions,
-            correctAnswer: correctAns,
-            correctIndex: correctIdx,
-          };
         });
 
         if (normalizedQuestions.length > MAX_QUESTIONS) {
@@ -125,7 +156,7 @@ export default function ListeningPage() {
 
         setQuestions(normalizedQuestions);
       } else {
-        console.error("Data Listening session tidak ditemukan di file simulasi.json");
+        console.error("Data Listening session tidak ditemukan di file question.json");
       }
     } catch (error) {
       console.error("Gagal memproses data soal:", error);
@@ -134,26 +165,25 @@ export default function ListeningPage() {
     }
   }, []);
 
-  // Timer countdown
+  // 🌟 PERBAIKAN: Timer countdown disamakan dengan ReadingPage (handle alert)
   useEffect(() => {
     if (isLoading || questions.length === 0) return;
 
-    const timerId = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-
-    return () => clearInterval(timerId);
-  }, [isLoading, questions.length]);
-
-  useEffect(() => {
-    if (timeLeft === 0 && !isLoading && questions.length > 0) {
+    if (timeLeft <= 0 && !timeUpAlertShown) {
+      setTimeUpAlertShown(true);
       handleTimeUp();
+      return;
     }
-  }, [timeLeft, isLoading, questions.length]);
+    
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+      return () => clearInterval(timerId);
+    }
+  }, [timeLeft, isLoading, questions.length, timeUpAlertShown]);
 
   const totalQuestions = questions.length;
-
-  // Total soal "asli" — tidak menghitung long_audio sebagai soal
   const realQuestionsCount = questions.filter(q => q.type !== "long_audio").length;
 
   function getRealQuestionNumber(index) {
@@ -181,9 +211,9 @@ export default function ListeningPage() {
 
   const allAnswered = checkIfAllAnswered();
 
-  // Simpan skor ke Firebase
+  // 🌟 PERBAIKAN: Menyimpan ke dokumen SessionId agar data tidak ter-overwrite
   const saveDataToFirebase = async () => {
-    if (!userId) return;
+    if (!sessionId) return; 
 
     const timeSpent = (25 * 60) - timeLeft;
     let correctCount = 0;
@@ -207,7 +237,8 @@ export default function ListeningPage() {
     const scorePercentage = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
 
     try {
-      await setDoc(doc(db, "exam_sessions", userId), {
+      await setDoc(doc(db, "exam_sessions", sessionId), {
+        userId: userId, 
         listening_time_left: timeLeft,
         listening_time_spent: timeSpent,
         listening_correct_answers: correctCount,
@@ -215,15 +246,22 @@ export default function ListeningPage() {
         listening_score_percentage: scorePercentage,
         updatedAt: new Date()
       }, { merge: true });
-      console.log(`Skor Listening berhasil disimpan ke Akun Login ID: ${userId}`);
+      console.log(`Skor Listening berhasil disimpan ke Session ID: ${sessionId}`);
     } catch (error) {
       console.error("Gagal menyimpan data ke Firebase: ", error);
     }
   };
 
-  const handleTimeUp = async () => {
-    await saveDataToFirebase();
-    router.push("/simulation_rule/structure");
+  // 🌟 PERBAIKAN: Handler Time Up disamakan dengan ReadingPage
+  const handleTimeUp = () => {
+    showAlert(
+      "Waktu pengerjaan sesi ini telah habis! Jawaban Anda telah disimpan otomatis.",
+      true, 
+      async () => {
+        await saveDataToFirebase();
+        router.push("/simulation_rule/structure");
+      }
+    );
   };
 
   const formatTime = (seconds) => {
@@ -288,7 +326,7 @@ export default function ListeningPage() {
   }
 
   if (questions.length === 0) {
-    return <div className={styles.container} style={{ color: 'white', textAlign: 'center', paddingTop: '20vh' }}>Soal tidak tersedia. Cek file simulasi.json Anda.</div>;
+    return <div className={styles.container} style={{ color: 'white', textAlign: 'center', paddingTop: '20vh' }}>Soal tidak tersedia. Cek file question.json Anda.</div>;
   }
 
   const q = questions[current];
@@ -424,7 +462,8 @@ export default function ListeningPage() {
                     {getRealQuestionNumber(index)}
                   </div>
                 );
-              })}
+              })
+            }
             </div>
             <div className={styles.legendBox}>
               <div><span className={styles.legendAnswered}></span>Answered</div>

@@ -176,7 +176,7 @@ function ButtonMenu({
       setTimeout(() => setShake(false), 900);
     } else {
       setCurrentModuleOpen(sub_material_id);
-      router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
+      router.push(`/dashboard/lesson/structure_part_1/${encodeURIComponent(nextPath)}`);
     }
   }
 
@@ -228,7 +228,7 @@ function BottomBar({
     const nextPath = sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
 
     setCurrentModuleOpen(currentModuleOpen - 1);
-    router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
+    router.push(`/dashboard/lesson/structure_part_1/${encodeURIComponent(nextPath)}`);
   }
 
   function nextModule() {
@@ -243,7 +243,7 @@ function BottomBar({
       const nextPath = sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
 
       setCurrentModuleOpen(currentModuleOpen + 1);
-      router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
+      router.push(`/dashboard/lesson/structure_part_1/${encodeURIComponent(nextPath)}`);
     }
   }
 
