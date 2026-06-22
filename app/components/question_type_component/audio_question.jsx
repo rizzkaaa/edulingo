@@ -1,6 +1,5 @@
 "use client";
 
-// 🌟 PERBAIKAN: Tambahkan useEffect di import
 import { useState, useRef, useEffect } from "react";
 import styles from "./audio_question.module.css";
 import shared from "./shared.module.css";
@@ -9,30 +8,27 @@ import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa";
 export default function AudioQuestion({ 
   questionNumber, 
   totalQuestions, 
-  audioSrc, // Pastikan di PracticePage.js prop ini bernama audioSrc juga, bukan audioUrl
+  audioSrc, 
   question, 
   options, 
   onAnswer, 
   selectedAnswer 
 }) {
   const audioRef = useRef(null);
-  const [playing, setPlaying]       = useState(false);
-  const [progress, setProgress]       = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState("0:00");
-  const [duration, setDuration]       = useState("0:00");
-  const [ended, setEnded]             = useState(false);
+  const [duration, setDuration] = useState("0:00");
+  const [ended, setEnded] = useState(false);
 
-  // 🌟 PERBAIKAN 1: Cleanup & Reset State saat pindah soal
+  // Reset state & cleanup audio saat pindah soal
   useEffect(() => {
     const currentAudio = audioRef.current;
-
-    // Reset semua state saat ganti soal/audioSrc berubah
     setPlaying(false);
     setProgress(0);
     setCurrentTime("0:00");
     setEnded(false);
 
-    // Cleanup: Matikan audio saat komponen mati / ganti soal
     return () => {
       if (currentAudio) {
         currentAudio.pause();
@@ -48,9 +44,8 @@ export default function AudioQuestion({
     return `${m}:${s}`;
   }
 
-  // 🌟 PERBAIKAN 2: Tangkap Promise dari audio.play() untuk hindari AbortError
   function handlePlayPause() {
-    if (ended) return; // gak bisa diplay lagi kalau sudah selesai
+    if (ended) return; 
     
     const audio = audioRef.current;
     if (!audio) return;
@@ -64,11 +59,9 @@ export default function AudioQuestion({
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // Audio berhasil diputar
             setPlaying(true);
           })
           .catch((error) => {
-            // Pemutaran dibatalkan (misal user klik Next dengan sangat cepat)
             console.log("Audio play diinterupsi, aman diabaikan:", error);
             setPlaying(false);
           });
@@ -92,11 +85,11 @@ export default function AudioQuestion({
 
   function handleEnded() {
     setPlaying(false);
-    setEnded(true); // ← audio selesai, kunci tombol
+    setEnded(true); 
   }
 
   function handleProgressClick(e) {
-    if (ended) return; // gak bisa skip kalau sudah selesai
+    if (ended) return; 
     const audio = audioRef.current;
     if (!audio || isNaN(audio.duration)) return;
     const rect = e.currentTarget.getBoundingClientRect();
@@ -118,14 +111,12 @@ export default function AudioQuestion({
 
       {/* ===== AUDIO SECTION ===== */}
       <div className={shared.mediaSection}>
-
         <div className={styles.audioHeader}>
           <div className={styles.audioIcon}>
             <FaVolumeUp />
           </div>
           <div>
             <h3 className={styles.audioTitle}>Listen to the Audio</h3>
-            {/* ← keterangan berubah sesuai state */}
             <p className={styles.audioSub}>
             {ended
               ? "The audio has finished playing and cannot be replayed."
@@ -136,8 +127,6 @@ export default function AudioQuestion({
         </div>
 
         <div className={styles.audioPlayer}>
-
-          {/* Tombol play — abu-abu dan disabled kalau ended */}
           <button
             className={`${styles.playBtn} ${ended ? styles.playBtnDisabled : ""}`}
             onClick={handlePlayPause}
@@ -166,9 +155,7 @@ export default function AudioQuestion({
               <span>{duration}</span>
             </div>
           </div>
-
         </div>
-
       </div>
 
       {/* ===== QUESTION SECTION ===== */}
@@ -179,25 +166,35 @@ export default function AudioQuestion({
 
         <h2 className={shared.questionText}>{question}</h2>
 
-              <div className={shared.options}>
-  {/* 🌟 Tambahkan pengecekan null/undefined dan pastikan array ada */}
-  {options && Array.isArray(options) && options.length > 0 ? (
-    options.map((opt, i) => (
-      <button
-        key={i}
-        className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
-        onClick={() => onAnswer(i)}
-      >
-        <span className={shared.optionText}>{opt}</span>
-      </button>
-    ))
-  ) : (
-    // Tambahkan log untuk membantu kita melihat apakah data memang kosong
-    <p style={{ color: "red" }}>
-      {options === undefined ? "Data options belum diterima (Cek PracticePage.js)" : "Pilihan tidak tersedia."}
-    </p>
-  )}
-</div>
+        {/* 🌟 SEKARANG SUDAH SAMA PERSIS DENGAN BASIC_QUESTION */}
+        <div className={shared.options}>
+          {options && Array.isArray(options) && options.length > 0 ? (
+            options.map((opt, i) => (
+              <button
+                key={i}
+                className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
+                onClick={() => {
+                  if (selectedAnswer === i) {
+                    onAnswer(undefined); // Klik ulang opsi yang sama untuk unselect
+                  } else {
+                    onAnswer(i);
+                  }
+                }}
+              >
+                <span className={`${shared.radio} ${selectedAnswer === i ? shared.radioSelected : ""}`}>
+                  {selectedAnswer === i && <span className={shared.radioFill} />}
+                </span>
+                <span className={`${shared.optionText} ${selectedAnswer === i ? shared.optionTextSelected : ""}`}>
+                  {opt}
+                </span>
+              </button>
+            ))
+          ) : (
+            <p style={{ color: "red" }}>
+              {options === undefined ? "Data options belum diterima (Cek PracticePage.js)" : "Pilihan tidak tersedia."}
+            </p>
+          )}
+        </div>
       </div>
 
     </div>

@@ -1,60 +1,48 @@
-// "use client";
-// //backend membuat tombol selesai terhubung ke firebse
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
-// import { auth, db } from "@/lib/firebase";
-// import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use client";
 
-// export default function ListeningComprehensionPage() {
-//   const router = useRouter();
-//   const [isLoading, setIsLoading] = useState(false);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-//   const handleFinish = async () => {
-//     setIsLoading(true);
-//     try {
-//       const user = auth.currentUser;
-//       if (!user) return alert("Anda belum login!");
+// 🌟 Urutan nama folder sub-materi Listening Comprehension
+const SUB_LESSONS_LISTENING = [
+  "listening_to_short_conversation",     // Jika progres bernilai 1
+  "listening_to_longer_conversation",    // Jika progres bernilai 2
+  "listening_to_talks_and_note_taking",  // Jika progres bernilai 3
+];
 
-//       const userRef = doc(db, "users", user.uid);
-//       const userSnap = await getDoc(userRef);
+export default function ListeningComprehensionRedirector() {
+  const router = useRouter();
 
-//       if (userSnap.exists()) {
-//         const data = userSnap.data();
-//         let lessons = data.lessonStatus || [];
+  useEffect(() => {
+    // 1. Ambil angka progres dari Local Storage
+    const savedProgress = localStorage.getItem("listening_comprehension_sub_progress");
+    
+    let targetSlug = SUB_LESSONS_LISTENING[0]; // Default fallback ke materi pertama
 
-//         if (lessons[6]?.status === "done") {
-//           router.push("/dashboard");
-//           return;
-//         }
+    if (savedProgress) {
+      const progressIndex = parseInt(savedProgress, 10);
+      const arrayIndex = progressIndex - 1; // Konversi dari berbasis 1 ke indeks array (0)
 
-//         if (lessons[6]) {
-//           lessons[6].status = "done";
-//         }
+      if (arrayIndex >= 0 && arrayIndex < SUB_LESSONS_LISTENING.length) {
+        targetSlug = SUB_LESSONS_LISTENING[arrayIndex];
+      }
+    }
 
-//         await updateDoc(userRef, { lessonStatus: lessons });
-//         router.push("/dashboard");
-//       }
-//     } catch (error) {
-//       console.error("Gagal memperbarui:", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
+    // 2. Langsung lempar ke halaman sub-materi yang aktif
+    router.replace(`/dashboard/lesson/listening_comprehension/${targetSlug}`);
+  }, [router]);
 
-//   return (
-//     <div>
-//       <h1>Listening Comprehension</h1>
-//       <button onClick={handleFinish} disabled={isLoading}>
-//         {isLoading ? "Menyimpan..." : "SELESAI"}
-//       </button>
-//     </div>
-//   );
-// }
-
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  redirect(
-    "/dashboard/lesson/listening_comprehension/listening_to_short_conversation",
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "#ECE7E1",
+      color: "#1D1B18",
+      fontFamily: "sans-serif"
+    }}>
+      <h2 style={{ fontWeight: 900 }}>Memuat Progres Listening...</h2>
+    </div>
   );
 }

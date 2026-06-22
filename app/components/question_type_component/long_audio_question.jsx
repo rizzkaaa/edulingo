@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { FaPlay, FaPause, FaVolumeUp, FaCog } from "react-icons/fa";
+import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa"; // 🌟 Menghapus FaCog
 
 export default function LongAudioQuestion({
   audioSrc,
-  options = [], // Mengambil array sub-soal dari JSON
+  options = [], 
   onNextQuestion,
   isLastQuestion,
 }) {
@@ -71,7 +71,7 @@ export default function LongAudioQuestion({
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px", fontFamily: "sans-serif" }}>
       
-      {/* 🌟 AUDIO RAHASIA UNTUK FUNGSI PLAY */}
+      {/* AUDIO RAHASIA UNTUK FUNGSI PLAY */}
       <audio
         ref={audioRef}
         src={audioSrc}
@@ -80,20 +80,20 @@ export default function LongAudioQuestion({
         onEnded={handleAudioEnded}
       />
 
-      {/* 🌟 1. KOTAK PEMUTAR AUDIO (Sesuai Gambar) */}
+      {/* 🌟 1. KOTAK PEMUTAR AUDIO (CARD UTAMA) */}
       <div style={{
         backgroundColor: "#F2EFEB",
         border: "3px solid #1A1A1A",
         padding: "30px",
         position: "relative",
         marginBottom: "40px",
-        boxShadow: "6px 6px 0px #1A1A1A" // Efek shadow solid khas Neo-brutalism
+        boxShadow: "6px 6px 0px #1A1A1A" 
       }}>
         
         {/* Header Audio */}
         <div style={{ display: "flex", alignItems: "center", marginBottom: "25px", gap: "20px" }}>
           <div style={{
-            backgroundColor: "#F5C24F", // Warna kuning
+            backgroundColor: "#F5C24F", 
             border: "2px solid #1A1A1A",
             width: "50px",
             height: "50px",
@@ -131,7 +131,7 @@ export default function LongAudioQuestion({
             onClick={handlePlayPause}
             disabled={isAudioPlayedOnce}
             style={{
-              backgroundColor: isAudioPlayedOnce ? "#999" : "#B23B22", // Merah bata
+              backgroundColor: isAudioPlayedOnce ? "#999" : "#B23B22", 
               border: "2px solid #1A1A1A",
               width: "40px",
               height: "40px",
@@ -160,7 +160,7 @@ export default function LongAudioQuestion({
                 width: `${progress}%`,
                 transition: "width 0.1s linear"
               }}></div>
-              {/* Slider Thumb (Kotak Putih Kecil) */}
+              {/* Slider Thumb */}
               <div style={{
                 position: "absolute",
                 top: "50%",
@@ -178,39 +178,45 @@ export default function LongAudioQuestion({
             </span>
           </div>
 
-          {/* Gear Icon */}
-          <div style={{ 
-            border: "2px solid #1A1A1A", 
-            width: "40px", 
-            height: "40px", 
-            display: "flex", 
-            justifyContent: "center", 
-            alignItems: "center",
-            backgroundColor: "#FFF"
-          }}>
-            <FaCog size={18} color="#1A1A1A" />
-          </div>
+          {/* 🌟 Icon Setting (FaCog) di sini sudah dihapus agar progress bar memenuhi space */}
         </div>
+
+        {/* 🌟 2. TOMBOL LANJUT KE SOAL (Sekarang Pindah ke Dalam Card Audio) */}
+        {isAudioFinished && (
+          <div style={{ marginTop: "25px", textAlign: "right" }}>
+            <button 
+              onClick={onNextQuestion}
+              style={{
+                backgroundColor: "#B23B22", // 🔥 Mengubah warna menjadi Marun
+                color: "white",
+                padding: "12px 24px",
+                fontSize: "14px",
+                fontWeight: "bold",
+                border: "2px solid #1A1A1A", // Border solid hitam khas Neo-brutalism
+                cursor: "pointer",
+                letterSpacing: "1px",
+                boxShadow: "4px 4px 0px #1A1A1A" // Shadow hitam tebal kontras dengan marun
+              }}
+            >
+              {isLastQuestion ? "FINISH SESSION" : "GO TO QUESTIONS →"}
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* 🌟 2. PRATINJAU OPSI (Hanya Preview, Sesuai Gambar) */}
+      {/* 🌟 3. PRATINJAU OPSI (Di Luar Card Audio) */}
       <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
         {options && Array.isArray(options) && options.map((subQ, qIndex) => {
-          
-          // Memastikan bahwa ada array 'option' di dalam sub-soal
           if (!subQ.option || !Array.isArray(subQ.option)) return null;
 
           return (
             <div key={qIndex} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              
-              {/* 🌟 LABEL PRATINJAU SOAL */}
               <h3 style={{ margin: "0 0 5px 0", color: "#1A1A1A", fontSize: "16px" }}>
                 Preview Question {qIndex + 1}:
               </h3>
               
-              {/* Mapping 4 Pilihan Jawaban (A, B, C, D) */}
               {subQ.option.map((optText, optIndex) => {
-                const label = String.fromCharCode(65 + optIndex); // Menghasilkan A, B, C, D
+                const label = String.fromCharCode(65 + optIndex);
                 
                 return (
                   <div
@@ -221,11 +227,10 @@ export default function LongAudioQuestion({
                       backgroundColor: "#FFFFFF",
                       border: "2px solid #1A1A1A",
                       padding: "12px 16px",
-                      opacity: 0.8, // Memberikan kesan tidak aktif/read-only
-                      cursor: "not-allowed", // Kursor dilarang
+                      opacity: 0.8, 
+                      cursor: "not-allowed", 
                     }}
                   >
-                    {/* Kotak Huruf (A/B/C/D) */}
                     <div style={{
                       border: "2px solid #1A1A1A",
                       padding: "2px 8px",
@@ -237,8 +242,6 @@ export default function LongAudioQuestion({
                     }}>
                       {label}
                     </div>
-                    
-                    {/* Teks Opsi */}
                     <span style={{ fontSize: "14px", color: "#333", fontWeight: "500" }}>
                       {optText}
                     </span>
@@ -249,28 +252,6 @@ export default function LongAudioQuestion({
           );
         })}
       </div>
-
-      {/* 🌟 3. TOMBOL LANJUT KE SOAL */}
-      {isAudioFinished && (
-        <div style={{ marginTop: "50px", textAlign: "right" }}>
-          <button 
-            onClick={onNextQuestion}
-            style={{
-              backgroundColor: "#1A1A1A",
-              color: "white",
-              padding: "12px 24px",
-              fontSize: "14px",
-              fontWeight: "bold",
-              border: "none",
-              cursor: "pointer",
-              letterSpacing: "1px",
-              boxShadow: "4px 4px 0px #B23B22"
-            }}
-          >
-            {isLastQuestion ? "FINISH SESSION" : "GO TO QUESTIONS →"}
-          </button>
-        </div>
-      )}
 
     </div>
   );

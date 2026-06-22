@@ -95,17 +95,25 @@
   transform:rotate(45deg);
 }
 
-.topThreeWrapper{
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  gap:70px;
+.topThreeWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: flex-end;
+  gap: 24px; /* Atur jarak antar podium */
+  width: 100%;
+  max-width: 800px; /* Membatasi lebar maksimal area podium agar tetap proporsional */
+  margin: 0 auto;   /* Memastikan seluruh area podium berada di tengah layar */
 }
 
 .firstPlace,
-.otherPlace{
-  text-align:center;
-  position:relative;
+.otherPlace {
+  text-align: center;
+  position: relative;
+  min-width: 0; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .medalIcon{
@@ -160,21 +168,27 @@
 }
 
 .firstPlace h2{
-  margin-top:20px;
-
-  font-size:30px;
-  font-weight:900;
-
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 900;
   color:#1D1B18;
+  
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .otherPlace h2{
-  margin-top:20px;
-
-  font-size:24px;
-  font-weight:900;
-
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 900;
   color:#1D1B18;
+
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .firstPlace p{
   margin-bottom:70px;

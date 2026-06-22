@@ -1,80 +1,55 @@
-// "use client";
-// //backend membuat tombol selesai terhubung ke firebse
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
-// import { auth, db } from "@/lib/firebase";
-// import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use client";
 
-// export default function WrittenExpressionPart1Page() {
-//   const router = useRouter();
-//   const [isLoading, setIsLoading] = useState(false);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-//   const handleFinish = async () => {
-//     setIsLoading(true);
+// 🌟 Urutan nama folder sub-materi Written Expression Part 1 sesuai urutan belajar Anda
+const SUB_LESSONS_WRITTEN_1 = [
+  "subject_-_verb_agreement",                         // Jika progres bernilai 1
+  "agreement_after_prepositional_phrases",           // Jika progres bernilai 2
+  "agreement_after_expression_of_quality",           // Jika progres bernilai 3
+  "agreement_after_certain_words",                   // Jika progres bernilai 4
+  "parallel_structure",                              // Jika progres bernilai 5
+  "parallel_structure_with_coordinate_conjunctions", // Jika progres bernilai 6
+  "parallel_structure_with_paired_conjunctions",     // Jika progres bernilai 7
+];
 
-//     try {
-//       const user = auth.currentUser;
+export default function WrittenExpressionPart1Redirector() {
+  const router = useRouter();
 
-//       if (!user) {
-//         alert("Anda belum login!");
-//         setIsLoading(false);
-//         return;
-//       }
+  useEffect(() => {
+    // 1. Ambil angka progres langsung dari Local Storage
+    const savedProgress = localStorage.getItem("written_expression_part_1_sub_progress");
+    
+    let targetSlug = SUB_LESSONS_WRITTEN_1[0]; // Default fallback ke materi pertama
 
-//       const userRef = doc(db, "users", user.uid);
-//       const userSnap = await getDoc(userRef);
+    if (savedProgress) {
+      const progressIndex = parseInt(savedProgress, 10);
+      
+      // Konversi dari nilai berbasis 1 ke indeks array berbasis 0
+      const arrayIndex = progressIndex - 1;
 
-//       if (userSnap.exists()) {
-//         const data = userSnap.data();
-//         let lessons = data.lessonStatus || [];
+      // Validasi agar indeks tetap aman di dalam jangkauan array
+      if (arrayIndex >= 0 && arrayIndex < SUB_LESSONS_WRITTEN_1.length) {
+        targetSlug = SUB_LESSONS_WRITTEN_1[arrayIndex];
+      }
+    }
 
-//         if (lessons.length === 0) {
-//           lessons = Array.from({ length: 7 }, (_, i) => ({
-//             status: i === 0 ? "progress" : "locked",
-//             path: `/materi/${i + 1}`
-//           }));
-//         }
+    // 2. Eksekusi pengalihan halaman secara instan tanpa loading screen lama
+    router.replace(`/dashboard/lesson/written_expression_part_1/${targetSlug}`);
+  }, [router]);
 
-//         if (lessons[0]?.status === "done") {
-//           router.push("/dashboard");
-//           return;
-//         }
-
-//         if (lessons[0]) {
-//           lessons[0].status = "done";
-//         }
-
-//         if (lessons[1] && lessons[1].status === "locked") {
-//           lessons[1].status = "progress";
-//         }
-
-//         await updateDoc(userRef, {
-//           lessonStatus: lessons,
-//         });
-
-//         router.push("/dashboard");
-//       }
-//     } catch (error) {
-//       console.error("Gagal memperbarui progres:", error);
-//       alert("Terjadi kesalahan saat menyimpan progres.");
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Written Expression Part 1</h1>
-//       <button onClick={handleFinish} disabled={isLoading}>
-//         {isLoading ? "Menyimpan..." : "SELESAI"}
-//       </button>
-//     </div>
-//   );
-// }
-
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  // redirect("/dashboard/lesson/written_expression_part_1/subject_-_verb_agreement");
-  redirect("/dashboard/lesson/written_expression_part_1/subject_-_verb_agreement");
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "#ECE7E1",
+      color: "#1D1B18",
+      fontFamily: "sans-serif"
+    }}>
+      <h2 style={{ fontWeight: 900 }}>Memuat Progres Written Expression...</h2>
+    </div>
+  );
 }

@@ -1,57 +1,52 @@
-// "use client";
-// //backend membuat tombol selesai terhubung ke firebse
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
-// import { auth, db } from "@/lib/firebase";
-// import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use client";
 
-// export default function StructurePart2Page() {
-//   const router = useRouter();
-//   const [isLoading, setIsLoading] = useState(false);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-//   const handleFinish = async () => {
-//     setIsLoading(true);
-//     try {
-//       const user = auth.currentUser;
-//       if (!user) return alert("Anda belum login!");
+// 🌟 Urutan nama folder sub-materi Part 2 sesuai logika urutan belajar Anda
+const SUB_LESSONS_PART_2 = [
+  "coordinate_connectors",      // Jika progres bernilai 1
+  "adverb_clause_connectors",    // Jika progres bernilai 2
+  "noun_clause_connectors",      // Jika progres bernilai 3
+  "adjective_clause_connectors", // Jika progres bernilai 4
+];
 
-//       const userRef = doc(db, "users", user.uid);
-//       const userSnap = await getDoc(userRef);
+export default function StructurePart2Redirector() {
+  const router = useRouter();
 
-//       if (userSnap.exists()) {
-//         const data = userSnap.data();
-//         let lessons = data.lessonStatus || [];
+  useEffect(() => {
+    // 1. Langsung intip angka di Local Storage
+    const savedProgress = localStorage.getItem("structure_part_2_sub_progress");
+    
+    let targetSlug = SUB_LESSONS_PART_2[0]; // Default fallback ke materi pertama
 
-//         if (lessons[3]?.status === "done") {
-//           router.push("/dashboard");
-//           return;
-//         }
+    if (savedProgress) {
+      const progressIndex = parseInt(savedProgress, 10);
+      
+      // Karena Local Storage Anda berbasis 1 (1, 2, 3...), kita kurangi 1 untuk indeks array (0, 1, 2...)
+      const arrayIndex = progressIndex - 1;
 
-//         if (lessons[3]) lessons[3].status = "done";
-//         if (lessons[4] && lessons[4].status === "locked") lessons[4].status = "progress";
+      // Validasi agar tidak out-of-bounds
+      if (arrayIndex >= 0 && arrayIndex < SUB_LESSONS_PART_2.length) {
+        targetSlug = SUB_LESSONS_PART_2[arrayIndex];
+      }
+    }
 
-//         await updateDoc(userRef, { lessonStatus: lessons });
-//         router.push("/dashboard");
-//       }
-//     } catch (error) {
-//       console.error("Gagal memperbarui:", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
+    // 2. Langsung lempar ke halaman sub-materi yang aktif!
+    router.replace(`/dashboard/lesson/structure_part_2/${targetSlug}`);
+  }, [router]);
 
-//   return (
-//     <div>
-//       <h1>Structure Part 2</h1>
-//       <button onClick={handleFinish} disabled={isLoading}>
-//         {isLoading ? "Menyimpan..." : "SELESAI"}
-//       </button>
-//     </div>
-//   );
-// }
-
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  redirect("/dashboard/lesson/structure_part_2/coordinate_connectors");
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "#ECE7E1",
+      color: "#1D1B18",
+      fontFamily: "sans-serif"
+    }}>
+      <h2 style={{ fontWeight: 900 }}>Memuat Progres Belajar...</h2>
+    </div>
+  );
 }

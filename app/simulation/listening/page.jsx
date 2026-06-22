@@ -52,6 +52,9 @@ export default function ListeningPage() {
   const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(25 * 60); 
 
+  // 🌟 NEW STATE: Menyimpan indeks halaman long_audio yang sudah pernah dikunjungi pengguna
+  const [visitedLongAudio, setVisitedLongAudio] = useState({});
+
   // Fungsi pengacak array
   const shuffleArray = (array) => {
     let shuffled = [...array];
@@ -83,7 +86,7 @@ export default function ListeningPage() {
     return () => unsubscribe();
   }, []);
 
-  // 🌟 PERBAIKAN ALGORITMA: Pisahkan Short dan Long Audio, Acak Short saja, Batasi total 36
+  // PERBAIKAN ALGORITMA: Pisahkan Short dan Long Audio, Acak Short saja, Batasi total 36
   useEffect(() => {
     try {
       let listeningSession = null;
@@ -152,21 +155,17 @@ export default function ListeningPage() {
           }
         });
 
-        // Hitung berapa banyak soal "asli" yang sudah diambil dari LongAudio dan tipe Lainnya
         const realInLong = longAudios.filter(q => q.type !== "long_audio").length;
         const realInOthers = others.filter(q => q.type !== "long_audio").length;
         
-        // Sisa kuota untuk ShortAudio agar totalnya pas 36
         let neededShorts = MAX_REAL_QUESTIONS - realInLong - realInOthers;
-        if (neededShorts < 0) neededShorts = 0; // Fallback jika LongAudio sudah memenuhi 36
+        if (neededShorts < 0) neededShorts = 0; 
 
-        // Acak HANYA ShortAudio, lalu potong sesuai sisa kuota
         let selectedShorts = shortAudios;
         if (shortAudios.length > neededShorts) {
           selectedShorts = shuffleArray(shortAudios).slice(0, neededShorts);
         }
 
-        // Susun kembali (ShortAudio -> LongAudio -> Lainnya)
         let normalizedQuestions = [...selectedShorts, ...longAudios, ...others];
 
         setQuestions(normalizedQuestions);
@@ -179,6 +178,13 @@ export default function ListeningPage() {
       setIsLoading(false);
     }
   }, []);
+
+  // 🌟 NEW EFFECT: Jika user membuka halaman tipe long_audio, tandai indeks tersebut sebagai 'visited'
+  useEffect(() => {
+    if (questions.length > 0 && questions[current]?.type === "long_audio") {
+      setVisitedLongAudio(prev => ({ ...prev, [current]: true }));
+    }
+  }, [current, questions]);
 
   useEffect(() => {
     if (isLoading || questions.length === 0) return;
@@ -208,12 +214,22 @@ export default function ListeningPage() {
     return count;
   }
 
+  // 🌟 PERBAIKAN NAVIGASI PREVIOUS: Lewati long_audio jika bergerak mundur
   function getPrevIndex(fromIndex) {
     let prevIndex = fromIndex - 1;
     while (prevIndex >= 0 && questions[prevIndex].type === "long_audio") {
       prevIndex--;
     }
     return prevIndex;
+  }
+
+  // 🌟 PERBAIKAN NAVIGASI NEXT: Lewati long_audio jika index tersebut sudah pernah dikunjungi
+  function getNextIndex(fromIndex) {
+    let nextIndex = fromIndex + 1;
+    while (nextIndex < totalQuestions && questions[nextIndex].type === "long_audio" && visitedLongAudio[nextIndex]) {
+      nextIndex++;
+    }
+    return Math.min(totalQuestions - 1, nextIndex);
   }
 
   const checkIfAllAnswered = () => {
@@ -382,7 +398,8 @@ export default function ListeningPage() {
             answers={answers}
             parentIndex={current}
             onAnswer={() => {}}
-            onNextQuestion={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))}
+            // 🌟 MENGGUNAKAN getNextIndex() agar setelah intro audio panjang, langsung lompat ke soal sesudahnya
+            onNextQuestion={() => setCurrent(getNextIndex(current))}
             isLastQuestion={current === totalQuestions - 1}
           />
         </div>
@@ -449,7 +466,14 @@ export default function ListeningPage() {
             <button className={`${styles.reviewBtn} ${flagged[current] ? styles.reviewBtnActive : ""}`} onClick={handleFlag}>
               <FaFlag />{flagged[current] ? "FLAGGED" : "MARK FOR REVIEW"}
             </button>
-            <button className={styles.nextBtn} onClick={() => setCurrent(prev => Math.min(totalQuestions - 1, prev + 1))} disabled={current === totalQuestions - 1}>NEXT QUESTION →</button>
+            {/* 🌟 MENGGUNAKAN getNextIndex() agar tombol tidak masuk lagi ke halaman audio intro yang sudah pernah dikunjungi */}
+            <button 
+              className={styles.nextBtn} 
+              onClick={() => setCurrent(getNextIndex(current))} 
+              disabled={current === totalQuestions - 1 || getNextIndex(current) === current}
+            >
+              NEXT QUESTION →
+            </button>
           </div>
         </div>
 

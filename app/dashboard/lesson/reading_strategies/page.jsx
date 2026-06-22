@@ -1,57 +1,47 @@
-// "use client";
-// //backend membuat tombol selesai terhubung ke firebse
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
-// import { auth, db } from "@/lib/firebase";
-// import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use client";
 
-// export default function ReadingStrategiesPage() {
-//   const router = useRouter();
-//   const [isLoading, setIsLoading] = useState(false);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-//   const handleFinish = async () => {
-//     setIsLoading(true);
-//     try {
-//       const user = auth.currentUser;
-//       if (!user) return alert("Anda belum login!");
+// 🌟 Urutan nama folder sub-materi Reading Strategies
+const SUB_LESSONS_READING = [
+  "skimming_&_scanning", // Jika progres bernilai 1
+  "vocabulary_question",  // Jika progres bernilai 2
+];
 
-//       const userRef = doc(db, "users", user.uid);
-//       const userSnap = await getDoc(userRef);
+export default function ReadingStrategiesRedirector() {
+  const router = useRouter();
 
-//       if (userSnap.exists()) {
-//         const data = userSnap.data();
-//         let lessons = data.lessonStatus || [];
+  useEffect(() => {
+    // 1. Ambil angka progres dari Local Storage
+    const savedProgress = localStorage.getItem("reading_strategies_sub_progress");
+    
+    let targetSlug = SUB_LESSONS_READING[0]; // Default fallback ke materi pertama
 
-//         if (lessons[4]?.status === "done") {
-//           router.push("/dashboard");
-//           return;
-//         }
+    if (savedProgress) {
+      const progressIndex = parseInt(savedProgress, 10);
+      const arrayIndex = progressIndex - 1; // Konversi dari berbasis 1 ke indeks array (0)
 
-//         if (lessons[4]) lessons[4].status = "done";
-//         if (lessons[5] && lessons[5].status === "locked") lessons[5].status = "progress";
+      if (arrayIndex >= 0 && arrayIndex < SUB_LESSONS_READING.length) {
+        targetSlug = SUB_LESSONS_READING[arrayIndex];
+      }
+    }
 
-//         await updateDoc(userRef, { lessonStatus: lessons });
-//         router.push("/dashboard");
-//       }
-//     } catch (error) {
-//       console.error("Gagal memperbarui:", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
+    // 2. Langsung lempar ke halaman sub-materi yang aktif
+    router.replace(`/dashboard/lesson/reading_strategies/${targetSlug}`);
+  }, [router]);
 
-//   return (
-//     <div>
-//       <h1>Reading Strategies</h1>
-//       <button onClick={handleFinish} disabled={isLoading}>
-//         {isLoading ? "Menyimpan..." : "SELESAI"}
-//       </button>
-//     </div>
-//   );
-// }
-
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  redirect("/dashboard/lesson/reading_strategies/skimming_&_scanning");
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "#ECE7E1",
+      color: "#1D1B18",
+      fontFamily: "sans-serif"
+    }}>
+      <h2 style={{ fontWeight: 900 }}>Memuat Progres Reading...</h2>
+    </div>
+  );
 }

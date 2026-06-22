@@ -176,7 +176,7 @@ export default function HistoryPage() {
     );
   });
 
-  // 🌟 LOGIKA BARU: Hitung Rata-rata Skor HANYA untuk hari yang aktif ini
+  // Hitung Rata-rata Skor HANYA untuk hari yang aktif ini
   const dailyAverageScore = currentItems.length > 0
     ? Math.round(currentItems.reduce((sum, item) => sum + item.score, 0) / currentItems.length)
     : 0;
@@ -200,6 +200,20 @@ export default function HistoryPage() {
       day: "numeric", month: "short", year: "numeric"
     });
   };
+
+  // 🌟 1. LOGIKA BARU: HITUNG JENDELA TOMBOL YANG AKAN DI TAMPILKAN (MAKSIMAL 3 TOMBOL NOMOR)
+  let startPage = Math.max(1, currentPage - 1);
+  let endPage = Math.min(totalPages, startPage + 2);
+
+  // Penyesuaian batas jika sudah mendekati halaman terakhir agar tetap menampilkan 3 tombol (jika tersedia)
+  if (endPage - startPage < 2) {
+    startPage = Math.max(1, endPage - 2);
+  }
+
+  const visiblePages = [];
+  for (let i = startPage; i <= endPage; i++) {
+    visiblePages.push(i);
+  }
 
   return (
     <div className={styles.container}>
@@ -289,7 +303,6 @@ export default function HistoryPage() {
           <h1>{loading ? "..." : totalSessions}</h1>
         </div>
         <div className={styles.averageCard}>
-          {/* Label diubah sedikit agar memperjelas bahwa ini skor harian */}
           <p>DAILY AVG SCORE :</p>
           <h1>{loading ? "..." : dailyAverageScore}</h1> 
         </div>
@@ -345,7 +358,7 @@ export default function HistoryPage() {
           </div>
         )}
 
-        {/* LOGIKA PAGINASI */}
+        {/* ===== LOGIKA PAGINASI BARU ===== */}
         <div className={styles.paginationSection}>
           <p>
             Melihat aktivitas tanggal: <strong>{getPageDateString()}</strong> {currentItems.length > 0 && `(${currentItems.length} aktivitas)`}
@@ -353,6 +366,7 @@ export default function HistoryPage() {
           
           {totalPages > 1 && (
             <div className={styles.pagination}>
+              {/* Tombol Previous */}
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -360,22 +374,24 @@ export default function HistoryPage() {
                 <FaChevronLeft />
               </button>
               
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(page => Math.abs(page - currentPage) <= 2 || page === 1 || page === totalPages)
-                .map((page, idx, arr) => {
-                  return (
-                    <span key={page} style={{ display: "inline-flex", alignItems: "center" }}>
-                      {idx > 0 && arr[idx - 1] !== page - 1 && <span style={{ color: "#666", margin: "0 4px" }}>...</span>}
-                      <button
-                        className={currentPage === page ? styles.activePage : ""}
-                        onClick={() => setCurrentPage(page)}
-                      >
-                        {page}
-                      </button>
-                    </span>
-                  );
-                })}
+              {/* 🌟 Titik-titik Sebelah Kiri jika halaman awal tersembunyi */}
+              {startPage > 1 && <span style={{ color: "#666", margin: "0 6px", alignSelf: "center" }}>...</span>}
 
+              {/* Jendela Tombol Nomor Utama (Maksimal 3) */}
+              {visiblePages.map((page) => (
+                <button
+                  key={page}
+                  className={currentPage === page ? styles.activePage : ""}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </button>
+              ))}
+
+              {/* 🌟 Titik-titik Sebelah Kanan jika halaman akhir tersembunyi */}
+              {endPage < totalPages && <span style={{ color: "#666", margin: "0 6px", alignSelf: "center" }}>...</span>}
+
+              {/* Tombol Next */}
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}

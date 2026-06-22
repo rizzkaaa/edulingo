@@ -1,59 +1,52 @@
-// "use client";
-// //backend membuat tombol selesai terhubung ke firebse
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
-// import { auth, db } from "@/lib/firebase";
-// import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use client";
 
-// export default function WrittenExpressionPart2Page() {
-//   const router = useRouter();
-//   const [isLoading, setIsLoading] = useState(false);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-//   const handleFinish = async () => {
-//     setIsLoading(true);
-//     try {
-//       const user = auth.currentUser;
-//       if (!user) return alert("Anda belum login!");
+// 🌟 Urutan nama folder sub-materi Written Expression Part 2 sesuai urutan belajar Anda
+const SUB_LESSONS_WRITTEN_2 = [
+  "present_&_past_participle",                       // Jika progres bernilai 1
+  "present_participle_or_past_participle_after_be", // Jika progres bernilai 2
+  "past_participle_after_have",                       // Jika progres bernilai 3
+  "base_form_verb_after_modals",                      // Jika progres bernilai 4
+];
 
-//       const userRef = doc(db, "users", user.uid);
-//       const userSnap = await getDoc(userRef);
+export default function WrittenExpressionPart2Redirector() {
+  const router = useRouter();
 
-//       if (userSnap.exists()) {
-//         const data = userSnap.data();
-//         let lessons = data.lessonStatus || [];
+  useEffect(() => {
+    // 1. Ambil angka progres langsung dari Local Storage
+    const savedProgress = localStorage.getItem("written_expression_part_2_sub_progress");
+    
+    let targetSlug = SUB_LESSONS_WRITTEN_2[0]; // Default fallback ke materi pertama
 
-//         if (lessons[1]?.status === "done") {
-//           router.push("/dashboard");
-//           return;
-//         }
+    if (savedProgress) {
+      const progressIndex = parseInt(savedProgress, 10);
+      
+      // Konversi dari nilai berbasis 1 ke indeks array berbasis 0
+      const arrayIndex = progressIndex - 1;
 
-//         if (lessons[1]) lessons[1].status = "done";
-//         if (lessons[2] && lessons[2].status === "locked") lessons[2].status = "progress";
+      // Validasi agar indeks tetap aman di dalam jangkauan array
+      if (arrayIndex >= 0 && arrayIndex < SUB_LESSONS_WRITTEN_2.length) {
+        targetSlug = SUB_LESSONS_WRITTEN_2[arrayIndex];
+      }
+    }
 
-//         await updateDoc(userRef, { lessonStatus: lessons });
-//         router.push("/dashboard");
-//       }
-//     } catch (error) {
-//       console.error("Gagal memperbarui:", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
+    // 2. Redirect instan ke sub-materi aktif tanpa nunggu auth/firestore handshake
+    router.replace(`/dashboard/lesson/written_expression_part_2/${targetSlug}`);
+  }, [router]);
 
-//   return (
-//     <div>
-//       <h1>Written Expression Part 2</h1>
-//       <button onClick={handleFinish} disabled={isLoading}>
-//         {isLoading ? "Menyimpan..." : "SELESAI"}
-//       </button>
-//     </div>
-//   );
-// }
-
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  redirect(
-    "/dashboard/lesson/written_expression_part_2/present_&_past_participle",
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "#ECE7E1",
+      color: "#1D1B18",
+      fontFamily: "sans-serif"
+    }}>
+      <h2 style={{ fontWeight: 900 }}>Memuat Progres Written Expression Part 2...</h2>
+    </div>
   );
 }

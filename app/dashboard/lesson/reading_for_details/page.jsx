@@ -1,58 +1,50 @@
-// "use client";
-// //backend membuat tombol selesai terhubung ke firebse
-// import { useRouter } from "next/navigation";
-// import { useState } from "react";
-// import { auth, db } from "@/lib/firebase";
-// import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use client";
 
-// export default function ReadingForDetailsPage() {
-//   const router = useRouter();
-//   const [isLoading, setIsLoading] = useState(false);
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-//   const handleFinish = async () => {
-//     setIsLoading(true);
-//     try {
-//       const user = auth.currentUser;
-//       if (!user) return alert("Anda belum login!");
+// 🌟 Daftar sub-materi Reading Strategies sesuai urutan belajar Anda
+const SUB_LESSONS_READING = [
+  "skimming_&_scanning", // Jika progres bernilai 1
+  "vocabulary_question",  // Jika progres bernilai 2
+];
 
-//       const userRef = doc(db, "users", user.uid);
-//       const userSnap = await getDoc(userRef);
+export default function ReadingStrategiesRedirector() {
+  const router = useRouter();
 
-//       if (userSnap.exists()) {
-//         const data = userSnap.data();
-//         let lessons = data.lessonStatus || [];
+  useEffect(() => {
+    // 1. Ambil angka progres langsung dari Local Storage
+    const savedProgress = localStorage.getItem("reading_strategies_sub_progress");
+    
+    let targetSlug = SUB_LESSONS_READING[0]; // Default fallback ke materi pertama jika belum ada progres
 
-//         if (lessons[5]?.status === "done") {
-//           router.push("/dashboard");
-//           return;
-//         }
+    if (savedProgress) {
+      const progressIndex = parseInt(savedProgress, 10);
+      
+      // Konversi dari nilai berbasis 1 (1, 2) ke indeks array berbasis 0 (0, 1)
+      const arrayIndex = progressIndex - 1;
 
-//         if (lessons[5]) lessons[5].status = "done";
-//         if (lessons[6] && lessons[6].status === "locked") lessons[6].status = "progress";
+      // Validasi agar indeks tetap aman di dalam jangkauan array
+      if (arrayIndex >= 0 && arrayIndex < SUB_LESSONS_READING.length) {
+        targetSlug = SUB_LESSONS_READING[arrayIndex];
+      }
+    }
 
-//         await updateDoc(userRef, { lessonStatus: lessons });
-//         router.push("/dashboard");
-//       }
-//     } catch (error) {
-//       console.error("Gagal memperbarui:", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
+    // 2. Eksekusi pengalihan halaman secara instan tanpa nunggu koneksi database
+    router.replace(`/dashboard/lesson/reading_strategies/${targetSlug}`);
+  }, [router]);
 
-//   return (
-//     <div>
-//       <h1>Reading for Details</h1>
-//       <button onClick={handleFinish} disabled={isLoading}>
-//         {isLoading ? "Menyimpan..." : "SELESAI"}
-//       </button>
-//     </div>
-//   );
-// }
-
-
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  redirect("/dashboard/lesson/reading_for_details/understanding_main_ideas");
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "#ECE7E1",
+      color: "#1D1B18",
+      fontFamily: "sans-serif"
+    }}>
+      <h2 style={{ fontWeight: 900 }}>Memuat Progres Reading...</h2>
+    </div>
+  );
 }

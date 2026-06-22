@@ -1178,7 +1178,7 @@
         "questions": [
             {
                 "type": "FillInTheBlank",
-                "question": "Pilihlah kalimat yang menggunakan present participle dengan benar!",
+                "question": "Choose the sentence that uses the present participle correctly!",
                 "options": [
                     {
                         "option": [
@@ -1193,14 +1193,14 @@
             },
             {
                 "type": "FillInTheBlank",
-                "question": "Apakah fungsi kata 'crying' dalam kalimat 'The crying baby kept everyone awake'?",
+                "question": "What is the function of the word 'crying' in the sentence 'The crying baby kept everyone awake'?",
                 "options": [
                     {
                         "option": [
-                            "Kata kerja (verb) dalam bentuk continuous",
-                            "Kata sifat (adjective) yang menerangkan kata benda 'baby'",
-                            "Kata keterangan (adverb) yang menerangkan kata kerja 'kept'",
-                            "Subjek kalimat"
+                            "The verb is in continuous form",
+                            "Adjectives that describe the noun 'baby'",
+                            "An adverb that explains the verb 'kept'",
+                            "Subject of the sentence"
                         ],
                         "index_answer": 1
                     }
@@ -1208,7 +1208,7 @@
             },
             {
                 "type": "FillInTheBlank",
-                "question": "Sederhanakanlah kalimat: 'The boy who is playing guitar is my brother.'",
+                "question": "Simplify the sentence: 'The boy who is playing guitar is my brother.'",
                 "options": [
                     {
                         "option": [

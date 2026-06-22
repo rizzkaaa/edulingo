@@ -4,12 +4,9 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../components/Alert";
-
-// 🌟 IMPORT FIREBASE
 import { db, auth } from "@/lib/firebase"; 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-// Import file JSON data soal kamu
 import allQuestionsData from "@/data/questions.json"; 
 
 import AudioQuestion from "../components/question_type_component/audio_question";
@@ -69,17 +66,15 @@ export default function PracticePage() {
     } 
     // 2. LOGIKA BARU: UNTUK LONG READING (Memecah teks intro & anak soal)
     else if (item.type === "LongReading") {
-      // Masukkan halaman teks bacaan (bisa dibaca ulang oleh user saat klik PREVIOUS)
       questions.push({
         ...item,
         type: "reading_intro",
       });
 
-      // Masukkan seluruh sub-pertanyaan yang ada di dalam array options
       item.options.forEach((subQ) => {
         questions.push({
           ...item,
-          type: "basic", // Diarahkan ke BasicQuestion agar dirender sebagai pilihan ganda biasa
+          type: "basic", 
           question: subQ.question || "Read the text and choose the correct answer.",
           options: subQ.option, 
           index_answer: subQ.index_answer
@@ -152,7 +147,6 @@ export default function PracticePage() {
 
   function getPrevIndex(fromIndex) {
     let prevIndex = fromIndex - 1;
-    // Note: Kita tidak meleompati 'reading_intro' agar user bisa klik BACK untuk membaca kembali teksnya
     while (prevIndex >= 0 && questions[prevIndex]?.type === "long_audio") {
       prevIndex--;
     }
@@ -206,7 +200,7 @@ export default function PracticePage() {
         ? Math.round((correctAnswersCount / realQuestionsCount) * 100) 
         : 0;
 
-      const sanitizedAnswers = {};
+      const sanitizedAnswers = {}; 
       questions.forEach((_, index) => {
         const userAns = answers[index];
         sanitizedAnswers[index] = userAns !== undefined ? userAns : null;
@@ -228,7 +222,7 @@ export default function PracticePage() {
         totalQuestions: realQuestionsCount || 0,
         correctAnswers: correctAnswersCount || 0,
         score: finalScore || 0,
-        userAnswers: sanitizedAnswers, 
+        userAnswers: sanitizedAnswers, // ← Menggunakan variabel yang sudah benar
         isPassed: isPassed,
         createdAt: serverTimestamp(), 
       };
@@ -280,6 +274,9 @@ export default function PracticePage() {
   const q = questions[current];
   const QuestionComponent = questionComponents[q?.type];
   const [isAudioFinished, setIsAudioFinished] = useState(false);
+
+  // 🌟 VALIDASI JAWABAN: Tombol aktif jika tipe halaman adalah 'reading_intro' ATAU user sudah memilih jawaban
+  const isQuestionAnswered = q?.type === "reading_intro" || (answers[current] !== undefined && answers[current] !== null);
 
   if (q && q.type === "long_audio") {
     return (
@@ -402,6 +399,7 @@ export default function PracticePage() {
 
       {/* ===== NAVIGASI ===== */}
       <div className={styles.bottomActions}>
+        {/* Tombol PREVIOUS: Selalu aktif selama bukan soal pertama (tidak bergantung jawaban) */}
         <button
           className={styles.prevBtn}
           onClick={() => setCurrent(getPrevIndex(current))}
@@ -411,18 +409,20 @@ export default function PracticePage() {
         </button>
 
         {current < totalQuestions - 1 ? (
+          /* Tombol NEXT: Ditambahkan logika disabled={!isQuestionAnswered} */
           <button
             className={styles.nextBtn}
             onClick={() => setCurrent(prev => prev + 1)}
-            disabled={isSubmitting}
+            disabled={!isQuestionAnswered || isSubmitting}
           >
             {q?.type === "reading_intro" ? "PROCEED TO QUESTIONS →" : "NEXT QUESTION →"}
           </button>
         ) : (
+          /* Tombol FINISH: Ditambahkan logika disabled={!isQuestionAnswered} */
           <button
             className={styles.finishBtn}
             onClick={handleFinish}
-            disabled={isSubmitting}
+            disabled={!isQuestionAnswered || isSubmitting}
           >
             {isSubmitting ? "STORING DATA..." : "FINISH PRACTICE LIGHT ✓"}
           </button>
