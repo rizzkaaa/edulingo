@@ -169,14 +169,17 @@ function ButtonMenu({
   const router = useRouter();
 
   function handleClick(sub_material_id) {
-    const nextPath = material?.title?.toLowerCase().replaceAll(" ", "_") || "";
+    // 🌟 Mengambil nama folder dari property folder_name/slug jika ada, atau fallback ke title generator
+    const nextPath = material?.folder_name || material?.slug || material?.title?.toLowerCase().replaceAll(" ", "_") || "";
+    
     if (currentModuleOpen == sub_material_id) return;
     if (sub_material_id > sub_module_id) {
       setShake(true);
       setTimeout(() => setShake(false), 900);
     } else {
       setCurrentModuleOpen(sub_material_id);
-      router.push(`/dashboard/lesson/structure_part_1/${encodeURIComponent(nextPath)}`);
+      // 🌟 PERBAIKAN: Hapus encodeURIComponent agar Next.js mencari folder fisik dengan simbol '&' secara tepat
+      router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
     }
   }
 
@@ -225,10 +228,11 @@ function BottomBar({
     const sub_material = main_material?.sub_modules?.find(
       (m) => m.sub_module_id == currentModuleOpen - 1,
     );
-    const nextPath = sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
+    const nextPath = sub_material?.folder_name || sub_material?.slug || sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
 
     setCurrentModuleOpen(currentModuleOpen - 1);
-    router.push(`/dashboard/lesson/structure_part_1/${encodeURIComponent(nextPath)}`);
+    // 🌟 PERBAIKAN: Hapus encodeURIComponent
+    router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
   }
 
   function nextModule() {
@@ -240,10 +244,11 @@ function BottomBar({
       const sub_material = main_material?.sub_modules?.find(
         (m) => m.sub_module_id == currentModuleOpen + 1,
       );
-      const nextPath = sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
+      const nextPath = sub_material?.folder_name || sub_material?.slug || sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
 
       setCurrentModuleOpen(currentModuleOpen + 1);
-      router.push(`/dashboard/lesson/structure_part_1/${encodeURIComponent(nextPath)}`);
+      // 🌟 PERBAIKAN: Hapus encodeURIComponent
+      router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
     }
   }
 
@@ -332,7 +337,6 @@ function BottomBar({
     color: "white"
   }}
 >
-  {/* DETEKTOR STATUS: Teks ini akan berubah memberitahu letak masalahnya */}
   {isUpdating ? "MENYIMPAN..." 
     : currentId !== currentModuleOpen ? "SUDAH SELESAI ✓" 
     : !hasAnswered ? "JAWAB SOAL DULU 🔒" 

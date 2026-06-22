@@ -46,45 +46,38 @@ export default function PracticePage() {
   const questions = [];
 
   rawQuestions.forEach((item) => {
-    // Pastikan kita menangani 'LongAudio' atau 'ShortAudio'
     if (item.type === "LongAudio" || item.type === "ShortAudio") {
-      
-      // Jika ini adalah LongAudio, masukkan audio utamanya dulu
       if (item.type === "LongAudio") {
         questions.push({
           ...item,
-          type: "long_audio", // Menandakan ini player audio panjang
+          type: "long_audio",
           audioSrc: item.audio ? `/audio/${item.audio}` : null,
         });
       }
 
-      // Masukkan setiap soal (sub-audio) ke dalam array questions
       item.options.forEach((subQ) => {
         questions.push({
-          ...item, // Salin properti asal
-          type: "audio", // Paksa jadi tipe 'audio' agar masuk ke AudioQuestion
+          ...item, 
+          type: "audio", 
           question: subQ.question || "Listen and choose the answer.",
           audioSrc: subQ.audio ? `/audio/${subQ.audio}` : null,
-          options: subQ.option, // Ambil array pilihan jawaban (ini yang penting!)
+          options: subQ.option, 
           index_answer: subQ.index_answer
         });
       });
     } 
-    // ===== PERBAIKAN DI SINI: ANTISIPASI FORMAT JSON YANG BERBEDA =====
     else {
       let finalOptions = item.options;
       let finalIndexAnswer = item.index_answer;
 
-      // Kasus 1: Jika item.options berupa Array dari Objek [{ option: [...], index_answer: X }]
       if (Array.isArray(item.options) && item.options.length > 0 && typeof item.options[0] === "object") {
         if ("option" in item.options[0]) {
-          finalOptions = item.options[0].option; // Bongkar dan ambil array string aslinya
+          finalOptions = item.options[0].option; 
           if ("index_answer" in item.options[0]) {
             finalIndexAnswer = item.options[0].index_answer;
           }
         }
       }
-      // Kasus 2: Jika item.options langsung berupa Objek Tunggal { option: [...], index_answer: X }
       else if (item.options && typeof item.options === "object" && !Array.isArray(item.options)) {
         if ("option" in item.options) {
           finalOptions = item.options.option;
@@ -220,20 +213,23 @@ export default function PracticePage() {
 
       await addDoc(collection(db, "practice_history"), practiceResult);
       
-      const finalCategory = partParam || categoryParam;
-      const finalFolder = folderParam || targetModule?.folder_name || moduleParam;
+      // 🌟 PERBAIKAN 1: Prioritaskan data langsung dari JSON targetModule agar nama folder dengan '&' tidak terpotong URL
+      const finalCategory = targetModule?.category_id || partParam || categoryParam;
+      const finalFolder = targetModule?.folder_name || folderParam || moduleParam;
 
       if (isPassed) {
         window.dispatchEvent(new Event("practice-completed")); 
         showAlert(
           `Luar Biasa! 🎉 Kamu menjawab benar ${correctAnswersCount} dari ${realQuestionsCount} soal. Modul ini telah selesai.`,
           true, 
+          // 🌟 PERBAIKAN 2: Hapus encodeURIComponent agar mencari nama fisik folder asli Anda
           () => router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=completed`)
         );
       } else {
         showAlert(
           `Kamu baru menjawab benar ${correctAnswersCount} soal. ❌ Butuh minimal ${PASSING_THRESHOLD} jawaban benar untuk menyelesaikan modul ini. Silakan coba lagi!`,
           true, 
+          // 🌟 PERBAIKAN 2: Hapus encodeURIComponent agar mencari nama fisik folder asli Anda
           () => router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=failed`)
         );
       }
