@@ -12,7 +12,6 @@ import {
   FaMedal
 } from "react-icons/fa6";
 
-// ⬇️ data lama dijadikan default/fallback
 const defaultTopThree = [
   {
     rank:2,
@@ -142,11 +141,9 @@ export default function LeaderboardPage(){
         const userIds = Object.keys(bestPerUser);
 
         if (userIds.length === 0) {
-          // tidak ada sesi sama sekali → data default tetap tampil
           return;
         }
 
-        // 3. Ambil profil (fullName, username, photoBase64) tiap user dari koleksi "users"
         const userDataList = await Promise.all(
           userIds.map(async (uid) => {
             try {
@@ -174,8 +171,6 @@ export default function LeaderboardPage(){
             }
           })
         );
-
-        // 4. Urutkan: skor TOEFL tertinggi dulu, kalau sama → waktu tercepat menang
         const sorted = userDataList
           .filter(Boolean)
           .sort((a, b) => {
@@ -184,7 +179,6 @@ export default function LeaderboardPage(){
           })
           .map((u, index) => ({ ...u, rank: index + 1 }));
 
-        // 5. Pecah jadi top 3 dan sisanya
         const newTopThree = sorted.slice(0, 3).map((u) => ({
           rank: u.rank,
           name: u.name,
@@ -234,7 +228,7 @@ export default function LeaderboardPage(){
 
     return () => unsubscribe();
   }, []);
-
+const podiumOrder = [topThree[1], topThree[0], topThree[2]].filter(Boolean);
   return(
 
     <div className={styles.container}>
@@ -266,56 +260,32 @@ export default function LeaderboardPage(){
         <div className={styles.topThreeWrapper}>
 
           {
-            topThree.map((user,index)=>(
-
-              <div
-                key={index}
-                className={
-                  user.rank === 1
-                  ? styles.firstPlace
-                  : styles.otherPlace
-                }
-              >
-
-                {
-                  user.rank === 1 && (
-                    <div className={styles.medalIcon}>
-                      <FaMedal/>
-                    </div>
-                  )
-                }
-
-                <div className={styles.avatarBox}>
-
-                  <img
-                    src={user.photo || "/images/default_profile.png"}
-                    alt={user.name}
-                  />
-
-                  <div
-                    className={
-                      user.rank === 1
-                      ? styles.goldRank
-                      : styles.rankBadge
-                    }
-                  >
-                    {user.rank}
-                  </div>
-
-                </div>
-
-                <h2>
-                  {user.name}
-                </h2>
-
-                <p>
-                  {user.Point}
-                </p>
-
-              </div>
-
-            ))
-          }
+  podiumOrder.map((user, index) => (
+    <div
+      key={index}
+      className={
+        user.rank === 1
+          ? styles.firstPlace
+          : styles.otherPlace
+      }
+    >
+      {/* (Isi di dalam div ini tetap sama seperti kode lama kamu) */}
+      {user.rank === 1 && (
+        <div className={styles.medalIcon}>
+          <FaMedal />
+        </div>
+      )}
+      <div className={styles.avatarBox}>
+        <img src={user.photo || "/images/default_profile.png"} alt={user.name} />
+        <div className={user.rank === 1 ? styles.goldRank : styles.rankBadge}>
+          {user.rank}
+        </div>
+      </div>
+      <h2>{user.name}</h2>
+      <p>{user.Point}</p>
+    </div>
+  ))
+}
 
         </div>
 

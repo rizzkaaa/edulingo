@@ -10,10 +10,6 @@ export default function TrueFalse({ material, onAnswered }) {
 
   const handleConfirm = () => {
     setHasConfirmed(true);
-    if (onAnswered) {
-      onAnswered();
-    }
-    window.dispatchEvent(new Event("practice-completed"));
   };
 
   return (

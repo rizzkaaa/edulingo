@@ -46,6 +46,7 @@ export default function PracticePage() {
   const questions = [];
 
   rawQuestions.forEach((item) => {
+    // 1. LOGIKA UNTUK AUDIO (LONG AUDIO / SHORT AUDIO)
     if (item.type === "LongAudio" || item.type === "ShortAudio") {
       if (item.type === "LongAudio") {
         questions.push({
@@ -66,6 +67,26 @@ export default function PracticePage() {
         });
       });
     } 
+    // 2. LOGIKA BARU: UNTUK LONG READING (Memecah teks intro & anak soal)
+    else if (item.type === "LongReading") {
+      // Masukkan halaman teks bacaan (bisa dibaca ulang oleh user saat klik PREVIOUS)
+      questions.push({
+        ...item,
+        type: "reading_intro",
+      });
+
+      // Masukkan seluruh sub-pertanyaan yang ada di dalam array options
+      item.options.forEach((subQ) => {
+        questions.push({
+          ...item,
+          type: "basic", // Diarahkan ke BasicQuestion agar dirender sebagai pilihan ganda biasa
+          question: subQ.question || "Read the text and choose the correct answer.",
+          options: subQ.option, 
+          index_answer: subQ.index_answer
+        });
+      });
+    }
+    // 3. LOGIKA UNTUK TIPE SOAL LAIN (BASIC, IMAGE, TRUE_FALSE, DLL)
     else {
       let finalOptions = item.options;
       let finalIndexAnswer = item.index_answer;
@@ -131,6 +152,7 @@ export default function PracticePage() {
 
   function getPrevIndex(fromIndex) {
     let prevIndex = fromIndex - 1;
+    // Note: Kita tidak meleompati 'reading_intro' agar user bisa klik BACK untuk membaca kembali teksnya
     while (prevIndex >= 0 && questions[prevIndex]?.type === "long_audio") {
       prevIndex--;
     }
@@ -213,7 +235,6 @@ export default function PracticePage() {
 
       await addDoc(collection(db, "practice_history"), practiceResult);
       
-      // 🌟 PERBAIKAN 1: Prioritaskan data langsung dari JSON targetModule agar nama folder dengan '&' tidak terpotong URL
       const finalCategory = targetModule?.category_id || partParam || categoryParam;
       const finalFolder = targetModule?.folder_name || folderParam || moduleParam;
 
@@ -222,14 +243,12 @@ export default function PracticePage() {
         showAlert(
           `Luar Biasa! 🎉 Kamu menjawab benar ${correctAnswersCount} dari ${realQuestionsCount} soal. Modul ini telah selesai.`,
           true, 
-          // 🌟 PERBAIKAN 2: Hapus encodeURIComponent agar mencari nama fisik folder asli Anda
           () => router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=completed`)
         );
       } else {
         showAlert(
           `Kamu baru menjawab benar ${correctAnswersCount} soal. ❌ Butuh minimal ${PASSING_THRESHOLD} jawaban benar untuk menyelesaikan modul ini. Silakan coba lagi!`,
           true, 
-          // 🌟 PERBAIKAN 2: Hapus encodeURIComponent agar mencari nama fisik folder asli Anda
           () => router.push(`/dashboard/lesson/${finalCategory}/${finalFolder}?status=failed`)
         );
       }

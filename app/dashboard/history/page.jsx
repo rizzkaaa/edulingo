@@ -20,15 +20,13 @@ export default function HistoryPage() {
   const [historyData, setHistoryData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalSessions, setTotalSessions] = useState(0);
-  const [averageScore, setAverageScore] = useState(0);
 
   const [activeCategory, setActiveCategory] = useState("All Categories");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
-  // LOGIKA PAGINASI
+  // LOGIKA PAGINASI BERBASIS JARAK HARI
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 5;
 
   const dropdownRef = useRef(null);
 
@@ -64,23 +62,19 @@ export default function HistoryPage() {
 
   const fetchHistoryData = async (userId) => {
     try {
-      // 1. Siapkan query untuk DUA KOLEKSI
       const simulationQuery = query(collection(db, "exam_sessions"), where("userId", "==", userId));
       const practiceQuery = query(collection(db, "practice_history"), where("userId", "==", userId));
 
-      // Tarik data secara bersamaan (paralel) agar loading lebih cepat
       const [simulationSnap, practiceSnap] = await Promise.all([
         getDocs(simulationQuery),
         getDocs(practiceQuery)
       ]);
 
       let fetchedHistory = [];
-      let totalScoreSum = 0;
 
-      // 2. Proses data SIMULATION (exam_sessions)
+      // Proses data SIMULATION
       simulationSnap.forEach((docSnap) => {
         const data = docSnap.data();
-
         let totalPercentageSum = 0;
         let activeSectionsCount = 0;
 
@@ -103,7 +97,6 @@ export default function HistoryPage() {
         const toeflRange = maxToefl - minToefl; 
         
         const finalScore = Math.round(minToefl + (averagePercentage * toeflRange) / 100);
-
         const dateObj = data.updatedAt?.toDate() || new Date();
         const formattedDate = dateObj.toLocaleString("id-ID", {
           month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit"
@@ -122,11 +115,9 @@ export default function HistoryPage() {
           status: isSuccess ? "Success" : "Failed",
           success: isSuccess,
         });
-
-        totalScoreSum += finalScore;
       });
 
-      // 3. Proses data EXERCISE (practice_history)
+      // Proses data EXERCISE
       practiceSnap.forEach((docSnap) => {
         const data = docSnap.data();
         const dateObj = data.createdAt?.toDate() || new Date();
@@ -134,10 +125,7 @@ export default function HistoryPage() {
           month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit"
         });
 
-        // Format nama modul (misal: "1_5" jadi "Module 1_5")
         let activityName = data.moduleId ? `Practice: Module ${data.moduleId.replace("_", ".")}` : "Exercise Practice";
-
-        // Misal batas lulus exercise adalah nilai 70
         const isSuccess = (data.score || 0) >= 70;
 
         fetchedHistory.push({
@@ -150,19 +138,13 @@ export default function HistoryPage() {
           status: isSuccess ? "Success" : "Failed",
           success: isSuccess,
         });
-
-        totalScoreSum += (data.score || 0);
       });
 
-      // 4. Mengurutkan riwayat dari yang paling baru ke yang paling lama
+      // Urutkan riwayat dari yang paling baru ke yang paling lama
       fetchedHistory.sort((a, b) => b.dateObj - a.dateObj);
 
       setHistoryData(fetchedHistory);
       setTotalSessions(fetchedHistory.length);
-      
-      const avg = fetchedHistory.length > 0 ? Math.round(totalScoreSum / fetchedHistory.length) : 0;
-      setAverageScore(avg);
-      
       setLoading(false);
     } catch (error) {
       console.error("Gagal memuat data history:", error);
@@ -170,22 +152,54 @@ export default function HistoryPage() {
     }
   };
 
-  // --- LOGIKA FILTER & PAGINASI ---
+  // --- LOGIKA FILTER KATEGORI & SEARCH ---
   const filteredHistory = historyData.filter((item) => {
     const matchesCategory = activeCategory === "All Categories" || item.category === activeCategory;
     const matchesSearch = item.activity.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const totalPages = Math.ceil(filteredHistory.length / ITEMS_PER_PAGE);
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  // --- KALKULASI KALENDER BERBASIS TANGGAL ---
+  const today = new Date();
+  const midnightToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   
-  // Memotong data hasil filter agar hanya berisi maksimal 5 item per halaman
-  const currentItems = filteredHistory.slice(indexOfFirstItem, indexOfLastItem);
+  const targetDate = new Date(midnightToday);
+  targetDate.setDate(targetDate.getDate() - (currentPage - 1));
 
-  // Menghitung total simulasi untuk logika Challenge Box
+  // Ambil aktivitas khusus pada tanggal target tersebut
+  const currentItems = filteredHistory.filter((item) => {
+    const d = item.dateObj;
+    return (
+      d.getFullYear() === targetDate.getFullYear() &&
+      d.getMonth() === targetDate.getMonth() &&
+      d.getDate() === targetDate.getDate()
+    );
+  });
+
+  // 🌟 LOGIKA BARU: Hitung Rata-rata Skor HANYA untuk hari yang aktif ini
+  const dailyAverageScore = currentItems.length > 0
+    ? Math.round(currentItems.reduce((sum, item) => sum + item.score, 0) / currentItems.length)
+    : 0;
+
+  // Hitung total halaman mundur
+  let totalPages = 1;
+  if (filteredHistory.length > 0) {
+    const oldestDate = filteredHistory[filteredHistory.length - 1].dateObj;
+    const midnightOldest = new Date(oldestDate.getFullYear(), oldestDate.getMonth(), oldestDate.getDate());
+    const diffTime = Math.abs(midnightToday - midnightOldest);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    totalPages = diffDays + 1;
+  }
+
   const simulationCount = historyData.filter(item => item.category === "Simulation").length;
+
+  const getPageDateString = () => {
+    if (currentPage === 1) return "Hari Ini";
+    if (currentPage === 2) return "Kemarin";
+    return targetDate.toLocaleDateString("id-ID", {
+      day: "numeric", month: "short", year: "numeric"
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -275,14 +289,15 @@ export default function HistoryPage() {
           <h1>{loading ? "..." : totalSessions}</h1>
         </div>
         <div className={styles.averageCard}>
-          <p>AVERAGE SCORE :</p>
-          <h1>{loading ? "..." : averageScore}</h1> 
+          {/* Label diubah sedikit agar memperjelas bahwa ini skor harian */}
+          <p>DAILY AVG SCORE :</p>
+          <h1>{loading ? "..." : dailyAverageScore}</h1> 
         </div>
       </div>
 
       <div className={styles.tableWrapper}>
         <div className={styles.tableHeader}>
-          <span>Date</span>
+          <span>Time</span>
           <span>Category</span>
           <span>Activity</span>
           <span>Score</span>
@@ -294,44 +309,46 @@ export default function HistoryPage() {
             Loading data...
           </p>
         ) : currentItems.length === 0 ? (
-          <p style={{ textAlign: "center", padding: "2rem", color: "#666" }}>
-            Belum ada riwayat yang sesuai.
+          <p style={{ textAlign: "center", padding: "3rem", color: "#888", fontWeight: "500", fontStyle: "italic" }}>
+            Tidak ada aktivitas di hari ini
           </p>
         ) : (
-          currentItems.map((item) => (
-            <div key={item.id} className={styles.tableRow}>
-              <span>{item.date}</span>
-              <div>
-                <div
-                  className={
-                    item.category === "Simulation"
-                      ? styles.simulationBadge
-                      : styles.exerciseBadge
-                  }
-                >
-                  {item.category}
+          <div 
+            style={{ 
+              maxHeight: currentItems.length > 5 ? "420px" : "auto", 
+              overflowY: currentItems.length > 5 ? "auto" : "visible",
+              paddingRight: currentItems.length > 5 ? "6px" : "0px"
+            }}
+          >
+            {currentItems.map((item) => (
+              <div key={item.id} className={styles.tableRow}>
+                <span>{item.date.split(",")[1]?.trim() || item.date}</span>
+                <div>
+                  <div
+                    className={
+                      item.category === "Simulation"
+                        ? styles.simulationBadge
+                        : styles.exerciseBadge
+                    }
+                  >
+                    {item.category}
+                  </div>
+                </div>
+                <h3>{item.activity}</h3>
+                <h2>{item.score}</h2> 
+                <div className={item.success ? styles.successText : styles.failedText}>
+                  {item.success ? <FaCheckCircle /> : <FaTimesCircle />}
+                  {item.status}
                 </div>
               </div>
-              <h3>{item.activity}</h3>
-              <h2>{item.score}</h2> 
-              <div
-                className={
-                  item.success ? styles.successText : styles.failedText
-                }
-              >
-                {item.success ? <FaCheckCircle /> : <FaTimesCircle />}
-                {item.status}
-              </div>
-            </div>
-          ))
+            ))}
+          </div>
         )}
 
-        {/* LOGIKA PAGINASI BARU */}
+        {/* LOGIKA PAGINASI */}
         <div className={styles.paginationSection}>
           <p>
-            Showing {filteredHistory.length > 0 ? indexOfFirstItem + 1 : 0} to{" "}
-            {Math.min(indexOfLastItem, filteredHistory.length)} of{" "}
-            {filteredHistory.length} activities
+            Melihat aktivitas tanggal: <strong>{getPageDateString()}</strong> {currentItems.length > 0 && `(${currentItems.length} aktivitas)`}
           </p>
           
           {totalPages > 1 && (
@@ -343,15 +360,21 @@ export default function HistoryPage() {
                 <FaChevronLeft />
               </button>
               
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  className={currentPage === page ? styles.activePage : ""}
-                  onClick={() => setCurrentPage(page)}
-                >
-                  {page}
-                </button>
-              ))}
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(page => Math.abs(page - currentPage) <= 2 || page === 1 || page === totalPages)
+                .map((page, idx, arr) => {
+                  return (
+                    <span key={page} style={{ display: "inline-flex", alignItems: "center" }}>
+                      {idx > 0 && arr[idx - 1] !== page - 1 && <span style={{ color: "#666", margin: "0 4px" }}>...</span>}
+                      <button
+                        className={currentPage === page ? styles.activePage : ""}
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </button>
+                    </span>
+                  );
+                })}
 
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
