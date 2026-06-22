@@ -70,13 +70,35 @@ export default function PracticePage() {
         });
       });
     } 
-    // ... sisa logika lainnya (Basic, TrueFalse, dll)
+    // ===== PERBAIKAN DI SINI: ANTISIPASI FORMAT JSON YANG BERBEDA =====
     else {
+      let finalOptions = item.options;
+      let finalIndexAnswer = item.index_answer;
+
+      // Kasus 1: Jika item.options berupa Array dari Objek [{ option: [...], index_answer: X }]
+      if (Array.isArray(item.options) && item.options.length > 0 && typeof item.options[0] === "object") {
+        if ("option" in item.options[0]) {
+          finalOptions = item.options[0].option; // Bongkar dan ambil array string aslinya
+          if ("index_answer" in item.options[0]) {
+            finalIndexAnswer = item.options[0].index_answer;
+          }
+        }
+      }
+      // Kasus 2: Jika item.options langsung berupa Objek Tunggal { option: [...], index_answer: X }
+      else if (item.options && typeof item.options === "object" && !Array.isArray(item.options)) {
+        if ("option" in item.options) {
+          finalOptions = item.options.option;
+          if ("index_answer" in item.options) {
+            finalIndexAnswer = item.options.index_answer;
+          }
+        }
+      }
+
       questions.push({
         ...item,
         type: item.type === "TrueOrFalse" ? "true_false" : item.type,
-        options: item.options,
-        index_answer: item.index_answer
+        options: finalOptions,
+        index_answer: finalIndexAnswer
       });
     }
   });
@@ -171,16 +193,15 @@ export default function PracticePage() {
 
       const sanitizedAnswers = {};
       questions.forEach((_, index) => {
-        sanitizedAnswers[index] = answers[index] !== undefined ? answers[index] : null;
+        const userAns = answers[index];
+        sanitizedAnswers[index] = userAns !== undefined ? userAns : null;
       });
 
-      // 🌟 LOGIKA KELULUSAN DINAMIS: Cek apakah ini sesi Listening
       const isListening = 
         categoryParam.toLowerCase().includes("listening") || 
         (partParam && partParam.toLowerCase().includes("listening")) ||
         moduleParam.toLowerCase().includes("listening");
 
-      // Jika Listening minimal 3, jika modul lain minimal 4
       const PASSING_THRESHOLD = isListening ? 3 : 4;
       const isPassed = correctAnswersCount >= PASSING_THRESHOLD;
 
@@ -270,23 +291,21 @@ export default function PracticePage() {
             </button>
           </div>
         </div>
-       <LongAudioQuestion
+        <LongAudioQuestion
           {...q}
           answers={answers}
           parentIndex={current}
           onNextQuestion={() => setCurrent(prev => prev + 1)}
           isLastQuestion={current === totalQuestions - 1}
-          // 🌟 Kirim fungsi ini untuk mengubah state
           onAudioFinish={() => setIsAudioFinished(true)} 
         />
 
-        {/* 🌟 Tombol ini hanya muncul jika audio sudah selesai */}
         {isAudioFinished && (
           <div style={{ textAlign: "center", marginTop: "30px" }}>
             <button
-              className={styles.nextBtn} // Sesuaikan dengan style tombol Anda
+              className={styles.nextBtn} 
               onClick={() => {
-                setIsAudioFinished(false); // Reset state
+                setIsAudioFinished(false); 
                 setCurrent(prev => prev + 1);
               }}
             >
@@ -390,7 +409,7 @@ export default function PracticePage() {
             onClick={handleFinish}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "STORING DATA..." : "FINISH PRACTICE ✓"}
+            {isSubmitting ? "STORING DATA..." : "FINISH PRACTICE LIGHT ✓"}
           </button>
         )}
       </div>
