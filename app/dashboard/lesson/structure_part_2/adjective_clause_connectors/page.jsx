@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react"; // 🌟 PERBAIKAN 1: Import useState & useEffect
-import { useSearchParams } from "next/navigation"; // 🌟 PERBAIKAN 2: Import useSearchParams untuk deteksi URL
+import { useState, useEffect } from "react"; 
+import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer9 } from "@/app/components/FirstExplain";
@@ -12,7 +12,6 @@ import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow"
 import { TemplateVer8 } from "@/app/components/OtherMaterialTemplate";
 
 export default function AdjectiveClauseConnectors() {
-  // 🌟 PERBAIKAN 3: Buat state hasAnswered untuk melacak status pengerjaan kuis
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -28,7 +27,6 @@ export default function AdjectiveClauseConnectors() {
   const length = main_material.sub_modules.length;
 
   useEffect(() => {
-    // Jalankan pengecekan apakah materi ini sudah pernah diselesaikan sebelumnya
     const isCompleted = 
       localStorage.getItem(`module_status_part_2_mod_${currentId}`) === "completed" || 
       statusParam === "completed";
@@ -52,8 +50,6 @@ export default function AdjectiveClauseConnectors() {
         version={2}
         materials={sub_material.content[2].explain}
       />
-      
-      {/* 🌟 PERBAIKAN 4: Pasang fungsi perubah state onAnswered pada komponen TrueFalse */}
       <TrueFalse 
         material={sub_material.content[3]} 
         onAnswered={() => {
@@ -65,7 +61,6 @@ export default function AdjectiveClauseConnectors() {
       
       <ToeflTips material={sub_material.content[4]} />
       
-      {/* 🌟 PERBAIKAN 5: Lengkapi properti kemajuan belajar ke dalam FooterMaterial */}
       <FooterMaterial
         title={sub_material.title}
         isEnd={currentId == length}

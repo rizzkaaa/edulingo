@@ -3,7 +3,7 @@
 import styles from "./page.module.css";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { auth, db } from "@/lib/firebase"; // ⬅️ storage tidak dipakai lagi
+import { auth, db } from "@/lib/firebase"; 
 import {
   onAuthStateChanged,
   updatePassword,
@@ -34,10 +34,8 @@ export default function EditProfilePage() {
     username: "",
   });
 
-  // ===== STATE FOTO PROFIL (base64) =====
-  const [photoBase64, setPhotoBase64] = useState(""); // ⬅️ menyimpan string base64 (lama/baru)
+  const [photoBase64, setPhotoBase64] = useState(""); 
 
-  // ===== STATE ALERT =====
   const [alertConfig, setAlertConfig] = useState({
     show: false,
     text: "",
@@ -67,7 +65,6 @@ export default function EditProfilePage() {
               fullName: data.fullName || user.displayName || "",
               username: data.username || "",
             });
-            // ⬇️ baru: ambil foto profil (base64) yang sudah ada
             setPhotoBase64(data.photoBase64 || "");
           }
         } catch (error) {
@@ -83,7 +80,6 @@ export default function EditProfilePage() {
     return () => unsubscribe();
   }, [router]);
 
-  // ⬇️ baru: konversi file gambar jadi base64
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -92,14 +88,14 @@ export default function EditProfilePage() {
       showAlert("File harus berupa gambar.");
       return;
     }
-    if (file.size > 1 * 1024 * 1024) { // max 1MB (base64 lebih besar dari ukuran asli)
+    if (file.size > 1 * 1024 * 1024) { 
       showAlert("Ukuran gambar maksimal 1MB.");
       return;
     }
 
     const reader = new FileReader();
     reader.onload = () => {
-      setPhotoBase64(reader.result); // hasil: "data:image/png;base64,...."
+      setPhotoBase64(reader.result);
     };
     reader.onerror = () => {
       showAlert("Gagal membaca gambar. Coba lagi.");
@@ -111,7 +107,6 @@ export default function EditProfilePage() {
     fileInputRef.current?.click();
   };
 
-  // Fungsi update yang beneran (dipanggil setelah konfirmasi)
   const doSaveChanges = async () => {
     setSaving(true);
     try {
@@ -122,7 +117,7 @@ export default function EditProfilePage() {
         await updateDoc(userRef, {
           fullName: formData.fullName,
           username: formData.username,
-          photoBase64: photoBase64, // ⬅️ baru: simpan base64 ke Firestore
+          photoBase64: photoBase64, 
         });
 
         if (password.trim() !== "") {
@@ -134,7 +129,6 @@ export default function EditProfilePage() {
           await updatePassword(user, password);
         }
 
-        // Alert sukses → klik Oke balik ke profile
         showAlert(
           "Profil berhasil diperbarui!",
           true,
@@ -144,7 +138,6 @@ export default function EditProfilePage() {
     } catch (error) {
       console.error("Gagal update:", error);
 
-      // Alert error
       const errorCode = error?.code || "";
       if (errorCode === "auth/wrong-password") {
         showAlert("Password lama yang kamu masukkan salah.");
@@ -158,7 +151,6 @@ export default function EditProfilePage() {
     }
   };
 
-  // Handle submit form → tampilkan konfirmasi dulu
   const handleSaveChanges = (e) => {
     e.preventDefault();
     showAlert(
@@ -289,7 +281,7 @@ export default function EditProfilePage() {
           <div className={styles.miniProfile}>
             <div className={styles.avatarWrapper}>
               <img
-                src={photoBase64 || "/images/default_profile.png"} // ⬅️ langsung pakai base64
+                src={photoBase64 || "/images/default_profile.png"} 
                 alt="Avatar"
               />
               <button

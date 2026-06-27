@@ -17,7 +17,6 @@ export default function LessonLayout({ children }) {
   const [hasHydrated, setHasHydrated] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   
-  // 🌟 PERBAIKAN 1: State pelacak status kelulusan modul aktif & status global bab
   const [isCurrentModuleCompleted, setIsCurrentModuleCompleted] = useState(false);
   const [isPartDone, setIsPartDone] = useState(false);
 
@@ -40,7 +39,7 @@ export default function LessonLayout({ children }) {
             const currentStatus = userData.lessonStatus?.[4]?.status;
 
             if (currentStatus === "done") {
-              setIsPartDone(true); // Tandai bab global telah selesai
+              setIsPartDone(true);
               setSub_module_id(length);
               setCurrentModuleOpen(1); 
               setHasHydrated(true);
@@ -65,10 +64,7 @@ export default function LessonLayout({ children }) {
     };
 
     initializeProgress();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]); 
-
-  // 🌟 PERBAIKAN 2: Jalankan Event Listener untuk menangkap sinyal penyelesaian dari halaman anak (children)
   useEffect(() => {
     const checkModuleCompletion = () => {
       const isCompleted = 
@@ -77,7 +73,6 @@ export default function LessonLayout({ children }) {
       setIsCurrentModuleCompleted(!!isCompleted);
     };
 
-    // Periksa instan saat modul berpindah halaman
     checkModuleCompletion();
 
     window.addEventListener("practice-completed", checkModuleCompletion);
@@ -144,7 +139,7 @@ export default function LessonLayout({ children }) {
           setSub_module_id={setSub_module_id}
           isUpdating={isUpdating}
           setIsUpdating={setIsUpdating}
-          isCurrentModuleCompleted={isCurrentModuleCompleted} // 🌟 Kirim status kunci ke BottomBar
+          isCurrentModuleCompleted={isCurrentModuleCompleted}  
         />
       </section>
     </div>
@@ -206,7 +201,7 @@ function BottomBar({
   setSub_module_id,
   isUpdating,
   setIsUpdating,
-  isCurrentModuleCompleted, // 🌟 Terima properti kontrol enkripsi tombol
+  isCurrentModuleCompleted, 
 }) {
   const [shake, setShake] = useState(false);
   const router = useRouter();
@@ -312,7 +307,6 @@ function BottomBar({
         </button>
       </div>
       
-      {/* 🌟 PERBAIKAN 3: Kunci tombol jika kuis belum diselesaikan oleh pengguna (!isCurrentModuleCompleted) */}
       <button
         onClick={handleCompleteClick}
         disabled={currentId + 1 != currentModuleOpen + 1 || isUpdating || !isCurrentModuleCompleted}

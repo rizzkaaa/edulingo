@@ -24,7 +24,7 @@ export default function ProfilePage() {
     email: "",
     createdAt: "",
     lessonStatus: [],
-    photoBase64: "", // ⬅️ baru: simpan foto profil
+    photoBase64: "", 
   });
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function ProfilePage() {
               email: data.email || user.email || "",
               createdAt: formattedDate,
               lessonStatus: data.lessonStatus || [],
-              photoBase64: data.photoBase64 || "", // ⬅️ baru: ambil foto dari Firestore
+              photoBase64: data.photoBase64 || "", 
             });
           }
         } catch (error) {
@@ -107,7 +107,7 @@ export default function ProfilePage() {
 
           <div className={styles.avatarWrapper}>
             <img
-              src={userData.photoBase64 || "/images/default_profile.png"} // ⬅️ baru: pakai foto base64 kalau ada
+              src={userData.photoBase64 || "/images/default_profile.png"}
               alt="Profile"
               className={styles.avatar}
             />

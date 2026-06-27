@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react"; // 🌟 PERBAIKAN 1: Import useState & useEffect
-import { useSearchParams } from "next/navigation"; // 🌟 PERBAIKAN 2: Import useSearchParams untuk deteksi status URL
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer8 } from "@/app/components/FirstExplain";
@@ -12,7 +12,6 @@ import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow"
 import ImportantRule from "@/app/components/ImportantRule";
 
 export default function NounClauseConnectors() {
-  // 🌟 PERBAIKAN 3: Buat state hasAnswered untuk melacak status pengerjaan kuis
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -28,7 +27,6 @@ export default function NounClauseConnectors() {
   const length = main_material.sub_modules.length;
 
   useEffect(() => {
-    // Cek apakah modul ini sebelumnya sudah pernah diselesaikan atau dilewati
     const isCompleted = 
       localStorage.getItem(`module_status_part_2_mod_${currentId}`) === "completed" || 
       statusParam === "completed";
@@ -52,7 +50,6 @@ export default function NounClauseConnectors() {
         materials={sub_material.content[1].explain}
       />
       
-      {/* 🌟 PERBAIKAN 4: Pasang fungsi perubah state onAnswered pada komponen TrueFalse */}
       <TrueFalse 
         material={sub_material.content[2]} 
         onAnswered={() => {
@@ -65,7 +62,6 @@ export default function NounClauseConnectors() {
       <ImportantRule material={sub_material.content[3]} />
       <ToeflTips material={sub_material.content[4]} />
       
-      {/* 🌟 PERBAIKAN 5: Lengkapi seluruh parameter pelacakan ke dalam FooterMaterial */}
       <FooterMaterial
         title={sub_material.title}
         isEnd={currentId == length}

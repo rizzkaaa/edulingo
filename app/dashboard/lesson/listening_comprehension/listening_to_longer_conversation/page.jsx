@@ -24,10 +24,8 @@ export default function ListeningToLongerConversation() {
   const currentId = sub_material.sub_module_id;
   const length = main_material.sub_modules.length;
 
-  // 🌟 LOGIKA USE EFFECT YANG DISAMAKAN
   useEffect(() => {
     if (main_material && currentId) {
-      // Menggunakan variabel dinamis untuk key localStorage
       const storageKey = `module_status_part_${main_material.part_id}_mod_${currentId}`;
 
       const isAlreadyCompleted = localStorage.getItem(storageKey) === "completed";
@@ -36,7 +34,6 @@ export default function ListeningToLongerConversation() {
       if (isAlreadyCompleted || isNewlyCompleted) {
         setHasAnswered(true);
 
-        // Jika URL mengirimkan status completed tapi belum ada di local storage, simpan sekarang
         if (!isAlreadyCompleted && isNewlyCompleted) {
           localStorage.setItem(storageKey, "completed");
           window.dispatchEvent(new Event("practice-completed"));
@@ -46,8 +43,6 @@ export default function ListeningToLongerConversation() {
       }
     }
   }, [currentId, statusParam, main_material]);
-
-  // 🌟 LOGIKA HANDLE ANSWERED YANG DIPERBARUI
   const handleAnswered = () => {
     setHasAnswered(true);
     const storageKey = `module_status_part_${main_material.part_id}_mod_${currentId}`;
@@ -69,7 +64,6 @@ export default function ListeningToLongerConversation() {
         version={4}
       />
       
-      {/* 🌟 Menggunakan handleAnswered di sini */}
       <WithAudio 
         material={sub_material.content[1]} 
         onAnswered={handleAnswered}
@@ -84,7 +78,7 @@ export default function ListeningToLongerConversation() {
         main_part_title={main_material.part_title}
         part_id={main_material.part_id}
         sub_module_id={sub_material.sub_module_id}
-        isButtonDisabled={!hasAnswered} // 🌟 Status penguncian tersambung ke state
+        isButtonDisabled={!hasAnswered} 
       />
     </div>
   );

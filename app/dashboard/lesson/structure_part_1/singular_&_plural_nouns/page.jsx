@@ -1,7 +1,6 @@
 "use client";
-
-import { useState, useEffect } from "react"; // 🌟 PERBAIKAN 1: Import useState dan useEffect
-import { useSearchParams } from "next/navigation"; // 🌟 PERBAIKAN 2: Import useSearchParams untuk deteksi status URL
+import { useState, useEffect } from "react"; 
+import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
 import { FirstExplainVer1 } from "@/app/components/FirstExplain";
@@ -11,7 +10,6 @@ import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
 
 export default function SingularPluralNouns() {
-  // 🌟 PERBAIKAN 3: Buat state hasAnswered untuk mengontrol status tombol disable
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -27,7 +25,6 @@ export default function SingularPluralNouns() {
   const length = main_material.sub_modules.length;
 
   useEffect(() => {
-    // Cek apakah modul ini sebelumnya sudah pernah diselesaikan
     const isCompleted = 
       localStorage.getItem(`module_status_part_1_mod_${currentId}`) === "completed" || 
       statusParam === "completed";

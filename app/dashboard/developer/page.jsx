@@ -8,7 +8,7 @@ const developers = [
     name: "AGUS PRAYOGA",
     role: "BACKEND DEV",
     quote: "Making grammar as intuitive as swipe left on a bad match.",
-    image: "/images/team/agus.png" // 👈 Tambahkan path gambar di sini
+    image: "/images/team/agus.png"
   },
   {
     name: "ALIEF RYANDANU",

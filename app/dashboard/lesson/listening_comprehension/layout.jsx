@@ -64,7 +64,6 @@ export default function LessonLayout({ children }) {
     };
 
     initializeProgress();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]); 
 
   useEffect(() => {

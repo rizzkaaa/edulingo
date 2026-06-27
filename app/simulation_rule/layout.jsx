@@ -1,69 +1,85 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./layout.module.css";
-import Link from "next/link";
+
+import Alert from "../components/Alert"; 
 
 import { auth, db } from "../../lib/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 export default function SimulationLayout({ children }) {
-  const [userProfile, setUserProfile] = useState({
-    avatarUrl: null,
-    initials: "U",
+  const router = useRouter();
+  const [userProfile, setUserProfile] = useState({ avatarUrl: null, initials: "U" });
+  
+  const [alertConfig, setAlertConfig] = useState({
+    show: false, text: "", isAlert: false, onOke: () => {},
   });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         let fullName = currentUser.displayName || "User";
-
-        // Prioritas: Ambil dari Firestore dengan field 'fullName' (sesuai screenshot Anda)
         try {
           const userDocRef = doc(db, "users", currentUser.uid);
           const userDocSnap = await getDoc(userDocRef);
-          
           if (userDocSnap.exists()) {
             const data = userDocSnap.data();
-            // Menggunakan 'fullName' karena itu field yang ada di screenshot Firestore Anda
             if (data.fullName) fullName = data.fullName;
           }
         } catch (error) {
-          console.error("Gagal mengambil nama dari Firestore:", error);
+          console.error("Gagal mengambil nama:", error);
         }
-
-        const firstLetter = fullName ? fullName.trim().charAt(0).toUpperCase() : "U";
-
-        setUserProfile({
-          avatarUrl: null, 
-          initials: firstLetter,
-        });
-      } else {
-        setUserProfile({
-          avatarUrl: null,
-          initials: "U",
-        });
+        setUserProfile({ avatarUrl: null, initials: fullName.trim().charAt(0).toUpperCase() });
       }
     });
-
     return () => unsubscribe();
   }, []);
 
-  const handleLogout = async () => {
+  const performExit = () => {
     try {
-      await signOut(auth);
-      // Memperbaiki typo sessionStorage agar tidak menyebabkan error lagi
-      sessionStorage.clear();
-      localStorage.removeItem("user_id");
-      window.location.href = "/";
+      const keys = Object.keys(localStorage);
+      keys.forEach((key) => {
+        if (key.includes("module_status_") || key.includes("practice")) {
+          localStorage.removeItem(key);
+        }
+      });
+
+      router.push("/dashboard"); 
     } catch (error) {
-      console.error("Gagal logout:", error);
+      console.error("Gagal keluar:", error);
     }
   };
 
+  function handleExit() {
+    showAlert(
+      "Yakin ingin keluar? Progres simulasi Anda akan dihapus.",
+      false, 
+      () => performExit() 
+    );
+  }
+
+  function showAlert(text, isAlert = true, onOke = () => {}) {
+    setAlertConfig({ show: true, text, isAlert, onOke });
+  }
+
+  function closeAlert() {
+    setAlertConfig(prev => ({ ...prev, show: false }));
+  }
+
   return (
     <div className={styles.wrapper}>
+      {alertConfig.show && (
+        <Alert
+          isAlert={alertConfig.isAlert}
+          text={alertConfig.text}
+          handleClick={() => { closeAlert(); alertConfig.onOke(); }}
+          handleCancel={closeAlert}
+        />
+      )}
+
       <header className={styles.topHeader}>
         <div className={styles.logoSection}>
           <h1>EduLingo</h1>
@@ -75,11 +91,9 @@ export default function SimulationLayout({ children }) {
         </div>
 
         <div className={styles.rightSection}>
-          <div className={styles.profileCircle}>
-            {userProfile.initials}
-          </div>
+          <div className={styles.profileCircle}>{userProfile.initials}</div>
           
-          <button className={styles.exitBtn} onClick={handleLogout}>
+          <button className={styles.exitBtn} onClick={handleExit}>
             Keluar
           </button>
         </div>

@@ -43,7 +43,6 @@ export default function PracticePage() {
   const questions = [];
 
   rawQuestions.forEach((item) => {
-    // 1. LOGIKA UNTUK AUDIO (LONG AUDIO / SHORT AUDIO)
     if (item.type === "LongAudio" || item.type === "ShortAudio") {
       if (item.type === "LongAudio") {
         questions.push({
@@ -64,7 +63,6 @@ export default function PracticePage() {
         });
       });
     } 
-    // 2. LOGIKA BARU: UNTUK LONG READING (Memecah teks intro & anak soal)
     else if (item.type === "LongReading") {
       questions.push({
         ...item,
@@ -81,7 +79,6 @@ export default function PracticePage() {
         });
       });
     }
-    // 3. LOGIKA UNTUK TIPE SOAL LAIN (BASIC, IMAGE, TRUE_FALSE, DLL)
     else {
       let finalOptions = item.options;
       let finalIndexAnswer = item.index_answer;
@@ -222,7 +219,7 @@ export default function PracticePage() {
         totalQuestions: realQuestionsCount || 0,
         correctAnswers: correctAnswersCount || 0,
         score: finalScore || 0,
-        userAnswers: sanitizedAnswers, // ← Menggunakan variabel yang sudah benar
+        userAnswers: sanitizedAnswers, 
         isPassed: isPassed,
         createdAt: serverTimestamp(), 
       };
@@ -275,7 +272,6 @@ export default function PracticePage() {
   const QuestionComponent = questionComponents[q?.type];
   const [isAudioFinished, setIsAudioFinished] = useState(false);
 
-  // 🌟 VALIDASI JAWABAN: Tombol aktif jika tipe halaman adalah 'reading_intro' ATAU user sudah memilih jawaban
   const isQuestionAnswered = q?.type === "reading_intro" || (answers[current] !== undefined && answers[current] !== null);
 
   if (q && q.type === "long_audio") {
@@ -342,8 +338,6 @@ export default function PracticePage() {
 
       <div className={styles.topDecoration}></div>
       <div className={styles.bottomDecoration}></div>
-
-      {/* ===== HEADER ===== */}
       <div className={styles.headerSection}>
         <div>
           <h1>TOEFL Practice</h1>
@@ -358,7 +352,6 @@ export default function PracticePage() {
         </div>
       </div>
 
-      {/* ===== PROGRESS BAR ===== */}
       <div className={styles.progressSection}>
         <div className={styles.progressTrack}>
           <div
@@ -371,7 +364,6 @@ export default function PracticePage() {
         </span>
       </div>
 
-      {/* ===== CONTENT ===== */}
       <div className={styles.questionContainer}>
         {q?.type === "reading_intro" ? (
           <div style={{ backgroundColor: "#fdfdfd", padding: "30px", borderRadius: "8px", border: "2px solid #a34327" }}>
@@ -397,9 +389,7 @@ export default function PracticePage() {
         )}
       </div>
 
-      {/* ===== NAVIGASI ===== */}
       <div className={styles.bottomActions}>
-        {/* Tombol PREVIOUS: Selalu aktif selama bukan soal pertama (tidak bergantung jawaban) */}
         <button
           className={styles.prevBtn}
           onClick={() => setCurrent(getPrevIndex(current))}
@@ -409,7 +399,6 @@ export default function PracticePage() {
         </button>
 
         {current < totalQuestions - 1 ? (
-          /* Tombol NEXT: Ditambahkan logika disabled={!isQuestionAnswered} */
           <button
             className={styles.nextBtn}
             onClick={() => setCurrent(prev => prev + 1)}
@@ -418,7 +407,6 @@ export default function PracticePage() {
             {q?.type === "reading_intro" ? "PROCEED TO QUESTIONS →" : "NEXT QUESTION →"}
           </button>
         ) : (
-          /* Tombol FINISH: Ditambahkan logika disabled={!isQuestionAnswered} */
           <button
             className={styles.finishBtn}
             onClick={handleFinish}

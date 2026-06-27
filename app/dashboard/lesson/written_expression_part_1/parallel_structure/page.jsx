@@ -32,23 +32,19 @@ export default function ParallelStructure() {
       const isAlreadyCompleted = localStorage.getItem(storageKey) === "completed";
       const isNewlyCompleted = statusParam === "completed";
 
-      // 🌟 PERBAIKAN LOGIKA: Hanya buka gembok jika sudah lulus atau baru lulus kuis
       if (isAlreadyCompleted || isNewlyCompleted) {
         setHasAnswered(true);
 
-        // Jika user baru saja menyelesaikan kuis, simpan statusnya
         if (!isAlreadyCompleted && isNewlyCompleted) {
           localStorage.setItem(storageKey, "completed");
           window.dispatchEvent(new Event("practice-completed"));
         }
       } else {
-        // Jika belum menyelesaikan kuis sama sekali, pastikan tombol tetap terkunci
         setHasAnswered(false);
       }
     }
-  }, [currentId, statusParam]); // 🌟 Sinkronisasi dependency array
+  }, [currentId, statusParam]); 
 
-  // Pencegahan error jika data sub_material tidak ditemukan
   if (!sub_material) {
     return <div style={{ padding: "50px", textAlign: "center" }}>Memuat materi...</div>;
   }
@@ -74,7 +70,7 @@ export default function ParallelStructure() {
         main_part_title={main_material.part_title}
         part_id={main_material.part_id}
         sub_module_id={sub_material.sub_module_id}
-        isButtonDisabled={!hasAnswered} // 🌟 Sinkron dengan state hasAnswered
+        isButtonDisabled={!hasAnswered} 
       />
     </div>
   );

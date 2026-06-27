@@ -28,7 +28,6 @@ export default function PossessivePronouns() {
       
       const storageKey = `module_status_part_${main_material.part_id}_mod_${currentId}`;
       
-      // Mencegah dispatch event berulang secara terus-menerus jika status sudah completed
       if (localStorage.getItem(storageKey) !== "completed") {
         localStorage.setItem(storageKey, "completed");
         window.dispatchEvent(new Event("practice-completed"));

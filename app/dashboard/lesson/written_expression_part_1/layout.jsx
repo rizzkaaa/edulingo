@@ -15,7 +15,6 @@ export default function LessonLayout({ children }) {
   const [sub_module_id, setSub_module_id] = useState(1);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
   
-  // State utama pelacak jawaban
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
 
@@ -26,15 +25,12 @@ export default function LessonLayout({ children }) {
   const [hasHydrated, setHasHydrated] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  // Ambil data main_material dengan aman (Disesuaikan untuk Part 3)
   const main_material = material?.materials?.find(
     (m) => m.part_id == 3,
   ) || { part_title: "WRITTEN EXPRESSION PART 1", sub_modules: [] };
-  
-  // Ambil panjang data dengan aman menggunakan optional chaining
+
   const length = main_material?.sub_modules?.length || 0;
 
-  // Custom Event Listener global untuk mendeteksi status jawaban
   useEffect(() => {
     setHasAnswered(false);
 
@@ -52,7 +48,7 @@ export default function LessonLayout({ children }) {
     };
   }, [searchParams, currentModuleOpen]);
 
-  // Inisialisasi Progress Awal
+
   useEffect(() => {
     const initializeProgress = async () => {
       const currentUser = auth.currentUser;
@@ -63,7 +59,7 @@ export default function LessonLayout({ children }) {
           
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
-            // Written Expression Part 1 dipetakan ke index [2] pada array lessonStatus
+
             const currentStatus = userData.lessonStatus?.[2]?.status;
 
             if (currentStatus === "done") {
@@ -91,10 +87,9 @@ export default function LessonLayout({ children }) {
     };
 
     initializeProgress();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [auth.currentUser, length]); 
 
-  // Ambil data sub_material dengan aman menggunakan optional chaining
   const sub_material = main_material?.sub_modules?.find(
     (m) => m.sub_module_id == currentModuleOpen,
   ) || main_material?.sub_modules?.[0] || { title: "" };
@@ -275,7 +270,6 @@ function BottomBar({
         let currentStatusList = userData.lessonStatus ? [...userData.lessonStatus] : [];
 
         if (currentStatusList.length > 0) {
-          // Menyelesaikan Part 3 (index 2) dan membuka modul berikutnya (index 3) jika ada
           currentStatusList[2] = { ...currentStatusList[2], status: "done" };
 
           if (currentStatusList[3] && currentStatusList[3].status === "locked") {

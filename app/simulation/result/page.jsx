@@ -174,10 +174,8 @@ export default function ResultPage() {
       <h1 className={styles.pageTitle}>Simulation Result</h1>
       <div className={styles.pageDivider}></div>
 
-      {/* ===== ROW 1: PERFORMANCE + QUOTE ===== */}
       <div className={styles.topRow}>
 
-        {/* Performance Card */}
         <div className={styles.performanceCard}>
 
           <div className={styles.scoreSection}>
@@ -221,7 +219,6 @@ export default function ResultPage() {
 
         </div>
 
-        {/* Quote Card */}
         <div className={styles.quoteCard}>
           <div className={styles.quoteLabel}>TODAYS QUOTE</div>
 
@@ -239,7 +236,6 @@ export default function ResultPage() {
 
       </div>
 
-      {/* ===== ROW 2: SECTION SCORES ===== */}
       <div className={styles.sectionRow}>
         {result.sections.map((sec) => (
           <div key={sec.label} className={styles.sectionCard}>
@@ -263,10 +259,8 @@ export default function ResultPage() {
         ))}
       </div>
 
-      {/* ===== ROW 3: ANALYTICS + REVIEW ===== */}
       <div className={styles.bottomRow}>
 
-        {/* Analytics Table */}
         <div className={styles.analyticsCard}>
           <div className={styles.analyticsHeader}>TECHNICAL ANALYTICS</div>
 
@@ -309,7 +303,6 @@ export default function ResultPage() {
           </table>
         </div>
 
-        {/* Review Button yang sudah dipasangkan dengan fungsi pembersih ID */}
         <div className={styles.reviewSection}>
           <button
             className={styles.reviewBtn}

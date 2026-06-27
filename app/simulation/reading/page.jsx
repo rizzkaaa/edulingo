@@ -382,7 +382,6 @@ export default function ReadingPage() {
 
           <div className={styles.submitBox}>
             <p>Please review all your answers before finishing the examination.</p>
-            {/* PERBAIKAN DI SINI: Mengunci tombol jika belum allAnswered */}
             <button
               className={`${styles.submitBtn} ${!allAnswered ? styles.submitBtnDisabled : ""}`}
               onClick={handleSubmit}

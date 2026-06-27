@@ -99,10 +99,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-end;
-  gap: 24px; /* Atur jarak antar podium */
+  gap: 24px;
   width: 100%;
-  max-width: 800px; /* Membatasi lebar maksimal area podium agar tetap proporsional */
-  margin: 0 auto;   /* Memastikan seluruh area podium berada di tengah layar */
+  max-width: 800px; 
+  margin: 0 auto; 
 }
 
 .firstPlace,
@@ -184,7 +184,6 @@
   font-size: 24px;
   font-weight: 900;
   color:#1D1B18;
-
   width: 100%;
   white-space: nowrap;
   overflow: hidden;

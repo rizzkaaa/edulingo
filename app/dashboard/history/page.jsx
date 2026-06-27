@@ -25,12 +25,10 @@ export default function HistoryPage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
-  // LOGIKA PAGINASI BERBASIS JARAK HARI
   const [currentPage, setCurrentPage] = useState(1);
 
   const dropdownRef = useRef(null);
 
-  // Menutup dropdown filter jika klik di luar area
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -41,7 +39,6 @@ export default function HistoryPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Mengecek user yang sedang login
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -55,7 +52,6 @@ export default function HistoryPage() {
     return () => unsubscribe();
   }, []);
 
-  // Reset halaman ke nomor 1 jika user melakukan filter atau pencarian baru
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, activeCategory]);
@@ -72,7 +68,6 @@ export default function HistoryPage() {
 
       let fetchedHistory = [];
 
-      // Proses data SIMULATION
       simulationSnap.forEach((docSnap) => {
         const data = docSnap.data();
         let totalPercentageSum = 0;
@@ -116,8 +111,6 @@ export default function HistoryPage() {
           success: isSuccess,
         });
       });
-
-      // Proses data EXERCISE
       practiceSnap.forEach((docSnap) => {
         const data = docSnap.data();
         const dateObj = data.createdAt?.toDate() || new Date();
@@ -358,7 +351,6 @@ export default function HistoryPage() {
           </div>
         )}
 
-        {/* ===== LOGIKA PAGINASI BARU ===== */}
         <div className={styles.paginationSection}>
           <p>
             Melihat aktivitas tanggal: <strong>{getPageDateString()}</strong> {currentItems.length > 0 && `(${currentItems.length} aktivitas)`}
@@ -366,7 +358,6 @@ export default function HistoryPage() {
           
           {totalPages > 1 && (
             <div className={styles.pagination}>
-              {/* Tombol Previous */}
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -374,10 +365,7 @@ export default function HistoryPage() {
                 <FaChevronLeft />
               </button>
               
-              {/* 🌟 Titik-titik Sebelah Kiri jika halaman awal tersembunyi */}
               {startPage > 1 && <span style={{ color: "#666", margin: "0 6px", alignSelf: "center" }}>...</span>}
-
-              {/* Jendela Tombol Nomor Utama (Maksimal 3) */}
               {visiblePages.map((page) => (
                 <button
                   key={page}
@@ -387,11 +375,8 @@ export default function HistoryPage() {
                   {page}
                 </button>
               ))}
-
-              {/* 🌟 Titik-titik Sebelah Kanan jika halaman akhir tersembunyi */}
               {endPage < totalPages && <span style={{ color: "#666", margin: "0 6px", alignSelf: "center" }}>...</span>}
 
-              {/* Tombol Next */}
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}

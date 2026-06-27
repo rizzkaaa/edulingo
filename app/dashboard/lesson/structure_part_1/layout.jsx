@@ -16,7 +16,6 @@ export default function LessonLayout({ children }) {
   const [sub_module_id, setSub_module_id] = useState(1);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
   
-  // State utama pelacak jawaban
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const handlePracticeAnswered = () => {
@@ -25,16 +24,12 @@ export default function LessonLayout({ children }) {
 
   const [hasHydrated, setHasHydrated] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-
-  // 🌟 Ambil data main_material dengan aman
   const main_material = material?.materials?.find(
     (m) => m.part_id == 1,
   ) || { part_title: "STRUCTURE", sub_modules: [] };
   
-  // 🌟 Ambil panjang data dengan aman menggunakan optional chaining (?.)
   const length = main_material?.sub_modules?.length || 0;
 
-  // Menggunakan Custom Event Listener global untuk mendeteksi jawaban soal
   useEffect(() => {
     setHasAnswered(false);
 
@@ -87,10 +82,8 @@ export default function LessonLayout({ children }) {
     };
 
     initializeProgress();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser, length]); 
 
-  // 🌟 Ambil data sub_material dengan aman menggunakan optional chaining
   const sub_material = main_material?.sub_modules?.find(
     (m) => m.sub_module_id == currentModuleOpen,
   ) || main_material?.sub_modules?.[0] || { title: "" };
@@ -110,8 +103,6 @@ export default function LessonLayout({ children }) {
       <aside>
         <header>{main_material?.part_title?.toUpperCase()}</header>
         <ul>
-          {/* 🌟 ALGORITMA DIPERBAIKI: Menggunakan Optional Chaining (?.) sebelum .map
-              Ini mencegah error map of undefined apabila datanya belum siap */}
           {main_material?.sub_modules?.map((item) => {
             return (
               <li key={`li${item.sub_module_id}`}>
@@ -169,7 +160,6 @@ function ButtonMenu({
   const router = useRouter();
 
   function handleClick(sub_material_id) {
-    // 🌟 Mengambil nama folder dari property folder_name/slug jika ada, atau fallback ke title generator
     const nextPath = material?.folder_name || material?.slug || material?.title?.toLowerCase().replaceAll(" ", "_") || "";
     
     if (currentModuleOpen == sub_material_id) return;
@@ -178,7 +168,6 @@ function ButtonMenu({
       setTimeout(() => setShake(false), 900);
     } else {
       setCurrentModuleOpen(sub_material_id);
-      // 🌟 PERBAIKAN: Hapus encodeURIComponent agar Next.js mencari folder fisik dengan simbol '&' secara tepat
       router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
     }
   }
@@ -231,7 +220,7 @@ function BottomBar({
     const nextPath = sub_material?.folder_name || sub_material?.slug || sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
 
     setCurrentModuleOpen(currentModuleOpen - 1);
-    // 🌟 PERBAIKAN: Hapus encodeURIComponent
+
     router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
   }
 
@@ -247,7 +236,6 @@ function BottomBar({
       const nextPath = sub_material?.folder_name || sub_material?.slug || sub_material?.title?.toLowerCase().replaceAll(" ", "_") || "";
 
       setCurrentModuleOpen(currentModuleOpen + 1);
-      // 🌟 PERBAIKAN: Hapus encodeURIComponent
       router.push(`/dashboard/lesson/structure_part_1/${nextPath}`);
     }
   }

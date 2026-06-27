@@ -32,9 +32,6 @@ export default function CountableUncountableNouns() {
       <FirstExplainVer1 sub_material={sub_material} />
       <TemplateVer1 material={sub_material.content[1]} />
       
-      {/* 🌟 ALGORITMA DIPERBAIKI: 
-          Selain mengubah state lokal, kita tembakkan juga Custom Event "practice-completed" 
-          agar didengar oleh file LessonLayout untuk membuka gembok tombol TANDAI SELESAI */}
       <TrueFalse 
         material={sub_material.content[2]} 
         onAnswered={() => {

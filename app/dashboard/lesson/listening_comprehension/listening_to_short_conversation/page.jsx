@@ -69,7 +69,6 @@ export default function ListeningToShortConversation() {
       <ComparisonTable material={sub_material.content[1]} />
       <TemplateVer21 material={sub_material.content[2]} />
       
-      {/* Jika user menjawab audio di dalam halaman ini, tombol footer akan terbuka */}
       <WithAudio 
         material={sub_material.content[3]} 
         onAnswered={handleAnswered}

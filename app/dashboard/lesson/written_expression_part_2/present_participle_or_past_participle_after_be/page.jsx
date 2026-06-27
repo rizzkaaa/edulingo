@@ -32,23 +32,18 @@ export default function PresentParticipleOrPastParticipleAfterBe() {
       const isAlreadyCompleted = localStorage.getItem(storageKey) === "completed";
       const isNewlyCompleted = statusParam === "completed";
 
-      // 🔒 STRICТ LOCKING SYSTEM
       if (isAlreadyCompleted || isNewlyCompleted) {
         setHasAnswered(true);
-
-        // Amankan status ke localStorage jika baru diarahkan dari halaman kuis bawa parameter
         if (!isAlreadyCompleted && isNewlyCompleted) {
           localStorage.setItem(storageKey, "completed");
           window.dispatchEvent(new Event("practice-completed"));
         }
       } else {
-        // 🌟 SAFETY LOCK: Paksa false jika tidak ada bukti penyelesaian di localStorage / URL
         setHasAnswered(false);
       }
     }
   }, [currentId, statusParam, main_material]);
 
-  // Antisipasi jika data sub_material gagal dimuat dari berkas JSON
   if (!sub_material) {
     return <div style={{ padding: "50px", textAlign: "center" }}>Memuat materi...</div>;
   }
@@ -72,7 +67,6 @@ export default function PresentParticipleOrPastParticipleAfterBe() {
       <WithText 
         material={sub_material.content[2]} 
         onAnswered={() => {
-          // Memicu pembukaan gembok tombol dan simpan status permanen
           setHasAnswered(true);
           const storageKey = `module_status_part_${main_material.part_id}_mod_${currentId}`;
           localStorage.setItem(storageKey, "completed");
@@ -89,7 +83,7 @@ export default function PresentParticipleOrPastParticipleAfterBe() {
         main_part_title={main_material.part_title}
         part_id={main_material.part_id}
         sub_module_id={sub_material.sub_module_id}
-        isButtonDisabled={!hasAnswered} // Sinkron dengan state pengunci
+        isButtonDisabled={!hasAnswered} 
       />
     </div>
   );

@@ -32,23 +32,18 @@ export default function CoordinateConnectors() {
       const isAlreadyCompleted = localStorage.getItem(storageKey) === "completed";
       const isNewlyCompleted = statusParam === "completed";
 
-      // 🌟 PERBAIKAN LOGIKA: Gembok terbuka HANYA JIKA sudah pernah selesai ATAU baru selesai kuis
       if (isAlreadyCompleted || isNewlyCompleted) {
         setHasAnswered(true);
-
-        // Jika baru saja menyelesaikan kuis, simpan ke localStorage dan sebarkan event
         if (!isAlreadyCompleted && isNewlyCompleted) {
           localStorage.setItem(storageKey, "completed");
           window.dispatchEvent(new Event("practice-completed"));
         }
       } else {
-        // Jika belum menyelesaikan kuis sama sekali, pastikan state tetap false (tombol terkunci)
         setHasAnswered(false);
       }
     }
-  }, [currentId, main_material, statusParam]); // 🌟 Masukkan statusParam ke dependency array
+  }, [currentId, main_material, statusParam]); 
 
-  // Antisipasi jika data tidak ditemukan agar tidak crash
   if (!sub_material) {
     return <div style={{ padding: "50px", textAlign: "center" }}>Memuat materi...</div>;
   }

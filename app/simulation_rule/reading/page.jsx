@@ -9,7 +9,6 @@ export default function ReadingPage() {
 
   return (
     <>
-      {/* ===== HERO KUNING (ikut scroll) ===== */}
       <section className={styles.heroSection}>
 
         <div className={styles.heroLeft}>
@@ -71,7 +70,6 @@ export default function ReadingPage() {
         </div>
       </section>
 
-      {/* ===== KONTEN BAWAH (Aturan + Materi) ===== */}
       <div className={styles.contentWrapper}>
 
         <div className={styles.leftColumn}>
@@ -146,21 +144,18 @@ export default function ReadingPage() {
           <div className={styles.beforeStartCard}>
             <h3>Sebelum Mulai:</h3>
 
-            {/* Checkbox 1 - dikunci, selalu tercentang */}
             <label className={styles.checkLine}>
               <input type="checkbox" checked readOnly />
               <span>Punya waktu 40 menit penuh tanpa gangguan.</span>
             </label>
             <div className={styles.divider}></div>
 
-            {/* Checkbox 2 - dikunci, selalu tercentang */}
             <label className={styles.checkLine}>
               <input type="checkbox" checked readOnly />
               <span>Koneksi internet stabil dan perangkat siap digunakan.</span>
             </label>
 
             <div className={styles.confirmBox}>
-              {/* Checkbox 3 - ngontrol tombol */}
               <label className={styles.checkLine}>
                 <input
                   type="checkbox"

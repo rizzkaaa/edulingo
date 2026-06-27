@@ -11,14 +11,12 @@ import { TemplateVer11, TemplateVer12 } from "@/app/components/other_material";
 export default function AgreementAfterPrepositionalPhrases() {
   const [hasAnswered, setHasAnswered] = useState(false);
 
-  // Ambil data dengan aman
   const main_material = material?.materials?.find((m) => m.part_id == 3);
   const sub_material = main_material?.sub_modules?.find((s) => s.sub_module_id == 2);
 
   const currentId = sub_material?.sub_module_id;
   const length = main_material?.sub_modules?.length || 0;
 
-  // Jika data tidak ditemukan, return null atau loading
   if (!sub_material) return null;
 
   return (

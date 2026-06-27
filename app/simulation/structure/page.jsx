@@ -382,7 +382,6 @@ export default function StructurePage() {
 
           <div className={styles.submitBox}>
             <p>Please review all your answers before finishing the examination.</p>
-            {/* PERBAIKAN: Tombol dikunci menggunakan allAnswered dan atribut disabled */}
             <button
               className={`${styles.submitBtn} ${!allAnswered ? styles.submitBtnDisabled : ""}`}
               onClick={handleSubmit}

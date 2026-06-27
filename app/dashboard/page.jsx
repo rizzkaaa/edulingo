@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-// Backend ambil data dari firebase untuk porgress
 export default function DashboardPage() {
   const [lessonStatus, setLessonStatus] = useState([]);
   const [username, setUsername] = useState("User");
@@ -121,7 +120,6 @@ export default function DashboardPage() {
   const currentTitle = currentLesson?.title || "TOEFL Preparation";
   const allLessonsCompleted = doneCount === 7 && lessonStatus.length > 0;
 
-  // Editing fungsi reset progress
   const handleResetProgress = async () => {
   const user = auth.currentUser;
   if (user) {

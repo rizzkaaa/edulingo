@@ -22,7 +22,6 @@ export default function DashboardLayout({ children }) {
   const [initialName, setInitialName] = useState("E");
 
   useEffect(() => {
-    // Backend Ambil data nama dari Firebase
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
@@ -79,7 +78,6 @@ export default function DashboardLayout({ children }) {
         `}
       >
         <div className={styles.wrapSidebar}>
-          {/* Logo dinamis menggunakan state initialName */}
           <div className={styles.logo}>
             E
           </div>

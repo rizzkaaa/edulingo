@@ -7,7 +7,6 @@ import * as FaIcons from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-// 🌟 PERBAIKAN: Tambahkan updateDoc di import Firestore
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export default function LessonPage() {
@@ -16,7 +15,6 @@ export default function LessonPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const lessonData = materials.materials;
 
-  // backend menyimpan hasil belajar materi ke firebase
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -32,8 +30,7 @@ export default function LessonPage() {
             if (data.lessonStatus) {
               setLessonStatus(data.lessonStatus);
             } else {
-              // 🌟 PERBAIKAN: AUTO-HEAL UNTUK AKUN BARU
-              // Jika lessonStatus tidak ada, kita buatkan data defaultnya
+
               const defaultLessonStatus = [
                 { path: "/dashboard/lesson/structure_part_1", status: "progress" },
                 { path: "/dashboard/lesson/structure_part_2", status: "locked" },
@@ -44,10 +41,9 @@ export default function LessonPage() {
                 { path: "/dashboard/lesson/listening_comprehension", status: "locked" }
               ];
               
-              // 1. Tampilkan ke layar agar user bisa langsung mulai
+
               setLessonStatus(defaultLessonStatus);
               
-              // 2. Simpan ke database Firebase agar permanen
               await updateDoc(userDocRef, {
                 lessonStatus: defaultLessonStatus
               });
@@ -111,7 +107,6 @@ export default function LessonPage() {
   const allLessonsCompleted =
     doneCount === lessonData.length && lessonData.length > 0;
 
-  // Logika Filter / Pencarian Materi
   const filteredLessons = lessonData.filter((item) => {
     const query = searchQuery.toLowerCase();
     const matchTitle = item.part_title.toLowerCase().includes(query);
@@ -207,7 +202,6 @@ export default function LessonPage() {
       <div className={styles.lessonGrid}>
         {filteredLessons.length > 0 ? (
           filteredLessons.map((item) => {
-            // Menyelaraskan indeks asli dari data mentah agar status localStorage tetap sinkron
             const originalIndex = lessonData.findIndex(
               (lesson) => lesson.part_id === item.part_id,
             );

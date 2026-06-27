@@ -29,7 +29,6 @@ const questionComponents = {
   long_audio: LongAudioQuestion,
 };
 
-// Batas total pertanyaan (tidak termasuk halaman intro audio)
 const MAX_REAL_QUESTIONS = 36;
 
 export default function ListeningPage() {
@@ -52,10 +51,8 @@ export default function ListeningPage() {
   const [timeUpAlertShown, setTimeUpAlertShown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(25 * 60); 
 
-  // 🌟 NEW STATE: Menyimpan indeks halaman long_audio yang sudah pernah dikunjungi pengguna
   const [visitedLongAudio, setVisitedLongAudio] = useState({});
 
-  // Fungsi pengacak array
   const shuffleArray = (array) => {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -86,7 +83,6 @@ export default function ListeningPage() {
     return () => unsubscribe();
   }, []);
 
-  // PERBAIKAN ALGORITMA: Pisahkan Short dan Long Audio, Acak Short saja, Batasi total 36
   useEffect(() => {
     try {
       let listeningSession = null;
@@ -116,14 +112,12 @@ export default function ListeningPage() {
             });
           } 
           else if (q.type === "LongAudio" && Array.isArray(q.options)) {
-            // Intro Long Audio
             longAudios.push({
               ...q,
               type: "long_audio",
               audioSrc: q.audio ? `/audio/${q.audio}` : null,
             });
 
-            // Anak-anak Soal Long Audio
             q.options.forEach((subQ) => {
               longAudios.push({
                 ...q,
@@ -179,7 +173,7 @@ export default function ListeningPage() {
     }
   }, []);
 
-  // 🌟 NEW EFFECT: Jika user membuka halaman tipe long_audio, tandai indeks tersebut sebagai 'visited'
+
   useEffect(() => {
     if (questions.length > 0 && questions[current]?.type === "long_audio") {
       setVisitedLongAudio(prev => ({ ...prev, [current]: true }));
@@ -214,7 +208,6 @@ export default function ListeningPage() {
     return count;
   }
 
-  // 🌟 PERBAIKAN NAVIGASI PREVIOUS: Lewati long_audio jika bergerak mundur
   function getPrevIndex(fromIndex) {
     let prevIndex = fromIndex - 1;
     while (prevIndex >= 0 && questions[prevIndex].type === "long_audio") {
@@ -223,7 +216,6 @@ export default function ListeningPage() {
     return prevIndex;
   }
 
-  // 🌟 PERBAIKAN NAVIGASI NEXT: Lewati long_audio jika index tersebut sudah pernah dikunjungi
   function getNextIndex(fromIndex) {
     let nextIndex = fromIndex + 1;
     while (nextIndex < totalQuestions && questions[nextIndex].type === "long_audio" && visitedLongAudio[nextIndex]) {
@@ -360,9 +352,6 @@ export default function ListeningPage() {
   const q = questions[current];
   const QuestionComponent = questionComponents[q.type];
 
-  // ==========================================
-  // VIEW KHUSUS LAYOUT LONG_AUDIO
-  // ==========================================
   if (q && q.type === "long_audio") {
     return (
       <div className={styles.container}>
@@ -398,7 +387,7 @@ export default function ListeningPage() {
             answers={answers}
             parentIndex={current}
             onAnswer={() => {}}
-            // 🌟 MENGGUNAKAN getNextIndex() agar setelah intro audio panjang, langsung lompat ke soal sesudahnya
+          
             onNextQuestion={() => setCurrent(getNextIndex(current))}
             isLastQuestion={current === totalQuestions - 1}
           />
@@ -406,10 +395,6 @@ export default function ListeningPage() {
       </div>
     );
   }
-
-  // ==========================================
-  // VIEW NORMAL
-  // ==========================================
   return (
     <div className={styles.container}>
       {alertConfig.show && (
@@ -466,7 +451,7 @@ export default function ListeningPage() {
             <button className={`${styles.reviewBtn} ${flagged[current] ? styles.reviewBtnActive : ""}`} onClick={handleFlag}>
               <FaFlag />{flagged[current] ? "FLAGGED" : "MARK FOR REVIEW"}
             </button>
-            {/* 🌟 MENGGUNAKAN getNextIndex() agar tombol tidak masuk lagi ke halaman audio intro yang sudah pernah dikunjungi */}
+  
             <button 
               className={styles.nextBtn} 
               onClick={() => setCurrent(getNextIndex(current))} 
