@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa"; // 🌟 Menghapus FaCog
+import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa"; 
 
 export default function LongAudioQuestion({
   audioSrc,
@@ -71,7 +71,6 @@ export default function LongAudioQuestion({
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", paddingBottom: "40px", fontFamily: "sans-serif" }}>
       
-      {/* AUDIO RAHASIA UNTUK FUNGSI PLAY */}
       <audio
         ref={audioRef}
         src={audioSrc}
@@ -80,7 +79,6 @@ export default function LongAudioQuestion({
         onEnded={handleAudioEnded}
       />
 
-      {/* 🌟 1. KOTAK PEMUTAR AUDIO (CARD UTAMA) */}
       <div style={{
         backgroundColor: "#F2EFEB",
         border: "3px solid #1A1A1A",
@@ -90,7 +88,6 @@ export default function LongAudioQuestion({
         boxShadow: "6px 6px 0px #1A1A1A" 
       }}>
         
-        {/* Header Audio */}
         <div style={{ display: "flex", alignItems: "center", marginBottom: "25px", gap: "20px" }}>
           <div style={{
             backgroundColor: "#F5C24F", 
@@ -117,7 +114,6 @@ export default function LongAudioQuestion({
           </div>
         </div>
 
-        {/* Player Controls */}
         <div style={{
           display: "flex",
           alignItems: "center",
@@ -126,7 +122,6 @@ export default function LongAudioQuestion({
           padding: "15px",
           gap: "15px"
         }}>
-          {/* Tombol Play/Pause */}
           <button
             onClick={handlePlayPause}
             disabled={isAudioPlayedOnce}
@@ -146,13 +141,11 @@ export default function LongAudioQuestion({
             {playing ? <FaPause size={14} /> : <FaPlay size={14} style={{ marginLeft: "3px" }} />}
           </button>
 
-          {/* Progress Bar & Waktu */}
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "15px" }}>
             <span style={{ fontSize: "12px", fontWeight: "bold", color: "#1A1A1A", width: "35px" }}>
               {currentTime}
             </span>
             
-            {/* Track Custom */}
             <div style={{ flex: 1, height: "6px", backgroundColor: "#E0E0E0", border: "1px solid #1A1A1A", position: "relative" }}>
               <div style={{ 
                 height: "100%", 
@@ -160,7 +153,6 @@ export default function LongAudioQuestion({
                 width: `${progress}%`,
                 transition: "width 0.1s linear"
               }}></div>
-              {/* Slider Thumb */}
               <div style={{
                 position: "absolute",
                 top: "50%",
@@ -177,25 +169,21 @@ export default function LongAudioQuestion({
               {duration}
             </span>
           </div>
-
-          {/* 🌟 Icon Setting (FaCog) di sini sudah dihapus agar progress bar memenuhi space */}
         </div>
-
-        {/* 🌟 2. TOMBOL LANJUT KE SOAL (Sekarang Pindah ke Dalam Card Audio) */}
         {isAudioFinished && (
           <div style={{ marginTop: "25px", textAlign: "right" }}>
             <button 
               onClick={onNextQuestion}
               style={{
-                backgroundColor: "#B23B22", // 🔥 Mengubah warna menjadi Marun
+                backgroundColor: "#B23B22",
                 color: "white",
                 padding: "12px 24px",
                 fontSize: "14px",
                 fontWeight: "bold",
-                border: "2px solid #1A1A1A", // Border solid hitam khas Neo-brutalism
+                border: "2px solid #1A1A1A",
                 cursor: "pointer",
                 letterSpacing: "1px",
-                boxShadow: "4px 4px 0px #1A1A1A" // Shadow hitam tebal kontras dengan marun
+                boxShadow: "4px 4px 0px #1A1A1A"
               }}
             >
               {isLastQuestion ? "FINISH SESSION" : "GO TO QUESTIONS →"}
@@ -204,7 +192,6 @@ export default function LongAudioQuestion({
         )}
       </div>
 
-      {/* 🌟 3. PRATINJAU OPSI (Di Luar Card Audio) */}
       <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
         {options && Array.isArray(options) && options.map((subQ, qIndex) => {
           if (!subQ.option || !Array.isArray(subQ.option)) return null;

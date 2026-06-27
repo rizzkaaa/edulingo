@@ -20,8 +20,6 @@ export default function AudioQuestion({
   const [currentTime, setCurrentTime] = useState("0:00");
   const [duration, setDuration] = useState("0:00");
   const [ended, setEnded] = useState(false);
-
-  // Reset state & cleanup audio saat pindah soal
   useEffect(() => {
     const currentAudio = audioRef.current;
     setPlaying(false);
@@ -175,7 +173,7 @@ export default function AudioQuestion({
                 className={`${shared.option} ${selectedAnswer === i ? shared.optionSelected : ""}`}
                 onClick={() => {
                   if (selectedAnswer === i) {
-                    onAnswer(undefined); // Klik ulang opsi yang sama untuk unselect
+                    onAnswer(undefined);
                   } else {
                     onAnswer(i);
                   }

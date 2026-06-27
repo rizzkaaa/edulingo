@@ -73,8 +73,6 @@ function LongTextQuestion({
   );
 }
 
-// Komponen passage dipisah & di-memo sendiri,
-// supaya hanya re-render kalau teks "passage" beneran berubah
 const PassageBlock = memo(function PassageBlock({ passage }) {
   return (
     <div className={styles.stickyPassage}>

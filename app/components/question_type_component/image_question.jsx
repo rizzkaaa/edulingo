@@ -5,8 +5,6 @@ import Image from "next/image";
 export default function ImageQuestion({ questionNumber, totalQuestions, imageUrl, question, options, onAnswer, selectedAnswer }) {
   return (
     <div className={shared.wrapper}>
-
-      {/* ===== IMAGE SECTION ===== */}
       <div className={shared.mediaSection}>
         <div className={styles.imageBox}>
           <Image
@@ -17,8 +15,6 @@ export default function ImageQuestion({ questionNumber, totalQuestions, imageUrl
           />
         </div>
       </div>
-
-      {/* ===== QUESTION SECTION ===== */}
       <div className={shared.questionSection}>
         <span className={shared.questionLabel}>
           QUESTION {questionNumber} OF {totalQuestions}

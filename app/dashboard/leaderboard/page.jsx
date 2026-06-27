@@ -149,7 +149,6 @@ export default function LeaderboardPage(){
             const myEntry = sorted[myIndex];
             setCurrentUserRank(myEntry.rank);
 
-            // 🌟 FUNGSIONALITAS DYNAMIC RANK TREND: Ambil riwayat sesi pengerjaan user ini
             const mySessions = [];
             sessionsSnap.forEach((docSnap) => {
               const d = docSnap.data();
@@ -158,15 +157,12 @@ export default function LeaderboardPage(){
                 mySessions.push({ ...d, timeSeconds });
               }
             });
-
-            // Urutkan berdasarkan waktu pengerjaan tertua ke terbaru
             mySessions.sort((a, b) => a.timeSeconds - b.timeSeconds);
 
             let trendText = "STABLE";
             let trendIcon = false;
 
             if (mySessions.length > 1) {
-              // Cari skor tertinggi sebelum sesi paling terakhir dimasukkan
               const previousSessions = mySessions.slice(0, mySessions.length - 1);
               let prevBestScore = 0;
               let prevBestTime = Infinity;
@@ -179,7 +175,6 @@ export default function LeaderboardPage(){
                 }
               });
 
-              // Estimasi peringkat hipotesis sebelum update sesi terbaru
               const hypotheticalList = sorted.map(u => {
                 if (u.userId === user.uid) {
                   return { ...u, score: prevBestScore, time: prevBestTime };
@@ -202,7 +197,6 @@ export default function LeaderboardPage(){
               } else if (myIndex > 0) {
                 const targetAbove = sorted[myIndex - 1];
                 
-                // 🌟 JIKA POIN SAMA TAPI KALAH WAKTU
                 if (targetAbove.score === myEntry.score) {
                   trendText = "BEAT TIME TO RANK UP";
                   trendIcon = true;
@@ -304,7 +298,6 @@ export default function LeaderboardPage(){
         ))}
       </section>
 
-      {/* ===== BOTTOM BAR DYNAMIC ===== */}
       <div className={styles.bottomBar}>
         <div className={styles.bottomLeft}>
           <h1>{currentUserRank}</h1>

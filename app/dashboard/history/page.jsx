@@ -132,8 +132,6 @@ export default function HistoryPage() {
           success: isSuccess,
         });
       });
-
-      // Urutkan riwayat dari yang paling baru ke yang paling lama
       fetchedHistory.sort((a, b) => b.dateObj - a.dateObj);
 
       setHistoryData(fetchedHistory);
@@ -145,21 +143,18 @@ export default function HistoryPage() {
     }
   };
 
-  // --- LOGIKA FILTER KATEGORI & SEARCH ---
   const filteredHistory = historyData.filter((item) => {
     const matchesCategory = activeCategory === "All Categories" || item.category === activeCategory;
     const matchesSearch = item.activity.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  // --- KALKULASI KALENDER BERBASIS TANGGAL ---
   const today = new Date();
   const midnightToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   
   const targetDate = new Date(midnightToday);
   targetDate.setDate(targetDate.getDate() - (currentPage - 1));
 
-  // Ambil aktivitas khusus pada tanggal target tersebut
   const currentItems = filteredHistory.filter((item) => {
     const d = item.dateObj;
     return (
@@ -169,12 +164,10 @@ export default function HistoryPage() {
     );
   });
 
-  // Hitung Rata-rata Skor HANYA untuk hari yang aktif ini
   const dailyAverageScore = currentItems.length > 0
     ? Math.round(currentItems.reduce((sum, item) => sum + item.score, 0) / currentItems.length)
     : 0;
 
-  // Hitung total halaman mundur
   let totalPages = 1;
   if (filteredHistory.length > 0) {
     const oldestDate = filteredHistory[filteredHistory.length - 1].dateObj;
@@ -194,11 +187,9 @@ export default function HistoryPage() {
     });
   };
 
-  // 🌟 1. LOGIKA BARU: HITUNG JENDELA TOMBOL YANG AKAN DI TAMPILKAN (MAKSIMAL 3 TOMBOL NOMOR)
   let startPage = Math.max(1, currentPage - 1);
   let endPage = Math.min(totalPages, startPage + 2);
 
-  // Penyesuaian batas jika sudah mendekati halaman terakhir agar tetap menampilkan 3 tombol (jika tersedia)
   if (endPage - startPage < 2) {
     startPage = Math.max(1, endPage - 2);
   }
