@@ -6,6 +6,8 @@ function LongTextQuestion({
   questionNumber,
   totalQuestions,
   passage,
+  passageStartQuestion,
+  passageEndQuestion,
   question,
   options,
   onAnswer,
@@ -16,7 +18,11 @@ function LongTextQuestion({
     <div className={shared.wrapper}>
 
       {passage && (
-        <PassageBlock passage={passage} />
+        <PassageBlock
+          passage={passage}
+          start={passageStartQuestion}
+          end={passageEndQuestion}
+        />
       )}
 
       <div className={shared.questionSection}>
@@ -73,12 +79,14 @@ function LongTextQuestion({
   );
 }
 
-const PassageBlock = memo(function PassageBlock({ passage }) {
+const PassageBlock = memo(function PassageBlock({ passage, start, end }) {
   return (
     <div className={styles.stickyPassage}>
       <div className={styles.passageHeader}>
         <span className={styles.passageIcon}>📖</span>
-        <span className={styles.passageLabel}>READING REFERENCE</span>
+        <span className={styles.passageLabel}>
+          READING REFERENCE {start && end ? `FOR QUESTIONS ${start} - ${end}` : ""}
+        </span>
       </div>
 
       <div className={styles.passageBorder}>

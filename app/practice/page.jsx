@@ -41,6 +41,7 @@ export default function PracticePage() {
   const rawQuestions = targetModule ? targetModule.questions : [];
 
   const questions = [];
+  let currentRealNumber = 1;
 
   rawQuestions.forEach((item) => {
     if (item.type === "LongAudio" || item.type === "ShortAudio") {
@@ -61,22 +62,25 @@ export default function PracticePage() {
           options: subQ.option, 
           index_answer: subQ.index_answer
         });
+        currentRealNumber++;
       });
     } 
     else if (item.type === "LongReading") {
-      questions.push({
-        ...item,
-        type: "reading_intro",
-      });
+      const startNum = currentRealNumber;
+      const endNum = currentRealNumber + (item.options?.length || 0) - 1;
 
       item.options.forEach((subQ) => {
         questions.push({
           ...item,
-          type: "basic", 
+          type: "long_text", 
+          passage: item.long_text || item.passage || item.text || item.paragraph || item.question,
+          passageStartQuestion: startNum,
+          passageEndQuestion: endNum,
           question: subQ.question || "Read the text and choose the correct answer.",
           options: subQ.option, 
           index_answer: subQ.index_answer
         });
+        currentRealNumber++;
       });
     }
     else {
@@ -106,6 +110,7 @@ export default function PracticePage() {
         options: finalOptions,
         index_answer: finalIndexAnswer
       });
+      currentRealNumber++;
     }
   });
 
@@ -189,9 +194,9 @@ export default function PracticePage() {
             else if (String(userAnswer) === String(correctIndex)) {
               correctAnswersCount++;
             }
+            }
           }
-        }
-      });
+        });
 
       const finalScore = realQuestionsCount > 0 
         ? Math.round((correctAnswersCount / realQuestionsCount) * 100) 
