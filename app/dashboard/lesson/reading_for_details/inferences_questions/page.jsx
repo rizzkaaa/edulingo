@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -11,7 +11,7 @@ import { FirstExplainVer11 } from "@/app/components/first_explain";
 import { TemplateVer9 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 
-export default function InferencesQuestions() {
+function InferencesQuestionsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -77,5 +77,13 @@ export default function InferencesQuestions() {
         isButtonDisabled={!hasAnswered}
       />
     </div>
+  );
+}
+
+export default function InferencesQuestions(props) {
+  return (
+    <Suspense fallback={null}>
+      <InferencesQuestionsInner {...props} />
+    </Suspense>
   );
 }

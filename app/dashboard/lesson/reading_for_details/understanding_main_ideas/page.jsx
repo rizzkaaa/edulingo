@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -9,7 +9,7 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import { FirstExplainVer11 } from "@/app/components/first_explain";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 
-export default function UnderstandingMainIdeas() {
+function UnderstandingMainIdeasInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -65,5 +65,13 @@ export default function UnderstandingMainIdeas() {
         isButtonDisabled={!hasAnswered}
       />
     </div>
+  );
+}
+
+export default function UnderstandingMainIdeas(props) {
+  return (
+    <Suspense fallback={null}>
+      <UnderstandingMainIdeasInner {...props} />
+    </Suspense>
   );
 }

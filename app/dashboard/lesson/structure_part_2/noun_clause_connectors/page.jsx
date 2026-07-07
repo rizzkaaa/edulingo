@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -11,7 +11,7 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ImportantRule from "@/app/components/ImportantRule";
 
-export default function NounClauseConnectors() {
+function NounClauseConnectorsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -72,5 +72,13 @@ export default function NounClauseConnectors() {
         isButtonDisabled={!hasAnswered}
       />
     </div>
+  );
+}
+
+export default function NounClauseConnectors(props) {
+  return (
+    <Suspense fallback={null}>
+      <NounClauseConnectorsInner {...props} />
+    </Suspense>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../components/Alert";
@@ -28,7 +29,7 @@ const questionComponents = {
   ShortAudio: AudioQuestion, 
 };
 
-export default function PracticePage() {
+function PracticePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -422,5 +423,13 @@ export default function PracticePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function PracticePage(props) {
+  return (
+    <Suspense fallback={null}>
+      <PracticePageInner {...props} />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -9,7 +9,7 @@ import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
 import { TemplateVer14, TemplateVer13 } from "@/app/components/other_material";
 
-export default function AgreementAfterExpressionOfQuality() {
+function AgreementAfterExpressionOfQualityInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -72,5 +72,13 @@ export default function AgreementAfterExpressionOfQuality() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function AgreementAfterExpressionOfQuality(props) {
+  return (
+    <Suspense fallback={null}>
+      <AgreementAfterExpressionOfQualityInner {...props} />
+    </Suspense>
   );
 }

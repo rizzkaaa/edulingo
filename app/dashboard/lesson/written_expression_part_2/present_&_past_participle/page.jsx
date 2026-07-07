@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -10,7 +10,7 @@ import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow"
 import ComparisonTable from "@/app/components/ComparisonTable";
 import { WithText } from "@/app/components/MultipleChoice";
 
-export default function PresentPastParticiple() {
+function PresentPastParticipleInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -86,5 +86,13 @@ export default function PresentPastParticiple() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function PresentPastParticiple(props) {
+  return (
+    <Suspense fallback={null}>
+      <PresentPastParticipleInner {...props} />
+    </Suspense>
   );
 }

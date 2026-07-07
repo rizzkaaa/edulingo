@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -11,7 +11,7 @@ import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow"
 import ComparisonTable from "@/app/components/ComparisonTable";
 import { WithAudio } from "@/app/components/MultipleChoice";
 
-export default function ListeningToShortConversation() {
+function ListeningToShortConversationInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -90,5 +90,13 @@ export default function ListeningToShortConversation() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function ListeningToShortConversation(props) {
+  return (
+    <Suspense fallback={null}>
+      <ListeningToShortConversationInner {...props} />
+    </Suspense>
   );
 }

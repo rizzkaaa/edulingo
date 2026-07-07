@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -10,7 +10,7 @@ import { TemplateVer23, TemplateVer22 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import { WithAudio } from "@/app/components/MultipleChoice";
 
-export default function ListeningToTalksAndNoteTaking() {
+function ListeningToTalksAndNoteTakingInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -84,5 +84,13 @@ export default function ListeningToTalksAndNoteTaking() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function ListeningToTalksAndNoteTaking(props) {
+  return (
+    <Suspense fallback={null}>
+      <ListeningToTalksAndNoteTakingInner {...props} />
+    </Suspense>
   );
 }

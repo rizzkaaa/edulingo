@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -11,7 +11,7 @@ import { FirstExplainVer11 } from "@/app/components/first_explain";
 import { TemplateVer9 } from "@/app/components/other_material";
 import { WithText } from "@/app/components/MultipleChoice";
 
-export default function ReferencesQuestions() {
+function ReferencesQuestionsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -79,5 +79,13 @@ export default function ReferencesQuestions() {
         isButtonDisabled={!hasAnswered}
       />
     </div>
+  );
+}
+
+export default function ReferencesQuestions(props) {
+  return (
+    <Suspense fallback={null}>
+      <ReferencesQuestionsInner {...props} />
+    </Suspense>
   );
 }

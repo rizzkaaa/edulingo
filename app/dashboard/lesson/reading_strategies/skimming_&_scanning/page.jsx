@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect, Suspense } from "react"; 
 import { useSearchParams } from "next/navigation"; 
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -9,7 +9,7 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import TableMaterial from "@/app/components/TableMaterial";
 import { TemplateVer14, TemplateVer17 } from "@/app/components/other_material";
 
-export default function SkimingScanning() {
+function SkimingScanningInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -88,5 +88,13 @@ export default function SkimingScanning() {
         isButtonDisabled={!hasAnswered}
       />
     </div>
+  );
+}
+
+export default function SkimingScanning(props) {
+  return (
+    <Suspense fallback={null}>
+      <SkimingScanningInner {...props} />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -9,7 +9,7 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import { WithAudio } from "@/app/components/MultipleChoice";
 
-export default function ListeningToLongerConversation() {
+function ListeningToLongerConversationInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -81,5 +81,13 @@ export default function ListeningToLongerConversation() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function ListeningToLongerConversation(props) {
+  return (
+    <Suspense fallback={null}>
+      <ListeningToLongerConversationInner {...props} />
+    </Suspense>
   );
 }

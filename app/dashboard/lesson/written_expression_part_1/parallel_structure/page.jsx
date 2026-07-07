@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -10,7 +10,7 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import { TemplateVer18, TemplateVer19 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 
-export default function ParallelStructure() {
+function ParallelStructureInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -73,5 +73,13 @@ export default function ParallelStructure() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function ParallelStructure(props) {
+  return (
+    <Suspense fallback={null}>
+      <ParallelStructureInner {...props} />
+    </Suspense>
   );
 }

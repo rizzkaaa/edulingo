@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -9,7 +9,7 @@ import ToeflTips from "@/app/components/ToeflTips";
 import FooterMaterial from "@/app/components/FooterMaterial";
 import { Ver1, Ver2, Ver3, Ver4, TemplateVer16 } from "@/app/components/other_material";
 
-export default function AgreementAfterCertainWords() {
+function AgreementAfterCertainWordsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -75,5 +75,13 @@ export default function AgreementAfterCertainWords() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function AgreementAfterCertainWords(props) {
+  return (
+    <Suspense fallback={null}>
+      <AgreementAfterCertainWordsInner {...props} />
+    </Suspense>
   );
 }

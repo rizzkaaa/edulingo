@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -10,7 +10,7 @@ import { TemplateVer2 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import { WithText } from "@/app/components/MultipleChoice";
 
-export default function BaseFormVerbAfterModals() {
+function BaseFormVerbAfterModalsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -91,5 +91,13 @@ export default function BaseFormVerbAfterModals() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function BaseFormVerbAfterModals(props) {
+  return (
+    <Suspense fallback={null}>
+      <BaseFormVerbAfterModalsInner {...props} />
+    </Suspense>
   );
 }

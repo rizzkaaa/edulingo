@@ -3,7 +3,7 @@
 import material from "@/data/material.json";
 import styles from "../layout.module.css";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { LuLockOpen, LuCheck, LuLock } from "react-icons/lu";
 import LessonProgressBar from "@/app/components/LessonProgressBar";
@@ -11,7 +11,7 @@ import LessonProgressBar from "@/app/components/LessonProgressBar";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
-export default function LessonLayout({ children }) {
+function LessonLayoutInner({ children }) {
   
   const [sub_module_id, setSub_module_id] = useState(1);
   const [currentModuleOpen, setCurrentModuleOpen] = useState(1);
@@ -342,5 +342,13 @@ function Footer({ currentId, length, widthFill }) {
       </p>
       <LessonProgressBar widthFill={widthFill} />
     </footer>
+  );
+}
+
+export default function LessonLayout(props) {
+  return (
+    <Suspense fallback={null}>
+      <LessonLayoutInner {...props} />
+    </Suspense>
   );
 }

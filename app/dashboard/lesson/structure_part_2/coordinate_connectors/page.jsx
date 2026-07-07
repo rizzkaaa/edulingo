@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -10,7 +10,7 @@ import FooterMaterial from "@/app/components/FooterMaterial";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import ImportantRule from "@/app/components/ImportantRule";
 
-export default function CoordinateConnectors() {
+function CoordinateConnectorsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -70,5 +70,13 @@ export default function CoordinateConnectors() {
         isButtonDisabled={!hasAnswered} // 🌟 Akan otomatis true/false sesuai status kuis
       />
     </div>
+  );
+}
+
+export default function CoordinateConnectors(props) {
+  return (
+    <Suspense fallback={null}>
+      <CoordinateConnectorsInner {...props} />
+    </Suspense>
   );
 }

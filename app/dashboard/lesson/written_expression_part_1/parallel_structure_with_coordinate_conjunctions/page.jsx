@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -11,7 +11,7 @@ import { TemplateVer20, TemplateVer9 } from "@/app/components/other_material";
 import { GroupColorBorderShadow } from "@/app/components/GroupColorBorderShadow";
 import TableMaterial from "@/app/components/TableMaterial";
 
-export default function ParallelStructureWithCoordinateConjunctions() {
+function ParallelStructureWithCoordinateConjunctionsInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -90,5 +90,13 @@ export default function ParallelStructureWithCoordinateConjunctions() {
         isButtonDisabled={!hasAnswered} 
       />
     </div>
+  );
+}
+
+export default function ParallelStructureWithCoordinateConjunctions(props) {
+  return (
+    <Suspense fallback={null}>
+      <ParallelStructureWithCoordinateConjunctionsInner {...props} />
+    </Suspense>
   );
 }

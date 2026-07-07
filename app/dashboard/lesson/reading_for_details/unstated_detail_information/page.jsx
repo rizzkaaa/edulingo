@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import material from "@/data/material.json";
 import HeaderMaterial from "@/app/components/HeaderMaterial";
@@ -10,7 +10,7 @@ import ComparisonTable from "@/app/components/ComparisonTable";
 import { FirstExplainVer11 } from "@/app/components/first_explain";
 import { TemplateVer9, TemplateVer24 } from "@/app/components/other_material";
 
-export default function UnstatedDetailInformation() {
+function UnstatedDetailInformationInner() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
@@ -69,5 +69,13 @@ export default function UnstatedDetailInformation() {
         isButtonDisabled={!hasAnswered}
       />
     </div>
+  );
+}
+
+export default function UnstatedDetailInformation(props) {
+  return (
+    <Suspense fallback={null}>
+      <UnstatedDetailInformationInner {...props} />
+    </Suspense>
   );
 }
