@@ -295,7 +295,7 @@ export default function DashboardPage() {
         )}
       </div>
 
-      <button
+      {/* <button
         onClick={handleResetProgress}
         style={{
           marginTop: "20px",
@@ -307,7 +307,7 @@ export default function DashboardPage() {
         }}
       >
         Reset Progress (Firebase)
-      </button>
+      </button> */}
     </div>
   );
 }

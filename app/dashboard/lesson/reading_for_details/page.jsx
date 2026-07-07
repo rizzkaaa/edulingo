@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const SUB_LESSONS_READING = [
+  "understanding_main_ideas",
+  "stated_detail_information",
+  "unstated_detail_information", 
   "inferences_questions", 
   "references_questions",
-  "stated_detail_information",
-  "understanding_main_ideas",
-  "unstated_detail_information", 
 ];
 
 export default function ReadingStrategiesRedirector() {
