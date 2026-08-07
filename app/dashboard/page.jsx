@@ -283,16 +283,16 @@ export default function DashboardPage() {
               : "Selesaikan 7 materi untuk membuka 100 soal"}
           </p>
         </div>
-        {allLessonsCompleted ? (
           <Link href="/simulation_rule" className={styles.buttonLink}>
             <div className={styles.startButton}>MULAI SIMULASI SEKARANG →</div>
           </Link>
+        {/* {allLessonsCompleted ? (
         ) : (
           <div className={styles.lockButton}>
             <FaIcons.FaLock />
             TERKUNCI
           </div>
-        )}
+        )} */}
       </div>
 
       {/* <button
