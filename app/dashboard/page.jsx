@@ -276,6 +276,7 @@ export default function DashboardPage() {
             {allLessonsCompleted
               ? "SIMULASI UJIAN TERBUKA !"
               : "SIAP UJIAN SIMULASI?"}
+              
           </h2>
           <p>
             {allLessonsCompleted

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../../components/Alert";
+import SubmitLoadingModal from "../../components/SubmitLoadingModal";
 
 import { FaClock, FaFlag } from "react-icons/fa";
 
@@ -36,6 +37,8 @@ export default function ListeningPage() {
 
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [startTime]                   = useState(() => Date.now());
 
   const [userId, setUserId]           = useState("");
   const [sessionId, setSessionId]     = useState("");
@@ -173,7 +176,6 @@ export default function ListeningPage() {
     }
   }, []);
 
-
   useEffect(() => {
     if (questions.length > 0 && questions[current]?.type === "long_audio") {
       setVisitedLongAudio(prev => ({ ...prev, [current]: true }));
@@ -236,13 +238,17 @@ export default function ListeningPage() {
   const saveDataToFirebase = async () => {
     if (!sessionId) return; 
 
-    const timeSpent = (25 * 60) - timeLeft;
+    const maxDuration = 25 * 60; // 25 minutes limit
+    const elapsedSeconds = Math.round((Date.now() - startTime) / 1000);
+    const timeSpent = Math.min(maxDuration, Math.max(1, elapsedSeconds));
     let correctCount = 0;
+    let answeredCount = 0;
 
     questions.forEach((q, index) => {
       if (q.type === "long_audio") return;
       const ans = answers[index];
-      if (ans !== undefined) {
+      if (ans !== undefined && ans !== null && String(ans).trim() !== "") {
+        answeredCount++;
         let isCorrect = false;
 
         if (q.correctAnswer !== null && ans === q.correctAnswer) isCorrect = true;
@@ -263,11 +269,12 @@ export default function ListeningPage() {
         listening_time_left: timeLeft,
         listening_time_spent: timeSpent,
         listening_correct_answers: correctCount,
+        listening_answered_questions: answeredCount,
         listening_total_questions: totalQ,
         listening_score_percentage: scorePercentage,
         updatedAt: new Date()
       }, { merge: true });
-      console.log(`Skor Listening berhasil disimpan ke Session ID: ${sessionId}`);
+      console.log(`Skor Listening (${timeSpent}s) disimpan ke Session ID: ${sessionId}`);
     } catch (error) {
       console.error("Gagal menyimpan data ke Firebase: ", error);
     }
@@ -278,8 +285,13 @@ export default function ListeningPage() {
       "Waktu pengerjaan sesi ini telah habis! Jawaban Anda telah disimpan otomatis.",
       true, 
       async () => {
-        await saveDataToFirebase();
-        router.push("/simulation_rule/structure");
+        setIsSubmitting(true);
+        try {
+          await saveDataToFirebase();
+          router.push("/simulation_rule/structure");
+        } finally {
+          setIsSubmitting(false);
+        }
       }
     );
   };
@@ -320,8 +332,13 @@ export default function ListeningPage() {
       "Sudah yakin mau submit? Jawaban tidak bisa diubah setelah submit.",
       false,
       async () => {
-        await saveDataToFirebase();
-        router.push("/simulation_rule/structure");
+        setIsSubmitting(true);
+        try {
+          await saveDataToFirebase();
+          router.push("/simulation_rule/structure");
+        } finally {
+          setIsSubmitting(false);
+        }
       }
     );
   }
@@ -397,6 +414,7 @@ export default function ListeningPage() {
   }
   return (
     <div className={styles.container}>
+      <SubmitLoadingModal isOpen={isSubmitting} message="Memproses dan menyimpan jawaban Sesi Listening..." />
       {alertConfig.show && (
         <Alert
           isAlert={alertConfig.isAlert}

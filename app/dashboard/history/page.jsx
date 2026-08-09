@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import {
   FaSearch,
@@ -9,14 +10,17 @@ import {
   FaTimesCircle,
   FaChevronLeft,
   FaChevronRight,
-  FaTrophy
+  FaTrophy,
+  FaExternalLinkAlt
 } from "react-icons/fa";
 
 import { db, auth } from "@/lib/firebase"; 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { calculateToeflScores } from "@/lib/toeflScore";
 
 export default function HistoryPage() {
+  const router = useRouter();
   const [historyData, setHistoryData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalSessions, setTotalSessions] = useState(0);
@@ -70,28 +74,23 @@ export default function HistoryPage() {
 
       simulationSnap.forEach((docSnap) => {
         const data = docSnap.data();
-        let totalPercentageSum = 0;
-        let activeSectionsCount = 0;
+        const listeningCorrect = Number(data.listening_correct_answers) || 0;
+        const listeningTotal = Number(data.listening_total_questions) || 36;
+        const structureCorrect = Number(data.structure_correct_answers) || 0;
+        const structureTotal = Number(data.structure_total_questions) || 28;
+        const readingCorrect = Number(data.reading_correct_answers) || 0;
+        const readingTotal = Number(data.reading_total_questions) || 36;
 
-        if (data.reading_score_percentage !== undefined) {
-          totalPercentageSum += data.reading_score_percentage;
-          activeSectionsCount++;
-        }
-        if (data.structure_score_percentage !== undefined) {
-          totalPercentageSum += data.structure_score_percentage;
-          activeSectionsCount++;
-        }
-        if (data.listening_score_percentage !== undefined) {
-          totalPercentageSum += data.listening_score_percentage;
-          activeSectionsCount++;
-        }
+        const toeflCalc = calculateToeflScores({
+          listeningCorrect,
+          listeningTotal,
+          structureCorrect,
+          structureTotal,
+          readingCorrect,
+          readingTotal,
+        });
 
-        const averagePercentage = activeSectionsCount > 0 ? totalPercentageSum / activeSectionsCount : 0;
-        const minToefl = 310;
-        const maxToefl = 677;
-        const toeflRange = maxToefl - minToefl; 
-        
-        const finalScore = Math.round(minToefl + (averagePercentage * toeflRange) / 100);
+        const finalScore = toeflCalc.finalToeflScore;
         const dateObj = data.updatedAt?.toDate() || new Date();
         const formattedDate = dateObj.toLocaleString("id-ID", {
           month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit"
@@ -149,39 +148,48 @@ export default function HistoryPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const today = new Date();
-  const midnightToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  
-  const targetDate = new Date(midnightToday);
-  targetDate.setDate(targetDate.getDate() - (currentPage - 1));
+  // Group filtered items by unique calendar date (only dates with actual activities)
+  const dateGroupsMap = new Map();
 
-  const currentItems = filteredHistory.filter((item) => {
+  filteredHistory.forEach((item) => {
     const d = item.dateObj;
-    return (
-      d.getFullYear() === targetDate.getFullYear() &&
-      d.getMonth() === targetDate.getMonth() &&
-      d.getDate() === targetDate.getDate()
-    );
+    const dateKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    
+    if (!dateGroupsMap.has(dateKey)) {
+      dateGroupsMap.set(dateKey, {
+        dateKey,
+        dateObj: new Date(d.getFullYear(), d.getMonth(), d.getDate()),
+        items: [],
+      });
+    }
+    dateGroupsMap.get(dateKey).items.push(item);
   });
+
+  const availableDateGroups = Array.from(dateGroupsMap.values());
+  const totalPages = Math.max(1, availableDateGroups.length);
+
+  const activePageIndex = Math.min(Math.max(1, currentPage), totalPages) - 1;
+  const currentGroup = availableDateGroups[activePageIndex] || null;
+  const currentItems = currentGroup ? currentGroup.items : [];
 
   const dailyAverageScore = currentItems.length > 0
     ? Math.round(currentItems.reduce((sum, item) => sum + item.score, 0) / currentItems.length)
     : 0;
 
-  let totalPages = 1;
-  if (filteredHistory.length > 0) {
-    const oldestDate = filteredHistory[filteredHistory.length - 1].dateObj;
-    const midnightOldest = new Date(oldestDate.getFullYear(), oldestDate.getMonth(), oldestDate.getDate());
-    const diffTime = Math.abs(midnightToday - midnightOldest);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    totalPages = diffDays + 1;
-  }
-
   const simulationCount = historyData.filter(item => item.category === "Simulation").length;
 
   const getPageDateString = () => {
-    if (currentPage === 1) return "Hari Ini";
-    if (currentPage === 2) return "Kemarin";
+    if (!currentGroup) return "Tidak Ada Aktivitas";
+
+    const today = new Date();
+    const midnightToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const targetDate = currentGroup.dateObj;
+    const diffTime = midnightToday.getTime() - targetDate.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) return "Hari Ini";
+    if (diffDays === 1) return "Kemarin";
+
     return targetDate.toLocaleDateString("id-ID", {
       day: "numeric", month: "short", year: "numeric"
     });
@@ -299,6 +307,7 @@ export default function HistoryPage() {
           <span>Activity</span>
           <span>Score</span>
           <span>Status</span>
+          <span>Detail</span>
         </div>
 
         {loading ? (
@@ -318,7 +327,17 @@ export default function HistoryPage() {
             }}
           >
             {currentItems.map((item) => (
-              <div key={item.id} className={styles.tableRow}>
+              <div 
+                key={item.id} 
+                className={styles.tableRow}
+                onClick={() => {
+                  if (item.category === "Simulation") {
+                    router.push(`/simulation/result?sessionId=${item.id}`);
+                  }
+                }}
+                style={{ cursor: item.category === "Simulation" ? "pointer" : "default" }}
+                title={item.category === "Simulation" ? "Klik untuk melihat rincian hasil simulasi" : ""}
+              >
                 <span>{item.date.split(",")[1]?.trim() || item.date}</span>
                 <div>
                   <div
@@ -336,6 +355,32 @@ export default function HistoryPage() {
                 <div className={item.success ? styles.successText : styles.failedText}>
                   {item.success ? <FaCheckCircle /> : <FaTimesCircle />}
                   {item.status}
+                </div>
+                <div>
+                  {item.category === "Simulation" && (
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/simulation/result?sessionId=${item.id}`);
+                      }}
+                      style={{
+                        background: "#E8A33D",
+                        color: "#1D1B18",
+                        border: "2px solid #1D1B18",
+                        boxShadow: "2px 2px 0 #1D1B18",
+                        padding: "6px 12px",
+                        fontWeight: "800",
+                        fontSize: "12px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px"
+                      }}
+                    >
+                      <FaExternalLinkAlt size={10} /> Lihat Hasil
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

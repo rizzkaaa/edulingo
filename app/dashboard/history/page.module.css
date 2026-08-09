@@ -211,7 +211,7 @@
 
 .tableHeader{
   display:grid;
-  grid-template-columns:1.3fr 1fr 1.4fr .6fr .8fr;
+  grid-template-columns:1.1fr 0.9fr 1.3fr .6fr .7fr 0.9fr;
 
   padding:20px 40px;
 
@@ -225,13 +225,18 @@
 
 .tableRow{
   display:grid;
-  grid-template-columns:1.2fr 1fr 1.4fr .6fr .8fr;
+  grid-template-columns:1.1fr 0.9fr 1.3fr .6fr .7fr 0.9fr;
 
   align-items:center;
 
   padding:35px 40px;
 
   border-bottom:2px solid #1D1B18;
+  transition: background 0.15s ease;
+}
+
+.tableRow:hover {
+  background: rgba(232, 163, 61, 0.08);
 }
 
 .tableRow span{

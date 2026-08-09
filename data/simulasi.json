@@ -1177,154 +1177,154 @@
           }
         ]
       },
-        {
-    "type": "LongAudio",
-    "audio": "simulasi7.1.mp3",
-    "options": [
       {
-        "audio": "simulasi7.1.1.mp3",
-        "option": [
-          "The history of maritime trade in the Americas",
-          "The construction and significance of the Panama Canal",
-          "The causes of diseases in tropical regions",
-          "The role of the French in building the canal"
-        ],
-        "index_answer": 1
+        "type": "LongAudio",
+        "audio": "simulasi7.1.mp3",
+        "options": [
+          {
+            "audio": "simulasi7.1.1.mp3",
+            "option": [
+              "The history of maritime trade in the Americas",
+              "The construction and significance of the Panama Canal",
+              "The causes of diseases in tropical regions",
+              "The role of the French in building the canal"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.1.2.mp3",
+            "option": [
+              "There was no demand for a canal at that time",
+              "The project was abandoned due to international conflicts",
+              "Financial and technical difficulties caused the failure",
+              "The local population protested against the construction"
+            ],
+            "index_answer": 2
+          },
+          {
+            "audio": "simulasi7.1.3.mp3",
+            "option": [
+              "It allows ships to pass by lowering bridges",
+              "It uses a system of locks to raise and lower ships",
+              "Ships travel through underground tunnels",
+              "It relies on natural water currents to move ships"
+            ],
+            "index_answer": 1
+          }
+        ]
       },
       {
-        "audio": "simulasi7.1.2.mp3",
-        "option": [
-          "There was no demand for a canal at that time",
-          "The project was abandoned due to international conflicts",
-          "Financial and technical difficulties caused the failure",
-          "The local population protested against the construction"
-        ],
-        "index_answer": 2
+        "type": "LongAudio",
+        "audio": "simulasi7.2.mp3",
+        "options": [
+          {
+            "audio": "simulasi7.2.1.mp3",
+            "option": [
+              "In the Pacific Ocean",
+              "Near the northeastern coast of Australia",
+              "Off the coast of South America",
+              "In the Atlantic Ocean"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.2.2.mp3",
+            "option": [
+              "Overfishing",
+              "Climate change",
+              "Increased marine life",
+              "Oil drilling"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.2.3.mp3",
+            "option": [
+              "More than 1,500",
+              "Around 500",
+              "Less than 1,000",
+              "About 2,000"
+            ],
+            "index_answer": 0
+          },
+          {
+            "audio": "simulasi7.2.4.mp3",
+            "option": [
+              "Encouraging people to build artificial reefs",
+              "Regulating tourism",
+              "Removing coral from the reef",
+              "Increasing fishing activities"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.2.5.mp3",
+            "option": [
+              "To explain how coral reefs form",
+              "To describe the dangers facing the Great Barrier Reef and conservation efforts",
+              "To encourage people to visit the reef",
+              "To discuss marine life in general"
+            ],
+            "index_answer": 1
+          }
+        ]
       },
       {
-        "audio": "simulasi7.1.3.mp3",
-        "option": [
-          "It allows ships to pass by lowering bridges",
-          "It uses a system of locks to raise and lower ships",
-          "Ships travel through underground tunnels",
-          "It relies on natural water currents to move ships"
-        ],
-        "index_answer": 1
+        "type": "LongAudio",
+        "audio": "simulasi7.3.mp3",
+        "options": [
+          {
+            "audio": "simulasi7.3.1.mp3",
+            "option": [
+              "It reduces energy consumption",
+              "It decreases greenhouse gas emissions",
+              "It creates jobs in the energy sector",
+              "It provides cheaper energy"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.3.2.mp3",
+            "option": [
+              "Solar power",
+              "Wind energy",
+              "Nuclear power",
+              "Geothermal heat"
+            ],
+            "index_answer": 2
+          },
+          {
+            "audio": "simulasi7.3.3.mp3",
+            "option": [
+              "Renewable energy is not efficient enough",
+              "Renewable energy sources are unpredictable",
+              "Renewable energy does not create jobs",
+              "Renewable energy is more expensive in the long term"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.3.4.mp3",
+            "option": [
+              "The cost of renewable energy infrastructure",
+              "Energy storage solutions",
+              "The number of renewable energy workers",
+              "Government subsidies"
+            ],
+            "index_answer": 1
+          },
+          {
+            "audio": "simulasi7.3.5.mp3",
+            "option": [
+              "Renewable energy will replace fossil fuels immediately",
+              "The transition to renewable energy is easy and affordable",
+              "Renewable energy is essential for a sustainable future but has challenges",
+              "Renewable energy sources are unreliable and inefficient"
+            ],
+            "index_answer": 2
+          }
+        ]
       }
-    ]
-  },
-  {
-    "type": "LongAudio",
-    "audio": "simulasi7.2.mp3",
-    "options": [
-      {
-        "audio": "simulasi7.2.1.mp3",
-        "option": [
-          "In the Pacific Ocean",
-          "Near the northeastern coast of Australia",
-          "Off the coast of South America",
-          "In the Atlantic Ocean"
-        ],
-        "index_answer": 1
-      },
-      {
-        "audio": "simulasi7.2.2.mp3",
-        "option": [
-          "Overfishing",
-          "Climate change",
-          "Increased marine life",
-          "Oil drilling"
-        ],
-        "index_answer": 1
-      },
-      {
-        "audio": "simulasi7.2.3.mp3",
-        "option": [
-          "More than 1,500",
-          "Around 500",
-          "Less than 1,000",
-          "About 2,000"
-        ],
-        "index_answer": 0
-      },
-      {
-        "audio": "simulasi7.2.4.mp3",
-        "option": [
-          "Encouraging people to build artificial reefs",
-          "Regulating tourism",
-          "Removing coral from the reef",
-          "Increasing fishing activities"
-        ],
-        "index_answer": 1
-      },
-      {
-        "audio": "simulasi7.2.5.mp3",
-        "option": [
-          "To explain how coral reefs form",
-          "To describe the dangers facing the Great Barrier Reef and conservation efforts",
-          "To encourage people to visit the reef",
-          "To discuss marine life in general"
-        ],
-        "index_answer": 1
-      }
-    ]
-  },
-  {
-    "type": "LongAudio",
-    "audio": "simulasi7.3.mp3",
-    "options": [
-      {
-        "audio": "simulasi7.3.1.mp3",
-        "option": [
-          "It reduces energy consumption",
-          "It decreases greenhouse gas emissions",
-          "It creates jobs in the energy sector",
-          "It provides cheaper energy"
-        ],
-        "index_answer": 1
-      },
-      {
-        "audio": "simulasi7.3.2.mp3",
-        "option": [
-          "Solar power",
-          "Wind energy",
-          "Nuclear power",
-          "Geothermal heat"
-        ],
-        "index_answer": 2
-      },
-      {
-        "audio": "simulasi7.3.3.mp3",
-        "option": [
-          "Renewable energy is not efficient enough",
-          "Renewable energy sources are unpredictable",
-          "Renewable energy does not create jobs",
-          "Renewable energy is more expensive in the long term"
-        ],
-        "index_answer": 1
-      },
-      {
-        "audio": "simulasi7.3.4.mp3",
-        "option": [
-          "The cost of renewable energy infrastructure",
-          "Energy storage solutions",
-          "The number of renewable energy workers",
-          "Government subsidies"
-        ],
-        "index_answer": 1
-      },
-      {
-        "audio": "simulasi7.3.5.mp3",
-        "option": [
-          "Renewable energy will replace fossil fuels immediately",
-          "The transition to renewable energy is easy and affordable",
-          "Renewable energy is essential for a sustainable future but has challenges",
-          "Renewable energy sources are unreliable and inefficient"
-        ],
-        "index_answer": 2
-      }
-    ]
-  }
     ]
   }
 ]

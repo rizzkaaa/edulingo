@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../../components/Alert";
+import SubmitLoadingModal from "../../components/SubmitLoadingModal";
 
 import { FaClock, FaFlag } from "react-icons/fa";
 
@@ -32,6 +33,8 @@ export default function StructurePage() {
 
   const [questions, setQuestions]     = useState([]);
   const [isLoading, setIsLoading]     = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [startTime]                   = useState(() => Date.now());
   
   const [userId, setUserId]           = useState("");
   const [sessionId, setSessionId]     = useState("");
@@ -154,7 +157,10 @@ export default function StructurePage() {
   const saveDataToFirebase = async () => {
     if (!sessionId) return; 
 
-    const timeSpent = (80 * 60) - timeLeft;
+    const totalQuestions = questions.length;
+    const maxDuration = 17 * 60;
+    const elapsedSeconds = Math.round((Date.now() - startTime) / 1000);
+    const timeSpent = Math.min(maxDuration, Math.max(1, elapsedSeconds));
     let correctCount = 0;
     let answeredCount = 0;
     
@@ -183,7 +189,7 @@ export default function StructurePage() {
       }
     });
 
-    const scorePercentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+    const scorePercentage = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
 
     try {
       await setDoc(doc(db, "exam_sessions", sessionId), {
@@ -191,7 +197,8 @@ export default function StructurePage() {
         structure_time_left: timeLeft,
         structure_time_spent: timeSpent,
         structure_correct_answers: correctCount,
-        structure_total_questions: answeredCount,
+        structure_answered_questions: answeredCount,
+        structure_total_questions: totalQuestions,
         structure_score_percentage: scorePercentage,
         updatedAt: new Date()
       }, { merge: true });
@@ -207,8 +214,13 @@ export default function StructurePage() {
       "Waktu pengerjaan sesi ini telah habis! Silakan klik tombol untuk menyimpan jawaban dan melanjutkan ke sesi berikutnya.",
       true, 
       async () => {
-        await saveDataToFirebase();
-        router.push("/simulation_rule/reading");
+        setIsSubmitting(true);
+        try {
+          await saveDataToFirebase();
+          router.push("/simulation_rule/reading");
+        } finally {
+          setIsSubmitting(false);
+        }
       }
     );
   };
@@ -244,8 +256,13 @@ export default function StructurePage() {
       "Sudah yakin mau submit? Jawaban tidak bisa diubah setelah submit.",
       false,
       async () => {
-        await saveDataToFirebase();
-        router.push("/simulation_rule/reading");
+        setIsSubmitting(true);
+        try {
+          await saveDataToFirebase();
+          router.push("/simulation_rule/reading");
+        } finally {
+          setIsSubmitting(false);
+        }
       }
     );
   }
@@ -286,6 +303,7 @@ export default function StructurePage() {
 
   return (
     <div className={styles.container}>
+      <SubmitLoadingModal isOpen={isSubmitting} message="Memproses dan menyimpan jawaban Sesi Structure..." />
 
       {alertConfig.show && (
         <Alert

@@ -7,11 +7,12 @@ import styles from "./layout.module.css";
 import Alert from "../components/Alert"; 
 
 import { auth, db } from "../../lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import { useAuth } from "@/lib/AuthContext";
 
 export default function SimulationLayout({ children }) {
   const router = useRouter();
+  const { user, loading } = useAuth();
   const [userProfile, setUserProfile] = useState({ avatarUrl: null, initials: "U" });
   
   const [alertConfig, setAlertConfig] = useState({
@@ -19,11 +20,17 @@ export default function SimulationLayout({ children }) {
   });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        let fullName = currentUser.displayName || "User";
+    if (!loading && !user) {
+      router.replace("/auth/login");
+    }
+  }, [user, loading, router]);
+
+  useEffect(() => {
+    if (user) {
+      const fetchUserData = async () => {
+        let fullName = user.displayName || "User";
         try {
-          const userDocRef = doc(db, "users", currentUser.uid);
+          const userDocRef = doc(db, "users", user.uid);
           const userDocSnap = await getDoc(userDocRef);
           if (userDocSnap.exists()) {
             const data = userDocSnap.data();
@@ -33,10 +40,27 @@ export default function SimulationLayout({ children }) {
           console.error("Gagal mengambil nama:", error);
         }
         setUserProfile({ avatarUrl: null, initials: fullName.trim().charAt(0).toUpperCase() });
-      }
-    });
-    return () => unsubscribe();
-  }, []);
+      };
+      fetchUserData();
+    }
+  }, [user]);
+
+  if (loading || !user) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#0A0A12",
+        color: "#ffffff",
+        fontSize: "1.2rem",
+        fontWeight: "600"
+      }}>
+        Memuat data sesi...
+      </div>
+    );
+  }
 
   const performExit = () => {
     try {

@@ -3,10 +3,38 @@
 import Link from "next/link";
 import styles from "./layout.module.css";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAuth } from "@/lib/AuthContext";
 
 export default function AuthPage({ children }) {
   const path = usePathname();
+  const router = useRouter();
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.replace("/dashboard");
+    }
+  }, [user, loading, router]);
+
+  if (loading || user) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#0A0A12",
+        color: "#ffffff",
+        fontSize: "1.2rem",
+        fontWeight: "600"
+      }}>
+        Memuat data sesi...
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className={styles.container}

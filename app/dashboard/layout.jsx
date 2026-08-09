@@ -2,11 +2,11 @@
 
 import styles from "./layout.module.css";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import { useAuth } from "@/lib/AuthContext";
 import {
   LuHouse,
   LuClipboardList,
@@ -18,12 +18,20 @@ import { FaLaptopCode } from "react-icons/fa";
 
 export default function DashboardLayout({ children }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, loading } = useAuth();
   
   const [initialName, setInitialName] = useState("E");
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
+    if (!loading && !user) {
+      router.replace("/auth/login");
+    }
+  }, [user, loading, router]);
+
+  useEffect(() => {
+    if (user) {
+      const fetchUserData = async () => {
         try {
           const userDocRef = doc(db, "users", user.uid); 
           const userDocSnap = await getDoc(userDocRef);
@@ -40,11 +48,27 @@ export default function DashboardLayout({ children }) {
         } catch (error) {
           console.error("Gagal mengambil data user untuk logo:", error);
         }
-      }
-    });
+      };
+      fetchUserData();
+    }
+  }, [user]);
 
-    return () => unsubscribe();
-  }, []);
+  if (loading || !user) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#0A0A12",
+        color: "#ffffff",
+        fontSize: "1.2rem",
+        fontWeight: "600"
+      }}>
+        Memuat data sesi...
+      </div>
+    );
+  }
 
   const menus = [
     {
