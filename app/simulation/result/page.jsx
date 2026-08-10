@@ -147,7 +147,7 @@ function ResultContent() {
             description = "Outstanding performance! You achieved a top-tier TOEFL score.";
           } else if (toeflCalc.finalToeflScore >= 480) {
             grade = "GOOD";
-            description = "Great effort! You are performing remarkably well in this simulation.";
+            description = "Great effort! You are performing remarkably well in this prediction.";
           } else if (toeflCalc.finalToeflScore >= 420) {
             grade = "AVERAGE";
             description = "Good progress! Focus on your weak sections to boost your final score.";
@@ -204,7 +204,7 @@ function ResultContent() {
   if (isLoading) {
     return (
       <div className={styles.page} style={{ color: "#1D1B18", textAlign: "center", paddingTop: "20vh" }}>
-        Loading simulation results...
+        Loading prediction results...
       </div>
     );
   }
@@ -213,7 +213,7 @@ function ResultContent() {
     return (
       <div className={styles.page} style={{ color: "#1D1B18", textAlign: "center", paddingTop: "20vh" }}>
         <h3>Belum ada data hasil ujian.</h3>
-        <p>Silakan selesaikan sesi simulasi Anda terlebih dahulu.</p>
+        <p>Silakan selesaikan sesi prediction Anda terlebih dahulu.</p>
         <button className={styles.reviewBtn} onClick={() => router.push("/dashboard/history")} style={{ marginTop: "20px" }}>
           MENU HISTORY
         </button>
@@ -223,7 +223,7 @@ function ResultContent() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.pageTitle}>Simulation Result</h1>
+      <h1 className={styles.pageTitle}>Prediction Result</h1>
       <div className={styles.pageDivider}></div>
 
       <div className={styles.topRow}>
@@ -236,7 +236,7 @@ function ResultContent() {
 
             <div className={styles.scoreDetails}>
               <div className={styles.gradeBadge}>{result.grade}</div>
-              <h2 className={styles.performanceTitle}>Simulation Performance</h2>
+              <h2 className={styles.performanceTitle}>Prediction Performance</h2>
               <p className={styles.performanceDesc}>{result.description}</p>
 
               <div className={styles.statsRow} style={{ gridTemplateColumns: result.unanswered > 0 ? "1fr 1fr 1fr" : "1fr 1fr" }}>

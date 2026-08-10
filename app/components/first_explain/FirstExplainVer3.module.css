@@ -46,3 +46,18 @@
   margin-bottom: 0 !important;
   align-self: flex-start;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .container h1 {
+    font-size: 26px;
+  }
+
+  .definition {
+    width: 100%;
+  }
+}

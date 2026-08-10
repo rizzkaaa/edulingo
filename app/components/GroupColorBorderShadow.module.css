@@ -87,3 +87,18 @@
 .labelValueGroup{
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .box.full {
+    grid-column: span 1;
+  }
+
+  .container h1 {
+    font-size: 26px;
+  }
+}

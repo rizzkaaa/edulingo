@@ -82,6 +82,37 @@ export default function StructurePage() {
   }, []);
 
   useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (!isSubmitting) {
+        e.preventDefault();
+        e.returnValue = "Dilarang me-refresh halaman saat prediction sedang berlangsung! Progres ujian Anda dapat hilang.";
+        return e.returnValue;
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (
+        e.key === "F5" ||
+        (e.key.toLowerCase() === "r" && (e.ctrlKey || e.metaKey))
+      ) {
+        e.preventDefault();
+        showAlert(
+          "Dilarang me-refresh halaman saat prediction sedang berlangsung! Selesaikan sesi ini atau klik Exit jika ingin keluar.",
+          true
+        );
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isSubmitting]);
+
+  useEffect(() => {
     try {
       let structureSession = null;
       if (Array.isArray(simulasiData)) {
@@ -217,7 +248,7 @@ export default function StructurePage() {
         setIsSubmitting(true);
         try {
           await saveDataToFirebase();
-          router.push("/simulation_rule/reading");
+          router.push("/prediction_rule/reading");
         } finally {
           setIsSubmitting(false);
         }
@@ -259,7 +290,7 @@ export default function StructurePage() {
         setIsSubmitting(true);
         try {
           await saveDataToFirebase();
-          router.push("/simulation_rule/reading");
+          router.push("/prediction_rule/reading");
         } finally {
           setIsSubmitting(false);
         }
@@ -319,7 +350,7 @@ export default function StructurePage() {
 
       <div className={styles.headerSection}>
         <div>
-          <h1>TOEFL Exam Simulation</h1>
+          <h1>TOEFL Exam Prediction</h1>
           <div className={styles.line}></div>
           <p>Session: Structure</p>
         </div>

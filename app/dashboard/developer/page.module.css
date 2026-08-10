@@ -174,27 +174,65 @@
 @media(max-width:768px){
 
   .container{
-    padding:20px;
+    padding: 20px 16px;
+  }
+
+  .pageTitle{
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .fullLine{
+    margin-bottom: 24px;
   }
 
   .heroSection{
-    padding:30px;
+    padding: 20px 16px;
+    margin-bottom: 24px;
   }
 
   .heroContent h2{
-    font-size:38px;
+    font-size: 28px;
+    margin-bottom: 10px;
   }
 
   .heroContent p{
-    font-size:18px;
+    font-size: 14px;
+  }
+
+  .cornerShape{
+    display: none;
+  }
+
+  .teamGrid{
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .teamCard{
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .bottomBanner{
+    padding: 24px 16px;
   }
 
   .bottomBanner h2{
-    font-size:34px;
+    font-size: 24px;
+    margin-bottom: 12px;
   }
 
   .bottomBanner p{
-    font-size:17px;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .bottomBanner button{
+    width: 100%;
+    max-width: 260px;
+    height: 52px;
+    font-size: 16px;
   }
 
 }

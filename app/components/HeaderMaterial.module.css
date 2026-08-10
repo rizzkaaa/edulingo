@@ -29,3 +29,26 @@
   background-repeat: repeat-x;
   background-size: 160px 20px;
 }
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column-reverse;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .left h1 {
+    font-size: 26px;
+    margin-block: 14px 8px;
+  }
+
+  .line {
+    max-width: 430px;
+    width: 100%;
+  }
+
+  .left p + div {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

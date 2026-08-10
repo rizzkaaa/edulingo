@@ -177,3 +177,59 @@
   color:#fff;
   letter-spacing:1px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 130px 16px 20px;
+    max-width: 100%;
+  }
+
+  .headerSection {
+    padding: 10px 16px;
+    align-items: center;
+  }
+
+  .headerSection h1 {
+    font-size: 22px;
+  }
+
+  .line {
+    max-width: 463px;
+    width: 100%;
+  }
+
+  .headerSection p {
+    font-size: 13px;
+  }
+
+  .exitBtn {
+    height: 40px;
+    font-size: 12px;
+    padding: 0 10px;
+    box-shadow: 4px 4px 0 #1D1B18;
+  }
+
+  .progressSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .progressLabel {
+    font-size: 13px;
+  }
+
+  .bottomActions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .prevBtn,
+  .nextBtn,
+  .finishBtn {
+    height: 52px;
+    font-size: 14px;
+  }
+}

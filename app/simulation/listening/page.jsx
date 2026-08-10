@@ -87,6 +87,37 @@ export default function ListeningPage() {
   }, []);
 
   useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (!isSubmitting) {
+        e.preventDefault();
+        e.returnValue = "Dilarang me-refresh halaman saat prediction sedang berlangsung! Progres ujian Anda dapat hilang.";
+        return e.returnValue;
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (
+        e.key === "F5" ||
+        (e.key.toLowerCase() === "r" && (e.ctrlKey || e.metaKey))
+      ) {
+        e.preventDefault();
+        showAlert(
+          "Dilarang me-refresh halaman saat prediction sedang berlangsung! Selesaikan sesi ini atau klik Exit jika ingin keluar.",
+          true
+        );
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isSubmitting]);
+
+  useEffect(() => {
     try {
       let listeningSession = null;
       if (Array.isArray(questionsData)) {
@@ -288,7 +319,7 @@ export default function ListeningPage() {
         setIsSubmitting(true);
         try {
           await saveDataToFirebase();
-          router.push("/simulation_rule/structure");
+          router.push("/prediction_rule/structure");
         } finally {
           setIsSubmitting(false);
         }
@@ -335,7 +366,7 @@ export default function ListeningPage() {
         setIsSubmitting(true);
         try {
           await saveDataToFirebase();
-          router.push("/simulation_rule/structure");
+          router.push("/prediction_rule/structure");
         } finally {
           setIsSubmitting(false);
         }
@@ -386,7 +417,7 @@ export default function ListeningPage() {
 
         <div className={styles.headerSection}>
           <div>
-            <h1>TOEFL Exam Simulation</h1>
+            <h1>TOEFL Exam Prediction</h1>
             <div className={styles.line}></div>
             <p>Session: Listening</p>
           </div>
@@ -429,7 +460,7 @@ export default function ListeningPage() {
 
       <div className={styles.headerSection}>
         <div>
-          <h1>TOEFL Exam Simulation</h1>
+          <h1>TOEFL Exam Prediction</h1>
           <div className={styles.line}></div>
           <p>Session: Listening</p>
         </div>

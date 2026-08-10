@@ -3,7 +3,7 @@
 import styles from "./SubmitLoadingModal.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function SubmitLoadingModal({ isOpen, title = "Memproses Jawaban", message = "Mohon tunggu, sedang menyimpan hasil simulasi Anda..." }) {
+export default function SubmitLoadingModal({ isOpen, title = "Memproses Jawaban", message = "Mohon tunggu, sedang menyimpan hasil prediction Anda..." }) {
   if (!isOpen) return null;
 
   return (

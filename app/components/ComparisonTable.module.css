@@ -32,3 +32,11 @@
     background-color: #2D5A4C41;
     padding: 0 5px;
 }
+
+@media (max-width: 768px) {
+  .container th,
+  .container td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}

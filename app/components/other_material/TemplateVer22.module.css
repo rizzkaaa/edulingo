@@ -49,3 +49,18 @@
 .options .container{
   flex: 1;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 14px !important;
+  }
+
+  .definition {
+    width: 100%;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

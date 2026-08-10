@@ -99,3 +99,25 @@
   font-weight: 700;
   color: #57423C;
 }
+
+@media (max-width: 768px) {
+  .audioHeader {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .audioIcon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .audioTitle {
+    font-size: 18px;
+  }
+
+  .audioPlayer {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+}

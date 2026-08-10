@@ -31,3 +31,10 @@
     font-size: 14px;
     color: #2C2A26;
 }
+
+@media (max-width: 768px) {
+  .container h3+div {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

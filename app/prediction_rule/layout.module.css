@@ -85,3 +85,17 @@
 .mainContent{
   padding-top: 58px;
 }
+
+@media (max-width: 600px) {
+  .topHeader {
+    padding: 0 12px;
+  }
+
+  .breadcrumb {
+    display: none;
+  }
+
+  .logoSection h1 {
+    font-size: 18px;
+  }
+}

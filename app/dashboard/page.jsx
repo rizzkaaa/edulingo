@@ -174,11 +174,11 @@ export default function DashboardPage() {
             <div className={styles.wave}></div>
             <p>
               Kamu telah menyelesaikan seluruh 7 materi TOEFL Preparation.
-              Sekarang kamu siap menghadapi Simulasi 100 Soal.
+              Sekarang kamu siap menghadapi Prediction 100 Soal.
             </p>
-            <Link href="/simulation_rule" className={styles.buttonLink}>
+            <Link href="/prediction_rule" className={styles.buttonLink}>
               <button className={styles.simulationHeroBtn}>
-                MULAI SIMULASI 100 SOAL →
+                MULAI PREDICTION 100 SOAL →
               </button>
             </Link>
           </div>
@@ -274,18 +274,18 @@ export default function DashboardPage() {
         <div>
           <h2>
             {allLessonsCompleted
-              ? "SIMULASI UJIAN TERBUKA !"
-              : "SIAP UJIAN SIMULASI?"}
+              ? "PREDICTION UJIAN TERBUKA !"
+              : "SIAP UJIAN PREDICTION?"}
               
           </h2>
           <p>
             {allLessonsCompleted
-              ? "Buktikan kemampuan English kamu dengan 100 soal simulasi TOEFL penuh!"
+              ? "Buktikan kemampuan English kamu dengan 100 soal prediction TOEFL penuh!"
               : "Selesaikan 7 materi untuk membuka 100 soal"}
           </p>
         </div>
-          <Link href="/simulation_rule" className={styles.buttonLink}>
-            <div className={styles.startButton}>MULAI SIMULASI SEKARANG →</div>
+          <Link href="/prediction_rule" className={styles.buttonLink}>
+            <div className={styles.startButton}>MULAI PREDICTION SEKARANG →</div>
           </Link>
         {/* {allLessonsCompleted ? (
         ) : (

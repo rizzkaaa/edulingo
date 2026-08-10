@@ -420,3 +420,41 @@
   font-weight: 900;
   margin-left: auto;
 }
+
+@media (max-width: 900px) {
+  .heroSection {
+    flex-direction: column;
+    padding: 20px 16px;
+    min-height: auto;
+    overflow: hidden;
+  }
+
+  .heroLeft h1 {
+    font-size: 32px;
+  }
+
+  .heroRight {
+    display: none;
+  }
+
+  .contentWrapper {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+    gap: 24px;
+  }
+
+  .infoRow {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .totalBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .totalText {
+    margin-left: 0;
+  }
+}

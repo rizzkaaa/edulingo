@@ -140,7 +140,7 @@ export default function LessonPage() {
             <h1>Selamat, {username}!</h1>
             <div className={styles.wave}></div>
             <p className={styles.heroDescCompleted}>
-              Semua materi telah selesai. Anda sekarang dapat mengakses Simulasi
+              Semua materi telah selesai. Anda sekarang dapat mengakses Prediction
               100 Soal.
             </p>
 
@@ -172,7 +172,7 @@ export default function LessonPage() {
             <h1>Pilih Materi</h1>
             <div className={styles.wave}></div>
             <p className={styles.heroDesc}>
-              Pelajari semua topik secara berurutan untuk membuka Simulasi 100
+              Pelajari semua topik secara berurutan untuk membuka Prediction 100
               Soal
             </p>
 
@@ -309,13 +309,13 @@ export default function LessonPage() {
         <div>
           <h2>
             {allLessonsCompleted
-              ? "SIMULASI UJIAN TERBUKA !"
+              ? "PREDICTION UJIAN TERBUKA !"
               : "SELESAIKAN SEMUA MATERI"}
           </h2>
           <p>
             {allLessonsCompleted
-              ? "Buktikan kemampuan English kamu dengan 100 soal simulasi TOEFL penuh!"
-              : "Buka akses 100 Soal Simulasi Ujian penuh setelah menyelesaikan semua materi"}
+              ? "Buktikan kemampuan English kamu dengan 100 soal prediction TOEFL penuh!"
+              : "Buka akses 100 Soal Prediction Ujian penuh setelah menyelesaikan semua materi"}
           </p>
         </div>
 
@@ -343,11 +343,11 @@ export default function LessonPage() {
 
         {allLessonsCompleted ? (
           <Link
-            href="/simulation_rule"
+            href="/prediction_rule"
             className={styles.buttonLink}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <div className={styles.startButton}>MULAI SIMULASI SEKARANG →</div>
+            <div className={styles.startButton}>MULAI PREDICTION SEKARANG →</div>
           </Link>
         ) : (
           <div className={styles.lockButton}>

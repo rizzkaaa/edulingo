@@ -611,3 +611,78 @@
 .lockButton svg {
   font-size: 12px;
 }
+
+@media (max-width: 900px) {
+  .container {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .topSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
+  .heroBox,
+  .heroBoxCompleted {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+  }
+
+  .heroLeft h1,
+  .heroLeftCompleted h1 {
+    font-size: 32px;
+  }
+
+  .wave {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .heroRight {
+    min-height: 180px;
+    padding: 20px;
+  }
+
+  .heroRight img {
+    max-height: 160px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .progressInfo,
+  .progressInfoCompleted {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .lessonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .bottomBanner h2 {
+    font-size: 22px;
+  }
+
+  .startButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .lockButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

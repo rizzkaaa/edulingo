@@ -49,3 +49,17 @@
 .note h5 + p {
   font-weight: normal;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 14px !important;
+  }
+
+  .definition {
+    width: 100%;
+  }
+
+  .note h5 + div {
+    grid-template-columns: 1fr;
+  }
+}

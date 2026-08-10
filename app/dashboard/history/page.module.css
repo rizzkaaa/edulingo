@@ -405,12 +405,17 @@
 
   .statsGrid{
     grid-template-columns:1fr;
+    gap: 20px;
+  }
+
+  .tableWrapper{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .tableHeader,
   .tableRow{
-    grid-template-columns:1fr;
-    gap:24px;
+    min-width: 680px;
   }
 
 }
@@ -418,28 +423,67 @@
 @media(max-width:768px){
 
   .container{
-    padding:20px;
+    padding: 20px 16px;
   }
 
   .heroSection{
-    flex-direction:column;
+    flex-direction: column;
+    margin-bottom: 20px;
   }
 
   .heroSection h1{
-    font-size:40px;
+    font-size: 28px;
   }
 
   .heroSection p{
-    font-size:18px;
+    font-size: 14px;
+  }
+
+  .decorWrapper{
+    display: none;
   }
 
   .searchSection{
-    flex-direction:column;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .totalCard,
+  .averageCard{
+    height: auto;
+    padding: 20px 16px;
+  }
+
+  .totalCard p,
+  .averageCard p{
+    font-size: 18px;
+  }
+
+  .totalCard h1,
+  .averageCard h1{
+    font-size: 48px;
+    margin-top: 6px;
+  }
+
+  .paginationSection{
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .paginationSection p{
+    font-size: 13px;
   }
 
   .challengeBox{
-    flex-direction:column;
-    align-items:flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 16px;
+    margin-bottom: 40px;
   }
 
 }

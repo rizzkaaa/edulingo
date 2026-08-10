@@ -218,11 +218,16 @@
 
 @media(max-width:768px){
   .container{
-    padding:20px;
+    padding:20px 16px;
+  }
+
+  .editForm{
+    padding:20px 16px;
   }
 
   .pageTitle{
-    font-size:34px;
+    font-size:26px;
+    margin-bottom:16px;
   }
 
   .formRow{
@@ -234,12 +239,16 @@
     flex-direction:column;
   }
 
+  .saveBtn{
+    width:100%;
+  }
+
   .cancelBtn{
     width:100%;
   }
 
   .miniProfile h3{
-    font-size:28px;
+    font-size:24px;
   }
 }
 

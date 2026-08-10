@@ -505,3 +505,55 @@
   font-weight: 900;
   color: #FFD02C;
 }
+
+@media (max-width: 900px) {
+  .page {
+    padding: 20px 16px;
+  }
+
+  .topRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sectionRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .bottomRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .performanceCard {
+    padding: 20px 16px;
+  }
+
+  .scoreSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .finalScoreBanner {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .conversionHeader {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .conversionBody {
+    padding: 16px;
+  }
+}

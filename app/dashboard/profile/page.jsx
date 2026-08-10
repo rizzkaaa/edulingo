@@ -173,7 +173,7 @@ export default function ProfilePage() {
             </div>
             <div className={styles.statBox}>
               <h2>00</h2>
-              <p>SIMULATIONS TAKEN</p>
+              <p>PREDICTIONS TAKEN</p>
             </div>
           </div>
         </div>
@@ -192,12 +192,12 @@ export default function ProfilePage() {
           {allLessonsCompleted ? (
             <motion.button
               className={styles.simBtn}
-              onClick={() => router.push("/simulation_rule")}
+              onClick={() => router.push("/prediction_rule")}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
             >
               <FaIcons.FaClipboardList />
-              <span>OPEN SIMULATION</span>
+              <span>OPEN PREDICTION</span>
             </motion.button>
           ) : (
             <motion.button

@@ -29,3 +29,10 @@
 .container4 .note p:last-child {
   color: #8c8880;
 }
+
+@media (max-width: 768px) {
+  .definition,
+  .container4 .note {
+    width: 100%;
+  }
+}

@@ -26,3 +26,15 @@
 .container p{
   font-size: 30px;
 }
+
+@media (max-width: 768px) {
+  .container h3 + br + div {
+    flex-direction: column;
+    gap: 16px;
+    margin-right: 0;
+  }
+
+  .container p {
+    font-size: 20px;
+  }
+}

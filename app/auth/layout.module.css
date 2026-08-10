@@ -157,3 +157,36 @@
   background: var(--primary);
   color: var(--white);
 }
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+    padding: 40px 16px;
+    align-items: center;
+  }
+
+  .authBox {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .tab {
+    margin-bottom: 30px;
+  }
+
+  .tabLink {
+    padding: 14px;
+    font-size: 15px;
+  }
+}

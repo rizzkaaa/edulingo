@@ -458,3 +458,91 @@
 
   box-shadow:4px 4px 0 #1D1B18;
 }
+
+@media (max-width: 900px) {
+  .container {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .topbar h1 {
+    font-size: 26px;
+  }
+
+  .heroSection,
+  .heroCompletedSection {
+    grid-template-columns: 1fr;
+  }
+
+  .heroLeft,
+  .heroCompletedLeft {
+    padding: 20px 16px;
+  }
+
+  .heroLeft h2,
+  .heroCompletedLeft h1 {
+    font-size: 28px;
+  }
+
+  .wave {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .heroRight,
+  .heroCompletedRight {
+    min-height: 180px;
+    padding: 20px;
+  }
+
+  .heroRight img,
+  .heroCompletedRight img {
+    max-height: 160px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .continueBtn,
+  .simulationHeroBtn {
+    font-size: 16px;
+    padding: 14px 20px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .lessonList h3 {
+    font-size: 18px;
+  }
+
+  .lessonDone,
+  .lessonProgress,
+  .lessonLocked {
+    padding: 16px;
+  }
+
+  .bottomBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .bottomBanner h2 {
+    font-size: 24px;
+  }
+
+  .bottomBanner p {
+    font-size: 14px;
+  }
+
+  .startButton {
+    width: 100%;
+    text-align: center;
+  }
+}

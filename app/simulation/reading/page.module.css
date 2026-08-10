@@ -399,3 +399,104 @@
   margin-bottom:16px;
   text-align:center;
 }
+
+@media (max-width: 1024px) {
+  .contentLayout {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .leftSection {
+    width: 100%;
+  }
+
+  .rightSection {
+    width: 100%;
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 130px 16px 20px;
+  }
+
+  .headerSection {
+    padding: 10px 16px;
+    align-items: center;
+  }
+
+  .headerSection h1 {
+    font-size: 22px;
+  }
+
+  .line {
+    max-width: 463px;
+    width: 100%;
+  }
+
+  .headerSection p {
+    font-size: 13px;
+  }
+
+  .headerRight {
+    gap: 10px;
+  }
+
+  .timerBox {
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    gap: 8px;
+    box-shadow: 4px 4px 0 #1D1B18;
+  }
+
+  .exitBtn {
+    height: 40px;
+    font-size: 12px;
+    padding: 0 10px;
+    box-shadow: 4px 4px 0 #1D1B18;
+  }
+
+  .questionContainer {
+    padding: 0;
+  }
+
+  .bottomActions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .prevBtn,
+  .reviewBtn,
+  .nextBtn {
+    width: 100%;
+    height: 52px;
+    font-size: 14px;
+  }
+
+  .questionPanel {
+    padding: 16px;
+  }
+
+  .questionGrid {
+    gap: 10px;
+    justify-items: center;
+  }
+
+  .questionGrid div {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .submitBox {
+    padding: 20px 16px;
+  }
+
+  .submitBtn {
+    height: 60px;
+    font-size: 20px;
+  }
+}

@@ -390,65 +390,157 @@
 @media(max-width:768px){
 
   .header{
-    padding:20px;
+    padding:16px;
   }
 
   .header h1{
-    font-size:24px;
+    font-size:22px;
   }
 
-  .xpBox{
-    font-size:18px;
-    padding:10px 16px;
+  .PointBox{
+    font-size:14px;
+    padding:6px 10px;
+  }
+
+  .topThreeSection{
+    padding:20px 16px;
   }
 
   .topThreeWrapper{
-    flex-direction:column;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .avatarBox img{
+    width: 120px;
+    height: 120px;
+  }
+
+  .firstPlace .avatarBox img{
+    width: 140px;
+    height: 140px;
+  }
+
+  .medalIcon{
+    font-size: 40px;
   }
 
   .firstPlace h2{
-    font-size:38px;
+    font-size: 22px;
+    margin-top: 12px;
   }
 
   .otherPlace h2{
-    font-size:26px;
+    font-size: 20px;
+    margin-top: 12px;
+  }
+
+  .firstPlace p{
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .otherPlace p{
+    font-size: 18px;
+  }
+
+  .listSection{
+    padding: 0 16px 200px;
   }
 
   .userCard{
-    flex-direction:column;
-    gap:30px;
-    align-items:flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    gap: 12px;
   }
 
   .leftSide{
-    gap:20px;
+    gap: 12px;
   }
 
   .leftSide h2{
-    font-size:40px;
+    font-size: 22px;
+  }
+
+  .leftSide img{
+    width: 48px;
+    height: 48px;
   }
 
   .leftSide h3{
-    font-size:24px;
+    font-size: 15px;
+    margin-bottom: 2px;
   }
 
   .leftSide p{
-    font-size:16px;
+    font-size: 12px;
+    letter-spacing: 1px;
   }
 
   .rightSide h1{
-    font-size:44px;
+    font-size: 22px;
   }
 
   .bottomBar{
-    left:0;
-    width:100%;
+    left: 0;
+    width: 100%;
+    bottom: 60px;
+    height: auto;
+    padding: 10px 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+  }
 
-    flex-direction:column;
-    gap:20px;
+  .bottomLeft{
+    gap: 10px;
+  }
 
-    align-items:flex-start;
+  .bottomLeft h1{
+    font-size: 22px;
+  }
+
+  .youAvatar{
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .bottomLeft h2{
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .bottomLeft p{
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .bottomRight{
+    gap: 12px;
+  }
+
+  .bottomRight h1{
+    font-size: 22px;
+  }
+
+  .rankUp{
+    padding-left: 10px;
+  }
+
+  .rankUp p{
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  .rankUp svg{
+    font-size: 18px;
   }
 
 }

@@ -16,3 +16,10 @@
   color: #C5502A;
   font-size: 20px;
 }
+
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

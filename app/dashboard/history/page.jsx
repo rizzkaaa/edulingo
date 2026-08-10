@@ -213,7 +213,7 @@ export default function HistoryPage() {
         <div className={styles.heroLeft}>
           <h1>Learning History & Scores</h1>
           <p>
-            Review your learning journey in detail. Track your simulation progress and daily exercises.
+            Review your learning journey in detail. Track your prediction progress and daily exercises.
           </p>
         </div>
         <div className={styles.decorWrapper}>
@@ -322,7 +322,7 @@ export default function HistoryPage() {
           <div 
             style={{ 
               maxHeight: currentItems.length > 5 ? "420px" : "auto", 
-              overflowY: currentItems.length > 5 ? "auto" : "visible",
+              overflowY: "auto",
               paddingRight: currentItems.length > 5 ? "6px" : "0px"
             }}
           >
@@ -336,7 +336,7 @@ export default function HistoryPage() {
                   }
                 }}
                 style={{ cursor: item.category === "Simulation" ? "pointer" : "default" }}
-                title={item.category === "Simulation" ? "Klik untuk melihat rincian hasil simulasi" : ""}
+                title={item.category === "Simulation" ? "Klik untuk melihat rincian hasil prediction" : ""}
               >
                 <span>{item.date.split(",")[1]?.trim() || item.date}</span>
                 <div>
@@ -432,7 +432,7 @@ export default function HistoryPage() {
           <div>
             <h2>New Challenge</h2>
             <p>
-              Complete 3 more simulations for the ‘Master Reader’ badge.
+              Complete 3 more predictions for the ‘Master Reader’ badge.
             </p>
           </div>
         </div>

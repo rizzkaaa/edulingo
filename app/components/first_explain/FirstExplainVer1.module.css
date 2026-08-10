@@ -30,3 +30,10 @@
   padding: 0 5px;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

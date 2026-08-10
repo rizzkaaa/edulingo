@@ -6,13 +6,15 @@ import styles from "./layout.module.css";
 
 import Alert from "../components/Alert"; 
 
-import { auth, db } from "../../lib/firebase";
+import { db } from "../../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/AuthContext";
+import { PredictionContext } from "./PredictionContext";
 
 export default function SimulationLayout({ children }) {
   const router = useRouter();
   const { user, loading } = useAuth();
+  const [userName, setUserName] = useState("");
   const [userProfile, setUserProfile] = useState({ avatarUrl: null, initials: "U" });
   
   const [alertConfig, setAlertConfig] = useState({
@@ -39,6 +41,7 @@ export default function SimulationLayout({ children }) {
         } catch (error) {
           console.error("Gagal mengambil nama:", error);
         }
+        setUserName(fullName);
         setUserProfile({ avatarUrl: null, initials: fullName.trim().charAt(0).toUpperCase() });
       };
       fetchUserData();
@@ -79,7 +82,7 @@ export default function SimulationLayout({ children }) {
 
   function handleExit() {
     showAlert(
-      "Yakin ingin keluar? Progres simulasi Anda akan dihapus.",
+      "Yakin ingin keluar? Progres prediction Anda akan dihapus.",
       false, 
       () => performExit() 
     );
@@ -94,38 +97,40 @@ export default function SimulationLayout({ children }) {
   }
 
   return (
-    <div className={styles.wrapper}>
-      {alertConfig.show && (
-        <Alert
-          isAlert={alertConfig.isAlert}
-          text={alertConfig.text}
-          handleClick={() => { closeAlert(); alertConfig.onOke(); }}
-          handleCancel={closeAlert}
-        />
-      )}
+    <PredictionContext.Provider value={{ userName, userProfile, loading }}>
+      <div className={styles.wrapper}>
+        {alertConfig.show && (
+          <Alert
+            isAlert={alertConfig.isAlert}
+            text={alertConfig.text}
+            handleClick={() => { closeAlert(); alertConfig.onOke(); }}
+            handleCancel={closeAlert}
+          />
+        )}
 
-      <header className={styles.topHeader}>
-        <div className={styles.logoSection}>
-          <h1>EduLingo</h1>
-          <div className={styles.prepBadge}>TOEFL PREP</div>
-        </div>
+        <header className={styles.topHeader}>
+          <div className={styles.logoSection}>
+            <h1>EduLingo</h1>
+            <div className={styles.prepBadge}>TOEFL PREP</div>
+          </div>
 
-        <div className={styles.breadcrumb}>
-          BERANDA › SIMULASI › SIMULASI PENUH
-        </div>
+          <div className={styles.breadcrumb}>
+            BERANDA › PREDICTION › PREDICTION PENUH
+          </div>
 
-        <div className={styles.rightSection}>
-          <div className={styles.profileCircle}>{userProfile.initials}</div>
-          
-          <button className={styles.exitBtn} onClick={handleExit}>
-            Keluar
-          </button>
-        </div>
-      </header>
+          <div className={styles.rightSection}>
+            <div className={styles.profileCircle}>{userProfile.initials}</div>
+            
+            <button className={styles.exitBtn} onClick={handleExit}>
+              Keluar
+            </button>
+          </div>
+        </header>
 
-      <main className={styles.mainContent}>
-        {children}
-      </main>
-    </div>
+        <main className={styles.mainContent}>
+          {children}
+        </main>
+      </div>
+    </PredictionContext.Provider>
   );
 }

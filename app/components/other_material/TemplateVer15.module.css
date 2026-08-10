@@ -87,3 +87,24 @@
   align-items: center;
   gap: 10px;
 }
+
+@media (max-width: 768px) {
+  .main1 .wrap,
+  .main4 .wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main2 .wrap,
+  .main3 .wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .box {
+    grid-template-columns: 1fr;
+  }
+
+  .main4 .note {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

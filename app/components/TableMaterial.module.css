@@ -22,3 +22,15 @@
 .container td{
     background-color: #FDFAF5;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .container table {
+    min-width: 480px;
+  }
+}
