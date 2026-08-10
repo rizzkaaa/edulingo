@@ -18,7 +18,7 @@ export default function StructurePart1Redirector() {
 
     const savedProgress = localStorage.getItem("structure_part_1_sub_progress");
     
-    let targetSlug = SUB_LESSONS_STRUCTURE_1[0]; a
+    let targetSlug = SUB_LESSONS_STRUCTURE_1[0];
 
     if (savedProgress) {
       const progressIndex = parseInt(savedProgress, 10);

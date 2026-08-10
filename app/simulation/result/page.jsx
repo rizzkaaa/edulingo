@@ -307,8 +307,8 @@ function ResultContent() {
             <p className={styles.sectionStat}>
               {sec.correct}/{sec.total} Jawaban Benar (Konversi: <strong>{sec.converted}</strong>)
             </p>
-            <p style={{ fontSize: "12px", color: "#57423C", margin: "4px 0 0 0", fontWeight: "600" }}>
-              ⏱️ Waktu Sesi: <strong>{formatCompletionTime(sec.time)}</strong>
+            <p style={{marginTop: "12px", fontSize: "12px", color: "#57423C", margin: "4px 0 0 0", fontWeight: "600" }}>
+              Waktu Sesi: <strong>{formatCompletionTime(sec.time)}</strong>
             </p>
           </div>
         ))}
@@ -325,7 +325,7 @@ function ResultContent() {
 
         <div className={styles.conversionBody}>
           <p style={{ margin: 0, fontSize: "14px", color: "#57423C", fontWeight: "600" }}>
-            Berikut adalah rincian jawaban benar tiap sesi yang dikonversi ke dalam skala nilai standar TOEFL PBT (31–68) serta tahapan kalkulasi menuju skor akhir:
+            Berikut adalah rincian jawaban benar tiap sesi yang dikonversi ke dalam skala nilai standar TOEFL serta tahapan kalkulasi menuju skor akhir:
           </p>
 
           <div className={styles.conversionTableWrapper}>
@@ -367,7 +367,7 @@ function ResultContent() {
           </div>
 
           <div className={styles.calcStepsBox}>
-            <div className={styles.calcStepsTitle}>📐 Tahapan Perhitungan Skor Akhir TOEFL:</div>
+            <div className={styles.calcStepsTitle}>Tahapan Perhitungan Skor Akhir TOEFL:</div>
 
             <div className={styles.stepItem}>
               <div className={styles.stepNumber}>1</div>
@@ -394,7 +394,7 @@ function ResultContent() {
             <div className={styles.stepItem}>
               <div className={styles.stepNumber}>3</div>
               <div>
-                <strong>Bagi dengan 3 (Rumus Resmi TOEFL PBT):</strong>
+                <strong>Bagi dengan 3:</strong>
                 <br />
                 <code>
                   {result.toeflCalc.calculationSteps.stepMultiply} ÷ 3 = <strong>{result.toeflCalc.finalToeflScore}</strong>

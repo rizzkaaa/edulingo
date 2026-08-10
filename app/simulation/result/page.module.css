@@ -420,7 +420,7 @@
   letter-spacing: 0.5px;
   padding: 12px 16px;
   border: 1px solid #1D1B18;
-  text-align: left;
+  text-align: center;
 }
 
 .conversionTable td {
@@ -429,6 +429,9 @@
   color: #1D1B18;
   border: 1px solid #D0C9C0;
   font-weight: 600;
+}
+.conversionTable td:not(:first-child) {
+  text-align: center;
 }
 
 .convertedScoreBadge {
@@ -445,7 +448,6 @@
 .calcStepsBox {
   background: #F8F5EE;
   border: 2px dashed #1D1B18;
-  border-radius: 8px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -486,7 +488,6 @@
   background: #1D1B18;
   color: #FFFFFF;
   border: 3px solid #E8A33D;
-  border-radius: 8px;
   padding: 18px 24px;
   display: flex;
   justify-content: space-between;

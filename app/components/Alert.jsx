@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./Alert.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import SmallShadowBorder from "./SmallShadowBorder";

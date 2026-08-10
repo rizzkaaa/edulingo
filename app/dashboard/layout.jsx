@@ -6,12 +6,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 import { useAuth } from "@/lib/AuthContext";
 import {
   LuHouse,
   LuClipboardList,
   LuTrophy,
-  LuBookOpen
+  LuBookOpen,
+  LuShieldCheck
 } from "react-icons/lu";
 import { TbChartBar } from "react-icons/tb";
 import { FaLaptopCode } from "react-icons/fa";
@@ -38,7 +40,19 @@ export default function DashboardLayout({ children }) {
           let nameToUse = "Siswa";
 
           if (userDocSnap.exists()) {
-            nameToUse = userDocSnap.data().username || user.displayName || "Siswa";
+            const data = userDocSnap.data();
+
+            // Cek status keaktifan user (kecuali admin)
+            if (
+              user.email?.toLowerCase() !== "p@gmail.com" &&
+              (data.isActive === false || data.status === "inactive")
+            ) {
+              await signOut(auth);
+              router.replace("/auth/login");
+              return;
+            }
+
+            nameToUse = data.username || user.displayName || "Siswa";
           } else if (user.displayName) {
             nameToUse = user.displayName;
           }
@@ -51,7 +65,7 @@ export default function DashboardLayout({ children }) {
       };
       fetchUserData();
     }
-  }, [user]);
+  }, [user, router]);
 
   if (loading || !user) {
     return (
@@ -70,27 +84,37 @@ export default function DashboardLayout({ children }) {
     );
   }
 
+  const isAdmin = user?.email?.toLowerCase() === "p@gmail.com";
+
   const menus = [
     {
-      icon: <LuHouse />,
+      icon: <LuHouse title="Dashboard" />,
       path: "/dashboard",
     },
     {
-      icon: <LuBookOpen />,
+      icon: <LuBookOpen title="Lesson" />,
       path: "/dashboard/lesson",
     },
     {
-      icon: <TbChartBar />,
+      icon: <TbChartBar title="Leaderboard" />,
       path: "/dashboard/leaderboard",
     },
     {
-      icon: <LuClipboardList />,
+      icon: <LuClipboardList title="History" />,
       path: "/dashboard/history",
     },
     {
-      icon: <FaLaptopCode />,
+      icon: <FaLaptopCode title="Developer Team" />,
       path: "/dashboard/developer",
     },
+    ...(isAdmin
+      ? [
+          {
+            icon: <LuShieldCheck title="Admin Panel" />,
+            path: "/dashboard/admin",
+          },
+        ]
+      : []),
   ];
 
   return (

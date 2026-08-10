@@ -9,10 +9,12 @@ import { motion } from "framer-motion";
 import Alert from "../../components/Alert";
 
 // Backend Firebase
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import {
   signInWithEmailAndPassword,
-} from "firebase/auth"
+  signOut,
+} from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -59,7 +61,27 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
     setIsLoading(true);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const loggedInUser = userCredential.user;
+
+      // Verifikasi status keaktifan akun user (kecuali admin utama p@gmail.com)
+      if (loggedInUser.email?.toLowerCase() !== "p@gmail.com") {
+        const userDocRef = doc(db, "users", loggedInUser.uid);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          if (userData.isActive === false || userData.status === "inactive") {
+            await signOut(auth);
+            setIsLoading(false);
+            showAlert(
+              "Akun Anda telah dinonaktifkan oleh administrator. Silakan hubungi admin di p@gmail.com untuk info lebih lanjut."
+            );
+            return;
+          }
+        }
+      }
+
       console.log("Login Sukses!");
       router.push("/dashboard");
     } catch (err) {

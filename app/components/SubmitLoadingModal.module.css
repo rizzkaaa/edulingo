@@ -4,27 +4,23 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(10, 10, 18, 0.85);
+  background: rgba(10, 10, 18, 0.22);
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 99999;
 }
-
+.modalWrapper {
+  max-width: 500px;
+  width: 90%;
+}
 .modal {
-  background: #181824;
-  border: 3px solid #FFD02C;
-  box-shadow: 8px 8px 0px #000000;
-  border-radius: 16px;
-  padding: 40px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 420px;
-  width: 90%;
+  padding: 40px 32px !important;
   text-align: center;
-  color: #FFFFFF;
 }
 
 .spinnerWrapper {
@@ -40,7 +36,7 @@
 .spinner {
   width: 64px;
   height: 64px;
-  border: 6px solid rgba(255, 208, 44, 0.2);
+  border: 6px solid rgba(255, 209, 44, 0.22);
   border-top: 6px solid #FFD02C;
   border-right: 6px solid #FF4757;
   border-radius: 50%;
@@ -56,12 +52,12 @@
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #FFD02C;
+  color: #e8a838;
   letter-spacing: 0.5px;
 }
 
 .message {
   font-size: 0.95rem;
-  color: #CCCCCC;
+  color: #8c8880;
   line-height: 1.5;
 }
