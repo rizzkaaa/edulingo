@@ -4,21 +4,54 @@ import Link from "next/link";
 import styles from "./layout.module.css";
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useAuth } from "@/lib/AuthContext";
+import { auth, db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
 export default function AuthPage({ children }) {
   const path = usePathname();
   const router = useRouter();
   const { user, loading } = useAuth();
+  const initialCheckRef = useRef(false);
 
   useEffect(() => {
-    if (!loading && user) {
-      router.replace("/dashboard");
+    if (!loading && !initialCheckRef.current) {
+      initialCheckRef.current = true;
+      if (user) {
+        // Jika sudah login sebelumnya dan membuka halaman auth, verifikasi status keaktifan
+        const verifyInitialSession = async () => {
+          try {
+            if (user.email?.toLowerCase() === "p@gmail.com") {
+              router.replace("/dashboard");
+              return;
+            }
+            const userDocSnap = await getDoc(doc(db, "users", user.uid));
+            if (userDocSnap.exists()) {
+              const userData = userDocSnap.data();
+              const isInactive =
+                userData.isActive === false ||
+                userData.status === "inactive" ||
+                userData.status === "nonaktif" ||
+                userData.isActive === "false";
+
+              if (isInactive) {
+                await signOut(auth);
+                return;
+              }
+            }
+            router.replace("/dashboard");
+          } catch (err) {
+            console.error("Session verification error:", err);
+          }
+        };
+        verifyInitialSession();
+      }
     }
   }, [user, loading, router]);
 
-  if (loading || user) {
+  if (loading) {
     return (
       <div style={{
         minHeight: "100vh",

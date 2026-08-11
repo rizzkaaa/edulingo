@@ -45,7 +45,10 @@ export default function DashboardLayout({ children }) {
             // Cek status keaktifan user (kecuali admin)
             if (
               user.email?.toLowerCase() !== "p@gmail.com" &&
-              (data.isActive === false || data.status === "inactive")
+              (data.isActive === false ||
+                data.status === "inactive" ||
+                data.status === "nonaktif" ||
+                data.isActive === "false")
             ) {
               await signOut(auth);
               router.replace("/auth/login");

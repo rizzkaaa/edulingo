@@ -71,11 +71,17 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
 
         if (userDocSnap.exists()) {
           const userData = userDocSnap.data();
-          if (userData.isActive === false || userData.status === "inactive") {
+          const isUserInactive =
+            userData.isActive === false ||
+            userData.status === "inactive" ||
+            userData.status === "nonaktif" ||
+            userData.isActive === "false";
+
+          if (isUserInactive) {
             await signOut(auth);
             setIsLoading(false);
             showAlert(
-              "Akun Anda telah dinonaktifkan oleh administrator. Silakan hubungi admin di p@gmail.com untuk info lebih lanjut."
+              "Akun Anda telah dinonaktifkan oleh administrator. Silakan hubungi admin di admin untuk info lebih lanjut."
             );
             return;
           }
@@ -99,10 +105,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
       } else if (errorCode === "auth/too-many-requests") {
         showAlert("Terlalu banyak percobaan gagal. Coba beberapa saat lagi.");
       } else {
-        showAlert(" Pastikan anda sudah memiliki akun");
+        showAlert("Pastikan anda sudah memiliki akun dan koneksi internet stabil.");
       }
 
-      // edit load
       setIsLoading(false);
       return;
     }
@@ -205,6 +210,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.(com|id)$/;
       </div>
 
       <motion.button
+        type="button"
         className={styles.googleBtn}
         // Edit Load
         disabled={isLoading}

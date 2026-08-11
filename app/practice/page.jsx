@@ -1,12 +1,13 @@
 "use client";
 
 
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import Alert from "../components/Alert";
 import { db, auth } from "@/lib/firebase"; 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { resetPlayedAudios } from "@/lib/audioTracker";
 
 import allQuestionsData from "@/data/questions.json"; 
 
@@ -121,6 +122,10 @@ function PracticePageInner() {
   const [alertConfig, setAlertConfig] = useState({
     show: false, text: "", isAlert: true, onOke: () => {},
   });
+
+  useEffect(() => {
+    resetPlayedAudios();
+  }, [moduleParam]);
 
   const totalQuestions = questions.length;
 

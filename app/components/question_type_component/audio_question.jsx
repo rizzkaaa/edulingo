@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./audio_question.module.css";
 import shared from "./shared.module.css";
-import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa";
+import { FaPlay, FaVolumeUp } from "react-icons/fa";
+import { isAudioPlayed, markAudioAsPlayed } from "@/lib/audioTracker";
 
 export default function AudioQuestion({ 
   questionNumber, 
@@ -15,17 +16,28 @@ export default function AudioQuestion({
   selectedAnswer 
 }) {
   const audioRef = useRef(null);
+  const lastValidTimeRef = useRef(0);
+
+  const audioKey = audioSrc || `audio_q_${questionNumber}`;
+  const alreadyPlayed = isAudioPlayed(audioKey);
+
   const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [hasStarted, setHasStarted] = useState(alreadyPlayed);
+  const [progress, setProgress] = useState(alreadyPlayed ? 100 : 0);
   const [currentTime, setCurrentTime] = useState("0:00");
   const [duration, setDuration] = useState("0:00");
-  const [ended, setEnded] = useState(false);
+  const [ended, setEnded] = useState(alreadyPlayed);
+
   useEffect(() => {
     const currentAudio = audioRef.current;
+    const isPlayed = isAudioPlayed(audioKey);
+
     setPlaying(false);
-    setProgress(0);
+    setHasStarted(isPlayed);
+    setProgress(isPlayed ? 100 : 0);
     setCurrentTime("0:00");
-    setEnded(false);
+    setEnded(isPlayed);
+    lastValidTimeRef.current = 0;
 
     return () => {
       if (currentAudio) {
@@ -33,7 +45,7 @@ export default function AudioQuestion({
         currentAudio.currentTime = 0;
       }
     };
-  }, [audioSrc]);
+  }, [audioSrc, audioKey]);
 
   function formatTime(sec) {
     if (isNaN(sec)) return "0:00";
@@ -42,58 +54,70 @@ export default function AudioQuestion({
     return `${m}:${s}`;
   }
 
-  function handlePlayPause() {
-    if (ended) return; 
+  function handlePlay() {
+    if (hasStarted || ended || isAudioPlayed(audioKey)) return; 
     
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
-    } else {
-      const playPromise = audio.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setPlaying(true);
-          })
-          .catch((error) => {
-            console.log("Audio play diinterupsi, aman diabaikan:", error);
-            setPlaying(false);
-          });
-      }
+    markAudioAsPlayed(audioKey);
+    setHasStarted(true);
+    setPlaying(true);
+
+    audio.playbackRate = 1.0;
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setPlaying(true);
+        })
+        .catch((error) => {
+          console.log("Audio play error:", error);
+          setPlaying(false);
+        });
     }
   }
 
   function handleTimeUpdate() {
     const audio = audioRef.current;
     if (!audio) return;
+    lastValidTimeRef.current = audio.currentTime;
     const pct = (audio.currentTime / audio.duration) * 100;
     setProgress(isNaN(pct) ? 0 : pct);
     setCurrentTime(formatTime(audio.currentTime));
   }
 
+  function handleSeeking() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    // Mencegah seeking atau melompat-lompat pemutaran audio
+    if (Math.abs(audio.currentTime - lastValidTimeRef.current) > 1) {
+      audio.currentTime = lastValidTimeRef.current;
+    }
+  }
+
+  function handleRateChange() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    // Mencegah mempercepat atau memperlambat audio
+    if (audio.playbackRate !== 1.0) {
+      audio.playbackRate = 1.0;
+    }
+  }
+
   function handleLoadedMetadata() {
     const audio = audioRef.current;
     if (!audio) return;
+    audio.playbackRate = 1.0;
     setDuration(formatTime(audio.duration));
   }
 
   function handleEnded() {
+    markAudioAsPlayed(audioKey);
     setPlaying(false);
     setEnded(true); 
-  }
-
-  function handleProgressClick(e) {
-    if (ended) return; 
-    const audio = audioRef.current;
-    if (!audio || isNaN(audio.duration)) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const pct = clickX / rect.width;
-    audio.currentTime = pct * audio.duration;
+    setProgress(100);
   }
 
   return (
@@ -105,6 +129,10 @@ export default function AudioQuestion({
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
+        onSeeking={handleSeeking}
+        onRateChange={handleRateChange}
+        preload="metadata"
+        tabIndex={-1}
       />
 
       {/* ===== AUDIO SECTION ===== */}
@@ -118,6 +146,8 @@ export default function AudioQuestion({
             <p className={styles.audioSub}>
             {ended
               ? "The audio has finished playing and cannot be replayed."
+              : hasStarted
+              ? "The audio is currently playing. Please listen carefully."
               : "Listen carefully to the audio. The audio can only be played once."
             }
             </p>
@@ -126,18 +156,24 @@ export default function AudioQuestion({
 
         <div className={styles.audioPlayer}>
           <button
-            className={`${styles.playBtn} ${ended ? styles.playBtnDisabled : ""}`}
-            onClick={handlePlayPause}
-            disabled={ended}
+            className={`${styles.playBtn} ${hasStarted || ended ? styles.playBtnDisabled : ""}`}
+            onClick={handlePlay}
+            disabled={hasStarted || ended}
+            title={
+              ended
+                ? "Audio selesai diputar"
+                : hasStarted
+                ? "Audio sedang diputar"
+                : "Putar audio (hanya 1 kali)"
+            }
           >
-            {playing ? <FaPause /> : <FaPlay />}
+            <FaPlay />
           </button>
 
           <div className={styles.progressWrapper}>
             <div
               className={styles.progressTrack}
-              onClick={handleProgressClick}
-              style={{ cursor: ended ? "not-allowed" : "pointer" }}
+              style={{ cursor: "default", pointerEvents: "none", userSelect: "none" }}
             >
               <div
                 className={styles.progressFill}

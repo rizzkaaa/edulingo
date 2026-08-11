@@ -18,6 +18,7 @@ import LongAudioQuestion from "../../components/question_type_component/long_aud
 import { db } from "../../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { resetPlayedAudios } from "@/lib/audioTracker";
 
 import questionsData from "../../../data/simulasi.json";
 
@@ -66,6 +67,7 @@ export default function ListeningPage() {
   };
 
   useEffect(() => {
+    resetPlayedAudios();
     const auth = getAuth();
     
     const unsubscribe = onAuthStateChanged(auth, (user) => {

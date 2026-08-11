@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa"; 
+import { FaPlay, FaVolumeUp } from "react-icons/fa"; 
+import { isAudioPlayed, markAudioAsPlayed } from "@/lib/audioTracker";
 
 export default function LongAudioQuestion({
   audioSrc,
@@ -10,21 +11,36 @@ export default function LongAudioQuestion({
   isLastQuestion,
 }) {
   const audioRef = useRef(null);
+  const lastValidTimeRef = useRef(0);
+
+  const audioKey = audioSrc || "long_audio_global";
+  const alreadyPlayed = isAudioPlayed(audioKey);
 
   const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [hasStarted, setHasStarted] = useState(alreadyPlayed);
+  const [progress, setProgress] = useState(alreadyPlayed ? 100 : 0);
   const [currentTime, setCurrentTime] = useState("0:00");
   const [duration, setDuration] = useState("0:00");
-  const [isAudioFinished, setIsAudioFinished] = useState(false);
-  const [isAudioPlayedOnce, setIsAudioPlayedOnce] = useState(false);
+  const [isAudioFinished, setIsAudioFinished] = useState(alreadyPlayed);
 
   useEffect(() => {
+    const currentAudio = audioRef.current;
+    const isPlayed = isAudioPlayed(audioKey);
+
     setPlaying(false);
-    setProgress(0);
+    setHasStarted(isPlayed);
+    setProgress(isPlayed ? 100 : 0);
     setCurrentTime("0:00");
-    setIsAudioFinished(false);
-    setIsAudioPlayedOnce(false);
-  }, [audioSrc]);
+    setIsAudioFinished(isPlayed);
+    lastValidTimeRef.current = 0;
+
+    return () => {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+    };
+  }, [audioSrc, audioKey]);
 
   function formatTime(sec) {
     if (isNaN(sec)) return "0:00";
@@ -33,39 +49,70 @@ export default function LongAudioQuestion({
     return `${m}:${s}`;
   }
 
-  function handlePlayPause() {
-    if (isAudioPlayedOnce) return;
+  function handlePlay() {
+    if (hasStarted || isAudioFinished || isAudioPlayed(audioKey)) return;
 
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (playing) {
-      audio.pause();
-    } else {
-      audio.play();
+    markAudioAsPlayed(audioKey);
+    setHasStarted(true);
+    setPlaying(true);
+
+    audio.playbackRate = 1.0;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setPlaying(true);
+        })
+        .catch((error) => {
+          console.log("Audio play error:", error);
+          setPlaying(false);
+        });
     }
-    setPlaying(!playing);
   }
 
   function handleTimeUpdate() {
     const audio = audioRef.current;
     if (!audio) return;
 
+    lastValidTimeRef.current = audio.currentTime;
     const pct = (audio.currentTime / audio.duration) * 100;
     setProgress(isNaN(pct) ? 0 : pct);
     setCurrentTime(formatTime(audio.currentTime));
   }
 
+  function handleSeeking() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    // Mencegah seeking atau melompat-lompat pemutaran audio
+    if (Math.abs(audio.currentTime - lastValidTimeRef.current) > 1) {
+      audio.currentTime = lastValidTimeRef.current;
+    }
+  }
+
+  function handleRateChange() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    // Mencegah mempercepat atau memperlambat audio
+    if (audio.playbackRate !== 1.0) {
+      audio.playbackRate = 1.0;
+    }
+  }
+
   function handleLoadedMetadata() {
     const audio = audioRef.current;
     if (!audio) return;
+    audio.playbackRate = 1.0;
     setDuration(formatTime(audio.duration));
   }
 
   function handleAudioEnded() {
+    markAudioAsPlayed(audioKey);
     setPlaying(false);
     setIsAudioFinished(true);
-    setIsAudioPlayedOnce(true);
+    setProgress(100);
   }
 
   return (
@@ -77,6 +124,10 @@ export default function LongAudioQuestion({
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleAudioEnded}
+        onSeeking={handleSeeking}
+        onRateChange={handleRateChange}
+        preload="metadata"
+        tabIndex={-1}
       />
 
       <div style={{
@@ -107,9 +158,11 @@ export default function LongAudioQuestion({
               Listen to the Audio
             </h2>
             <p style={{ margin: 0, fontSize: "14px", color: "#4A4A4A" }}>
-              {isAudioPlayedOnce
+              {isAudioFinished
                 ? "The conversation has ended. Proceed to the questions."
-                : "Press the play button to listen to the conversation."}
+                : hasStarted
+                ? "The audio is currently playing. Please listen carefully."
+                : "Press the play button to listen. The audio can only be played once."}
             </p>
           </div>
         </div>
@@ -123,10 +176,10 @@ export default function LongAudioQuestion({
           gap: "15px"
         }}>
           <button
-            onClick={handlePlayPause}
-            disabled={isAudioPlayedOnce}
+            onClick={handlePlay}
+            disabled={hasStarted || isAudioFinished}
             style={{
-              backgroundColor: isAudioPlayedOnce ? "#999" : "#B23B22", 
+              backgroundColor: hasStarted || isAudioFinished ? "#999" : "#B23B22", 
               border: "2px solid #1A1A1A",
               width: "40px",
               height: "40px",
@@ -134,11 +187,19 @@ export default function LongAudioQuestion({
               justifyContent: "center",
               alignItems: "center",
               color: "white",
-              cursor: isAudioPlayedOnce ? "not-allowed" : "pointer",
-              boxShadow: "2px 2px 0px #1A1A1A"
+              cursor: hasStarted || isAudioFinished ? "not-allowed" : "pointer",
+              boxShadow: "2px 2px 0px #1A1A1A",
+              opacity: hasStarted || isAudioFinished ? 0.7 : 1,
             }}
+            title={
+              isAudioFinished
+                ? "Audio selesai diputar"
+                : hasStarted
+                ? "Audio sedang diputar"
+                : "Putar audio (hanya 1 kali)"
+            }
           >
-            {playing ? <FaPause size={14} /> : <FaPlay size={14} style={{ marginLeft: "3px" }} />}
+            <FaPlay size={14} style={{ marginLeft: "3px" }} />
           </button>
 
           <div style={{ flex: 1, display: "flex", alignItems: "center", gap: "15px" }}>
@@ -146,7 +207,15 @@ export default function LongAudioQuestion({
               {currentTime}
             </span>
             
-            <div style={{ flex: 1, height: "6px", backgroundColor: "#E0E0E0", border: "1px solid #1A1A1A", position: "relative" }}>
+            <div style={{ 
+              flex: 1, 
+              height: "6px", 
+              backgroundColor: "#E0E0E0", 
+              border: "1px solid #1A1A1A", 
+              position: "relative",
+              pointerEvents: "none",
+              userSelect: "none"
+            }}>
               <div style={{ 
                 height: "100%", 
                 backgroundColor: "#B23B22", 
