@@ -14,6 +14,10 @@ import {
 } from "firebase/firestore";
 import { calculateToeflScores } from "@/lib/toeflScore";
 import {
+  generateAndDownloadCertificatesZip,
+  generateSingleCertificatePDF,
+} from "@/lib/certificateGenerator";
+import {
   FaSearch,
   FaTimes,
   FaSyncAlt,
@@ -29,6 +33,9 @@ import {
   FaExclamationTriangle,
   FaSortAmountDown,
   FaArrowLeft,
+  FaFileCsv,
+  FaFileArchive,
+  FaDownload,
 } from "react-icons/fa";
 import { LuClock, LuTarget, LuAward } from "react-icons/lu";
 
@@ -67,6 +74,14 @@ export default function AdminDashboardPage() {
 
   // Action in progress (loading state)
   const [actionLoading, setActionLoading] = useState(false);
+
+  // Certificate generation progress state
+  const [certProgress, setCertProgress] = useState({
+    isGenerating: false,
+    current: 0,
+    total: 0,
+    statusText: "",
+  });
 
   // Toast feedback
   const [toastMessage, setToastMessage] = useState(null);
@@ -124,20 +139,27 @@ export default function AdminDashboardPage() {
       setUsersList(users);
       setExamSessions(sessions);
       setPracticeHistory(practices);
-      setIsDataLoading(false);
     } catch (error) {
       console.error("Gagal memuat data admin:", error);
       showToast("Gagal memuat data dari database!");
-      setIsDataLoading(false);
     } finally {
+      setIsDataLoading(false);
       if (showIndicator) setIsRefreshing(false);
     }
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
     if (currentUser?.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
-      fetchAllData();
+      (async () => {
+        if (isMounted) {
+          await fetchAllData();
+        }
+      })();
     }
+    return () => {
+      isMounted = false;
+    };
   }, [currentUser, fetchAllData]);
 
   // 3. Process each user with enriched simulation and practice metrics
@@ -562,6 +584,208 @@ export default function AdminDashboardPage() {
     });
   };
 
+  // --------------------------------------------------------------------------
+  // 6.5. EXPORT TO CSV: Rekap Nilai Simulasi TOEFL
+  // --------------------------------------------------------------------------
+  const handleExportSimulationCSV = (targetUsers = null) => {
+    // Tentukan sumber data peserta yang akan diekspor:
+    // 1. targetUsers (spesifik peserta jika dipanggil dari modal)
+    // 2. filteredAndSortedUsers (jika admin sedang melakukan search / filter)
+    // 3. processedUsers (seluruh peserta jika tidak ada filter)
+    const sourceUsers = targetUsers || (
+      (searchQuery || statusFilter !== "all")
+        ? filteredAndSortedUsers
+        : processedUsers
+    );
+
+    const rows = [];
+
+    sourceUsers.forEach((user) => {
+      const fullName = user.fullName || user.username || "Tanpa Nama";
+      const email = user.email || "-";
+      const username = user.username || "-";
+
+      (user.simulations || []).forEach((session) => {
+        rows.push({
+          fullName,
+          email,
+          username,
+          date: session.formattedDate,
+          dateObj: session.dateObj,
+          listeningScore: session.listening.score, // Skor Listening terkonversi (converted)
+          structureScore: session.structure.score, // Skor Structure terkonversi (converted)
+          readingScore: session.reading.score,     // Skor Reading terkonversi (converted)
+          finalScore: session.score,               // Skor Akhir TOEFL
+          status: session.isPassed ? "Lolos (>=450)" : "Perlu Peningkatan (<450)",
+        });
+      });
+    });
+
+    if (rows.length === 0) {
+      showToast("Tidak ada data nilai simulasi yang dapat diekspor!");
+      return;
+    }
+
+    // Urutkan riwayat ujian dari yang paling baru
+    rows.sort((a, b) => (b.dateObj || 0) - (a.dateObj || 0));
+
+    // Headers CSV sesuai permintaan
+    const headers = [
+      "No",
+      "Full Name",
+      "Email",
+      "Username",
+      "Tanggal Ujian",
+      "Listening (Converted)",
+      "Structure (Converted)",
+      "Reading (Converted)",
+      "Skor Akhir TOEFL",
+      "Status Kelulusan",
+    ];
+
+    const escapeCsv = (val) => {
+      if (val === null || val === undefined) return '""';
+      const str = String(val);
+      if (str.includes(",") || str.includes('"') || str.includes("\n") || str.includes("\r")) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return `"${str}"`;
+    };
+
+    const csvLines = [
+      headers.map(escapeCsv).join(","),
+      ...rows.map((row, idx) =>
+        [
+          idx + 1,
+          row.fullName,
+          row.email,
+          row.username,
+          row.date,
+          row.listeningScore,
+          row.structureScore,
+          row.readingScore,
+          row.finalScore,
+          row.status,
+        ]
+          .map(escapeCsv)
+          .join(",")
+      ),
+    ];
+
+    // Tambahkan UTF-8 BOM (\uFEFF) agar Microsoft Excel membaca format dan karakter dengan sempurna
+    const csvContent = "\uFEFF" + csvLines.join("\r\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    const now = new Date();
+    const dateStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}_${String(now.getHours()).padStart(2, "0")}${String(now.getMinutes()).padStart(2, "0")}`;
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", `edulingo_nilai_simulasi_${dateStr}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showToast(`Berhasil mengekspor ${rows.length} data nilai simulasi ke CSV!`);
+  };
+
+  // --------------------------------------------------------------------------
+  // 6.6. GENERATE SERTIFIKAT TOEFL (ZIP & INDIVIDUAL PDF)
+  // --------------------------------------------------------------------------
+  const handleGenerateCertificatesZip = async (targetUsers = null) => {
+    const sourceUsers = targetUsers || (
+      (searchQuery || statusFilter !== "all")
+        ? filteredAndSortedUsers
+        : processedUsers
+    );
+
+    const eligibleUsers = sourceUsers.filter(
+      (u) => (u.simulations || []).length > 0
+    );
+
+    if (eligibleUsers.length === 0) {
+      showToast("Tidak ada peserta dengan riwayat simulasi untuk dibuatkan sertifikat!");
+      return;
+    }
+
+    const certificatesData = eligibleUsers.map((user) => {
+      // Ambil sesi ujian dengan skor tertinggi
+      const bestSession = [...user.simulations].sort((a, b) => b.score - a.score)[0];
+      return {
+        fullName: user.fullName || user.username || "PESERTA",
+        listeningScore: bestSession.listening.score, // Skor konversi
+        structureScore: bestSession.structure.score, // Skor konversi
+        readingScore: bestSession.reading.score,     // Skor konversi
+        totalScore: bestSession.score,               // Total skor TOEFL
+      };
+    });
+
+    try {
+      setCertProgress({
+        isGenerating: true,
+        current: 0,
+        total: certificatesData.length,
+        statusText: "Menyiapkan template dan font sertifikat...",
+      });
+
+      const result = await generateAndDownloadCertificatesZip(
+        certificatesData,
+        (current, total, statusText) => {
+          setCertProgress({
+            isGenerating: true,
+            current,
+            total,
+            statusText,
+          });
+        }
+      );
+
+      showToast(`Berhasil mengunduh file ${result.zipFileName} (${result.total} sertifikat)!`);
+    } catch (error) {
+      console.error("Gagal membuat sertifikat ZIP:", error);
+      showToast("Terjadi kesalahan saat membuat file ZIP sertifikat.");
+    } finally {
+      setCertProgress({
+        isGenerating: false,
+        current: 0,
+        total: 0,
+        statusText: "",
+      });
+    }
+  };
+
+  const handleDownloadSingleCertificate = async (user, session = null) => {
+    const sim =
+      session ||
+      (user.simulations && [...user.simulations].sort((a, b) => b.score - a.score)[0]);
+
+    if (!sim) {
+      showToast("Peserta ini belum memiliki nilai ujian simulasi!");
+      return;
+    }
+
+    const fullName = user.fullName || user.username || "PESERTA";
+    try {
+      showToast(`Sedang membuat sertifikat PDF untuk ${fullName}...`);
+      const pdf = await generateSingleCertificatePDF({
+        fullName,
+        listeningScore: sim.listening.score,
+        structureScore: sim.structure.score,
+        readingScore: sim.reading.score,
+        totalScore: sim.score,
+      });
+
+      const safeName = fullName.replace(/[^a-zA-Z0-9_-]/g, "_").substring(0, 50);
+      pdf.save(`Sertifikat_TOEFL_${safeName}_${sim.score}pts.pdf`);
+      showToast(`Sertifikat ${fullName} berhasil diunduh!`);
+    } catch (err) {
+      console.error("Gagal mendownload sertifikat single:", err);
+      showToast("Gagal membuat sertifikat PDF.");
+    }
+  };
+
   // 7. Security Check Rendering
   if (authLoading) {
     return (
@@ -764,6 +988,24 @@ export default function AdminDashboardPage() {
             >
               <FaSyncAlt className={isRefreshing ? styles.spinning : ""} /> Refresh
             </button>
+
+            <button
+              className={styles.btnExportCsv}
+              onClick={() => handleExportSimulationCSV()}
+              disabled={isDataLoading || certProgress.isGenerating}
+              title="Ekspor seluruh rekap nilai simulasi TOEFL peserta ke format CSV"
+            >
+              <FaFileCsv /> Export to CSV
+            </button>
+
+            <button
+              className={styles.btnGenerateCert}
+              onClick={() => handleGenerateCertificatesZip()}
+              disabled={isDataLoading || certProgress.isGenerating}
+              title="Generate seluruh sertifikat peserta ke dalam format PDF dan download langsung sebagai file ZIP"
+            >
+              <FaFileArchive /> Generate Sertifikat (ZIP)
+            </button>
           </div>
         </div>
 
@@ -857,9 +1099,27 @@ export default function AdminDashboardPage() {
           <div className={styles.tableHeaderTitle}>
             Daftar Peserta EduLingo
           </div>
-          <div className={styles.resultCount}>
-            Menampilkan <strong>{filteredAndSortedUsers.length}</strong> dari{" "}
-            <strong>{processedUsers.length}</strong> peserta
+          <div className={styles.tableHeaderRight}>
+            <button
+              className={styles.btnExportCsvSecondary}
+              onClick={() => handleExportSimulationCSV()}
+              disabled={isDataLoading || certProgress.isGenerating}
+              title="Ekspor rekap nilai simulasi ke file CSV"
+            >
+              <FaFileCsv /> Export CSV
+            </button>
+            <button
+              className={styles.btnExportCsvSecondary}
+              onClick={() => handleGenerateCertificatesZip()}
+              disabled={isDataLoading || certProgress.isGenerating}
+              title="Generate seluruh sertifikat peserta ke ZIP"
+            >
+              <FaFileArchive /> Download ZIP Sertifikat
+            </button>
+            <div className={styles.resultCount}>
+              Menampilkan <strong>{filteredAndSortedUsers.length}</strong> dari{" "}
+              <strong>{processedUsers.length}</strong> peserta
+            </div>
           </div>
         </div>
 
@@ -1029,6 +1289,17 @@ export default function AdminDashboardPage() {
                           >
                             <FaHistory /> Riwayat
                           </button>
+
+                          {user.simulationCount > 0 && (
+                            <button
+                              className={styles.btnSingleCert}
+                              onClick={() => handleDownloadSingleCertificate(user)}
+                              disabled={certProgress.isGenerating}
+                              title="Download Sertifikat PDF (Nilai Terbaik)"
+                            >
+                              <LuAward /> Sertifikat
+                            </button>
+                          )}
 
                           {user.isAdmin ? (
                             <span
@@ -1211,6 +1482,25 @@ export default function AdminDashboardPage() {
               {/* Simulation Sessions List */}
               {activeHistoryTab === "simulation" && (
                 <div className={styles.simulationList}>
+                  {selectedUserForHistory.simulations.length > 0 && (
+                    <div style={{ display: "flex", justifyContent: "flex-end", gap: "8px", marginBottom: "12px" }}>
+                      <button
+                        className={styles.btnExportCsvSecondary}
+                        onClick={() => handleExportSimulationCSV([selectedUserForHistory])}
+                        title="Ekspor rekap simulasi peserta ini ke CSV"
+                      >
+                        <FaFileCsv /> Export CSV
+                      </button>
+                      <button
+                        className={styles.btnExportCsvSecondary}
+                        onClick={() => handleGenerateCertificatesZip([selectedUserForHistory])}
+                        title="Download ZIP sertifikat untuk peserta ini"
+                      >
+                        <FaFileArchive /> Download Sertifikat (ZIP)
+                      </button>
+                    </div>
+                  )}
+
                   {selectedUserForHistory.simulations.length === 0 ? (
                     <div className={styles.emptyState}>
                       <FaTrophy className={styles.emptyIcon} />
@@ -1320,6 +1610,22 @@ export default function AdminDashboardPage() {
                             </div>
                           </div>
                         </div>
+
+                        {/* Download button for this specific session */}
+                        <div style={{ marginTop: "12px", display: "flex", justifyContent: "flex-end" }}>
+                          <button
+                            className={styles.btnSingleCert}
+                            onClick={() =>
+                              handleDownloadSingleCertificate(
+                                selectedUserForHistory,
+                                session
+                              )
+                            }
+                            title="Download Sertifikat PDF untuk sesi simulasi ini"
+                          >
+                            <LuAward /> Download Sertifikat Sesi Ini (PDF)
+                          </button>
+                        </div>
                       </div>
                     ))
                   )}
@@ -1417,6 +1723,57 @@ export default function AdminDashboardPage() {
               >
                 {actionLoading ? "Memproses..." : "Ya, Lanjutkan"}
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ====================================================================
+          MODAL: CERTIFICATE GENERATION PROGRESS OVERLAY
+          ==================================================================== */}
+      {certProgress.isGenerating && (
+        <div className={styles.modalBackdrop} style={{ zIndex: 9999 }}>
+          <div className={styles.progressModalCard}>
+            <div
+              style={{
+                width: "54px",
+                height: "54px",
+                borderRadius: "50%",
+                background: "#f3eee8",
+                border: "3px solid #1d1b18",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#254083",
+                fontSize: "24px",
+              }}
+            >
+              <LuAward />
+            </div>
+            <h3 style={{ margin: 0, fontWeight: "900", color: "#1d1b18", fontSize: "18px" }}>
+              Memproses Sertifikat TOEFL
+            </h3>
+            <p style={{ margin: 0, fontSize: "14px", color: "#58423b", fontWeight: "600" }}>
+              {certProgress.statusText}
+            </p>
+            <div className={styles.progressBarContainer}>
+              <div
+                className={styles.progressBarFill}
+                style={{
+                  width: `${
+                    certProgress.total > 0
+                      ? Math.round((certProgress.current / certProgress.total) * 100)
+                      : 0
+                  }%`,
+                }}
+              ></div>
+            </div>
+            <div style={{ fontSize: "13px", fontWeight: "800", color: "#254083" }}>
+              {certProgress.total > 0
+                ? `${certProgress.current} dari ${certProgress.total} (${Math.round(
+                    (certProgress.current / certProgress.total) * 100
+                  )}%)`
+                : "Mohon tunggu..."}
             </div>
           </div>
         </div>

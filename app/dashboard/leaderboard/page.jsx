@@ -12,47 +12,51 @@ import {
   FaMedal
 } from "react-icons/fa6";
 
+import { calculateToeflScores } from "@/lib/toeflScore";
+
 const defaultTopThree = [
-  { rank: 2, name: "Budi Santoso", Point: "2,840 Point", photo: "/images/default_profile.png" },
-  { rank: 1, name: "Siti Aminah", Point: "3,120 Point", photo: "/images/default_profile.png" },
-  { rank: 3, name: "Rian Wijaya", Point: "2,450 Point", photo: "/images/default_profile.png" }
+  { rank: 2, name: "Budi Santoso", Point: "580 Point", photo: "/images/default_profile.png" },
+  { rank: 1, name: "Siti Aminah", Point: "620 Point", photo: "/images/default_profile.png" },
+  { rank: 3, name: "Rian Wijaya", Point: "540 Point", photo: "/images/default_profile.png" }
 ];
 
 const defaultLeaderboard = [
-  { rank: 4, name: "Aulia Putri", title: "LANGUAGE MASTER", Point: "2,100", photo: "/images/default_profile.png" },
-  { rank: 5, name: "Dedi Kusuma", title: "GRAMMAR EXPERT", Point: "1,950", photo: "/images/default_profile.png" },
-  { rank: 6, name: "Raka Pratama", title: "VOCAB KING", Point: "1,820", photo: "/images/default_profile.png" }
+  { rank: 4, name: "Aulia Putri", title: "LANGUAGE MASTER", Point: "510", photo: "/images/default_profile.png" },
+  { rank: 5, name: "Dedi Kusuma", title: "GRAMMAR EXPERT", Point: "490", photo: "/images/default_profile.png" },
+  { rank: 6, name: "Raka Pratama", title: "VOCAB KING", Point: "460", photo: "/images/default_profile.png" }
 ];
 
 function calculateToeflScore(data) {
-  let totalPercentageSum = 0;
-  let activeSectionsCount = 0;
+  const listeningTotal = Number(data.listening_total_questions) || 36;
+  const listeningCorrect = data.listening_correct_answers !== undefined
+    ? Number(data.listening_correct_answers)
+    : Math.round(((Number(data.listening_score_percentage) || 0) / 100) * listeningTotal);
 
-  if (data.reading_score_percentage !== undefined) {
-    totalPercentageSum += data.reading_score_percentage;
-    activeSectionsCount++;
-  }
+  const structureTotal = Number(data.structure_total_questions) || 28;
+  const structureCorrect = data.structure_correct_answers !== undefined
+    ? Number(data.structure_correct_answers)
+    : Math.round(((Number(data.structure_score_percentage) || 0) / 100) * structureTotal);
 
-  if (data.structure_score_percentage !== undefined) {
-    totalPercentageSum += data.structure_score_percentage;
-    activeSectionsCount++;
-  }
+  const readingTotal = Number(data.reading_total_questions) || 36;
+  const readingCorrect = data.reading_correct_answers !== undefined
+    ? Number(data.reading_correct_answers)
+    : Math.round(((Number(data.reading_score_percentage) || 0) / 100) * readingTotal);
 
-  if (data.listening_score_percentage !== undefined) {
-    totalPercentageSum += data.listening_score_percentage;
-    activeSectionsCount++;
-  }
+  const toeflCalc = calculateToeflScores({
+    listeningCorrect,
+    listeningTotal,
+    structureCorrect,
+    structureTotal,
+    readingCorrect,
+    readingTotal,
+  });
 
-  const averagePercentage = activeSectionsCount > 0 ? totalPercentageSum / activeSectionsCount : 0;
+  const totalTime =
+    (Number(data.reading_time_spent) || 0) +
+    (Number(data.structure_time_spent) || 0) +
+    (Number(data.listening_time_spent) || 0);
 
-  const minToefl = 310;
-  const maxToefl = 677;
-  const toeflRange = maxToefl - minToefl;
-
-  const finalScore = Math.round(minToefl + (averagePercentage * toeflRange) / 100);
-  const totalTime = (data.reading_time_spent || 0) + (data.structure_time_spent || 0) + (data.listening_time_spent || 0);
-
-  return { finalScore, totalTime };
+  return { finalScore: toeflCalc.finalToeflScore, totalTime };
 }
 
 export default function LeaderboardPage(){
